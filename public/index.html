@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html ng-app="deltaApp">
+  <head>
+    <title>Welcome To Delta Airlines</title>
+    <script src="/js/jquery-2.2.0.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-route.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
+    <script src="core.js"></script>
+    <script src="/controllers/mainCtrl.js"></script>
+    <script src="/controllers/flightsCtrl.js"></script>
+    <script src="/services/flightsSrv.js"></script>
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+    <body>
+
+    <!-- TOP NAVBAR -->
+    <nav class='navbar navbar-inverse navbar-fixed-top'>
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/#/" class="navbar-brand">Home</a>
+        </div>
+      </div>
+    </nav>
+    <!-- TOP NAVBAR -->
+
+    <!-- ANGULAR DYNAMIC TEMPLATING -->
+    <div ng-view></div>
+    <!-- ANGULAR DYNAMIC TEMPLATING -->
+
+    </body>
+</html>
