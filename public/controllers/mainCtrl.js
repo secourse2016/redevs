@@ -27,6 +27,7 @@ App.controller('mainCtrl', function($scope, FlightsSrv, $location) {
     opened: false
   };
 
+
   /*----------- Angular Bootstrap Typeahead -----------*/
 
   /* Retrieve List of Airports Codes */
@@ -54,4 +55,28 @@ App.controller('mainCtrl', function($scope, FlightsSrv, $location) {
   /* Get Airports on page render  */
   AirportCodes();
 
+});
+
+/*---Angular Classes choices*/
+angular.module('ui.bootstrap.demo').controller('ButtonsCtrl', function ($scope) {
+    $scope.singleModel = 1;
+
+    $scope.radioModel = 'Business Class';
+
+    $scope.checkModel = {
+        left: false,
+        middle: true,
+        right: false
+    };
+
+    $scope.checkResults = [];
+
+    $scope.$watchCollection('checkModel', function () {
+        $scope.checkResults = [];
+        angular.forEach($scope.checkModel, function (value, key) {
+            if (value) {
+                $scope.checkResults.push(key);
+            }
+        });
+    });
 });
