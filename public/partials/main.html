@@ -1,9 +1,5 @@
 <!-- MAIN BANNER -->
-<head>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
+
   <div class="container">
       <div class="row">
     <div class="jumbotron">
@@ -30,7 +26,7 @@
                            id="ticketSearchBox"
                            type="text"
                            placeholder="Enter the reservation code you reserved with please"
-                           ng-model="resCodeTextBox"
+                           ng-model="ticketCodeTextBox"
                            class="form-control"
                     >
                   </div>
@@ -52,7 +48,7 @@
                   <p style='font-size: 22px;'>
                   Book Now</p>
               </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
               <input name="originAirports"
                      id="originAirports"
                      type="text"
@@ -82,11 +78,21 @@
                              </span>
 
                      </p>
+              <div ng-controller="ButtonsCtrl">
+                  <div class="btn-group">
+                      <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
+                      <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
+                      <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
+                  </div>
+
+
+
+                  </div>
 
 
 
       </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
 
 
           </div>
