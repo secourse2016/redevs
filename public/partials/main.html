@@ -47,7 +47,7 @@
     </div>
           </div>
       <div class="row">
-          <div class="jumbotron banner">
+          <div class="jumbotron">
               <div class="row">
                   <p style='font-size: 22px;'>
                   Book Now</p>
@@ -61,6 +61,28 @@
                      uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
                      class="form-control",
                      typeahead-on-select="SetOriginAirport($item.iata)">
+
+                     <p class="input-group">
+                         <input type="text"
+                                class="form-control"
+                                id="fromDate"
+                                uib-datepicker-popup="{{format}}"
+                                ng-model="dt"
+                                placeholder="Flying From Date"
+                                is-open="popup1.opened"
+                                ng-required="true"
+                                close-text="Close"
+                                alt-input-formats="altInputFormats" />
+                             <span class="input-group-btn">
+                               <button type="button"
+                                       class="btn btn-default"
+                                       ng-click="open1()">
+                                   <i class="glyphicon glyphicon-calendar"></i>
+                               </button>
+                             </span>
+
+                     </p>
+
 
 
       </div>
@@ -77,61 +99,34 @@
                      uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
                      class="form-control",
                      typeahead-on-select="SetDestinationAirport($item.iata)">
+
+
+                     <p class="input-group">
+                         <input type="text"
+                                class="form-control"
+                                uib-datepicker-popup
+                                ng-model="dt"
+                                id="toDate"
+                                is-open="popup2.opened"
+                                placeholder="Flying To Date"
+                                ng-required="true"
+                                close-text="Close" />
+                             <span class="input-group-btn">
+                               <button type="button"
+                                       class="btn btn-default"
+                                       ng-click="open2()">
+                                   <i class="glyphicon glyphicon-calendar"></i>
+                               </button>
+                             </span>
+                     </p>
+
+
           </div>
+          <div class="row">
 
 
 
-      <div class="row">
-          <div class="col-md-4">
-              <p class="input-group">
-                  <input type="text"
-                         class="form-control"
-                         id="fromDate"
-                         uib-datepicker-popup="{{format}}"
-                         ng-model="dt"
-                         placeholder="Flying From Date"
-                         is-open="popup1.opened"
-                         ng-required="true"
-                         close-text="Close"
-                         alt-input-formats="altInputFormats" />
-                      <span class="input-group-btn">
-                        <button type="button"
-                                class="btn btn-default"
-                                ng-click="open1()">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
-                      </span>
-
-              </p>
-
-      </div>
-          <div class="col-md-4"></div>
-
-          <div class="col-md-4">
-              <p class="input-group">
-                  <input type="text"
-                         class="form-control"
-                         uib-datepicker-popup
-                         ng-model="dt"
-                         id="toDate"
-                         is-open="popup2.opened"
-                         placeholder="Flying To Date"
-                         ng-required="true"
-                         close-text="Close" />
-                      <span class="input-group-btn">
-                        <button type="button"
-                                class="btn btn-default"
-                                ng-click="open2()">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
-                      </span>
-              </p>
-          </div>
-
-
-
-      </div>
           </div>
       </div>
       </div>
-
+    </div>

@@ -3,29 +3,24 @@
 }
 #originAirports{
   width: 310px;
-  border-left-width: 30px;
+
 
 }
 #fromDate{
   width: 310px;
-  border-left-width: 30px;
-  margin-left: 15px;
 
 }
 
 #destinationAirports{
   width: 310px;
-  border-left-width: 30px;
-  margin-left: 6px;
+
 
 }
 #toDate{
   width: 310px;
-  border-left-width: 30px;
-  margin-left: 1px;
+
 
 }
 #ticketSearchBox{
   width:400px;
 }
-
