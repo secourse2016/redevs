@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Box Example 1</title>
+<title>Reservation Search</title>
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
 <!-- CSS styles for standard search box -->
 <style type="text/css">
@@ -58,8 +58,8 @@
   <div id="tfheader" >
   <h1>Reservation Search</h1>
     <form id="tfnewsearch" method="get" >
-            <input type="text" class="tftextinput"  name="q" size="21" maxlength="120" placeholder="Reservation number">
-            <input type="submit" value="search" class="tfbutton">
+            <input type="text" class="tftextinput"  name="q" size="21" maxlength="120" placeholder="Reservation number" ng-model="reservationNumberValue" >
+            <input type="submit" value="search" class="tfbutton" ng-click="findReservation(reservationNumberValue)">
     </form>
   <div class="tfclear"></div>
   </div>
