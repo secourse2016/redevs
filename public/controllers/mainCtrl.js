@@ -34,7 +34,7 @@ App.controller('mainCtrl', function($scope, FlightsSrv, $location) {
     FlightsSrv.getAirportCodes().success(function(airports) {
          $scope.Airports = airports;
      });
-  };
+  }
 
   /* Record User's Selected Origin Airport  */
   $scope.SetOriginAirport = function(originAirport) {

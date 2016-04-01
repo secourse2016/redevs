@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> Ticket Confirmation</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+</head>
+
+<body> 
+
+<div class="container">
+
+	<div class="jumbotron">
+		<h1>Ticket Confirmation</h1>
+	</div>
+
+	<div class="container">
+  		<h2>Flight Information</h2>
+  	</div>
+
+	<div class="container">
+  		<h5> Number of tickets: <span class="badge"> {{ numberOfTickets }}</span></h5><br>
+  		<h5> Class of tickets:  <span class="badge"> {{ classOfTickets }}</span></h5><br>
+	</div>
+
+	<div> <!-- to add a gap between panels; add: class="panel-group"-->   
+	    <div class="panel panel-default">
+	      <div class="panel-heading">Departing flight</div>
+	      <div class="panel-body">Information about the departing flight</div>
+	    </div>
+
+	    <div class="panel panel-default">
+	      <div class="panel-heading">Return flight</div>
+	      <div class="panel-body">Information about the return flight</div>
+	    </div>
+	</div>
+
+	<div class="alert alert-info">
+		<strong>Note: </strong> Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed. 
+	</div>
+
+	<div class="container">
+  		<h2> Reservation code <span class="badge"> {{ reservationCode }}</span></h2><br>
+	</div>
+
+	<div class="well">Ticket information will be sent to {{ userEmail }}</div>
+
+
+	<div class="container">
+  		<h2>Total amount</h2>
+     
+    <div class="col-sm-6">      
+	<table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Number of tickets</th>
+	        <th>Class</th>
+	        <th>Child/Adult</th>
+	        <th>Cost</th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	      <tr>
+	        <td>{{ number }}</td>
+	        <td>{{ class }} </td>
+	        <td>{{ child/adult }} </td>
+	        <td>{{ cost }}</td>
+	      </tr>
+	      
+		  <tr>
+	        <td>{{ number }}</td>
+	        <td>{{ class }} </td>
+	        <td>{{ child/adult }} </td>
+	        <td>{{ cost }}</td>
+	      </tr>
+
+	    </tbody>
+	</table>
+	</div> 
+
+
+
+
+
+</div>	
+	<div class="well">Total amount: {{totalAmout}}</div>
+	<button type="button" class="btn btn-success">Check out</button> <br>
+
+
+</div> <br>
+</body>
+
