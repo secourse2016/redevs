@@ -1,7 +1,7 @@
 /**
  * Reservation search Controller
  */
-
+var reservations=require("../reservations.json");
 App.controller('reservationSearchCtrl', function($scope, reservationSearchSrv) {
 
   /* Retrieve Selected flight details */
@@ -9,6 +9,18 @@ App.controller('reservationSearchCtrl', function($scope, reservationSearchSrv) {
   //1st refers to the going flight
   //2nd refers to the return flight
 
+//el method eli beta5od el resvNumber ml textbox w teraga3 el reservation required
+  $scope.findReservation = function(enteredValue) {     
+     for(i=0;i<reservations.length;i++){
+            if(reservations[i].reservationNumber==enteredValue){
+              return reservations[i];
+            }
+          }
+          //
+};
+
+
+//ghaleban da hashilo khales 
   $scope.flight = {
     numberOfTickets      :reservationSearchSrv.getSelectedNumberOfTickets(),
     Class                :reservationSearchSrv.getSelectedClass(),

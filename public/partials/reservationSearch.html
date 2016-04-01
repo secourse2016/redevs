@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Angular Forms</title>
+  <title>Reservation Search</title>
 
   <!-- LOAD BOOTSTRAP CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
     <!-- this is jQuery's only use. avoid it in Angular apps and if anyone has tips on how to send data to a PHP script w/o jQuery, please state it in the comments -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-  <!-- PROCESS FORM WITH AJAX (OLD) -->
+  
   <script>
     <!-- WE WILL PROCESS OUR FORM HERE -->
   </script>
@@ -28,22 +28,21 @@
     <h1><span class="glyphicon glyphicon-tower"></span> Flight Search</h1>
   </div>
 
-  <!-- SHOW ERROR/SUCCESS MESSAGES -->
-  <div id="messages"></div>
+ 
 
   <!-- FORM -->
   <form>
-    <!-- NAME -->
-    <div id="name-group" class="form-group">
+    
+    <div id="name-group" class="form-group" ng-controller="reservationSearchCtrl">
       <label>Search for a reservation</label>
-      <input type="text" name="reservationNumber" class="form-control" placeholder="reservation number" ng-model="reservationNumber">
+      <input type="text" name="reservationNumber" class="form-control" placeholder="reservation number" ng-model="reservationNumberValue">
       <span class="help-block"></span>
     </div>
 
    
 
     <!-- SUBMIT BUTTON -->
-     <button type="button" class="btn btn-primary" id='btnSearch' ng-click="SearchFlights('reservationNumber.text')">Search!</button>
+     <button type="button" class="btn btn-primary" id='btnSearch' ng-click="findReservation(reservationNumberValue)">Search!</button>
   </form>
 
 </div>
