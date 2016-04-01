@@ -1,51 +1,68 @@
-<!-- index.html -->
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Reservation Search</title>
-
-  <!-- LOAD BOOTSTRAP CSS -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-  <!-- LOAD JQUERY -->
-    <!-- when building an angular app, you generally DO NOT want to use jquery -->
-    <!-- we are breaking this rule here because jQuery's $.param will help us send data to our PHP script so that PHP can recognize it -->
-    <!-- this is jQuery's only use. avoid it in Angular apps and if anyone has tips on how to send data to a PHP script w/o jQuery, please state it in the comments -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-  
-  <script>
-    <!-- WE WILL PROCESS OUR FORM HERE -->
-  </script>
+<title>Search Box Example 1</title>
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+<!-- CSS styles for standard search box -->
+<style type="text/css">
+  #tfheader{
+    background-color:#c3dfef;
+  }
+  #tfnewsearch{
+    float:right;
+    padding:20px;
+  }
+  .tftextinput{
+    margin: 0;
+    padding: 5px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    border:1px solid #0076a3; border-right:0px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+  }
+  .tfbutton {
+    margin: 0;
+    padding: 5px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    border: solid 1px #0076a3; border-right:0px;
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+  }
+  .tfbutton:hover {
+    text-decoration: none;
+    background: #007ead;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+  }
+  /* Fixes submit button height problem in Firefox */
+  .tfbutton::-moz-focus-inner {
+    border: 0;
+  }
+  .tfclear{
+    clear:both;
+  }
+</style>
 </head>
 <body>
-<div class="container">
-<div class="col-md-6 col-md-offset-3">
-
-  <!-- PAGE TITLE -->
-  <div class="page-header">
-    <h1><span class="glyphicon glyphicon-tower"></span> Flight Search</h1>
+  <!-- HTML for SEARCH BAR -->
+  <div id="tfheader" >
+  <h1>Reservation Search</h1>
+    <form id="tfnewsearch" method="get" >
+            <input type="text" class="tftextinput"  name="q" size="21" maxlength="120" placeholder="Reservation number">
+            <input type="submit" value="search" class="tfbutton">
+    </form>
+  <div class="tfclear"></div>
   </div>
-
- 
-
-  <!-- FORM -->
-  <form>
-    
-    <div id="name-group" class="form-group" ng-controller="reservationSearchCtrl">
-      <label>Search for a reservation</label>
-      <input type="text" name="reservationNumber" class="form-control" placeholder="reservation number" ng-model="reservationNumberValue">
-      <span class="help-block"></span>
-    </div>
-
-   
-
-    <!-- SUBMIT BUTTON -->
-     <button type="button" class="btn btn-primary" id='btnSearch' ng-click="findReservation(reservationNumberValue)">Search!</button>
-  </form>
-
-</div>
-</div>
 </body>
 </html>
+

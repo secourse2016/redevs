@@ -4,6 +4,18 @@
  var reservations=require("../reservations.json")
 App.factory('reservationSearchSrv', function ($http) {
      return {
+
+
+        $scope.findReservation = function(enteredValue) {     
+     for(i=0;i<reservations.length;i++){
+            if(reservations[i].reservationNumber==enteredValue){
+              return reservations[i];
+            }
+          }
+          //
+};
+
+      
          getreservationNumber : function(number) {
 
           //where will I be calling it??
