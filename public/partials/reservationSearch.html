@@ -1,0 +1,52 @@
+<!-- index.html -->
+
+<!doctype html>
+<html>
+<head>
+  <title>Angular Forms</title>
+
+  <!-- LOAD BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <!-- LOAD JQUERY -->
+    <!-- when building an angular app, you generally DO NOT want to use jquery -->
+    <!-- we are breaking this rule here because jQuery's $.param will help us send data to our PHP script so that PHP can recognize it -->
+    <!-- this is jQuery's only use. avoid it in Angular apps and if anyone has tips on how to send data to a PHP script w/o jQuery, please state it in the comments -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+  <!-- PROCESS FORM WITH AJAX (OLD) -->
+  <script>
+    <!-- WE WILL PROCESS OUR FORM HERE -->
+  </script>
+</head>
+<body>
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+
+  <!-- PAGE TITLE -->
+  <div class="page-header">
+    <h1><span class="glyphicon glyphicon-tower"></span> Flight Search</h1>
+  </div>
+
+  <!-- SHOW ERROR/SUCCESS MESSAGES -->
+  <div id="messages"></div>
+
+  <!-- FORM -->
+  <form>
+    <!-- NAME -->
+    <div id="name-group" class="form-group">
+      <label>Search for a reservation</label>
+      <input type="text" name="reservationNumber" class="form-control" placeholder="reservation number" ng-model="reservationNumber">
+      <span class="help-block"></span>
+    </div>
+
+   
+
+    <!-- SUBMIT BUTTON -->
+     <button type="button" class="btn btn-primary" id='btnSearch' ng-click="SearchFlights('reservationNumber.text')">Search!</button>
+  </form>
+
+</div>
+</div>
+</body>
+</html>
