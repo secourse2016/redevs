@@ -3,7 +3,7 @@
   <div class="container">
       <div class="row">
     <div class="jumbotron">
-      <h1>Delta Airlines</h1>
+      <h1 id="headerwelcome">Delta Airlines</h1>
       <p>
         This Website is under Construction</p>
       </div>
@@ -48,7 +48,7 @@
                   <p style='font-size: 22px;'>
                   Book Now</p>
               </div>
-          <div class="col-md-5">
+          <div class="col-md-4">
               <input name="originAirports"
                      id="originAirports"
                      type="text"
@@ -78,21 +78,11 @@
                              </span>
 
                      </p>
-              <div ng-controller="ButtonsCtrl">
-                  <div class="btn-group">
-                      <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
-                      <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
-                      <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
-                  </div>
-
-
-
-                  </div>
 
 
 
       </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
 
 
           </div>
@@ -130,8 +120,27 @@
           </div>
           <div class="row">
 
+            <div ng-controller="ButtonsCtrl">
+              <div class = "col-md-4">
+
+              </div>
+            </div>
+
+            <div class = "col-md-6>">
+              <div class="btn-group">
+              </br>
+            </br>
+                  <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
+                  <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
+                  <label id="first_btn" class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
+              </div>
 
 
+            </div>
+            <div class = "col-md-2>"></div>
+
+          </div>
+          <div class="row">
           </div>
       </div>
       </div>
