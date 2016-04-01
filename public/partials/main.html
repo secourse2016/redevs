@@ -63,7 +63,7 @@
                                 class="form-control"
                                 id="fromDate"
                                 uib-datepicker-popup="{{format}}"
-                                ng-model="dt"
+                                ng-model="dtFrom"
                                 placeholder="Flying From Date"
                                 is-open="popup1.opened"
                                 ng-required="true"
@@ -100,8 +100,9 @@
                      <p class="input-group">
                          <input type="text"
                                 class="form-control"
-                                uib-datepicker-popup
-                                ng-model="dt"
+                                uib-datepicker-popup="{{format}}"
+                                min="'2016-03-01'"
+                                ng-model="dtTo"
                                 id="toDate"
                                 is-open="popup2.opened"
                                 placeholder="Flying To Date"
@@ -126,13 +127,14 @@
               </div>
 
 
-            <div class = "col-md-4>">
+            <div class = "col-md-3>">
                 <div ng-controller="buttonsCtrl">
 
                     <div class="btn-group">
                         <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
                         <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
                         <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
+
                     </div>
 
 
@@ -145,6 +147,11 @@
           </div>
           <div class="row">
           </div>
+              <div class="col-md-5">
+              </div>
+              <div class="col-md-3">
+                  <button type="button" class="btn btn-success">Book Now!!</button>
+              </div>
       </div>
       </div>
     </div>

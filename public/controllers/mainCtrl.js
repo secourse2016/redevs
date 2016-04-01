@@ -8,6 +8,9 @@ angular.module('deltaApp').controller('mainCtrl', function($scope) {
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 
+    var date = new Date();
+    $scope.minDate = date.setDate((new Date()).getDate() - 90);
+
     $scope.open1 = function () {
         $scope.popup1.opened = true;
     };
@@ -17,7 +20,9 @@ angular.module('deltaApp').controller('mainCtrl', function($scope) {
     };
 
     $scope.setDate = function (year, month, day) {
-        $scope.dt = new Date(year, month, day);
+        $scope.dtTo = new Date(year, month, day);
+        $scope.dtFrom = new Date(year, month, day);
+
     };
 
     $scope.popup1 = {
@@ -33,29 +38,29 @@ angular.module('deltaApp').controller('mainCtrl', function($scope) {
     /*----------- Angular Bootstrap Typeahead -----------*/
 
     /* Retrieve List of Airports Codes */
-/*    function AirportCodes() {
+   function AirportCodes() {
      FlightsSrv.getAirportCodes().success(function(airports) {
      $scope.Airports = airports;
      });
      }
 
-     /!* Record User's Selected Origin Airport  *!/
+     /* Record User's Selected Origin Airport  */
      $scope.SetOriginAirport = function(originAirport) {
      FlightsSrv.setSelectedOriginAirport(originAirport);
      };
 
-     /!* Record User's Selected Destination Airport  *!/
+     /* Record User's Selected Destination Airport  */
      $scope.SetDestinationAirport = function(destAirport) {
      FlightsSrv.setSelectedDestinationAirport(destAirport);
      };
 
-     /!* Find All Available Flights  *!/
+     /* Find All Available Flights  */
      $scope.SearchFlights = function() {
      $location.url('/flights');
      };
 
-     /!* Get Airports on page render  *!/
-     AirportCodes();*/
+     /* Get Airports on page render  */
+     AirportCodes();
 
 
     /*---Angular Classes choices*/
