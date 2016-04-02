@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* Create Angular App Instance */
 App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate']);
 

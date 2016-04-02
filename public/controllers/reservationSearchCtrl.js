@@ -122,29 +122,30 @@ App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchS
 }
 ];
 
- 
+
   // $http.get('/api/tickets').
   // success(function(data,status,headers,config){
   //   $scope.reservations=data;
   // })
 
 $scope.reservationsObjects={};
+var reservationNumber = reservationSearchSrv.getReservationNumber();
 
-   $scope.findReservation = function() { // <-- here is you value from the input 
-     
-      reservationSearchSrv.setReservationNumber($scope.reservationNumberValue);
+   findReservation = function(resNum) { // <-- here is you value from the input
+
+      reservationSearchSrv.setReservationNumber(resNum);
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
       for(i=0;i<$scope.reservations.length;i++){
              if($scope.reservations[i].reservationCode==reservationNumberValue){
-              
+
               $scope.reservationsObjects=$scope.reservations[i];
 
-               
+
              }
            }
-          
+
 
 
 
@@ -152,16 +153,19 @@ $scope.reservationsObjects={};
 
 };
 
-  
+  findReservation(reservationNumber);
+
+   $scope.findReservation = findReservation ;
+
 });
 
 
 
 
-//   $scope.findReservation = function(enteredValue) {     
+//   $scope.findReservation = function(enteredValue) {
 //      for(i=0;i<reservations.length;i++){
 //             if(reservations[i].reservationNumber==enteredValue){
-              
+
 //               return reservations[i];
 //             }
 //           }
@@ -173,15 +177,15 @@ $scope.reservationsObjects={};
 // App.controller('reservationSearchCtrl', function($scope, reservationSearchSrv) {
 
 //   /* Retrieve Selected flight details */
-  
+
 //   //1st refers to the going flight
 //   //2nd refers to the return flight
 
 // //el method eli beta5od el resvNumber ml textbox w teraga3 el reservation required
-//   $scope.findReservation = function(enteredValue) {     
+//   $scope.findReservation = function(enteredValue) {
 //      for(i=0;i<reservations.length;i++){
 //             if(reservations[i].reservationNumber==enteredValue){
-              
+
 //               return reservations[i];
 //             }
 //           }
@@ -189,7 +193,7 @@ $scope.reservationsObjects={};
 // };
 
 
-// //ghaleban da hashilo khales 
+// //ghaleban da hashilo khales
 //   $scope.flight = {
 //     numberOfTickets      :reservationSearchSrv.getSelectedNumberOfTickets(),
 //     Class                :reservationSearchSrv.getSelectedClass(),
@@ -202,7 +206,7 @@ $scope.reservationsObjects={};
 //     1sttoTime            :reservationSearchSrv.getSelected1sttoTime(),
 //     1sttoTerminal        :reservationSearchSrv.getSelected1sttoTerminal(),
 //     1stflightNumber      :reservationSearchSrv.getSelected1stFlightNumber(),
-	
+
 // 	  2ndFrom              :reservationSearchSrv.getSelected2ndFrom(),
 //     2ndto                :reservationSearchSrv.getSelected2ndto(),
 //     2ndfromDate          :reservationSearchSrv.getSelected2ndFromDate(),
@@ -212,11 +216,11 @@ $scope.reservationsObjects={};
 //     2ndtoTime            :reservationSearchSrv.getSelected2ndtoTime(),
 //     2ndtoTerminal        :reservationSearchSrv.getSelected2ndtoTerminal(),
 //     2ndflightNumber      :reservationSearchSrv.getSelected2ndFlightNumber(),
-	
+
 // 	reservationNumber    :reservationSearchSrv.getSelectedReservationNumber(),
 
 //   };
 
- 
+
 
 // });

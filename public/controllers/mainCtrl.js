@@ -1,6 +1,6 @@
 
 
-App.controller('mainCtrl', function($scope,FlightsSrv, $location) {
+App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -66,7 +66,10 @@ App.controller('mainCtrl', function($scope,FlightsSrv, $location) {
 
 
 
-
+    $scope.searchReservation = function() {
+      reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
+      $location.url('/reservationSearch');
+    }
 
     /* Get Airports on page render  */
     AirportCodes();
