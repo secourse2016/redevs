@@ -8,7 +8,7 @@ App.config(function($routeProvider) {
     $routeProvider
 
         // route for the home page
-        .when('/', {
+        .when('/asa', {
             templateUrl : '/partials/main.html',
             controller  : 'mainCtrl',
             css: 'styles/main.css'
@@ -18,6 +18,11 @@ App.config(function($routeProvider) {
         .when('/flights', {
             templateUrl : '/partials/flights.html',
             controller  : 'flightsCtrl'
+        })
+
+        .when('/',{
+            templateUrl : '/partials/FlightDetails.html',
+            controller : 'controllerFlightDetails'
         });
 });
 
