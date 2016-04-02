@@ -10,4 +10,8 @@ module.exports = function(app,mongo) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
+    // app.get('/api/tickets',function(req,res){
+    // 	res.sendFile('../tickets.json');
+    // });
+
 };

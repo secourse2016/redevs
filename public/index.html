@@ -11,9 +11,80 @@
     <script src="core.js"></script>
     <script src="/controllers/mainCtrl.js"></script>
     <script src="/controllers/flightsCtrl.js"></script>
+    <script src="/controllers/reservationSearchCtrl.js"></script>
+    <script src="/services/reservationSearchSrv.js"></script>
     <script src="/services/flightsSrv.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/style.css">
+    <style type="text/css">
+  #tfheader{
+    background-color:#c3dfef;
+    background-image: url("partials/Delta-Air-Lines-website.png");
+   
+  background-size: cover;
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+    /* 50% */
+     min-height: 100%;
+  min-width: 1024px;
+  
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  }
+  #tfnewsearch{
+    float:right;
+    padding:50px;
+  }
+  .tftextinput{
+    margin: 0;
+    padding: 10px 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    border:1px solid #0076a3; border-right:0px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+  }
+  .tfbutton {
+    margin: 0;
+    padding: 5px 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:40px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    border: solid 1px #0076a3; border-right:0px;
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    background-color: #f44336;
+  }
+  .tfbutton:hover {
+    text-decoration: none;
+    background: #007ead;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+  }
+  /* Fixes submit button height problem in Firefox */
+  .tfbutton::-moz-focus-inner {
+    border: 0;
+  }
+  .tfclear{
+    clear:both;
+  }
+
+</style>
   </head>
     <body>
 
@@ -28,8 +99,8 @@
     <!-- TOP NAVBAR -->
 
     <!-- ANGULAR DYNAMIC TEMPLATING -->
-    <div ng-view></div>
+    <div ng-view=""></div>
     <!-- ANGULAR DYNAMIC TEMPLATING -->
-
+    
     </body>
 </html>
