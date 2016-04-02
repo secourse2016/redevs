@@ -12,8 +12,8 @@
  </head>
  
  <body> 
- <div ng-app="" ng-init="adultsInput='0'">
- <div ng-app="" ng-init="childrenInput='0'">
+ <div ng-app="" ng-init="adultsInput=0">
+ <div ng-app="" ng-init="childrenInput=0">
  
  <div class="container">
  
@@ -39,12 +39,12 @@
  	      			</tr>
  	    			</thead>
  	    			<tbody>
- 	    				<tr>
+ 	    				<tr ng-repeat="x in ['0']" >
  	    				<td>
- 	    				<input type="number" ng-model="adultsInput" placeholder="Number Of Tickets">
+ 	    				<input type="number" string-to-number ng-model="adultsInput" placeholder="Number Of Tickets" />
  	    				</td>
  	    				<td>
- 	    				<input type="number" ng-model="childrenInput" placeholder="Number Of Tickets">
+ 	    				<input type="number" string-to-number ng-model="childrenInput" placeholder="Number Of Tickets"/>
  	    				</td>
  	    					
  	    				</tr>
