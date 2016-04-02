@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+ <html lang="en">
+	<head>
+ 	<title> Flights from Search - Details</title>
+ 
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+ 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ </head>
+ 
+ <body> 
+ <div ng-app="" ng-init="adultsInput='0'">
+ <div ng-app="" ng-init="childrenInput='0'">
+ 
+ <div class="container">
+ 
+ 	<div class="jumbotron">
+ 		<h1>Flight Number XXX</h1>
+ 	</div>
+ 
+ 	<div class="container">
+   		<h2>Flight Information</h2>
+   	</div>
+ 
+ 	<div class="container">
+   		<h5> Class of tickets:  <span class="badge"> class </span></h5><br>
+
+   		<div> <!-- to add a gap between panels; add: class="panel-group"-->   
+ 	    <div class="panel panel-default">
+ 	      <div class="col-sm-15">      
+ 				<table class="table table-striped">
+ 	    			<thead>
+ 	      			<tr>
+ 	        			<th>Adult(s)</th>
+ 	        			<th>Child(ren)</th>
+ 	      			</tr>
+ 	    			</thead>
+ 	    			<tbody>
+ 	    				<tr>
+ 	    				<td>
+ 	    				<input type="number" ng-model="adultsInput" placeholder="Number Of Tickets">
+ 	    				</td>
+ 	    				<td>
+ 	    				<input type="number" ng-model="childrenInput" placeholder="Number Of Tickets">
+ 	    				</td>
+ 	    					
+ 	    				</tr>
+
+ 	    			</tbody>
+
+ 				</table>
+ 			</div> 
+ 	    </div>
+ 
+ 	</div>
+ 		
+ 
+ 	<div> <!-- to add a gap between panels; add: class="panel-group"-->   
+ 	    <div class="panel panel-default">
+ 	      <div class="panel-heading">Flight Details</div>
+ 	      <div class="col-sm-15">      
+ 				<table class="table table-striped">
+ 	    			<thead>
+ 	      			<tr>
+ 	        			<th>From: XXX</th>
+ 	        			<th>To: XXX</th>
+ 	      			</tr>
+ 	    			</thead>
+ 
+ 	    			<tbody>
+ 	      				<tr>
+ 	        				<td>Date: DD/MM/YYYY</td>
+ 	        				<td>Date: DD/MM/YYYY</td>
+ 	      				</tr>
+ 	      
+ 		  				<tr>
+ 	        				<td>Time: HH:MM</td>
+ 	        				<td>Time: HH:MM</td>
+ 	      				</tr>
+
+ 	      				<tr>
+ 	        				<td>Terminal: XX</td>
+ 	        				<td>Terminal: XX</td>
+ 	      				</tr>
+ 
+ 	    			</tbody>
+ 				</table>
+ 			</div> 
+ 	    </div>
+ 
+ 	</div>
+ 	</div>
+
+ 
+ 
+ 	<div class="container">
+   		<h2>Total amount</h2>
+      
+     <div class="col-sm-6">      
+ 		<table class="table table-striped">
+ 	    	<thead>
+ 	      	<tr>
+
+ 	        	<th>Number of tickets</th>
+ 	        	<th>Class</th>
+ 	        	<th>Child/Adult</th>
+ 	        	<th>Cost</th>
+ 	      	</tr>
+ 	    	</thead>
+ 
+ 	    	<tbody>
+ 	      		<tr>
+ 	        		<td>x{{ adultsInput }}</td>
+ 	        		<td>{{ class }}</td>
+ 	        		<td>Adults</td>
+ 	        		<td>${{adultsCost}}</td>
+ 	      		</tr>
+ 	      
+ 		  		<tr>
+ 	        		<td>x{{ childrenInput }}</td>
+ 	        		<td>{{ class }}</td>
+ 	        		<td>Children</td>
+ 	        		<td>${{childrenCost}}</td>
+ 	      		</tr>
+ 
+ 	    	</tbody>
+ 		</table>
+ 	</div> 
+ 	</div>	
+
+ 	<div class="well">Total amount: {{ adultsInput }}</div>
+ 	<button type="button" class="btn btn-success">Procced</button> <br>
+ 	</div>
+ 
+ 
+ </div> <br>
+ </body>
