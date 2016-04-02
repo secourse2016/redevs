@@ -1,0 +1,164 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+h2  {font-size:50px; text-align:center; font-family:courier; font-weight:bold; }
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+input[type=date] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=date]:focus {
+    width: 100%;
+}
+
+input[type=Number] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=Number]:focus {
+    width: 100%;
+}
+
+
+
+h3{
+font-size:10px;
+}
+
+touta{
+font-size:15px;
+}
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><!-- load angular 1.2.4 -->
+
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/todos.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>Delta Airlines</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Delta_logo.svg/2000px-Delta_logo.svg.png" alt="Smiley face" height="90" width="900" align=top;>
+
+        </div>
+
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+             <label><h2>Credit Card Payment</h2></label>
+
+            </div>
+        </div>
+
+        
+               
+
+<div class="well">
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Name:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="email" placeholder="Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Credit Card Number:</label>
+    <div class="col-sm-10">
+      <input type="Number" class="form-control" id="pwd">
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">CVC:</label>
+    <div class="col-sm-10">
+      <input type="Number" class="form-control" id="pwd">
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Expiry Date:<small>mm/yy</small>></label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="pwd">
+    </div>
+  </div>
+
+  
+</form>
+
+
+</div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Confirm Payment</button>
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
