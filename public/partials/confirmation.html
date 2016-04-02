@@ -23,8 +23,9 @@
   	</div>
 
 	<div class="container">
-  		<h5> Number of ticket(s): <span class="badge"> {{ numberOfTickets }}</span></h5><br>
-  		<h5> Class of tickets(s):  <span class="badge"> {{ classOfTickets }}</span></h5><br>
+  		<h5> Number of adult ticket(s): <span class="badge"> {{ adultTickets }}</span></h5><br>
+  		<h5> Number of children ticket(s): <span class="badge"> {{ childrenTickets }}</span></h5><br>
+  		<h5> Class of tickets(s):  <span class="badge"> {{ class }}</span></h5><br>
 	</div>
 
 	<div> <!-- to add a gap between panels; add: class="panel-group"-->   
@@ -34,20 +35,20 @@
 				<!--<div class="row"> -->
   					<div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> From: <span class="badge"> {{ depFrom }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ depDate1 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ depTime1 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ depTerminal1 }}</span></h5><br>
+					  		<h5> From: <span class="badge"> {{ departFrom }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ departDate1 }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ departTime1 }}</span></h5><br>
+					  		<h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
   					</div>
 
 					<div class="col-sm-6"><div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> To: <span class="badge"> {{ depTo }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ depDate2 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ depTime2 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ depTerminal2 }}</span></h5>
+					  		<h5> To: <span class="badge"> {{ departTo }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ departDate2 }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ departTime2 }}</span></h5><br>
+					  		<h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5>
 					  		
 						</div>
   					</div></div>	
@@ -86,19 +87,6 @@
 		<strong>Note: </strong> Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed. 
 	</div>
 
-	
-
-	<div class="well">
-
-		<div class="container">
-			<h4> <span class="glyphicon glyphicon-plane"></span>  Reservation code: <span class="badge">{{ reservationCode }}</span></h4><br>
-			<strong>Note: </strong> Ticket(s) information will be sent to {{userEmail}} 
-		</div>   
-		
-		
-		
-	</div>
-
 	<div class="well">
 		<div class="container">
 		    <div class="col-sm-6">      
@@ -112,19 +100,19 @@
 			      </tr>
 			    </thead>
 
-			    <tbody>
-			      <tr>
-			        <td>{{ number }}</td>
+			    <tbody> <!-- Might be wrong to repeat here -->
+			      <tr ng-repeat="x in adultTickets">
+			        <td>{{ adultTickets.length }}</td>
 			        <td>{{ class }} </td>
-			        <td>{{ child/adult }} </td>
-			        <td>{{ cost }}</td>
+			        <td> Adult </td>
+			        <td>{{ adultTicketsCost }}</td>
 			      </tr>
-			      
-				  <tr>
-			        <td>{{ number }}</td>
+
+			      <tr ng-repeat="y in childrenTickets">
+			        <td>{{ childrenTickets.length }}</td>
 			        <td>{{ class }} </td>
-			        <td>{{ child/adult }} </td>
-			        <td>{{ cost }}</td>
+			        <td> Child </td>
+			        <td>{{ childrenTicketsCost }}</td>
 			      </tr>
 
 			    </tbody>
@@ -137,9 +125,11 @@
 			<button type="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 
+				
 			<button type="button" class="btn btn-info">
 	      		<span class="glyphicon glyphicon-ok-sign"></span> Check Out
 	    	</button>
+	    	
 		</div>
 		
 	</div>
