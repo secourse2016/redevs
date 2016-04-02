@@ -1,6 +1,4 @@
-/**
- * Main Controller
- */
+
 
 App.controller('mainCtrl', function($scope,FlightsSrv, $location) {
 
@@ -21,7 +19,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv, $location) {
 
 
   $scope.dateOptions = {
-  
+
     formatYear: 'yy',
     maxDate: new Date(2020, 5, 22),
     minDate: new Date(),

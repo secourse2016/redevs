@@ -1,0 +1,29 @@
+
+  <!-- HTML for SEARCH BAR -->
+  </br>
+  </br>
+  </br>
+  </br>
+  <div id="tfheader" >
+  <h1>My Booking</h1>
+    <form id="tfnewsearch"   >
+            <input type="text" class="tftextinput"  name="reservationNumberValue" size="21" maxlength="120" placeholder="Reservation number" ng-model="reservationNumberValue" >
+            <input type="submit" value="find Flight" class="tfbutton" ng-click="findReservation()">
+    </form>
+  <div class="tfclear"></div>
+ <h3>Your reservation Code is <span class="label label-default">{{reservationsObjects.reservationCode}}</span> </h3> 
+ <h1>{{reservationsObjects.numberOfAdults}}</h1>  
+ <h1>{{reservationsObjects.numberOfChildren}}</h1>  
+ <div ng-repeat="flight in reservationsObjects.flights">
+   
+
+<h1>{{flight.flightNumber}}</h1> 
+<h1>{{flight.date}}</h1> 
+<h1>{{flight.origin}}</h1> 
+<h1>{{flight.destination}}</h1>  
+
+</div>  
+ 
+
+  </div>
+

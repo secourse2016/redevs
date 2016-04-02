@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Create Angular App Instance */
 App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate']);
 
@@ -19,6 +20,13 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/flights.html',
             controller  : 'flightsCtrl',
             css:'styles/main.css'
+        })
+
+        .when('/reservationSearch', {
+            templateUrl : '/partials/reservationSearch.html',
+            controller  : 'reservationSearchCtrl',
+            css : 'styles/reservationSearch.css'
+
         });
 });
 
