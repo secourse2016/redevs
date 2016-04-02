@@ -1,3 +1,4 @@
+
 /**
  * Flights Service
  */
@@ -5,6 +6,7 @@ App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
+
          },
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
@@ -17,6 +19,18 @@ App.factory('FlightsSrv', function ($http) {
          },
          getSelectedDestinationAirport: function() {
            return this.selectedDestinationAirport;
+         },
+         getSelectedDepartureDate: function(){
+           return this.selectedDepartureDate;
+         },
+         getSelectedArrivalDate: function(){
+           return this.selectedArrivalDate;
+         },
+         setSelectedDepartureDate: function(value){
+            this.selectedDepartureDate=value;
+         },
+         setSelectedArrivalDate: function(value){
+            this.selectedArrivalDate=value;
          }
      };
  });

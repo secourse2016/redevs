@@ -2,11 +2,11 @@
  * Main Controller
  */
 
-angular.module('deltaApp').controller('mainCtrl', function($scope,FlightsSrv, $location) {
+App.controller('mainCtrl', function($scope,FlightsSrv, $location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
+    $scope.format = $scope.formats[1];
 
     var date = new Date();
     $scope.minDate = date.setDate((new Date()).getDate() - 90);
@@ -18,6 +18,15 @@ angular.module('deltaApp').controller('mainCtrl', function($scope,FlightsSrv, $l
     $scope.open2 = function () {
         $scope.popup2.opened = true;
     };
+
+
+  $scope.dateOptions = {
+  
+    formatYear: 'yy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(),
+    startingDay: 1
+  };
 
     $scope.setDate = function (year, month, day) {
         $scope.dtTo = new Date(year, month, day);
@@ -49,10 +58,17 @@ angular.module('deltaApp').controller('mainCtrl', function($scope,FlightsSrv, $l
         FlightsSrv.setSelectedDestinationAirport(destAirport);
     };
 
+
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-        $location.url('/flights');
+      FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+      FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+      $location.url('/flights');
     };
+
+
+
+
 
     /* Get Airports on page render  */
     AirportCodes();
@@ -63,9 +79,12 @@ angular.module('deltaApp').controller('mainCtrl', function($scope,FlightsSrv, $l
 
 
 
+
+
+
     /*---Angular Classes choices*/
 
-    angular.module('deltaApp').controller('buttonsCtrl', function ($scope) {
+    App.controller('buttonsCtrl', function ($scope) {
 
         $scope.checkModel = {
             left: false,

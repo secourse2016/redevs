@@ -17,7 +17,8 @@ App.config(function($routeProvider) {
         // route for the flights page
         .when('/flights', {
             templateUrl : '/partials/flights.html',
-            controller  : 'flightsCtrl'
+            controller  : 'flightsCtrl',
+            css:'styles/main.css'
         });
 });
 

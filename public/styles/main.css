@@ -25,10 +25,15 @@
   width:400px;
 }
 
-#first_btn{
+#firstBtn{
   width:120px;
 }
 
 #headerwelcome{
   text-align: center;
+}
+
+
+#bookBtn{
+  width: 150px;
 }
