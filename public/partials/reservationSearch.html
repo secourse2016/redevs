@@ -1,28 +1,122 @@
-
-  <!-- HTML for SEARCH BAR -->
+<!-- MAIN BANNER -->
+</br>
+  </br></br>
   </br>
+  <div class="container">
+      <div class="row">
+    <div>
+     </br>
   </br>
+   </br>
+  </br></br>
   </br>
+
+      <h1 id="headerwelcome">
+      </br>
   </br>
-  <div id="tfheader" >
-  <h1>My Booking</h1>
-    <form id="tfnewsearch"   >
-            <input type="text" class="tftextinput" ng-model = "rn" name="reservationNumberValue" size="21" maxlength="120" placeholder="Reservation number" ng-model="reservationNumberValue" >
-            <input type="submit" value="find Flight" class="tfbutton" ng-click="findReservation(rn)">
-    </form>
-  <div class="tfclear"></div>
- <h3>Your reservation Code is <span class="label label-default">{{reservationsObjects.reservationCode}}</span> </h3>
- <h1>{{reservationsObjects.numberOfAdults}}</h1>
- <h1>{{reservationsObjects.numberOfChildren}}</h1>
- <div ng-repeat="flight in reservationsObjects.flights">
+  My Reservations</h1>
+  >
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="jumbotron banner">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <p style='font-size: 22px;'>
+                  Enter your reservation number!
+                </p>
+              </div>
+                <div class="col-md-6">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+
+                    <input name="ticketSearch"
+                           id="ticketSearchBox"
+                           type="text"
+                           placeholder="reservation Code"
+                           ng-model="rn"
+                           class="form-control"
+                    >
+                  </div>
+
+              </form>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" ng-click="findReservation(rn)" class="btn btn-primary">Find Now</button>
+                </div>
 
 
-<h1>{{flight.flightNumber}}</h1>
-<h1>{{flight.date}}</h1>
-<h1>{{flight.origin}}</h1>
-<h1>{{flight.destination}}</h1>
+            </div>
+        </div>
+    </div>
+          </div>
+      <div class="row">
+          <div class="jumbotron">
+              <div class="row">
+                  <p style='font-size: 22px;'>
+                  <span class="label label-danger">Your reservation Code is</span> <span class="label label-default">{{reservationsObjects.reservationCode}}</span> </p>
+              </div>
 
+              <div class="row">
+                  <p style='font-size: 22px;'>
+                  <span class="label label-danger">Number of Adults :</span><span class="label label-default">{{reservationsObjects.numberOfAdults}}</span></p>
+              </div>
+              <div class="row">
+                  <p style='font-size: 22px;'>
+                  <span class="label label-danger">Number of Children :</span><span class="label label-default">{{reservationsObjects.numberOfChildren}}</span></p>
+              </div>
+              <div class="row" ng-repeat="flight in reservationsObjects.flights">
+
+                  <p style='font-size: 22px;'>
+                  <span class="label label-danger">Flight Number :</span><span class="label label-default">{{flight.flightNumber}}</span></p>
+
+                   <p style='font-size: 22px;'>
+                  <span class="label label-danger">Date :</span><span class="label label-default">{{flight.date}}</span></p>
+
+                   <p style='font-size: 22px;'>
+                  <span class="label label-danger">From :</span><span class="label label-default">{{flight.origin}}</span></p>
+
+                   <p style='font-size: 22px;'>
+                  <span class="label label-danger">To :</span><span class="label label-default">{{flight.destination}}</span></p>
+              </div>
+              
+
+              <div class="row">
+                  <p style='font-size: 22px;'>
+                  ""</p>
+              </div>
+
+    
+          <div class="col-md-4">
+
+
+          </div>
+         
+<div class="row">
+<br></br><br></br><br></br>
 </div>
 
+          <div class="row">
 
-  </div>
+
+
+            <div class = "col-md-3>">
+             
+
+
+            </div>
+            <div class = "col-md-2>"></div>
+
+          </div>
+
+          <div class="row">
+          </br>
+        </br>
+
+          </div>
+
+      </div>
+      </div>
+    </div>
