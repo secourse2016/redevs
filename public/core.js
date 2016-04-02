@@ -1,5 +1,6 @@
+
 /* Create Angular App Instance */
-App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute']);
+App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate']);
 
 /**
  * Angular Routes
@@ -17,7 +18,15 @@ App.config(function($routeProvider) {
         // route for the flights page
         .when('/flights', {
             templateUrl : '/partials/flights.html',
-            controller  : 'flightsCtrl'
+            controller  : 'flightsCtrl',
+            css:'styles/main.css'
+        })
+
+        .when('/reservationSearch', {
+            templateUrl : '/partials/reservationSearch.html',
+            controller  : 'reservationSearchCtrl',
+            css : 'styles/reservationSearch.css'
+
         });
 });
 
