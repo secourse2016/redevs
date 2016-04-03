@@ -32,11 +32,26 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
+
          setFlights: function(value){
            this.selectedFlights = value;
          },
          getFlights: function(){
            return this.selectedFlights;
          }
+
+         setClasses : function(value){
+         this.classes=value;
+         },
+         getClasses : function (){
+         return this.classes;
+         },
+         setTripType : function(value){
+         this.tripTpe=value;
+         },
+         getTripType: function(){
+                    return this.tripType;
+                  }
+
      };
  });

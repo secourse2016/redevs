@@ -119,6 +119,113 @@ App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchS
   "emergencyName":"zaher",
   "emergencyNumber":"zahe233",
 
+},{
+  "reservationCode":"12ZZZZh",
+  "numberOfAdults":2,
+  "adults":[{
+    "seatNumber": "a",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  }
+
+  ],
+  "numberOfChildren":1,
+  "children":[{
+    "seatNumber": "w",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  },
+
+  ],
+  "flights":[{
+
+
+  "flightNumber":"123hh",
+  "aircraft":"jjj",
+  "capacity":400,
+  "date":"20/01/2016",
+  "duration":2,
+  "origin":"CAI",
+  "destination": "BCN",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+}
+    ,{"flightNumber":"12ZZZZh",
+  "aircraft":"ZZ",
+  "capacity":400,
+  "date":"20/01/2016",
+  "duration":2,
+  "origin":"BCN",
+  "destination": "CAI",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+
+      }],
+  "email":"jaida",
+  "creditCardNumber":1233,
+
+
+  "cvcNumber":2,
+  "mobileNumber":2,
+  "emergencyName":"zaher",
+  "emergencyNumber":"zahe233",
+
 }
 ];
 
@@ -132,19 +239,25 @@ $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
 
    findReservation = function(resNum) { // <-- here is you value from the input
-
+    flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
       for(i=0;i<$scope.reservations.length;i++){
              if($scope.reservations[i].reservationCode==reservationNumberValue){
-
+              flag=true;
               $scope.reservationsObjects=$scope.reservations[i];
-
+              $scope.toggle=true;
+              break;
 
              }
            }
+           if(flag==false){
+            $scope.toggle=false;
+            
+           }
+        
 
 
 
@@ -152,6 +265,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
 
 };
+
 
   findReservation(reservationNumber);
 
