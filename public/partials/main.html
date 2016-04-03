@@ -1,78 +1,79 @@
 <!-- MAIN BANNER -->
 
-  <div class="container">
-      <div class="row"> 
- 
-    <div class="jumbotron">
-      <h1 id="headerwelcome">
-       Delta Airlines</h1>
-      <p>
-        This Website is under Construction</p>
-      </div>
-      </div>
 
-      <div class="row">
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+            <h1 id="headerwelcome">Delta Airlines</h1>
+            <p>
+                This Website is under Construction</p>
+        </div>
+    </div>
+
+
+
+    <div class="row">
         <div class="jumbotron banner">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-3">
-                <p style='font-size: 22px;'>
-                  Search for Your Ticket!
-                </p>
-              </div>
-                <div class="col-md-6">
-              <form class="form-inline" role="form">
-                <div class="form-group">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p style='font-size: 22px;'>
+                            Search for Your Ticket!
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
 
-                    <input name="ticketSearch"
-                           id="ticketSearchBox"
-                           type="text"
-                           placeholder="Enter the reservation code you reserved with please..."
-                           ng-model="ticketCodeTextBox"
-                           class="form-control"
-                    >
-                  </div>
+                                <input name="ticketSearch"
+                                       id="ticketSearchBox"
+                                       type="text"
+                                       placeholder="Enter the reservation code you reserved with please..."
+                                       ng-model="ticketCodeTextBox"
+                                       class="form-control"
+                                >
+                            </div>
 
-              </form>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" ng-click="searchReservation()" class="btn btn-primary">Search Now</button>
+                    </div>
+
+
                 </div>
-                <div class="col-md-3">
-                    <button type="button" ng-click="searchReservation()" class="btn btn-primary">Search Now</button>
-                </div>
-
-
             </div>
         </div>
     </div>
-          </div>
-      <div class="row">
-          <div class="jumbotron">
-              <div class="row">
-                  <p style='font-size: 22px;'>
-                  Book Now</p>
-              </div>
-          <div class="col-md-4">
-              <input name="originAirports"
-                     id="originAirports"
-                     type="text"
-                     placeholder="Flying From"
-                     ng-model="selectedOrigin"
-                     uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
-                     class="form-control",
-                     typeahead-on-select="SetOriginAirport($item.iata)">
+    <div class="row">
+        <div class="jumbotron">
+            <div class="row">
+                <p style='font-size: 22px;'>
+                    Book Now</p>
+            </div>
+            <div class="col-md-4">
+                <input name="originAirports"
+                       id="originAirports"
+                       type="text"
+                       placeholder="Flying From"
+                       ng-model="selectedOrigin"
+                       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                       class="form-control",
+                       typeahead-on-select="SetOriginAirport($item.iata)">
 
-                     <p class="input-group">
-                         <input type="text"
-                                class="form-control"
-                                id="fromDate"
-                                uib-datepicker-popup="{{format}}"
-                                ng-model="dtFrom"
-                                placeholder="Flying From Date"
-                                is-open="popup1.opened"
-                                ng-required="true"
-                                datepicker-options="dateOptions"
-                                close-text="Close"
-                                alt-input-formats="altInputFormats"
-                                />
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           id="fromDate"
+                           uib-datepicker-popup="{{format}}"
+                           ng-model="dtFrom"
+                           placeholder="Flying From Date"
+                           is-open="popup1.opened"
+                           ng-required="true"
+                           datepicker-options="dateOptions"
+                           close-text="Close"
+                           alt-input-formats="altInputFormats"
+                    />
                              <span class="input-group-btn">
                                <button type="button"
                                        class="btn btn-default"
@@ -81,39 +82,39 @@
                                </button>
                              </span>
 
-                     </p>
+                </p>
 
 
 
-      </div>
-          <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
 
 
-          </div>
-          <div class="col-md-4">
-              <input name="destinationAirports"
-                     id="destinationAirports"
-                     type="text"
-                     placeholder="Flying To"
-                     ng-model="selectedDestination"
-                     uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
-                     class="form-control",
-                     typeahead-on-select="SetDestinationAirport($item.iata)">
+            </div>
+            <div class="col-md-4">
+                <input name="destinationAirports"
+                       id="destinationAirports"
+                       type="text"
+                       placeholder="Flying To"
+                       ng-model="selectedDestination"
+                       uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                       class="form-control",
+                       typeahead-on-select="SetDestinationAirport($item.iata)">
 
 
-                     <p class="input-group">
-                         <input type="text"
-                                class="form-control"
-                                uib-datepicker-popup="{{format}}"
-                                min="'2016-03-01'"
-                                ng-model="dtTo"
-                                datepicker-options="dateOptions"
-                                id="toDate"
-                                is-open="popup2.opened"
-                                placeholder="Flying To Date"
-                                ng-required="true"
-                                close-text="Close"
-                                 />
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           uib-datepicker-popup="{{format}}"
+                           min="'2016-03-01'"
+                           ng-model="dtTo"
+                           datepicker-options="dateOptions"
+                           id="toDate"
+                           is-open="popup2.opened"
+                           placeholder="Flying To Date"
+                           ng-required="true"
+                           close-text="Close"
+                    />
                              <span class="input-group-btn">
                                <button type="button"
                                        class="btn btn-default"
@@ -121,48 +122,70 @@
                                    <i class="glyphicon glyphicon-calendar"></i>
                                </button>
                              </span>
-                     </p>
+                </p>
 
 
-          </div>
+            </div>
 
-<div class="row">
-<br></br><br></br><br></br>
-</div>
+            <div class="row">
+                <br></br><br></br><br></br>
+            </div>
 
-          <div class="row">
+            <div class="row">
 
 
 
-            <div class = "col-md-3>">
-                <div >
-                  <div class="span7 text-center">
+                <div class = "col-md-4>">
+                    <div >
+                        <div class="span7 text-center">
 
-                    <div class="btn-group">
-                        <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
-                        <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
-                        <label class="btn btn-primary" id="firstBtn" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
-</div>
+                            <div class="btn-group">
+                                <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Economy Class</label>
+                                <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Business Class</label>
+                                <label class="btn btn-primary" id="firstBtn" ng-model="checkModel.right" uib-btn-checkbox>First Class</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class = "col-md-4>">
+
+                            <checkbox
+                                    ng-model="checkboxModel.valuecheck"
+                                    name="round-trip"
+                                    ng-true-value="round-trip"
+                                    ng-false-value="one way trip"
+                                    ng-change="onChange(checkboxModel.valuecheck)"
+                                    class="btn-primary"
+                            ></checkbox>
+                        <p style="font-size:15px">{{checkboxModel.valuecheck}}</p>
+
+
                     </div>
 
 
-                </div>
+
+
 
 
             </div>
             <div class = "col-md-2>"></div>
 
-          </div>
 
-          <div class="row">
-          </br>
-        </br>
-<div class="span7 text-center">
-          <button id="bookBtn" type="button" ng-click="SearchFlights()" class="btn btn-success">Book Now!!</button>
-          Still under construction
-</div>
-          </div>
 
-      </div>
-      </div>
+            <div class="row">
+                </br>
+                </br>
+                <div class="span7 text-center">
+                    <button id="bookBtn" type="button" ng-click="SearchFlights()" class="btn btn-success">Book Now!!</button>
+                    Still under construction
+                </div>
+
+
+
+            </div>
+        </div>
+
     </div>
+</div>
+</div>

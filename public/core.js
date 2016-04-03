@@ -1,6 +1,6 @@
 
 /* Create Angular App Instance */
-App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate']);
+App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate','ui.checkbox']);
 
 /**
  * Angular Routes
