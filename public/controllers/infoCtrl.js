@@ -1,7 +1,7 @@
 	App.controller('infoCtrl', function($scope){
    		
-   		$scope.AdultsCount = AC;
-   		$scope.ChildrenCount = CC;
+   		$scope.AdultsCount = FlightsSrv.getNumberOfAdults;
+   		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren;
    		$scope.AdultsArray = new Array($scope.AdultsCount);
    		$scope.ChildrenArray = new Array($scope.ChildrenCount);
 
@@ -18,5 +18,10 @@
 
    		$scope.thereIsAdults = !($scope.Adults.length === 0);
    		$scope.thereIsChildren = !($scope.Children.length === 0);
+
+         $scope.proceed = function() {
+            FlightsSrv.setAdultsInfo(Adults);
+            FlightsSrv.setChildrenInfo(Adults);
+         }
 
    		});

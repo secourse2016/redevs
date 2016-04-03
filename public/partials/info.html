@@ -9,45 +9,9 @@
     <script src="../js/ui-bootstrap-tpls-1.2.5.min.js"></script>
     <script src="../core.js"></script>
     <script src="../controllers/mainCtrl.js"></script>
-    <link rel="stylesheet" href="../styles/bootstrap.min.css">
-
-    <!-- info Contoroller [Temporary]-->
-
-   <script>
-
-   	var App = angular.module ("deltaApp",[]);
-
-   	var AC = 3;
-   	var CC = 3;
-
-
-   	App.controller('infoCtrl', function($scope){
-   		
-   		$scope.AdultsCount = AC;
-   		$scope.ChildrenCount = CC;
-   		$scope.AdultsArray = new Array($scope.AdultsCount);
-   		$scope.ChildrenArray = new Array($scope.ChildrenCount);
-
-   		$scope.Adults = [];
-   		$scope.Children = [];
-
-   		for(var i = 0; i < $scope.AdultsCount; i++){
-   			$scope.Adults[i] = {};
-   		}
-
-   		for(var j = 0; j < $scope.ChildrenCount; j++){
-   			$scope.Children[j] = {};
-   		}
-
-   		$scope.thereIsAdults = !($scope.Adults.length === 0);
-   		$scope.thereIsChildren = !($scope.Children.length === 0);
-
-   		});
-   	
-
-   </script>
-
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">  
 </head>
+
 <body ng-app="deltaApp">
 	<!-- Shokr's partial -->
 	<div class="container" ng-controller="infoCtrl">

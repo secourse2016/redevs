@@ -49,6 +49,22 @@ App.factory('FlightsSrv', function ($http) {
                     return this.tripType;
          }
 
+         setAdultsInfo: function(value){
+           this.adultsInfo = value;
+         }
+
+         setChildrenInfo: function(value){
+            this.adultsInfo = value;
+         }
+
+         getAdultsInfo: function(){
+           this.adultsInfo = value;
+         }
+
+         getChildrenValues: function(){
+            this.adultsInfo = value;
+         }
+
 
 
      };
