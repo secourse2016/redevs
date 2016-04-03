@@ -51,7 +51,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "businessSeatMap":[]
     }
   ];
-
+  $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Economy Price", "First Class Price"];
 
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
