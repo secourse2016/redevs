@@ -2,17 +2,13 @@ App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
-<<<<<<< HEAD
 
-         },
-=======
          },
 
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
 
->>>>>>> 87d80b08298b1fa287cef22a128e56fd36b245f4
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },

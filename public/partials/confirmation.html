@@ -34,9 +34,9 @@
 				
   					<div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> From: <span class="badge"> {{ x.departFrom }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ x.departDate }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ x.departTime }}</span></h5><br>
+					  		<h5> From: <span class="badge"> {{ x.origin }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ x.departureTime }}</span></h5><br>
 					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>-->
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
@@ -44,8 +44,8 @@
 
 					<div class="col-sm-6"><div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> To: <span class="badge"> {{ x.arriveTo }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ x.arrivalDate }}</span></h5><br>
+					  		<h5> To: <span class="badge"> {{ x.destination }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
 					  		<h5> Time:  <span class="badge"> {{ x.arrivalTime }}</span></h5><br>
 					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5> -->
 					  		
@@ -100,18 +100,18 @@
 			    </thead>
 
 			    <tbody> <!-- Might be wrong to repeat here -->
-			      <tr ng-if="{{ adultTickets }} !== 0">
+			      <tr ng-show="thereAreAdults">
 			        <td>{{ adultTickets }}</td>
 			        <td>{{ class }} </td>
 			        <td> Adult </td>
 			        <td>{{ adultTicketsCost }}</td>
 			      </tr>
 			      
-			      <tr ng-if="{{ childrenTickets }} !== 0">
+			      <tr ng-show="thereAreChildren">
 			        <td>{{ childrenTickets }}</td>
 			        <td>{{ class }} </td>
 			        <td> Child </td>
-			        <td>{{ childrenTicketsCost }}</td>
+			        <td>{{ flights[0].economyPrice + flights[1].economyPrice }}</td>
 			      </tr>
 
 			    </tbody>
@@ -120,7 +120,7 @@
 		</div>
 
 		<div>
-			<h3>Total amount: <span class="label label-default" ng-click="goToModify()" ></span>{{ totalAmount }}</h3> <!--Modifying information - redirect to prev page -->
+			<h3>Total amount: <span class="label label-default" ></span>{{ totalAmount }}</h3> <!--Modifying information - redirect to prev page -->
 			<button type="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 

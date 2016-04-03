@@ -5,7 +5,11 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.adultTickets = FlightsSrv.getNumberOfAdults(); //sandy
   $scope.classOfTickets = FlightsSrv.getClasses(); //karim
 
-  $scope.departFrom = FlightsSrv.getSelectedOriginAirport(); //karim 
+  $scope.flights = FlightsSrv.getFlights();
+
+  $scope.thereAreAdults = !($scope.adultTickets === 0);
+  $scope.thereAreChildren = !($scope.childrenTickets === 0);
+  /* $scope.departFrom = FlightsSrv.getSelectedOriginAirport(); //karim 
   $scope.departDate = FlightsSrv.getSelectedDepartureDate(); //karim
   $scope.departTime = FlightsSrv.getSelectedDepartureTime(); // ** lessa me7tageen ne3melha 3and karim
   //$scope.departTerminal1= FlightsSrv.getDepartTerminal1(); 
@@ -26,8 +30,8 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.returnTerminal2 = FlightsSrv.getReturnTerminal2(); */
 
   //lessa dool to be fixed!! 
-  $scope.userEmail = FlightsSrv.getUserEmail();
-  $scope.adultTicketsCost = FlightsSrv.getAdultTicketsCost();
+  //$scope.userEmail = FlightsSrv.getUserEmail();
+  /* $scope.adultTicketsCost = FlightsSrv.getAdultTicketsCost();
   $scope.childrenTicketsCost = FlightsSrv.getChildrenTicketsCost();
-  $scope.totalAmount = FlightsSrv.getTotalCost();
+  $scope.totalAmount = FlightsSrv.getTotalCost(); */
 });

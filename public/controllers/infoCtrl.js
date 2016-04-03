@@ -22,7 +22,8 @@
          $scope.proceed = function() {
             FlightsSrv.setAdultsInfo($scope.Adults);
             FlightsSrv.setChildrenInfo($scope.Children);
-         }
+            $location.url("/confirmation");
+         };
 
          function getNationalities() {
             FlightsSrv.getNationalities().success(function(Nationalities){
