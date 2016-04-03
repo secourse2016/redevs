@@ -283,18 +283,14 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
             
            }
         
-
-
-
-
-
-
 };
 
 
   findReservation(reservationNumber);
 
    $scope.findReservation = findReservation ;
+
+
 
 });
 

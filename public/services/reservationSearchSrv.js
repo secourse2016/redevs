@@ -1,18 +1,13 @@
-/**
- * Reservation Search Service
- */
-App.factory('reservationSearchSrv', function () {
-     return {
 
-          getReservationNumber: function(){
-            return this.reservationNumber ;
-          },
+App.factory('reservationSearchSrv', function() {
+  return {
+  getReservationNumber: function(){
+    return this.reservationNumber; 
+  }, 
+  setReservationNumber: function(resNum)
+  {
+    this.reservationNumber = resNum;
+  }
+};
 
-
-           setReservationNumber: function(resNum){
-           this.reservationNumber=resNum ;
-          }
-
-
-     };
- });
+});
