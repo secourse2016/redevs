@@ -6,8 +6,12 @@ App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
-
          },
+
+         getNationalities : function() {
+            return $http.get('/api/data/nationalities');
+         },
+
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
@@ -43,6 +47,9 @@ App.factory('FlightsSrv', function ($http) {
          },
          getTripType: function(){
                     return this.tripType;
-                  }
+         }
+
+
+
      };
  });

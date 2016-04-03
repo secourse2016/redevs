@@ -10,19 +10,56 @@
     <script src="../core.js"></script>
     <script src="../controllers/mainCtrl.js"></script>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
+
+    <!-- info Contoroller [Temporary]-->
+
+   <script>
+
+   	var App = angular.module ("deltaApp",[]);
+
+   	var AC = 3;
+   	var CC = 3;
+
+
+   	App.controller('infoCtrl', function($scope){
+   		
+   		$scope.AdultsCount = AC;
+   		$scope.ChildrenCount = CC;
+   		$scope.AdultsArray = new Array($scope.AdultsCount);
+   		$scope.ChildrenArray = new Array($scope.ChildrenCount);
+
+   		$scope.Adults = [];
+   		$scope.Children = [];
+
+   		for(var i = 0; i < $scope.AdultsCount; i++){
+   			$scope.Adults[i] = {};
+   		}
+
+   		for(var j = 0; j < $scope.ChildrenCount; j++){
+   			$scope.Children[j] = {};
+   		}
+
+   		$scope.thereIsAdults = !($scope.Adults.length === 0);
+   		$scope.thereIsChildren = !($scope.Children.length === 0);
+
+   		});
+   	
+
+   </script>
+
 </head>
-<body>
+<body ng-app="deltaApp">
 	<!-- Shokr's partial -->
-	<div class="container">
+	<div class="container" ng-controller="infoCtrl">
 		 <div class="jumbotron">
     		<h1>Tickets Information</h1>      
     			<p>Please Fill the information below to complete your reservations.</p>
     		<h2>
     		</h2>		
 		</div>
-		<h2 style="text-align: center">Adults</h2>
-  		<div class="panel panel-default">
-	  		<div class="panel-heading">Adult {{AdultsCount}}</div>
+		<h2 style="text-align: center" ng-show="thereIsAdults">Adults</h2>
+  		<div class="panel panel-default" ng-repeat="i in AdultsArray track by $index">
+	  		<div class="panel-heading">Adult {{$index+1}}</div>
 	  		<div class="panel-body">
 	  			<!--Name Row Row-->
 			  	<div class="row">
@@ -31,13 +68,13 @@
 			  			<span class="badge">First Name</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].firstName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge" >Last Name</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].lastName"></input>
 		  			</div>
 
 	  			</div>
@@ -48,13 +85,13 @@
 			  			<span class="badge">Passport Nationality</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].passNationality"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Passport Number</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].passNumber"></input>
 			  		</div>
 
 	  			</div>
@@ -66,13 +103,13 @@
 			  			<span class="badge">Email</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].email"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Mobile Number</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Adults[$index].mobileNumber"></input>
 			  		</div>
 
 	  			</div>
@@ -84,13 +121,13 @@
 			  			<span class="badge">Emergency Contact</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text"></input>
+			  			<input type="text" ng-model="$parent.Adults[$index].emergencyContact"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Mobile Number</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text"></input>
+			  			<input type="text" ng-model="$parent.Adults[$index].emergencyMobileNumber"></input>
 			  		</div>
 
 	  			</div>
@@ -98,9 +135,9 @@
 	  		</div>
   		</div>
 
-  		<h2 style="text-align: center">Children</h2>
-  		<div class="panel panel-default">
-  			<div class="panel-heading">Children {{ChildrenCount}}</div>
+  		<h2 style="text-align: center" ng-show="thereIsChildren">Children</h2>
+  		<div class="panel panel-default" ng-repeat="j in ChildrenArray track by $index">
+  			<div class="panel-heading">Child {{$index+1}}</div>
   			<div class="panel-body">
   				<div class="row">
 
@@ -108,13 +145,13 @@
 			  			<span class="badge">First Name</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].firstName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Last Name</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].lastName"></input>
 		  			</div>
 
 	  			</div>
@@ -125,13 +162,13 @@
 			  			<span class="badge">Passport Nationality</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].passNationality"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Passport Number</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].passNumber"></input>
 		  			</div>
 
 	  			</div>
@@ -142,13 +179,13 @@
 			  			<span class="badge">Supervisor Name</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].supervisorName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Mobile Number</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text"></input>
+			  			<input type="text" required="true" ng-model="$parent.Children[$index].supervisorMobileNumber"></input>
 		  			</div>
 
 	  			</div>
@@ -157,7 +194,9 @@
   			</div>
   		</div>
 
-  	<button type="button" class="btn btn-primary">Proceed</button>
+
+
+  	<button type="button" class="btn btn-primary" ng-click="proceed()">Proceed</button>
 
 
 	</div>
