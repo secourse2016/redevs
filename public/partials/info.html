@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Information Page</title>
-	<script src="../js/jquery-2.2.0.min.js"></script>
-    <script src="../js/angular.min.js"></script>
-    <script src="../js/angular-route.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/ui-bootstrap-tpls-1.2.5.min.js"></script>
-    <script src="../core.js"></script>
-    <script src="../controllers/mainCtrl.js"></script>
-    <link rel="stylesheet" href="../styles/bootstrap.min.css">  
-</head>
 
-<body ng-app="deltaApp">
-	<!-- Shokr's partial -->
-	<div class="container" ng-controller="infoCtrl">
+	<div class="container">
 		 <div class="jumbotron">
     		<h1>Tickets Information</h1>      
     			<p>Please Fill the information below to complete your reservations.</p>
@@ -49,7 +34,7 @@
 			  			<span class="badge">Passport Nationality</span>
 			  		</div>
 			  		<div class="col-sm-3"> 
-			  			<input type="text" required="true" ng-model="$parent.Adults[$index].passNationality"></input>
+			  			<input type="text" uib-typeahead="nationality.name for nationality in nationalities | filter:$viewValue | limitTo: 10" required="true" ng-model="$parent.Adults[$index].passNationality"></input>
 		  			</div>
 		  			<div class="col-sm-3">
 			  			<span class="badge">Passport Number</span>
@@ -164,17 +149,3 @@
 
 
 	</div>
-	<style type="text/css">
-		span{
-			padding: 0px;
-			margin: 2px;
-		}
-		input{
-			margin: 0px;
-		}
-		div.row{
-			padding-bottom: 10px;
-		}
-	</style>
-</body>
-</html>

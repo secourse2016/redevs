@@ -27,6 +27,12 @@ App.config(function($routeProvider) {
             controller  : 'reservationSearchCtrl',
             css : 'styles/reservationSearch.css'
 
+        })
+
+        .when('/information', {
+            templateUrl : '/partials/info.html',
+            controller : 'infoCtrl',
+            css : 'styles/info.css'
         });
 });
 

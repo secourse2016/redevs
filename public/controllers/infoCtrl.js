@@ -24,4 +24,12 @@
             FlightsSrv.setChildrenInfo(Adults);
          }
 
+         function getNationalities() {
+            FlightsSrv.getNationalities().success(function(Nationalities){
+               $scope.nationalities = Nationalities;
+            });
+         }
+
+         getNationalities();
+
    		});
