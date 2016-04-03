@@ -28,35 +28,35 @@
   		<h5> Class of tickets(s):  <span class="badge"> {{ class }}</span></h5><br>
 	</div>
 
-	<div> <!-- to add a gap between panels; add: class="panel-group"-->   
-	    <div class="panel panel-default">
-	      <div class="panel-heading">Departing flight</div>
+	<div class="panel-group">   
+	    <div class="panel panel-default" ng-repeat="x in flights"> <!--check name of array -->
+	      <div class="panel-heading">Flight + {{ $index + 1 }}</div>
 	      <div class="panel-body">
-				<!--<div class="row"> -->
+				
   					<div class="col-sm-6"> 						
 						<div class="container">
 					  		<h5> From: <span class="badge"> {{ departFrom }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ departDate1 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ departTime1 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ departDate }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ departTime }}</span></h5><br>
+					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>-->
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
   					</div>
 
 					<div class="col-sm-6"><div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> To: <span class="badge"> {{ departTo }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ departDate2 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ departTime2 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5>
+					  		<h5> To: <span class="badge"> {{ arriveTo }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ arrivalDate }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ arrivalTime }}</span></h5><br>
+					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5> -->
 					  		
 						</div>
   					</div></div>	
-				<!--</div>-->
+				
 		  </div>
 	    </div>
 
-	    <div class="panel panel-default">
+	<!--<div class="panel panel-default">
 	      <div class="panel-heading">Return flight</div>
 	      <div class="panel-body">
 				<div class="row">
@@ -65,7 +65,7 @@
 					  		<h5> From: <span class="badge"> {{ returnFrom }}</span></h5><br>
 					  		<h5> Date:  <span class="badge"> {{ returnDate1 }}</span></h5><br>
 					  		<h5> Time:  <span class="badge"> {{ returnTime1 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ returnTerminal1 }}</span></h5><br>
+					  		
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
   					</div>
@@ -75,13 +75,13 @@
 					  		<h5> To: <span class="badge"> {{ returnTo }}</span></h5><br>
 					  		<h5> Date:  <span class="badge"> {{ returnDate2 }}</span></h5><br>
 					  		<h5> Time:  <span class="badge"> {{ returnTime2 }}</span></h5><br>
-					  		<h5> Terminal:  <span class="badge"> {{ returnTerminal2 }}</span></h5>
+					  		
 						</div>
   					</div></div>	
 				</div>
 		  </div>
-	    </div>
-	</div>
+	    </div> -->
+	</div> 
 
 	<div class="alert alert-info">
 		<strong>Note: </strong> Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed. 
@@ -121,12 +121,12 @@
 		</div>
 
 		<div>
-			<h3>Total amount: <span class="label label-default"></span>{{ totalAmount }}</h3>
+			<h3>Total amount: <span class="label label-default" ng-click="goToModify()" ></span>{{ totalAmount }}</h3> <!--Modifying information - redirect to prev page -->
 			<button type="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 
 				
-			<button type="button" class="btn btn-info">
+			<button type="button" class="btn btn-info" ng-click="goToCheckOut()"> <!--ng click -->
 	      		<span class="glyphicon glyphicon-ok-sign"></span> Check Out
 	    	</button>
 	    	

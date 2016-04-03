@@ -1,21 +1,21 @@
 /**
  * Main Controller */
 App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
-  $scope.childrenTickets = FlightsSrv.getChildrenTickets();
-  $scope.adultTickets = FlightsSrv.getAdultTickets(); 
-  $scope.classOfTickets = FlightsSrv.getClass(); 
+  $scope.childrenTickets = FlightsSrv.getNumberOfChildren(); //sandy
+  $scope.adultTickets = FlightsSrv.getNumberOfAdults(); //sandy
+  $scope.classOfTickets = FlightsSrv.getClasses(); //karim
 
-  $scope.departFrom = FlightsSrv.getDepartFrom();
-  $scope.departDate1 = FlightsSrv.getDepartDate1();
-  $scope.departTime1 = FlightsSrv.getDepartTime1();
-  $scope.departTerminal1= FlightsSrv.getDepartTerminal1(); 
+  $scope.departFrom = FlightsSrv.getSelectedOriginAirport(); //karim 
+  $scope.departDate = FlightsSrv.getSelectedDepartureDate(); //karim
+  $scope.departTime = FlightsSrv.getSelectedDepartureTime(); // ** lessa me7tageen ne3melha 3and karim
+  //$scope.departTerminal1= FlightsSrv.getDepartTerminal1(); 
 
-  $scope.departTo = FlightsSrv.getDepartTo();
-  $scope.departDate2 = FlightsSrv.getDepartDate2();
-  $scope.departTime2 = FlightsSrv.getDepartTime2();
-  $scope.departTerminal2 = FlightsSrv.getDepartTerminal2(); 
+  $scope.arriveTo = FlightsSrv.getSelectedDestinationAirport(); //karim
+  $scope.arrivalDate = FlightsSrv.getSelectedArrivalDate(); //karim
+  $scope.arrivalTime = FlightsSrv.getSelectedArrivalTime(); // ** lessa me7tageen ne3melha 3and karim
+  //$scope.departTerminal2 = FlightsSrv.getDepartTerminal2(); 
 
-  $scope.returnFrom = FlightsSrv.getReturnFrom();
+ /* $scope.returnFrom = FlightsSrv.getReturnFrom();
   $scope.returnDate1 = FlightsSrv.getReturnDate1();
   $scope.returnTime1 = FlightsSrv.getReturnTime1();
   $scope.returnTerminal1 = FlightsSrv.getReturnTerminal1(); 
@@ -23,8 +23,9 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.returnTo = FlightsSrv.getReturnTo();
   $scope.returnDate2 = FlightsSrv.getReturnDate2();
   $scope.returnTime2 = FlightsSrv.getReturnTime2();
-  $scope.returnTerminal2 = FlightsSrv.getReturnTerminal2(); 
+  $scope.returnTerminal2 = FlightsSrv.getReturnTerminal2(); */
 
+  //lessa dool to be fixed!! 
   $scope.userEmail = FlightsSrv.getUserEmail();
   $scope.adultTicketsCost = FlightsSrv.getAdultTicketsCost();
   $scope.childrenTicketsCost = FlightsSrv.getChildrenTicketsCost();
