@@ -101,7 +101,7 @@ left: 0;
 .ng-hide-add         { animation:0.5s lightSpeedOut ease; }
 
 /* when showing the picture */
-.ng-hide-remove      { animation:0.5s flipInX ease; }
+.ng-hide-remove      { animation:0.5s lightSpeedIn ease; }
 
 /* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
 /* flip in */
@@ -165,3 +165,22 @@ left: 0;
     opacity: 0;
   }
 }
+
+@keyframes lightSpeedIn {
+   0% { 
+      transform: translateX(100%) skewX(-30deg); 
+      opacity: 0; 
+   } 
+   60% { 
+      transform: translateX(-20%) skewX(30deg); 
+      opacity: 1; 
+   } 
+   80% { 
+      transform: translateX(0%) skewX(-15deg); 
+      opacity: 1; 
+   } 
+   100% { 
+      transform: translateX(0%) skewX(0deg); 
+      opacity: 1; 
+   } 
+} 
