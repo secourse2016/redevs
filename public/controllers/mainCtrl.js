@@ -82,9 +82,10 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-        FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
-        FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-        $location.url('/flights');
+
+      FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+      FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+      $location.url('/searchResults');
     };
 
 
