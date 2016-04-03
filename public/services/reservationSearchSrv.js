@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * Reservation search Controller
  */
 //  var express = require('express');

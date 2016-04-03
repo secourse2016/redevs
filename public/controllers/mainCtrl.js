@@ -1,3 +1,4 @@
+
 App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
@@ -109,18 +110,11 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
         angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
                 $scope.checkResults.push(key);
+               FlightsSrv.setClasses($scope.checkResults);
+
             }
         });
     });
 
 
 });
-
-
-
-
-
-
-
-/*---Angular Classes choices*/
-

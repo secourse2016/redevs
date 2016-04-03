@@ -2,8 +2,17 @@ App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
+<<<<<<< HEAD
 
          },
+=======
+         },
+
+         getNationalities : function() {
+            return $http.get('/api/data/nationalities');
+         },
+
+>>>>>>> 87d80b08298b1fa287cef22a128e56fd36b245f4
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
@@ -46,8 +55,39 @@ App.factory('FlightsSrv', function ($http) {
          this.tripTpe=value;
          },
          getTripType: function(){
-                    return this.tripType;
-                  }
+            return this.tripType;        
+         },
+
+         setAdultsInfo: function(value){
+           this.adultsInfo = value;
+         },
+
+         setChildrenInfo: function(value){
+            this.childrenInfo = value;
+         },
+
+         getAdultsInfo: function(){
+           return this.adultsInfo;
+         },
+
+         getChildrenInfo: function(){
+            return this.childrenInfo;
+         },
+
+        setNumberOfChildren: function(value){
+          this.numberOfChildren=value;
+        } ,
+        setNumberOfAdults: function(value){
+          this.numberOfAdults=value;
+        } ,
+        getNumberOfChildren: function(){
+          return this.numberOfChildren;
+        },
+        getNumberOfAdults: function(){
+          return this.numberOfAdults;
+        }
+
 
      };
  });
+

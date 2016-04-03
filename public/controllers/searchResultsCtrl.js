@@ -29,6 +29,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "origin": "JFK",
       "destination":"CAI",
       "economyPrice":"350",
+      "businessclassPrice":"700",
       "firstClassPrice":"2000",
       "firsclassSeatMap":[],
       "economySeatMap":[],
@@ -45,6 +46,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "origin": "CAI",
       "destination":"JFK",
       "economyPrice":"300",
+      "businessclassPrice":"700",
       "firstClassPrice":"1500",
       "firsclassSeatMap":[],
       "economySeatMap":[],
@@ -53,10 +55,11 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   ];
 
 
+
+  $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Economy Price", "First Class Price"];
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
-  $scope.gflight = {};
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
 
@@ -94,7 +97,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          array.push($scope.gflight);
          array.push($scope.rflight);
          FlightsSrv.setFlights(array);
-         $location.url('/');
+         $location.url('/flightDetails');
        };
 
 
@@ -102,6 +105,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
   searchFlights();
   returnFlights();
+
 
 
 
