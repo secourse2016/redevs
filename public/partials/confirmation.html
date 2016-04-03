@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
 	<title> Ticket Confirmation</title>
-	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -35,9 +34,9 @@
 				
   					<div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> From: <span class="badge"> {{ departFrom }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ departDate }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ departTime }}</span></h5><br>
+					  		<h5> From: <span class="badge"> {{ x.departFrom }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.departDate }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ x.departTime }}</span></h5><br>
 					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>-->
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
@@ -45,9 +44,9 @@
 
 					<div class="col-sm-6"><div class="col-sm-6"> 						
 						<div class="container">
-					  		<h5> To: <span class="badge"> {{ arriveTo }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ arrivalDate }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ arrivalTime }}</span></h5><br>
+					  		<h5> To: <span class="badge"> {{ x.arriveTo }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.arrivalDate }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ x.arrivalTime }}</span></h5><br>
 					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5> -->
 					  		
 						</div>
@@ -101,14 +100,14 @@
 			    </thead>
 
 			    <tbody> <!-- Might be wrong to repeat here -->
-			      <tr>
+			      <tr ng-if="{{ adultTickets }} !== 0">
 			        <td>{{ adultTickets }}</td>
 			        <td>{{ class }} </td>
 			        <td> Adult </td>
 			        <td>{{ adultTicketsCost }}</td>
 			      </tr>
 
-			      <tr>
+			      <tr ng-if="{{ childrenTickets }} !== 0">
 			        <td>{{ childrenTickets }}</td>
 			        <td>{{ class }} </td>
 			        <td> Child </td>
