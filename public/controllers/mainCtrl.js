@@ -93,23 +93,10 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.searchReservation = function() {
         reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
         $location.url('/reservationSearch');
-    }
+    };
 
     /* Get Airports on page render  */
     AirportCodes();
-
-
-});
-
-
-
-
-
-
-
-/*---Angular Classes choices*/
-
-App.controller('buttonsCtrl', function ($scope) {
 
     $scope.checkModel = {
         economyBtn: false,
@@ -124,8 +111,13 @@ App.controller('buttonsCtrl', function ($scope) {
         angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
                 $scope.checkResults.push(key);
+                FlightsSrv.setClasses($scope.checkResults);
             }
         });
     });
+
+
 });
+
+
 

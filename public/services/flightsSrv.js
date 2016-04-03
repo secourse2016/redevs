@@ -1,7 +1,3 @@
-
-/**
- * Flights Service
- */
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
@@ -36,6 +32,14 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
+
+         setFlights: function(value){
+           this.selectedFlights = value;
+         },
+         getFlights: function(){
+           return this.selectedFlights;
+         },
+
          setClasses : function(value){
          this.classes=value;
          },
@@ -47,24 +51,36 @@ App.factory('FlightsSrv', function ($http) {
          },
          getTripType: function(){
             return this.tripType;
-         }
+         },
 
          setAdultsInfo: function(value){
            this.adultsInfo = value;
-         }
+         },
 
          setChildrenInfo: function(value){
             this.childrenInfo = value;
-         }
+         },
 
          getAdultsInfo: function(){
            return this.adultsInfo;
-         }
+         },
 
          getChildrenInfo: function(){
             return this.childrenInfo;
-         }
+         },
 
+        setNumberOfChildren: function(value){
+          this.numberOfChildren=value;
+        } ,
+        setNumberOfAdults: function(value){
+          this.numberOfAdults=value;
+        } ,
+        getNumberOfChildren: function(){
+          return this.numberOfChildren;
+        },
+        getNumberOfAdults: function(){
+          return this.numberOfAdults;
+        }
 
 
      };
