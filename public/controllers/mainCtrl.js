@@ -18,13 +18,13 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     };
 
 
-  $scope.dateOptions = {
+    $scope.dateOptions = {
 
-    formatYear: 'yy',
-    maxDate: new Date(2020, 5, 22),
-    minDate: new Date(),
-    startingDay: 1
-  };
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+    };
 
     $scope.setDate = function (year, month, day) {
         $scope.dtTo = new Date(year, month, day);
@@ -39,6 +39,29 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.popup2 = {
         opened: false
     };
+
+
+    // checkbox
+     $scope.checkboxModel = {
+         valuecheck: 'round-trip'
+     };
+
+    $scope.onChange = function(tripType) {
+        FlightsSrv.setTripType(tripType);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function AirportCodes() {
         FlightsSrv.getAirportCodes().success(function(airports) {
@@ -59,16 +82,17 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
+
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-      $location.url('/flights');
+      $location.url('/searchResults');
     };
 
 
 
     $scope.searchReservation = function() {
-      reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
-      $location.url('/reservationSearch');
+        reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
+        $location.url('/reservationSearch');
     }
 
     /* Get Airports on page render  */
@@ -83,27 +107,25 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
 
 
-    /*---Angular Classes choices*/
+/*---Angular Classes choices*/
 
-    App.controller('buttonsCtrl', function ($scope) {
+App.controller('buttonsCtrl', function ($scope) {
 
-        $scope.checkModel = {
-            left: false,
-            middle: true,
-            right: false
-        };
+    $scope.checkModel = {
+        economyBtn: false,
+        businessBtn: true,
+        firstBtn: false
+    };
 
+    $scope.checkResults = [];
+
+    $scope.$watchCollection('checkModel', function () {
         $scope.checkResults = [];
-
-        $scope.$watchCollection('checkModel', function () {
-            $scope.checkResults = [];
-            angular.forEach($scope.checkModel, function (value, key) {
-                if (value) {
-                    $scope.checkResults.push(key);
-                }
-            });
+        angular.forEach($scope.checkModel, function (value, key) {
+            if (value) {
+                $scope.checkResults.push(key);
+            }
         });
     });
+});
 
-
-/* Record User's Selected Origin Airport  */
