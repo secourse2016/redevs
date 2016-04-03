@@ -56,7 +56,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
-  $scope.gflight = {};
+
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
 
@@ -94,7 +94,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          array.push($scope.gflight);
          array.push($scope.rflight);
          FlightsSrv.setFlights(array);
-         $location.url('/');
+         $location.url('/flightDetails');
        };
 
 

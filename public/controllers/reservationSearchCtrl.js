@@ -255,9 +255,9 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
            }
            if(flag==false){
             $scope.toggle=false;
-            
+
            }
-        
+
 
 
 
