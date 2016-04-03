@@ -1,0 +1,21 @@
+#xflight{
+  text-align: center;
+
+
+}
+
+#yflight{
+  text-align: center;
+}
+
+
+table, th , td  {
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #1e90ff;
+
+}
+table tr:nth-child(even) {
+  background-color: #1e90ff;
+}

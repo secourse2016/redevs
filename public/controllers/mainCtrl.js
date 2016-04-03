@@ -1,5 +1,4 @@
 
-
 App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
@@ -82,9 +81,10 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-        FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
-        FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-        $location.url('/flights');
+
+      FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+      FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+      $location.url('/searchResults');
     };
 
 
@@ -92,28 +92,15 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.searchReservation = function() {
         reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
         $location.url('/reservationSearch');
-    }
+    };
 
     /* Get Airports on page render  */
     AirportCodes();
 
-
-});
-
-
-
-
-
-
-
-/*---Angular Classes choices*/
-
-App.controller('buttonsCtrl', function ($scope) {
-
     $scope.checkModel = {
-        left: false,
-        middle: true,
-        right: false
+        economyBtn: false,
+        businessBtn: true,
+        firstBtn: false
     };
 
     $scope.checkResults = [];
@@ -123,12 +110,11 @@ App.controller('buttonsCtrl', function ($scope) {
         angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
                 $scope.checkResults.push(key);
+               FlightsSrv.setClasses($scope.checkResults);
+
             }
         });
     });
-});
 
-
-App.controller("index", function($scope) {
 
 });

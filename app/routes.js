@@ -15,4 +15,9 @@ module.exports = function(app,mongo) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
+    app.get('/api/data/nationalities', function(req, res){
+    	var nationalities = require('../nationalities.json');
+    	res.json(nationalities);
+    });
+
 };

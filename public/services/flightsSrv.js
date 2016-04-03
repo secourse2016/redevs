@@ -1,13 +1,14 @@
-
-/**
- * Flights Service
- */
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
 
          },
+
+         getNationalities : function() {
+            return $http.get('/api/data/nationalities');
+         },
+
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
@@ -32,11 +33,57 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
+
+         setFlights: function(value){
+           this.selectedFlights = value;
+         },
+         getFlights: function(){
+           return this.selectedFlights;
+         },
+
+         setClasses : function(value){
+         this.classes=value;
+         },
+         getClasses : function (){
+         return this.classes;
+         },
          setTripType : function(value){
          this.tripTpe=value;
          },
          getTripType: function(){
-                    return this.tripType;
-                  }
+            return this.tripType;        
+         },
+
+         setAdultsInfo: function(value){
+           this.adultsInfo = value;
+         },
+
+         setChildrenInfo: function(value){
+            this.childrenInfo = value;
+         },
+
+         getAdultsInfo: function(){
+           return this.adultsInfo;
+         },
+
+         getChildrenInfo: function(){
+            return this.childrenInfo;
+         },
+
+        setNumberOfChildren: function(value){
+          this.numberOfChildren=value;
+        } ,
+        setNumberOfAdults: function(value){
+          this.numberOfAdults=value;
+        } ,
+        getNumberOfChildren: function(){
+          return this.numberOfChildren;
+        },
+        getNumberOfAdults: function(){
+          return this.numberOfAdults;
+        }
+
+
      };
  });
+

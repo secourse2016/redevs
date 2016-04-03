@@ -16,17 +16,36 @@ App.config(function($routeProvider) {
         })
 
         // route for the flights page
-        .when('/flights', {
-            templateUrl : '/partials/flights.html',
-            controller  : 'flightsCtrl',
-            css:'styles/main.css'
+
+
+        .when('/flightDetails',{
+            templateUrl : '/partials/FlightDetails.html',
+            controller : 'controllerFlightDetails'
+          })
+           // route for the search result
+        .when('/searchResults', {
+            templateUrl : '/partials/searchResults.html',
+            controller  : 'searchResultsCtrl',
+            css:'styles/searchResultsStyle.css'
         })
 
+        // route for search by reservation page
         .when('/reservationSearch', {
             templateUrl : '/partials/reservationSearch.html',
             controller  : 'reservationSearchCtrl',
             css : 'styles/reservationSearch.css'
 
+        })
+
+        .when('/information', {
+            templateUrl : '/partials/info.html',
+            controller : 'infoCtrl',
+            css : 'styles/info.css'
+        })
+        .when('/confirmation', {
+            templateUrl : '/partials/confirmation.html',
+            controller : 'confirmationCtrl'
+        
         });
 });
 
