@@ -1,7 +1,3 @@
-
-/**
- * Flights Service
- */
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
@@ -38,7 +34,7 @@ App.factory('FlightsSrv', function ($http) {
          },
          getFlights: function(){
            return this.selectedFlights;
-         }
+         },
 
          setClasses : function(value){
          this.classes=value;
