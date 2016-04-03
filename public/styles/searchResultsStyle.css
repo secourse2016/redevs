@@ -9,12 +9,29 @@
 }
 
 table, th , td  {
-  padding: 5px;
+  padding: 30px;
+  font-size: 20px;
+  text-align: center;
+  border: 0px solid black;
+  font-family: Helvetica;
+  text-decoration-color: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+
 }
 table tr:nth-child(odd)	{
-  background-color: #1e90ff;
+  background-color: rgba(16, 51, 54, 0.06);
+
+
+
 
 }
 table tr:nth-child(even) {
-  background-color: #1e90ff;
+  background-color: rgba(69, 160, 252, 0.1);
+}
+
+
+#Prcdbtn{
+  width: 150px;
 }
