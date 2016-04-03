@@ -61,7 +61,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.SearchFlights = function() {
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-      $location.url('/flights');
+      $location.url('/searchResults');
     };
 
 
