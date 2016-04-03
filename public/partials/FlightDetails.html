@@ -18,12 +18,10 @@
  <div class="container">
 
  	<div class="jumbotron">
- 		<h1>Flight Number XXX</h1>
+ 		<h1>Flight Information</h1>
  	</div>
 
- 	<div class="container">
-   		<h2>Flight Information</h2>
-   	</div>
+
 
  	<div class="container">
    		<h5> Class of tickets:{{ class }}</span></h5><br>
@@ -65,26 +63,28 @@
  				<table class="table table-striped">
  	    			<thead>
  	      			<tr>
- 	        			<th>From: XXX</th>
- 	        			<th>To: XXX</th>
+ 	        			<th>From: {{flightOutgoing.origin}}</th>
+ 	        			<th>To: {{flightOutgoing.destination}}</th>
  	      			</tr>
  	    			</thead>
 
  	    			<tbody>
  	      				<tr>
- 	        				<td>Date: DD/MM/YYYY</td>
- 	        				<td>Date: DD/MM/YYYY</td>
+ 	        				<td>Date: {{flightOutgoing.date}}</td>
+ 	        				<td>Date: {{flightReturning.date}}</td>
  	      				</tr>
 
  		  				<tr>
- 	        				<td>Time: HH:MM</td>
- 	        				<td>Time: HH:MM</td>
+ 	        				<td>Departure Time: {{flightOutgoing.departureTime}}</td>
+ 	        				<td>Departure Time: {{flightReturning.departureTime}}</td>
  	      				</tr>
 
- 	      				<tr>
- 	        				<td>Terminal: XX</td>
- 	        				<td>Terminal: XX</td>
- 	      				</tr>
+
+        				<tr>
+                 	  <td>Arrival Time: {{flightOutgoing.arrivalTime}}</td>
+                 	  <td>Arrival Time: {{flightReturning.arrivalTime}}</td>
+              	</tr>
+
 
  	    			</tbody>
  				</table>
@@ -116,14 +116,14 @@
  	        		<td>x{{ adultsInput }}</td>
  	        		<td>{{ class }}</td>
  	        		<td>Adults</td>
- 	        		<td>${{adultsCost}}</td>
+ 	        		<td>${{flightOutgoing.economyPrice * adultsInput + flightReturning.economyPrice * adultsInput}}</td>
  	      		</tr>
 
  		  		<tr>
  	        		<td>x{{ childrenInput }}</td>
  	        		<td>{{ class }}</td>
  	        		<td>Children</td>
- 	        		<td>${{childrenCost}}</td>
+ 	        		<td>${{(flightOutgoing.economyPrice * childrenInput + flightReturning.economyPrice * childrenInput)*0.5}}</td>
  	      		</tr>
 
  	    	</tbody>
@@ -131,7 +131,7 @@
  	</div>
  	</div>
 
- 	<div class="well">Total amount: {{adultsInput*adultsCost+childrenInput*childrenCost}}</div>
+ 	<div class="well">Total amount: {{flightOutgoing.economyPrice * adultsInput + flightReturning.economyPrice * adultsInput+(flightOutgoing.economyPrice * childrenInput + flightReturning.economyPrice * childrenInput)*0.5}}</div>
  	<button type="button" class="btn btn-success">Procced</button> <br>
  	</div>
 
