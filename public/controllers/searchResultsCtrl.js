@@ -10,7 +10,13 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "origin": "CAI",
       "destination":"JFK",
       "economyPrice":"400",
-      "firstClassPrice":"1000"
+      "firstClassPrice":"1000",
+      "businessclassPrice":"700",
+      "departureTime":"22:00:00",
+      "arrivalTime":"24:00:00",
+      "firsclassSeatMap":[],
+      "economySeatMap":[],
+      "businessSeatMap":[]
     },
     {
       "flightNumber": "564",
@@ -18,10 +24,15 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "capacity": "400 Passsengers",
       "date": "2016/01/06",
       "duration": "3 Hours",
+      "departureTime":"22:00:00",
+      "arrivalTime":"24:00:00",
       "origin": "JFK",
       "destination":"CAI",
       "economyPrice":"350",
-      "firstClassPrice":"2000"
+      "firstClassPrice":"2000",
+      "firsclassSeatMap":[],
+      "economySeatMap":[],
+      "businessSeatMap":[]
     },
     {
       "flightNumber": "232",
@@ -29,10 +40,15 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
       "capacity": "400 Passsengers",
       "date": "2016/05/05",
       "duration": "3 Hours",
+      "departureTime":"22:00:00",
+      "arrivalTime":"24:00:00",
       "origin": "CAI",
       "destination":"JFK",
       "economyPrice":"300",
-      "firstClassPrice":"1500"
+      "firstClassPrice":"1500",
+      "firsclassSeatMap":[],
+      "economySeatMap":[],
+      "businessSeatMap":[]
     }
   ];
 
@@ -40,8 +56,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
-  $scope.flight = {};
-  $scope.flight.index = 0;
+  $scope.gflight = {};
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
 
@@ -74,9 +89,20 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
 
 
+       $scope.proceed = function(){
+         var array=[];
+         array.push($scope.gflight);
+         array.push($scope.rflight);
+         FlightsSrv.setFlights(array);
+         $location.url('/');
+       };
+
+
+
 
   searchFlights();
   returnFlights();
+
 
 
 });

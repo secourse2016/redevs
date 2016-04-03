@@ -6,7 +6,7 @@
       <div class="row">
           <h1 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h1>
           <div ng-repeat="f in FlightResults">
-          <input type="radio" ng-model="$parent.flights" ng-value="f"> </input><h3> <span class="label label-danger">Flight Number {{f.flightNumber}} flying from {{f.origin}} to {{f.destination}} on {{f.date}} costs {{f.economyPrice}}$ Economy {{f.firstClassPrice}}$ First Class</span></h3>
+        <h3>   <input type="radio" ng-model="$parent.gflight" ng-value="f"> </input><span class="label label-danger">Flight Number {{f.flightNumber}} flying from {{f.origin}} to {{f.destination}} on {{f.date}} costs {{f.economyPrice}}$ Economy {{f.firstClassPrice}}$ First Class</span></h3>
 
           </div>
     </div>
@@ -21,9 +21,12 @@
         <div class="row">
             <h1 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h1>
             <div ng-repeat="r in ReturnFlights">
-            <h3>  <span class="label label-primary">Flight Number {{r.flightNumber}} flying from {{r.destination}} to {{r.origin}} on {{r.date}} costs {{r.economyPrice}}$ Economy {{r.firstClassPrice}}$ First Class</span> <button type="button" class="btn btn-success">Book Now!!</button></h3>
+            <h3> <input type="radio" ng-model="$parent.rflight" ng-value="r"> <span class="label label-primary">Flight Number {{r.flightNumber}} flying from {{r.destination}} to {{r.origin}} on {{r.date}} costs {{r.economyPrice}}$ Economy {{r.firstClassPrice}}$ First Class</span> </h3>
 
             </div>
         </div>
       </div>
+      <button  type="button" class="btn btn-success" ng-click="proceed()">Proceed</button>
+
+</div>
 </div>
