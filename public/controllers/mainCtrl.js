@@ -111,6 +111,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
         angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
                 $scope.checkResults.push(key);
+                FlightsSrv.setClasses($scope.checkResults);
             }
         });
     });
