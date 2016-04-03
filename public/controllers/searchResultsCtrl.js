@@ -94,7 +94,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          array.push($scope.gflight);
          array.push($scope.rflight);
          FlightsSrv.setFlights(array);
-         $location.url('/');
+         $location.url('/FlightDetails');
        };
 
 
