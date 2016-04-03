@@ -112,9 +112,9 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 App.controller('buttonsCtrl', function ($scope) {
 
     $scope.checkModel = {
-        left: false,
-        middle: true,
-        right: false
+        economyBtn: false,
+        businessBtn: true,
+        firstBtn: false
     };
 
     $scope.checkResults = [];
@@ -129,7 +129,3 @@ App.controller('buttonsCtrl', function ($scope) {
     });
 });
 
-
-App.controller("index", function($scope) {
-
-});
