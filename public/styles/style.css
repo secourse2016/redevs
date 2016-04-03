@@ -1,7 +1,6 @@
 body{
 
-  background: url(Delta-Air-Lines-website.jpg) no-repeat center center fixed;
-  
-
+  background-image:url(DeltaLogo.jpg);
+  background-size: cover;
 
 }
