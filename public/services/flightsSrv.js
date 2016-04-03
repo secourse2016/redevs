@@ -47,7 +47,20 @@ App.factory('FlightsSrv', function ($http) {
          },
          getTripType: function(){
                     return this.tripType;
-                  }
+         },
+        setNumberOfChildren: function(value){
+          this.numberOfChildren=value;
+        } ,
+        setNumberOfAdults: function(value){
+          this.numberOfAdults=value;
+        } ,
+        getNumberOfChildren: function(){
+          return this.numberOfChildren;
+        },
+        getNumberOfAdults: function(){
+          return this.numberOfAdults;
+        }
+
 
      };
  });
