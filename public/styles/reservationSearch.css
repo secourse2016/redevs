@@ -184,3 +184,85 @@ left: 0;
       opacity: 1; 
    } 
 } 
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+
+
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+} 
+dl{
+  border-radius: 8px;  
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+
+
+dl dt{ 
+  background-color: #383838;
+  border-bottom: solid 1px rgba(0,0,0,0.3);
+  border-top: solid 1px rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 10px 10px 10px 30px;
+  position: relative;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+dd{
+  background-color: #ddd;
+  color: rgba(0,0,0,0.6);
+  display: none;  
+  border: solid 1px #e7e7e7;
+  margin: 0;
+  padding: 10px;
+}
+
+.fechado::after, .aberto::after{
+  content: "\25c2";
+  display: table;
+  font-size: 1.6em;
+  left: 2%;
+  line-height: 50px;
+  position: absolute;
+  text-shadow: 0 -1px #111; 
+  top: -3px;
+    
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out; 
+}
+
+.fechado::after{
+   -webkit-transform: rotate(-90deg);
+   -moz-transform: rotate(-90deg);
+   -ms-transform: rotate(-90deg);
+   -o-transform: rotate(-90deg);
+   transform: rotate(-90deg); 
+}
+
+.aberto::after{
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+} 
+
+@media only screen and (min-width : 1024px){
+
+  
+    
+  h1, dl{
+    width: 36rem; 
+  }
+  
+}
