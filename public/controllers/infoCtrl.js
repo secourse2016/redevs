@@ -21,7 +21,7 @@
 
          $scope.proceed = function() {
             FlightsSrv.setAdultsInfo(Adults);
-            FlightsSrv.setChildrenInfo(Adults);
+            FlightsSrv.setChildrenInfo(Children);
          }
 
          function getNationalities() {

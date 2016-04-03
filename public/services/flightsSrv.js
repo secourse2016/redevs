@@ -54,15 +54,15 @@ App.factory('FlightsSrv', function ($http) {
          }
 
          setChildrenInfo: function(value){
-            this.adultsInfo = value;
+            this.childrenInfo = value;
          }
 
          getAdultsInfo: function(){
-           this.adultsInfo = value;
+           return this.adultsInfo;
          }
 
-         getChildrenValues: function(){
-            this.adultsInfo = value;
+         getChildrenInfo: function(){
+            return this.childrenInfo;
          }
 
 
