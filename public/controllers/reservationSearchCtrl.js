@@ -239,19 +239,25 @@ $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
 
    findReservation = function(resNum) { // <-- here is you value from the input
-
+    flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
       for(i=0;i<$scope.reservations.length;i++){
              if($scope.reservations[i].reservationCode==reservationNumberValue){
-
+              flag=true;
               $scope.reservationsObjects=$scope.reservations[i];
-
+              $scope.toggle=true;
+              break;
 
              }
            }
+           if(flag==false){
+            $scope.toggle=false;
+            
+           }
+        
 
 
 
@@ -259,6 +265,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
 
 };
+
 
   findReservation(reservationNumber);
 
