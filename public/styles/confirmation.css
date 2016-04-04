@@ -1,0 +1,12 @@
+body{
+	background: url("./DeltaLogo.jpg");
+	background-repeat: no-repeat;
+}
+
+.jumbotron{
+	text-align: center;
+}
+
+h2,h5{
+	font-weight: bold;
+}
