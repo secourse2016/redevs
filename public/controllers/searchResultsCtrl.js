@@ -60,6 +60,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
+  $scope.flag = false;
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
 
@@ -68,13 +69,13 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.FlightDetails.FlightDepartureDate = FlightsSrv.getSelectedDepartureDate();
 
   $scope.FlightDetails.FlightArrivaleDate = FlightsSrv.getSelectedArrivalDate();
-  console.log($scope.FlightDetails.OriginAirport.iata + $scope.Flights[0].origin);
+  
 
   searchFlights = function(){
     for (var i = 0; i < $scope.Flights.length; i++) {
       if($scope.FlightDetails.OriginAirport===$scope.Flights[i].origin && $scope.FlightDetails.DestinationAirport===$scope.Flights[i].destination){
         $scope.FlightResults.push($scope.Flights[i]);
-
+        $scope.flag=true;
       }
       //console.log($scope.FlightDetails.OriginAirport.iata + $scope.Flights[0].origin);
       //console.log(JSON.stringify($scope.FlightDetails.OriginAirport.iata));

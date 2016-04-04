@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="jumbotron">
+    <div class="jumbotron" ng-show="flag">
       <div class="row">
           <h1 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h1>
 
@@ -28,9 +28,9 @@
 </div>
 
 
-<div class="container">
-    <div class="row">
-      <div class="jumbotron">
+<div class="container" ng-show="flag">
+    <div class="row" >
+      <div class="jumbotron" >
         <div class="row">
             <h1 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h1>
 
