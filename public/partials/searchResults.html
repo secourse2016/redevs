@@ -6,9 +6,8 @@
       <div class="row">
           <h1 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h1>
 
-          
+          <table align="center">
 
-          <table>
             <th ng-repeat= "header in headers">
         <a> {{headers[$index]}} </a>
     </th>
@@ -52,8 +51,13 @@
           </tr>
         </table>
         </div>
+        <br></br>
+        <br></br>
+        <div class="span7 text-center">
+        <button id=" Prcdbtn"  type="button" class="btn btn-success" ng-click="proceed()">Proceed</button>
       </div>
-      <button  type="button" class="btn btn-success" ng-click="proceed()">Proceed</button>
+      </div>
+
 
 </div>
 </div>
