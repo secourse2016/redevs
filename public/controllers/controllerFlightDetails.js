@@ -9,8 +9,8 @@ $scope.flightReturning = $scope.flight[1];
 
 $scope.proceed = function (){
 
-	FlightsSrv.setNumberOfChildren($scope.adultsInput);
-	FlightsSrv.setNumberOfAdults($scope.childrenInput);
+	FlightsSrv.setNumberOfChildren($scope.childrenInput);
+	FlightsSrv.setNumberOfAdults($scope.adultsInput);
 
 	$location.url('/information');
 }
