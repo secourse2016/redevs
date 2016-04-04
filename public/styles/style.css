@@ -1,6 +1,6 @@
-body{
-
-  background-image:url(DeltaLogo.jpg);
 
 
+body {
+  background: url(DeltaLogo.jpg) no-repeat center fixed;
+  background-size: cover;
 }
