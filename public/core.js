@@ -33,7 +33,7 @@ App.config(function($routeProvider) {
         .when('/reservationSearch', {
             templateUrl : '/partials/reservationSearch.html',
             controller  : 'reservationSearchCtrl',
-            css : 'styles/reservationSearch.css'
+            css : ['styles/reservationSearch.css',"//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css"]
 
         })
 
@@ -45,7 +45,7 @@ App.config(function($routeProvider) {
         .when('/confirmation', {
             templateUrl : '/partials/confirmation.html',
             controller : 'confirmationCtrl'
-        
+
         });
 });
 
