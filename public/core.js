@@ -44,7 +44,8 @@ App.config(function($routeProvider) {
         })
         .when('/confirmation', {
             templateUrl : '/partials/confirmation.html',
-            controller : 'confirmationCtrl'
+            controller : 'confirmationCtrl',
+            css:'styles/confirmation.css'
 
         })
         .when('/payment', {
