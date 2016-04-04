@@ -71,6 +71,8 @@ $('dt').click(function(){
   "capacity":400,
   "date":"20/01/2016",
   "duration":2,
+  "departureTime":"08:10",
+  "arrivalTime":"11:30",
   "origin":"CAI",
   "destination": "BCN",
 
@@ -104,6 +106,8 @@ $('dt').click(function(){
   "aircraft":"ZZ",
   "capacity":400,
   "date":"20/01/2016",
+  "departureTime":"20:10",
+  "arrivalTime":"23:30",
   "duration":2,
   "origin":"BCN",
   "destination": "CAI",
@@ -178,6 +182,8 @@ $('dt').click(function(){
   "capacity":400,
   "date":"20/01/2016",
   "duration":2,
+  "departureTime":"08:10",
+  "arrivalTime":"11:30",
   "origin":"CAI",
   "destination": "BCN",
 
@@ -212,6 +218,8 @@ $('dt').click(function(){
   "capacity":400,
   "date":"20/01/2016",
   "duration":2,
+  "departureTime":"20:10",
+  "arrivalTime":"23:30",
   "origin":"BCN",
   "destination": "CAI",
 
