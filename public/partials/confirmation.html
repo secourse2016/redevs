@@ -7,12 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
-
-	<link rel="stylesheet" href="../styles/confirmation.css"
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
-<body> 
+<body>
 <div class="container">
 
 	<div class="jumbotron">
@@ -20,48 +18,77 @@
 	</div>
 
 	<div class="container">
-  		<h2 style="color: lightgray">Flight Information</h2>
+  		<h2>Flight Information</h2>
   	</div>
 
 	<div class="container">
-  		<h5 class="info"> Number of adult ticket(s): <span class="badge"> {{ adultTickets }}</span></h5><br>
-  		<h5 class="info"> Number of children ticket(s): <span class="badge"> {{ childrenTickets }}</span></h5><br>
-  		<h5 class="info"> Class of tickets(s):  <span class="badge"> {{ class }}</span></h5><br>
+  		<h5> Number of adult ticket(s): <span class="badge"> {{ adultTickets }}</span></h5><br>
+  		<h5> Number of children ticket(s): <span class="badge"> {{ childrenTickets }}</span></h5><br>
+  		<h5> Class of tickets(s):  <span class="badge"> {{ class }}</span></h5><br>
 	</div>
 
-	<div class="panel-group";>   
+	<div class="panel-group">
 	    <div class="panel panel-default" ng-repeat="x in flights"> <!--check name of array -->
-	      <div class="panel-heading">Flight {{ $index + 1 }}</div>
+	      <div class="panel-heading">Flight + {{ $index + 1 }}</div>
 	      <div class="panel-body">
-				
-  					<div class="col-sm-6"> 						
+
+  					<div class="col-sm-6">
 						<div class="container">
-					  		<h5> From: {{ x.origin }}</h5><br>
-					  		<h5> Date: {{ x.date }}</h5><br>
-					  		<h5> Time: {{ x.departureTime }}</h5><br>
+					  		<h5> From: <span class="badge"> {{ x.origin }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ x.departureTime }}</span></h5><br>
+					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>-->
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
   					</div>
 
-					<div class="col-sm-6"><div class="col-sm-6"> 						
+					<div class="col-sm-6"><div class="col-sm-6">
 						<div class="container">
-					  		<h5> To: {{ x.destination }}</h5><br>
-					  		<h5> Date: {{ x.date }}</h5><br>
-					  		<h5> Time: {{ x.arrivalTime }}</h5><br>
+					  		<h5> To: <span class="badge"> {{ x.destination }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ x.arrivalTime }}</span></h5><br>
+					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5> -->
+
 						</div>
-  					</div></div>	
-				
+  					</div></div>
+
 		  </div>
 	    </div>
-	</div> 
+
+	<!--<div class="panel panel-default">
+	      <div class="panel-heading">Return flight</div>
+	      <div class="panel-body">
+				<div class="row">
+  					<div class="col-sm-6">
+						<div class="container">
+					  		<h5> From: <span class="badge"> {{ returnFrom }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ returnDate1 }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ returnTime1 }}</span></h5><br>
+
+					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
+						</div>
+  					</div>
+
+					<div class="col-sm-6"><div class="col-sm-6">
+						<div class="container">
+					  		<h5> To: <span class="badge"> {{ returnTo }}</span></h5><br>
+					  		<h5> Date:  <span class="badge"> {{ returnDate2 }}</span></h5><br>
+					  		<h5> Time:  <span class="badge"> {{ returnTime2 }}</span></h5><br>
+
+						</div>
+  					</div></div>
+				</div>
+		  </div>
+	    </div> -->
+	</div>
 
 	<div class="alert alert-info">
-		<strong>Note: </strong> Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed. 
+		<strong>Note: </strong> Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.
 	</div>
 
 	<div class="well">
 		<div class="container">
-		    <div class="col-sm-6">      
+		    <div class="col-sm-6">
 			<table class="table table-striped">
 			    <thead>
 			      <tr>
@@ -79,7 +106,7 @@
 			        <td> Adult </td>
 			        <td>{{ adultTicketsCost }}</td>
 			      </tr>
-			      
+
 			      <tr ng-show="thereAreChildren">
 			        <td>{{ childrenTickets }}</td>
 			        <td>{{ class }} </td>
@@ -89,7 +116,7 @@
 
 			    </tbody>
 			</table>
-			</div>	
+			</div>
 		</div>
 
 		<div>
@@ -97,15 +124,14 @@
 			<button type="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 
-				
+
 			<button type="button" class="btn btn-info" ng-click="goToCheckOut()"> <!--ng click -->
 	      		<span class="glyphicon glyphicon-ok-sign"></span> Check Out
 	    	</button>
-	    	
+
 		</div>
-		
+
 	</div>
 </div>
-	
-</body>
 
+</body>
