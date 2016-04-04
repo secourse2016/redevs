@@ -5,6 +5,7 @@ App.factory('FlightsSrv', function ($http) {
 
          },
 
+
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
@@ -34,6 +35,7 @@ App.factory('FlightsSrv', function ($http) {
             this.selectedArrivalDate=value;
          },
 
+
          setFlights: function(value){
            this.selectedFlights = value;
          },
@@ -51,7 +53,8 @@ App.factory('FlightsSrv', function ($http) {
          this.tripTpe=value;
          },
          getTripType: function(){
-            return this.tripType;        
+
+            return this.tripType;
          },
 
          setAdultsInfo: function(value){
@@ -81,9 +84,42 @@ App.factory('FlightsSrv', function ($http) {
         },
         getNumberOfAdults: function(){
           return this.numberOfAdults;
-        }
+        },
 
+
+
+
+        getName : function(){
+                return this.name;
+            },
+            setName : function(value){
+                 this.name = value ;
+            },
+        getCreditCardNumber : function(){
+            return this.creditNumber;
+        },
+         setCreditCardNumber : function(value){
+             this.creditNumber = value;
+        },
+        getCVC : function(){
+            return this.CVC;
+        },
+         setCVC : function(value){
+             this.CVC = value;
+        },
+
+        setMonth : function(value){
+             this.month = value;
+        },
+        getMonth : function(){
+            return this.month;
+        },
+        getYear : function(){
+            return this.year;
+        },
+        setYear : function(value){
+            this.year = value;
+        }
 
      };
  });
-
