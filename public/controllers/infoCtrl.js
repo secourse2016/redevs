@@ -1,5 +1,5 @@
 	App.controller('infoCtrl', function($scope, $location,FlightsSrv){
-   		
+
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
    		$scope.AdultsArray = new Array($scope.AdultsCount);
