@@ -1,12 +1,18 @@
-body{
-	background: url("./DeltaLogo.jpg");
-	background-repeat: no-repeat;
-}
 
 .jumbotron{
-	text-align: center;
+	
+	opacity: 0.8;
 }
 
 h2,h5{
 	font-weight: bold;
 }
+
+.info{
+	color: lightgray;
+}
+
+.panel-group, .well{
+	opacity: 0.8;
+}
+
