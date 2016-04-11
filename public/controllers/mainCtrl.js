@@ -1,57 +1,120 @@
-/**
- * Main Controller
- */
-App.controller('mainCtrl', function($scope, FlightsSrv, $location) {
 
-  /*----------- Angular Bootstrap Datepicker -----------*/
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
+App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
 
-  $scope.open1 = function() {
-    $scope.popup1.opened = true;
-  };
+    /*----------- Angular Bootstrap Datepicker -----------*/
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[1];
 
-  $scope.open2 = function() {
-    $scope.popup2.opened = true;
-  };
+    var date = new Date();
+    $scope.minDate = date.setDate((new Date()).getDate() - 90);
 
-  $scope.setDate = function(year, month, day) {
-    $scope.dt = new Date(year, month, day);
-  };
+    $scope.open1 = function () {
+        $scope.popup1.opened = true;
+    };
 
-  $scope.popup1 = {
-    opened: false
-  };
+    $scope.open2 = function () {
+        $scope.popup2.opened = true;
+    };
 
-  $scope.popup2 = {
-    opened: false
-  };
 
-  /*----------- Angular Bootstrap Typeahead -----------*/
+    $scope.dateOptions = {
 
-  /* Retrieve List of Airports Codes */
-  function AirportCodes() {
-    FlightsSrv.getAirportCodes().success(function(airports) {
-         $scope.Airports = airports;
-     });
-  };
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+    };
 
-  /* Record User's Selected Origin Airport  */
-  $scope.SetOriginAirport = function(originAirport) {
-    FlightsSrv.setSelectedOriginAirport(originAirport);
-  };
+    $scope.setDate = function (year, month, day) {
+        $scope.dtTo = new Date(year, month, day);
+        $scope.dtFrom = new Date(year, month, day);
 
-  /* Record User's Selected Destination Airport  */
-  $scope.SetDestinationAirport = function(destAirport) {
-    FlightsSrv.setSelectedDestinationAirport(destAirport);
-  };
+    };
 
-  /* Find All Available Flights  */
-  $scope.SearchFlights = function() {
-    $location.url('/flights');
-  };
+    $scope.popup1 = {
+        opened: false
+    };
 
-  /* Get Airports on page render  */
-  AirportCodes();
+    $scope.popup2 = {
+        opened: false
+    };
+
+
+    // checkbox
+     $scope.checkboxModel = {
+         valuecheck: 'round-trip'
+     };
+
+    $scope.onChange = function(tripType) {
+        FlightsSrv.setTripType(tripType);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function AirportCodes() {
+        FlightsSrv.getAirportCodes().success(function(airports) {
+            $scope.Airports = airports;
+        });
+    }
+
+    /* Record User's Selected Origin Airport  */
+    $scope.SetOriginAirport = function(originAirport) {
+        FlightsSrv.setSelectedOriginAirport(originAirport);
+    };
+
+    /* Record User's Selected Destination Airport  */
+    $scope.SetDestinationAirport = function(destAirport) {
+        FlightsSrv.setSelectedDestinationAirport(destAirport);
+    };
+
+
+    /* Find All Available Flights  */
+    $scope.SearchFlights = function() {
+
+      FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+      FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+      $location.url('/searchResults');
+    };
+
+
+
+    $scope.searchReservation = function() {
+        reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
+        $location.url('/reservationSearch');
+    };
+
+    /* Get Airports on page render  */
+    AirportCodes();
+
+    $scope.checkModel = {
+        economyBtn: false,
+        businessBtn: true,
+        firstBtn: false
+    };
+
+    $scope.checkResults = [];
+
+    $scope.$watchCollection('checkModel', function () {
+        $scope.checkResults = [];
+        angular.forEach($scope.checkModel, function (value, key) {
+            if (value) {
+                $scope.checkResults.push(key);
+               FlightsSrv.setClasses($scope.checkResults);
+
+            }
+        });
+    });
+
 
 });
