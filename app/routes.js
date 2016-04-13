@@ -25,7 +25,7 @@ module.exports = function(app,mongo) {
     app.use(function(req, res, next) {
     });
     //Round-Trip API
-    //call 
+    //call
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
 
     });

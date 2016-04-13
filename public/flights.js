@@ -5,7 +5,7 @@ var db = require('./db.js');
 
 
 //Search for flights in the array with minSeats<=classSeats
-function checkSeats (cb,array, minSeats,classs) {
+function checkSeats (cb,array, minSeats,class) {
 
 }
 //getFlights within a certain date
