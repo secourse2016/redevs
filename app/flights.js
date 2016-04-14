@@ -246,6 +246,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
 
 //getFlight with a certain route
 function getFlightsWithAirports(array,originAirport,DestinationAirport,cb){
+    
 
 }
 
