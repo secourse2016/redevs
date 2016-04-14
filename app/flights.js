@@ -1,16 +1,6 @@
 
 var db = require('./db.js');
 
-
-
-
-
-
-
-
-
-
-
 //gets all flights from DB do not forget cb
 function getFlightsFromDB(array,cb){
     db.db().collection('flights').find({}).toArray(cb);
@@ -49,10 +39,6 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
         var firstClassCost = flight.firstClassCost;
         var businessClassCost = flight.businessClassCost;
         var economyClassCost = flight.economyClassCost;
-        var flightsdepartureDate = moment(departureDateTime, 'YYYY-MM-DD hh:mm A').toDate().getTime();
-        var flightsarrivalDate = moment(arrivalDateTime, 'YYYY-MM-DD hh:mm A').toDate().getTime();
-        var departureDate = moment(flightsdepartureDate).format('YYYY-MM-DD');
-        var arrivalDate = moment(flightsarrivalDate).format('YYYY-MM-DD');
         aircraft = aircraft.split(" ");
         var aircraftType = aircraft[0];
         var aircraftModel = aircraft[1];
@@ -68,8 +54,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                         "flightNumber": flightNumber,
                         "aircraftType": aircraftType,
                         "aircraftModel": aircraftModel,
-                        "departureDateTime": flightsdepartureDate,
-                        "arrivalDateTime": flightsarrivalDate,
+                        "departureDateTime": departureDateTime,
+                        "arrivalDateTime": arrivalDateTime,
                         "origin": origin,
                         "destination": destination,
                         "cost": economyClassCost,
@@ -85,8 +71,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
-                            "departureDateTime": flightsdepartureDate,
-                            "arrivalDateTime": flightsarrivalDate,
+                            "departureDateTime":departureDateTime,
+                            "arrivalDateTime": arrivalDateTime,
                             "origin": origin,
                             "destination": destination,
                             "cost": businessClassCost,
@@ -102,8 +88,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
-                                "departureDateTime": flightsdepartureDate,
-                                "arrivalDateTime": flightsarrivalDate,
+                                "departureDateTime": departureDateTime,
+                                "arrivalDateTime": arrivalDateTime,
                                 "origin": origin,
                                 "destination": destination,
                                 "cost": firstClassCost,
@@ -136,8 +122,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                         "flightNumber": flightNumber,
                         "aircraftType": aircraftType,
                         "aircraftModel": aircraftModel,
-                        "departureDateTime": flightsdepartureDate,
-                        "arrivalDateTime": flightsarrivalDate,
+                        "departureDateTime": departureDateTime,
+                        "arrivalDateTime": arrivalDateTime,
                         "origin": origin,
                         "destination": destination,
                         "cost": economyClassCost,
@@ -153,8 +139,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
-                            "departureDateTime": flightsdepartureDate,
-                            "arrivalDateTime": flightsarrivalDate,
+                            "departureDateTime": departureDateTime,
+                            "arrivalDateTime": arrivalDateTime,
                             "origin": origin,
                             "destination": destination,
                             "cost": businessClassCost,
@@ -170,8 +156,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
-                                "departureDateTime": flightsdepartureDate,
-                                "arrivalDateTime": flightsarrivalDate,
+                                "departureDateTime": departureDateTime,
+                                "arrivalDateTime": arrivalDateTime,
                                 "origin": origin,
                                 "destination": destination,
                                 "cost": firstClassCost,
@@ -197,8 +183,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
-                            "departureDateTime": flightsdepartureDate,
-                            "arrivalDateTime": flightsarrivalDate,
+                            "departureDateTime": departureDateTime,
+                            "arrivalDateTime": arrivalDateTime,
                             "origin": origin,
                             "destination": destination,
                             "cost": economyClassCost,
@@ -214,8 +200,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
-                                "departureDateTime": flightsdepartureDate,
-                                "arrivalDateTime": flightsarrivalDate,
+                                "departureDateTime": departureDateTime,
+                                "arrivalDateTime": arrivalDateTime,
                                 "origin": origin,
                                 "destination": destination,
                                 "cost": businessClassCost,
@@ -231,8 +217,8 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                     "flightNumber": flightNumber,
                                     "aircraftType": aircraftType,
                                     "aircraftModel": aircraftModel,
-                                    "departureDateTime": flightsdepartureDate,
-                                    "arrivalDateTime": flightsarrivalDate,
+                                    "departureDateTime": departureDateTime,
+                                    "arrivalDateTime": arrivalDateTime,
                                     "origin": origin,
                                     "destination": destination,
                                     "cost": firstClassCost,
@@ -259,14 +245,25 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
 
 
 //getFlight with a certain route
-function getFlightsWithAirports(array,originAirport,DestinationAirport){
+function getFlightsWithAirports(array,originAirport,DestinationAirport,cb){
 
 }
 
+function getFlightByID(flightNumber,departureDateTime,cb) {
+    db.db().collection('flights').find(
+        {
+           "flightNumber": flightNumber,
+            "departureDateTime": departureDateTime
+        }
+    ).toArray(cb);
+
+    }
 
 
 
 
-}
+
+
+
 
 
