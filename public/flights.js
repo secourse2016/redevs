@@ -19,5 +19,8 @@ function getFlightsWithDates(cb,originDate,DestinationDate){
 function getFlightsWithAirports(cb,originAirport,DestinationAirport){
 
 }
+function getTickets(cb,originAirport,DestinationAirport){
+//return all tickets/ all reservations y3ni
+}
 
 
