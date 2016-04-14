@@ -24,6 +24,23 @@ function getTicketsFromDB(cb){
 //return all tickets/ all reservations y3ni
 db.db().collection('tickets').find({}).toArray(cb);
 }
+function reservationSearch(resNum){
+//return reservation based on the ResNumber passed
+   for(i=0;i<tickets.length;i++){
+             if(tickets[i].reservationCode==resNum){
+              return tickets[i];
+              break;
+
+             }
+           }
+}
+function getTicketsFromJSON() {
+	//return all the tickets/reservation 
+    return tickets;
+}
 
 exports.getTicketsFromDB = getTicketsFromDB;
+exports.getTicketsFromJSON = getTicketsFromJSON;
+exports.reservationSearch = reservationSearch;
+
 
