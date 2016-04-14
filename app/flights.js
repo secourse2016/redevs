@@ -245,8 +245,50 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
 
 
 //getFlight with a certain route
-function getFlightsWithAirports(array,originAirport,DestinationAirport,cb){
+function getFlightsWithAirports(input,originAirport,destinationAirport){
 
+    var res = {
+        "outgoingFlights": []
+    };
+
+    var resRT = {
+        "outgoingFlights": [],
+        "returnFlights": []
+    };
+
+    if (Object.keys(input).length === 1){
+
+        for (var i = 0; i < input.outgoingFlights.length; i++){
+
+            var flight = input.outgoingFlights.getJSONObject(i);
+
+            if (flight.origin === originAirport && flight.destination === destinationAirport)
+                res.outgoingFlights.push(flight);
+    }
+
+    return res;   
+    
+    }
+
+
+    if (Object.keys(input).length === 2){
+
+        for (var i = 0; i < input.outgoingFlights.length; i++){
+            var outFlight = input.outgoingFlights.getJSONObject(i);
+            if (outFlight.origin === originAirport && outFlight.destination === destinationAirport)
+                resRT.outgoingFlights.push(outFlight);
+
+            }
+        for (var j = 0; j < input.returnFlights.lenght; j++){
+            var returnFlight = input.returnFlights.getJSONObject(j);
+            if (returnFlight.origin === destinationAirport && returnFlight.destination === originAirport){
+                resRT.returnFlights.push(returnFlights);
+            }
+
+        }
+        
+    } 
+}
 }
 
 function getFlightByID(flightNumber,departureDateTime,cb) {
