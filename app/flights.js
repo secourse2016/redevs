@@ -47,42 +47,78 @@ function getTicketsFromJSON() {
 
 
 
-function reserveTicket(flights,email,creditCardNumber,adults,children,cb){
-var outgoingflight = getFlightbyId(
-  flights[0].flightNumber,flights[0]
-  .departureDateTime) ;
-  if(flights.length===2)
-  var returnflight = getFlightbyId(
-    flights[1].flightNumber,
-    flights[1].departureDateTime
-  );
-
-
-      for(int j=0;j<adults.length;j++){
-        for(int i =0;i<outgoingflight.seatMap.length,i++){
-          if(outgoingflight.seatMap[i].isReserved==="false")
-            adults[j].seatNumberOutgoing=outgoingflight.seatMap[i].seatNumber;
-            seatMap[i].isReserved="true";
+function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,cb){
+    getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){
+      getFlightById(flights[1].flightNumber,flights[1].DepartureDateTime,function(err,flight2){
+        for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
         }
-      }
-    }
+        for(int i=0;i<children.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
+        }
+        for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight2.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              adults[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
+              flight2.seatMap[j].isReserved="true";
+            }
+          }
+        }
+        for(int i=0;i<children.length;i++){
+          for(int j=0;j<flight2.seatMap.length;j++){
+            if(flight2.seatMap[j].isReserved==="false"){
+              children[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
+              flight2.seatMap[j].isReserved="true";
+            }
+          }
+        }
+
+        for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
+        }
+        for(int i=0;i<children.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
+        }
+
+        db.db().collection('tickets').insertOne({
+          "reservationCode":0,
+          "numberOfAdults":adults.length,
+          "adults":adults,
+          "numberOfChildren":children.length,
+          "children":children,
+          "flights":[flight1,flight2],
+          "email":email,
+          "creditCardNumber":creditCardNumber
+        },function(err,result){
+          assert.equal(err,null);
+          console.log("Reservation done");
+          cb();
+        });
 
 
+      });
+    });
 
-  db.db().collection('tickets').insertOne({
-    "reservationCode":0,
-    "numberOfAdults":adults.length,
-    "adults":adults,
-    "numberOfChildren":children.length,
-    "children":children,
-    "flights":flights,
-    "email":email,
-    "creditCardNumber":creditCardNumber
-  },function(err,result){
-    assert.equal(err,null);
-    console.log("Reservation done");
-    cb();
-  });
 }
 
 
@@ -108,4 +144,4 @@ var outgoingflight = getFlightbyId(
 exports.getTicketsFromDB = getTicketsFromDB;
 exports.getTicketsFromJSON = getTicketsFromJSON;
 exports.reservationSearch = reservationSearch;
-exports.reserveTicket = reserveTicket;
+exports.reserveTicket = reserveRoundTripTicket;
