@@ -4,9 +4,16 @@ var db = require('./db.js');
 
 
 
+
+
+
+
+
+
+
 //gets all flights from DB do not forget cb
 function getFlightsFromDB(array,cb){
-    db.db().collection('quotes').find({}).toArray(cb);
+    db.db().collection('flights').find({}).toArray(cb);
     }
 
 
