@@ -8,9 +8,41 @@ function getFlightsFromDB(array,cb){
 
 
 //Search for flights in the array with minSeats<=classSeats
-function checkSeats (array, minSeats,classs) {
+/*function checkSeats (array, minSeats,classs) {
+    
+    var res = {
+        "flights": []
+    };
+    
+    var allFlights = getFlightsFromDB();
+    res = db.db().collection().findOne(
+   {
+      [
+            { 'tickets.flights.capacity': { $lt: minSeats }}
+            
+          ]
+   }
+);
+}*/
 
+
+function checkSeats (array, minSeats,classs) {
+    
+   var allFlights = getFlightsFromDB();
+   var res = {
+       "flightsWithMinSeats":[]
+   };
+   
+   
+   for(int i = 0;i<allFlights.length; i++){
+       if(allFlights(i).capacity> minSeats)
+        res.flightsWithMinSeats.push( allFlights(i));
+       
+   }
 }
+
+
+
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
