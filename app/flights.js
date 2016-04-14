@@ -68,7 +68,7 @@ function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,c
         }
         for(int i=0;i<adults.length;i++){
           for(int j=0;j<flight2.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
+            if(flight2.seatMap[j].isReserved==="false"){
               adults[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
               flight2.seatMap[j].isReserved="true";
             }
@@ -79,23 +79,6 @@ function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,c
             if(flight2.seatMap[j].isReserved==="false"){
               children[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
               flight2.seatMap[j].isReserved="true";
-            }
-          }
-        }
-
-        for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
-            }
-          }
-        }
-        for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
             }
           }
         }
@@ -118,6 +101,47 @@ function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,c
 
       });
     });
+
+}
+
+function reserveOneWayTicket(flights,email,creditCardNumber,adults,children,cb){
+    getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){
+        for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
+        }
+        for(int i=0;i<children.length;i++){
+          for(int j=0;j<flight1.seatMap.length;j++){
+            if(flight1.seatMap[j].isReserved==="false"){
+              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
+              flight1.seatMap[j].isReserved="true";
+            }
+          }
+        }
+
+
+        db.db().collection('tickets').insertOne({
+          "reservationCode":0,
+          "numberOfAdults":adults.length,
+          "adults":adults,
+          "numberOfChildren":children.length,
+          "children":children,
+          "flights":[flight1],
+          "email":email,
+          "creditCardNumber":creditCardNumber
+        },function(err,result){
+          assert.equal(err,null);
+          console.log("Reservation done");
+          cb();
+        });
+
+
+      });
+
 
 }
 
@@ -144,4 +168,5 @@ function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,c
 exports.getTicketsFromDB = getTicketsFromDB;
 exports.getTicketsFromJSON = getTicketsFromJSON;
 exports.reservationSearch = reservationSearch;
-exports.reserveTicket = reserveRoundTripTicket;
+exports.reserveRoundTripTicket = reserveRoundTripTicket;
+exports.reserveOneWayTicket = reserveOneWayTicket;
