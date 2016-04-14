@@ -6,10 +6,9 @@ var db = require('./db.js');
 
 //gets all flights from DB do not forget cb
 function getFlightsFromDB(array,cb){
+    db.db().collection('quotes').find({}).toArray(cb);
+    }
 
-
-
-}
 
 //Search for flights in the array with minSeats<=classSeats
 function checkSeats (array, minSeats,classs) {
