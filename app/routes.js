@@ -2,6 +2,7 @@
 /**
  * App routes:
  */
+ var flights = require('./flights.js');
 module.exports = function(app,mongo) {
 
 
@@ -34,5 +35,14 @@ module.exports = function(app,mongo) {
 
     });
 
+
+    app.get('/api/tickets', function (req, res, next) {
+        flights.getTicketsFromDB(function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+});
 
 };

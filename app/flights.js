@@ -2,9 +2,8 @@
  * Created by souidan on 4/14/16.
  */
 var db = require('./db.js');
-var tickets = require('../tickets.json');
 
-exports.tickets=tickets;
+
 //Search for flights in the array with minSeats<=classSeats
 function checkSeats (cb,array, minSeats,class) {
 
@@ -20,10 +19,8 @@ function getFlightsWithDates(cb,originDate,DestinationDate){
 function getFlightsWithAirports(cb,originAirport,DestinationAirport){
 
 }
-function getTicketsFromDB(cb){
+function getTickets(cb,originAirport,DestinationAirport){
 //return all tickets/ all reservations y3ni
-db.db().collection('tickets').find({}).toArray(cb);
 }
 
-exports.getTicketsFromDB = getTicketsFromDB;
 
