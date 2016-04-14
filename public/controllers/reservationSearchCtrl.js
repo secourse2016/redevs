@@ -277,6 +277,8 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
+     //call api, and change the toggle flag to true
+
       for(i=0;i<$scope.reservations.length;i++){
              if($scope.reservations[i].reservationCode==reservationNumberValue){
               flag=true;

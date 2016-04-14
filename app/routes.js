@@ -45,4 +45,14 @@ module.exports = function(app,mongo) {
     });
 });
 
+   app.get('/api/reservationSearch', function(req, res) {
+        flights.reservationSearch(resNum,function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+    });
+
+
 };
