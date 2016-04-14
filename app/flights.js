@@ -1,6 +1,4 @@
-/**
- * Created by souidan on 4/14/16.
- */
+
 var db = require('./db.js');
 
 
@@ -32,8 +30,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
     };
 
     for (var n = 0; n < array.length(); n++) {
-        JSONObject
-        flight = array.getJSONObject(n);
+        var flight = array.getJSONObject(n);
         var flightNumber = flight.flightNumber;
         var aircraft = flight.aircraft;
         var departureDateTime = flight.departureDateTime;
@@ -53,7 +50,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
         aircraft = aircraft.split(" ");
         var aircraftType = aircraft[0];
         var aircraftModel = aircraft[1];
-        if (arguments.length() === 2) {
+        if (arguments.length() === 3) {
 
             if (departureDate === originDate) {
 
@@ -69,7 +66,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                         "arrivalDateTime": flightsarrivalDate,
                         "origin": origin,
                         "destination": destination,
-                        "cost": flight.economyClassCost,
+                        "cost": economyClassCost,
                         "currency": "USD",
                         "class": "economy",
                         "Airline": "Delta Airlines"
@@ -86,7 +83,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "arrivalDateTime": flightsarrivalDate,
                             "origin": origin,
                             "destination": destination,
-                            "cost": flight.businessClassCost,
+                            "cost": businessClassCost,
                             "currency": "USD",
                             "class": "business",
                             "Airline": "Delta Airlines"
@@ -103,7 +100,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "arrivalDateTime": flightsarrivalDate,
                                 "origin": origin,
                                 "destination": destination,
-                                "cost": flight.firstClassCost,
+                                "cost": firstClassCost,
                                 "currency": "USD",
                                 "class": "first class",
                                 "Airline": "Delta Airlines"
@@ -122,7 +119,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
 
 
         }
-        if (arguments.length() === 3) {
+        if (arguments.length() === 4) {
             if (departureDate === originDate) {
 
 
@@ -137,7 +134,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                         "arrivalDateTime": flightsarrivalDate,
                         "origin": origin,
                         "destination": destination,
-                        "cost": flight.economyClassCost,
+                        "cost": economyClassCost,
                         "currency": "USD",
                         "class": "economy",
                         "Airline": "Delta Airlines"
@@ -154,7 +151,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "arrivalDateTime": flightsarrivalDate,
                             "origin": origin,
                             "destination": destination,
-                            "cost": flight.businessClassCost,
+                            "cost": businessClassCost,
                             "currency": "USD",
                             "class": "business",
                             "Airline": "Delta Airlines"
@@ -171,7 +168,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "arrivalDateTime": flightsarrivalDate,
                                 "origin": origin,
                                 "destination": destination,
-                                "cost": flight.firstClassCost,
+                                "cost": firstClassCost,
                                 "currency": "USD",
                                 "class": "first class",
                                 "Airline": "Delta Airlines"
@@ -198,7 +195,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                             "arrivalDateTime": flightsarrivalDate,
                             "origin": origin,
                             "destination": destination,
-                            "cost": flight.economyClassCost,
+                            "cost": economyClassCost,
                             "currency": "USD",
                             "class": "economy",
                             "Airline": "Delta Airlines"
@@ -215,7 +212,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                 "arrivalDateTime": flightsarrivalDate,
                                 "origin": origin,
                                 "destination": destination,
-                                "cost": flight.businessClassCost,
+                                "cost": businessClassCost,
                                 "currency": "USD",
                                 "class": "business",
                                 "Airline": "Delta Airlines"
@@ -232,7 +229,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
                                     "arrivalDateTime": flightsarrivalDate,
                                     "origin": origin,
                                     "destination": destination,
-                                    "cost": flight.firstClassCost,
+                                    "cost": firstClassCost,
                                     "currency": "USD",
                                     "class": "first class",
                                     "Airline": "Delta Airlines"
@@ -254,7 +251,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
     return resRT;
 }
 
-}
+
 //getFlight with a certain route
 function getFlightsWithAirports(array,originAirport,DestinationAirport){
 
