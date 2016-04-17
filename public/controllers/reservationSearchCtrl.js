@@ -14,6 +14,8 @@ App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchS
   $('dt').addClass('fechado');
 
 var $active = null;
+var x="da test x";
+var y="da test y";
 
 $('dt').click(function(){
   
@@ -283,7 +285,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
      // $http.get('/api/reservationSearch/:'+resNum);
 
     reservationSearchSrv.getReservationSearch(resNum).then(function(err, data) {
-      if(!data || data.len == 0){
+      if(!data || data.length == 0){
           //mala2ahosh
           flag=false;
 
@@ -291,7 +293,24 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       else{
         //la2a el ticket
            flag=true;
-              $scope.reservationsObjects=$scope.reservations[i];
+              $scope.reservationsObjects=data;
+              for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
+              $scope.reservationsObjects.flights[i].departureDateTime =x ;
+               $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
+
+              departureTime=moment(x).format('hh:mm');
+              arrivalTime=moment(y).format('hh:mm');
+              date=moment(x).format('YYYY-MM-DD');
+
+              $scope.reservationsObjects.flights[i].push({
+                "departureTime":departureTime,
+                 "arrivalTime" :arrivalTime,
+                 "date" : date
+              });
+
+
+              }
+              
               $scope.toggle=true;
               break;
       }
