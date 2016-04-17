@@ -5,10 +5,16 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
-    "body-parser": "~1.13.2",
-    "express": "~4.13.1",
-    "nodemon":"latest",
-    "moment":"2.10.6"
+    "body-parser"   : "~1.13.2",
+    "express"       :"~4.13.1",
+    "nodemon"       :"latest",
+    "dotenv"        : "latest",
+    "mongodb"       : "latest",
+    "jsonwebtoken"  : "latest",
+    "underscore"    : "latest",
+    "moment"        : "2.10.6"
+  
+
    }
 
 }

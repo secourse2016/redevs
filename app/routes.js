@@ -22,4 +22,19 @@ module.exports = function(app,mongo) {
     	res.json(nationalities);
     });
 
+
+    /* Middleware */
+    app.use(function(req, res, next) {
+    });
+    //Round-Trip API
+    //call
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+
+    });
+    //SINGLE WAY API
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+
+    });
+
+
 };
