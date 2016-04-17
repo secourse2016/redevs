@@ -282,7 +282,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
         //da a7oto asln fl service
      $http.get('/api/reservationSearch/:'+resNum);
 
-    reservationSearchSrv.reservationSearch(resNum).then(function(err, data) {
+    reservationSearchSrv.getReservationSearch(resNum).then(function(err, data) {
       if(!data || data.len == 0){
           //mala2ahosh
           flag=false;

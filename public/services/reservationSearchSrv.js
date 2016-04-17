@@ -7,6 +7,9 @@ App.factory('reservationSearchSrv', function($http) {
   setReservationNumber: function(resNum)
   {
     this.reservationNumber = resNum;
+  },
+   getReservationSearch: function(resNum){
+    return $http.get('/api/reservationSearch/:'+resNum); 
   }
 };
 
