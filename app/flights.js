@@ -249,8 +249,8 @@ function getFlightsFromDB(cb) {
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
-function getFlightsWithDates(array, originDate, destinationDate, classs) {
-
+function getFlightsWithDates(array, originDate,classs, destinationDate ) {
+    var count=0;
     var res = {
         "outgoingFlights": []
     };
@@ -259,9 +259,10 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
         "outgoingFlights": [],
         "returnFlights": []
     };
+    console.log(array.length);
 
     for (var n = 0; n < array.length; n++) {
-        var flight = array.getJSONObject(n);
+        var flight = array[n];
         var flightNumber = flight.flightNumber;
         var aircraft = flight.aircraft;
         var departureDateTime = flight.departureDateTime;
@@ -277,13 +278,21 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
         aircraft = aircraft.split(" ");
         var aircraftType = aircraft[0];
         var aircraftModel = aircraft[1];
+
         if (arguments.length === 3) {
+            console.log(array.length);
+            console.log(n);
+            console.log(classs);
+            console.log((moment(flight.departureDateTime).format('YYYY-MM-DD')));
+            console.log(originDate);
 
-            if (departureDate === originDate) {
+            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
 
 
-                if (classs === "Economy Class") {
 
+                if (classs === "EconomyClass") {
+
+                        console.log("hena");
 
                     res.outgoingFlights.push({
                         "flightNumber": flightNumber,
@@ -301,7 +310,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                     });
                 } else {
 
-                    if (classs === "Business Class") {
+                    if (classs === "BusinessClass") {
                         res.outgoingFlights.push({
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
@@ -318,7 +327,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                         });
 
                     } else {
-                        if (classs === "First Class") {
+                        if (classs === "FirstClass") {
                             res.outgoingFlights.push({
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
@@ -342,15 +351,20 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
             }
 
 
-            return res;
-
 
         }
         if (arguments.length === 4) {
-            if (departureDate === originDate) {
 
 
-                if (classs === "Economy Class") {
+            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
+
+
+
+
+
+                if (classs === "EconomyClass") {
+
+
 
 
                     resRT.outgoingFlights.push({
@@ -369,7 +383,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                     });
                 } else {
 
-                    if (classs === "Business Class") {
+                    if (classs === "BusinessClass") {
                         resRT.outgoingFlights.push({
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
@@ -386,7 +400,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                         });
 
                     } else {
-                        if (classs === "First Class") {
+                        if (classs === "FirstClass") {
                             resRT.outgoingFlights.push({
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
@@ -409,9 +423,10 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
 
                 }
             } else {
-                if (destinationDate === departureDate) {
+                if (destinationDate=== moment(flight.departureDateTime).format('YYYY-MM-DD')) {
 
-                    if (classs === "Economy Class") {
+                    if (classs === "EconomyClass") {
+
 
 
                         resRT.returnFlights.push({
@@ -430,7 +445,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                         });
                     } else {
 
-                        if (classs === "Business Class") {
+                        if (classs === "BusinessClass") {
                             resRT.returnFlights.push({
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
@@ -447,7 +462,7 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
                             });
 
                         } else {
-                            if (classs === "First Class") {
+                            if (classs === "FirstClass") {
                                 resRT.returnFlights.push({
                                     "flightNumber": flightNumber,
                                     "aircraftType": aircraftType,
@@ -475,7 +490,10 @@ function getFlightsWithDates(array, originDate, destinationDate, classs) {
             }
         }
     }
+    console.log(resRT);
+    if(arguments.length===4)
     return resRT;
+    return res;
 }
 
 
@@ -498,7 +516,7 @@ function getFlightsWithAirports(input, originAirport, destinationAirport) {
 
         for (var i = 0; i < input.outgoingFlights.length; i++) {
 
-            var flight = input.outgoingFlights.getJSONObject(i);
+            var flight = input.outgoingFlights[i];
 
             if (flight.origin === originAirport && flight.destination === destinationAirport)
                 res.outgoingFlights.push(flight);
@@ -511,19 +529,22 @@ function getFlightsWithAirports(input, originAirport, destinationAirport) {
 
     if (Object.keys(input).length === 2) {
 
+
+
         for (i = 0; i < input.outgoingFlights.length; i++) {
-            var outFlight = input.outgoingFlights.getJSONObject(i);
+            var outFlight = input.outgoingFlights[i];
             if (outFlight.origin === originAirport && outFlight.destination === destinationAirport)
                 resRT.outgoingFlights.push(outFlight);
 
         }
-        for (var j = 0; j < input.returnFlights.lenght; j++) {
-            var returnFlight = input.returnFlights.getJSONObject(j);
+        for (var j = 0; j < input.returnFlights.length; j++) {
+            var returnFlight = input.returnFlights[j];
             if (returnFlight.origin === destinationAirport && returnFlight.destination === originAirport) {
-                resRT.returnFlights.push(returnFlights);
+                resRT.returnFlights.push(returnFlight);
             }
 
         }
+        return resRT;
 
     }
 
@@ -543,10 +564,10 @@ function checkSeats(array, minSeats, classs) {
     var res = [];
 
     for (var i = 0; i < array.length; i++) {
-        var flight = array.getJSONObject(i);
+        var flight = array[i];
 
 
-        if (classs === "Economy Class") {
+        if (classs === "EconomyClass") {
             var economyClassSeats = flight.economyClassSeats;
 
             if (economyClassSeats >= minSeats) {
@@ -554,14 +575,14 @@ function checkSeats(array, minSeats, classs) {
             }
 
 
-        } else if (classs === "Business Class") {
+        } else if (classs === "BusinessClass") {
             var businessClassSeats = flight.businessClassSeats;
 
             if (businessClassSeats >= minSeats) {
                 res.push(flight);
             }
 
-        } else if (classs === "First Class") {
+        } else if (classs === "FirstClass") {
             var firstClassSeats = flight.firstClassSeats;
 
             if (firstClassSeats >= minSeats) {
@@ -619,7 +640,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults, children, cb) {
     getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) {
         getFlightById(flights[1].flightNumber, flights[1].DepartureDateTime, function (err, flight2) {
-            if (classs === "Economy Class") {
+            if (classs === "EconomyClass") {
 
                 for (var i = 0; i < adults.length; i++) {
 
@@ -677,7 +698,7 @@ function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults
 
             }
             else {
-                if (classs === "Business Class") {
+                if (classs === "BusinessClass") {
                     for (i = 0; i < adults.length; i++) {
                         for (j = 0; j < flight1.businessClassSeatMap.length; j++) { //business seat map is called that way, this is for checking for business class
                             if (flight1.businessClassSeatMap[j].isReserved === "false") {
@@ -734,7 +755,7 @@ function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults
 
                 }
                 else {
-                    if (classs === "First Class") {
+                    if (classs === "FirstClass") {
                         for (i = 0; i < adults.length; i++) {
                             for (j = 0; j < flight1.firstClassSeatMap.length; j++) { //first class reservation same as above
                                 if (flight1.firstClassSeatMap[j].isReserved === "false") {
@@ -798,7 +819,7 @@ function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults
 
 function reserveOneWayTicket(classs, flights, email, creditCardNumber, adults, children, cb) {
     getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) { // same should be done as above regarding the classes
-        if (classs === "Economy Class") {
+        if (classs === "EconomyClass") {
             for (i = 0; i < adults.length; i++) {
                 for (j = 0; j < flight1.economyClassSeatMap.length; j++) {
                     if (flight1.economyClassSeatMap[j].isReserved === "false") {

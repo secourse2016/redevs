@@ -20,24 +20,22 @@ module.exports = function(app,mongo) {
 
 
     /* GET ALL STATES ENDPOINT */
-    app.get('/api/data/codes', function(req, res) {
-        var codes =  require('../airports.json');
-        res.json( codes );
+    app.get('/api/data/codes', function (req, res) {
+        var codes = require('../airports.json');
+        res.json(codes);
     });
     /* RENDER MAIN PAGE */
     app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '/public/index.html');
     });
     /* GET ALL Nationalities ENDPOINT */
-    app.get('/api/data/nationalities', function(req, res){
-    	var nationalities = require('../nationalities.json');
-    	res.json(nationalities);
+    app.get('/api/data/nationalities', function (req, res) {
+        var nationalities = require('../nationalities.json');
+        res.json(nationalities);
     });
 
 
-    /* Middleware */
-    app.use(function(req, res, next) {
-    });
+
 
 
 
@@ -64,8 +62,7 @@ module.exports = function(app,mongo) {
 
                 var getFlightswithDates = flights.getFlightsWithDates(result, originDate, destinationDate, classs);
                 var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
-                var finalArrayToSend = flights.checkSeats(getFlightswithAirports, 1, classs);
-                res.send(finalArrayToSend);
+                res.send(getFlightswithAirports);
             }
 
         });
@@ -74,18 +71,20 @@ module.exports = function(app,mongo) {
     //SINGLE WAY API
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
 
-var allFlights=flights.getFlightsFromDB(function(err,result){
-            var originDate=req.param('departingDate');
-            var classs=req.param('class');
+            flights.getFlightsFromDB(function(err,result){
+                if(err)
+                return err;
+                else {
+                    var originDate = req.param('departingDate');
+                    var classs = req.param('class');
+                    var origin = req.param('origin');
+                    var destination = req.param('destination');
 
-            var origin=req.param('origin');
-            var destination=req.param('destination');
 
-
-            var getFlightswithDates=flights. getFlightsWithDates(result,originDate,classs);
-            var getFlightswithAirports=flights.getFlightsWithAirports(getFlightswithDates,origin,destination);
-            var finalArrayToSend=flights.checkSeats(getFlightswithAirports,1,classs);
-            res.json (finalArrayToSend);
+                    var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs);
+                    var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
+                    res.send(getFlightswithAirports);
+                }
 
 
     });
