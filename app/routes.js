@@ -1,10 +1,15 @@
 
 /**
  * App routes:
+ *
+ *
+
+ *
  */
 
 
  var flights = require('./flights.js');
+
 
 module.exports = function(app,mongo) {
 
@@ -32,6 +37,22 @@ module.exports = function(app,mongo) {
     //call
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
         
+
+        var allFlights=flights.getFlightsFromDB(function(err,result){
+            var originDate=req.param('departingDate');
+            var destinationDate=req.param('returningDate');
+            var classs=req.param('class');
+
+            var origin=req.param('origin');
+            var destination=req.param('destination');
+
+
+            var getFlightswithDates=flights. getFlightsWithDates(result,originDate,destinationDate,classs);
+            var getFlightswithAirports=flights.getFlightsWithAirports(getFlightswithDates,origin,destination);
+            var finalArrayToSend=flights.checkSeats(getFlightswithAirports,1,classs);
+            res.json (finalArrayToSend);
+
+        });
 
     });
     //SINGLE WAY API

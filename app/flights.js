@@ -10,60 +10,9 @@ function getFlightsFromDB(cb){
 //Search for flights in the array with minSeats<=classSeats
 
 
-/*function checkSeats (array, minSeats,classs) {
-    
-    var res = {
-        "flights": []
-    };
-    
-    var allFlights = getFlightsFromDB();
-    res = db.db().collection().findOne(
-   {
-      [
-            { 'tickets.flights.capacity': { $lt: minSeats }}
-            
-          ]
-   }
-);
-}*/
 
 
-function checkSeats (array, minSeats,classs) {
-    
-   var res = [];
 
-   for(var i = 0; i<array.length; i++){
-   var flight = array.getJSONObject(i);
-   
-
-   
-      if (classs === "Economy Class"){
-        var economyClassSeats = flight.economyClassSeats;
-        
-            if(economyClassSeats>=minSeats){
-                res.push(flight);   
-            }
-         
-          
-      } else if (classs === "Business Class"){
-            var businessClassSeats = flight.businessClassSeats;
-            
-            if(businessClassSeats>=minSeats){
-                res.push(flight);
-            }
-         
-      } else if (classs === "First Class") {
-            var firstClassSeats = flight.firstClassSeats;
-
-            if(firstClassSeats>=minSeats){
-                res.push(flight);
-            }
-          
-      }
-
-   }
-   return res;
-}
 
 
 
@@ -359,15 +308,50 @@ function getFlightByID(flightNumber,departureDateTime,cb) {
     ).toArray(cb);
 
     }
+function checkSeats (array, minSeats,classs) {
+
+    var res = [];
+
+    for(var i = 0; i<array.length; i++){
+        var flight = array.getJSONObject(i);
+
+
+
+        if (classs === "Economy Class"){
+            var economyClassSeats = flight.economyClassSeats;
+
+            if(economyClassSeats>=minSeats){
+                res.push(flight);
+            }
+
+
+        } else if (classs === "Business Class"){
+            var businessClassSeats = flight.businessClassSeats;
+
+            if(businessClassSeats>=minSeats){
+                res.push(flight);
+            }
+
+        } else if (classs === "First Class") {
+            var firstClassSeats = flight.firstClassSeats;
+
+            if(firstClassSeats>=minSeats){
+                res.push(flight);
+            }
+
+        }
+
+    }
+    return res;
+}
     
     
     
     exports.getFlightsFromDB = getFlightsFromDB;
     exports.getFlightsWithAirports = getFlightsWithAirports;
     exports.getFlightByID = getFlightByID;
-
-exports.checkSeats=checkSeats;
-exports.getFlightsWithDates=getFlightsWithDates;
+    exports.checkSeats=checkSeats;
+    exports.getFlightsWithDates=getFlightsWithDates;
 
 
 
