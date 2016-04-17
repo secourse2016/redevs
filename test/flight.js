@@ -22,3 +22,11 @@ describe('getTicketsFromDB', function() {
         });
     });
 });
+
+describe("getTicketsFromJSON", function() {
+    it("should return an array of 2 tickets", function() {
+       var arr= flight.getTicketsFromJSON();
+       assert.lengthOf(arr,2);
+    });
+
+});
