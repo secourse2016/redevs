@@ -75,4 +75,28 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
     });
 
 
-};
+});
+
+//API BY ID
+    app.get('/api/flights/search/:flightNumber/:departureDateTime', function(req, res){ 
+
+
+
+        var flightNumber = req.param('flightNumber');
+        var departureDateTime = req.param('departureDateTime');
+
+            var flightsbyID = flights.getFlightsByID(flightNumber, departureDateTime, function(err, result){
+
+                    if (err)
+                        return err;
+                    result.send(result);
+
+            });
+
+
+
+
+           });
+ 
+
+
