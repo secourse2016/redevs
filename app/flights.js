@@ -3,7 +3,7 @@ var mongo   = require('./db');
 var moment  = require('moment');
 
 function seed(){
-
+	
 	routes = [
       {'origin': 'Mumbai', 'destination': 'Delhi', 'duration': 3, 'capacity': 100, 'aircraft': 'Airbus a318', 'flightNumber': 'SE2804','departureTime':0,"firstClassCost":12000,"businessClassCost":9000,"economyClassCost":2000},
       {'origin': 'Cairo', 'destination': 'Jeddah', 'duration': 3, 'capacity': 100, 'aircraft': 'Airbus a318', 'flightNumber': 'SE2804','departureTime':1,"firstClassCost":15000,"businessClassCost":10000,"economyClassCost":4000},

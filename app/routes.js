@@ -21,9 +21,5 @@ module.exports = function(app,mongo) {
     	var nationalities = require('../nationalities.json');
     	res.json(nationalities);
     });
-    
-    app.get('/seed/flights', function (req, res) {
-        seed();
-    });
 
 };

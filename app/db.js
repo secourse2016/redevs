@@ -1,4 +1,4 @@
-(function(){
+
     var client = require('mongodb').MongoClient;
     var db;
     //What is our dbURL??
@@ -19,5 +19,3 @@
             db.close();
         }
     };
-
-})();
