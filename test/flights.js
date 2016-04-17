@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var app = require('../app/app.js');
 var request = require('supertest');
-var Quote = require('../flights.js');
+var Flight = require('../flights.js');
 var db = require('../db.js');
 before(function(done) {
     db.connect(function(err, db) {
@@ -14,7 +14,7 @@ before(function(done) {
 describe('seed', function() {
     before(db.clearDB);
     it('should populate the db if db is empty returning true', function(done) {
-        Quote.seed(function(err, seeded) {
+        .seed(function(err, seeded) {
             if (err) return done(err);
             assert.isTrue(seeded);
             done();
@@ -28,7 +28,7 @@ describe('seed', function() {
         });
     });*/
     it('should not seed db again if db is not empty returning false in the callback', function(done) {
-        Quote.seed(function(err, seeded) {
+        Flight.seed(function(err, seeded) {
             if (err) return done(err);
             assert.isFalse(seeded);
             done();
