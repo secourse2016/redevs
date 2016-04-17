@@ -43,10 +43,9 @@ module.exports = function(app,mongo) {
 
 
 
-
     //Round-Trip API
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
-        
+
 
             flights.getFlightsFromDB(function(err,result){
             if(err)
@@ -94,7 +93,7 @@ module.exports = function(app,mongo) {
 });
 
 //API BY ID
-    app.get('/api/flights/search/:flightNumber/:departureDateTime', function(req, res){ 
+    app.get('/api/flights/search/:flightNumber/:departureDateTime', function(req, res){
 
 
 
@@ -113,7 +112,7 @@ module.exports = function(app,mongo) {
 
 
            });
- 
+
 
 
 
@@ -141,4 +140,3 @@ module.exports = function(app,mongo) {
 
 
 };
-
