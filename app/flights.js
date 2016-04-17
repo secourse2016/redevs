@@ -1,7 +1,7 @@
 var db   = require('./db');
 var moment  = require('moment');
 var flightsArray = [];
-var tickets = require('../tickets.json');
+
 
 // defining the seed function then export
 function seedFlights(flight, _origin, _destination,key,callback) {
@@ -492,22 +492,14 @@ function checkSeats (array, minSeats,classs) {
 
 
 
-exports.tickets=tickets;
-//Search for flights in the array with minSeats<=classSeats
-function checkSeats (cb,array, minSeats,class) {
 
-}
+//Search for flights in the array with minSeats<=classSeats
+
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
 // do not forget callback function
-function getFlightsWithDates(cb,originDate,DestinationDate){
 
-}
-//getFlight with a certain route
-function getFlightsWithAirports(cb,originAirport,DestinationAirport){
-
-}
 function getTicketsFromDB(cb){
 //return all tickets/ all reservations y3ni
 db.db().collection('tickets').find({}).toArray(cb);
@@ -522,14 +514,7 @@ db.db().collection('tickets').find( { reservationCode: resNum } , function(err, 
 	cb(err, data);
 });
 
-   // for(i=0;i<tickets.length;i++){
 
-   //           if(tickets[i].reservationCode==resNum){
-   //            return tickets[i];
-   //            break;
-
-   //           }
-   //         }
 }
 
 
@@ -545,46 +530,48 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 					"businessClassSeatMap": businessClassSeatMap,
 					"firstClassSeatMap": firstClassSeatMap
 
-			 },
+			 }
 
       }, function(err, results) {
       console.log(results);
       callback();
    });
 
-};
+}
 
 
-function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,children,cb){
+function reserveRoundTripTicket(classs,flights,email,creditCardNumber,adults,children,cb){
     getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){
       getFlightById(flights[1].flightNumber,flights[1].DepartureDateTime,function(err,flight2){
-				if(class==="economy"){
-				for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight1.economyClassSeatMap.length;j++){ //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor
+				if(classs ==="Economy Class"){
+
+				for(var  i=0;i<adults.length;i++){
+
+          for(var j=0;j<flight1.economyClassSeatMap.length;j++){ //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor
             if(flight1.economyClassSeatMap[j].isReserved==="false"){
               adults[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
               flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
-        for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
+        for( i=0;i<children.length;i++){
+          for( j=0;j<flight1.seatMap.length;j++){
             if(flight1.economyClassSeatMap[j].isReserved==="false"){
               children[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
               flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
-        for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight2.economyClassSeatMap.length;j++){
+        for( i=0;i<adults.length;i++){
+          for(j=0;j<flight2.economyClassSeatMap.length;j++){
             if(flight2.economyClassSeatMap[j].isReserved==="false"){
               adults[i].ReturnSeatNumber = flight2.economyClassSeatMap[j].seatNumber ;
               flight2.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
-        for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight2.economyClassSeatMap.length;j++){
+        for(i=0;i<children.length;i++){
+          for(j=0;j<flight2.economyClassSeatMap.length;j++){
             if(flight2.economyClassSeatMap[j].isReserved==="false"){
               children[i].ReturnSeatNumber = flight2.economyClassSeatMap[j].seatNumber ;
               flight2.economyClassSeatMap[j].isReserved="true";
@@ -614,33 +601,33 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
 
 			}
 			else{
-				if(class==="business"){
-					for(int i=0;i<adults.length;i++){
-	          for(int j=0;j<flight1.businessClassSeatMap.length;j++){ //business seat map is called that way, this is for checking for business class
+				if(classs==="Business Class"){
+					for(i=0;i<adults.length;i++){
+	          for(j=0;j<flight1.businessClassSeatMap.length;j++){ //business seat map is called that way, this is for checking for business class
 	            if(flight1.businessClassSeatMap[j].isReserved==="false"){
 	              adults[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
 	              flight1.businessClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<children.length;i++){
-	          for(int j=0;j<flight1.seatMap.length;j++){
+	        for( i=0;i<children.length;i++){
+	          for(j=0;j<flight1.seatMap.length;j++){
 	            if(flight1.businessClassSeatMap[j].isReserved==="false"){
 	              children[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
 	              flight1.businessClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<adults.length;i++){
-	          for(int j=0;j<flight2.businessclassSeatMap.length;j++){
+	        for( i=0;i<adults.length;i++){
+	          for( j=0;j<flight2.businessclassSeatMap.length;j++){
 	            if(flight2.businessClassSeatMap[j].isReserved==="false"){
 	              adults[i].ReturnSeatNumber = flight2.businessClassSeatMap[j].seatNumber ;
 	              flight2.businessClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<children.length;i++){
-	          for(int j=0;j<flight2.businessclassSeatMap.length;j++){
+	        for( i=0;i<children.length;i++){
+	          for( j=0;j<flight2.businessclassSeatMap.length;j++){
 	            if(flight2.businessClassSeatMap[j].isReserved==="false"){
 	              children[i].ReturnSeatNumber = flight2.businessClassSeatMap[j].seatNumber ;
 	              flight2.businessClassSeatMap[j].isReserved="true";
@@ -671,33 +658,33 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
 
 				}
 				else{
-					if(class==="firstClass"){
-					for(int i=0;i<adults.length;i++){
-	          for(int j=0;j<flight1.firstClassSeatMap.length;j++){ //first class reservation same as above
+					if(classs==="First Class"){
+					for( i=0;i<adults.length;i++){
+	          for( j=0;j<flight1.firstClassSeatMap.length;j++){ //first class reservation same as above
 	            if(flight1.firstClassSeatMap[j].isReserved==="false"){
 	              adults[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
 	              flight1.firstClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<children.length;i++){
-	          for(int j=0;j<flight1.seatMap.length;j++){
+	        for( i=0;i<children.length;i++){
+	          for( j=0;j<flight1.seatMap.length;j++){
 	            if(flight1.firstClassSeatMap[j].isReserved==="false"){
 	              children[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
 	              flight1.firstClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<adults.length;i++){
-	          for(int j=0;j<flight2.firstClassSeatMap.length;j++){
+	        for( i=0;i<adults.length;i++){
+	          for( j=0;j<flight2.firstClassSeatMap.length;j++){
 	            if(flight2.firstClassSeatMap[j].isReserved==="false"){
 	              adults[i].ReturnSeatNumber = flight2.firstClassSeatMap[j].seatNumber ;
 	              flight2.firstClassSeatMap[j].isReserved="true";
 	            }
 	          }
 	        }
-	        for(int i=0;i<children.length;i++){
-	          for(int j=0;j<flight2.firstClassSeatMap.length;j++){
+	        for( i=0;i<children.length;i++){
+	          for( j=0;j<flight2.firstClassSeatMap.length;j++){
 	            if(flight2.firstClassSeatMap[j].isReserved==="false"){
 	              children[i].ReturnSeatNumber = flight2.firstClassSeatMap[j].seatNumber ;
 	              flight2.firstClassSeatMap[j].isReserved="true";
@@ -733,19 +720,19 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
 
 }
 
-function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,children,cb){
+function reserveOneWayTicket(classs,flights,email,creditCardNumber,adults,children,cb){
     getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){ // same should be done as above regarding the classes
-			if(class===economy){
-				for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight1.economyClassSeatMap.length;j++){
+			if(classs==="Economy Class"){
+				for( i=0;i<adults.length;i++){
+          for( j=0;j<flight1.economyClassSeatMap.length;j++){
             if(flight1.economyClassSeatMap[j].isReserved==="false"){
               adults[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
               flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
-        for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight1.economyClassSeatMap.length;j++){
+        for( i=0;i<children.length;i++){
+          for( j=0;j<flight1.economyClassSeatMap.length;j++){
             if(flight1.economyClassSeatMap[j].isReserved==="false"){
               children[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
               flight1.economyClassSeatMap[j].isReserved="true";
@@ -776,17 +763,17 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
 
 			}
 			else{
-				if(class===business){
-					for(int i=0;i<adults.length;i++){
-						for(int j=0;j<flight1.businessClassSeatMap.length;j++){
+				if(classs===business){
+					for( i=0;i<adults.length;i++){
+						for( j=0;j<flight1.businessClassSeatMap.length;j++){
 							if(flight1.businessClassSeatMap[j].isReserved==="false"){
 								adults[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
 								flight1.businessClassSeatMap[j].isReserved="true";
 							}
 						}
 					}
-					for(int i=0;i<children.length;i++){
-						for(int j=0;j<flight1.businessClassSeatMap.length;j++){
+					for( i=0;i<children.length;i++){
+						for( j=0;j<flight1.businessClassSeatMap.length;j++){
 							if(flight1.businessClassSeatMap[j].isReserved==="false"){
 								children[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
 								flight1.businessClassSeatMap[j].isReserved="true";
@@ -816,16 +803,16 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
 					});
 				}
 				else{
-					for(int i=0;i<adults.length;i++){
-						for(int j=0;j<flight1.firstClassSeatMap.length;j++){
+					for(i=0;i<adults.length;i++){
+						for(j=0;j<flight1.firstClassSeatMap.length;j++){
 							if(flight1.firstClassSeatMap[j].isReserved==="false"){
 								adults[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
 								flight1.firstClassSeatMap[j].isReserved="true";
 							}
 						}
 					}
-					for(int i=0;i<children.length;i++){
-						for(int j=0;j<flight1.firstClassSeatMap.length;j++){
+					for(i=0;i<children.length;i++){
+						for(j=0;j<flight1.firstClassSeatMap.length;j++){
 							if(flight1.firstClassSeatMap[j].isReserved==="false"){
 								children[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
 								flight1.firstClassSeatMap[j].isReserved="true";
@@ -860,19 +847,6 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 exports.getTicketsFromDB = getTicketsFromDB;
 exports.reservationSearch = reservationSearch;
