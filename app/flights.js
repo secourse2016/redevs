@@ -9,6 +9,16 @@ function getFlightsFromDB(array,cb){
 
 //Search for flights in the array with minSeats<=classSeats
 function checkSeats (array, minSeats,classs) {
+    var res = {
+       "flightsWithMinSeats":[]
+   };
+   
+   
+   for(var i = 0;i<array.length; i++){
+       if(array(i).capacity> minSeats)
+        res.flightsWithMinSeats.push( array(i));
+       
+   }
 
 }
 //getFlights within a certain date
