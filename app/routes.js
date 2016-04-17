@@ -45,13 +45,18 @@ module.exports = function(app,mongo) {
     });
 });
 
-   app.get('/api/reservationSearch', function(req, res) {
+   app.get('/api/reservationSearch/:resNum', function(req, res) {
         flights.reservationSearch(resNum,function (err, tickets) {
         if (err) return next(err);
         res.json({
           tickets: tickets
         });
     });
+    });
+
+   //
+   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+
     });
 
 
