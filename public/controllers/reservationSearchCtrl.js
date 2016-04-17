@@ -280,7 +280,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
      //call api, and change the toggle flag to true
         
         //da a7oto asln fl service
-     $http.get('/api/reservationSearch/:'+resNum);
+     // $http.get('/api/reservationSearch/:'+resNum);
 
     reservationSearchSrv.getReservationSearch(resNum).then(function(err, data) {
       if(!data || data.len == 0){
