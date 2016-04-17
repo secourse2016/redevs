@@ -278,6 +278,12 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
      //call api, and change the toggle flag to true
+        get : function() {
+      return $http.get('/api/reservationSearch');
+    },
+
+     $http.get("/url/to/resource/", {params:{"resNum": val1}})
+    .then(function (response) { /* */ })
 
       for(i=0;i<$scope.reservations.length;i++){
              if($scope.reservations[i].reservationCode==reservationNumberValue){
