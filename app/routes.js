@@ -1,7 +1,16 @@
 
 /**
  * App routes:
+ *
+ *
+
+ *
  */
+
+
+ var flights = require('./flights.js');
+
+
 module.exports = function(app,mongo) {
 
 
@@ -27,12 +36,72 @@ module.exports = function(app,mongo) {
     //Round-Trip API
     //call
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+        
+
+            flights.getFlightsFromDB(function(err,result){
+            if(err)
+            return err;
+        else {
+                var originDate = req.param('departingDate');
+                var destinationDate = req.param('returningDate');
+                var classs = req.param('class');
+
+                var origin = req.param('origin');
+                var destination = req.param('destination');
+
+
+                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, destinationDate, classs);
+                var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
+                var finalArrayToSend = flights.checkSeats(getFlightswithAirports, 1, classs);
+                res.send(finalArrayToSend);
+            }
+
+        });
 
     });
     //SINGLE WAY API
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
 
+var allFlights=flights.getFlightsFromDB(function(err,result){
+            var originDate=req.param('departingDate');
+            var classs=req.param('class');
+
+            var origin=req.param('origin');
+            var destination=req.param('destination');
+
+
+            var getFlightswithDates=flights. getFlightsWithDates(result,originDate,classs);
+            var getFlightswithAirports=flights.getFlightsWithAirports(getFlightswithDates,origin,destination);
+            var finalArrayToSend=flights.checkSeats(getFlightswithAirports,1,classs);
+            res.json (finalArrayToSend);
+
+
     });
 
 
-};
+});
+
+//API BY ID
+    app.get('/api/flights/search/:flightNumber/:departureDateTime', function(req, res){ 
+
+
+
+        var flightNumber = req.param('flightNumber');
+        var departureDateTime = req.param('departureDateTime');
+
+            var flightsbyID = flights.getFlightsByID(flightNumber, departureDateTime, function(err, result){
+
+                    if (err)
+                        return err;
+                    res.send(result);
+
+            });
+
+
+
+
+           });
+ 
+
+
+
