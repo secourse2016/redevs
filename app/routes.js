@@ -75,4 +75,4 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
     });
 
 
-};
+});
