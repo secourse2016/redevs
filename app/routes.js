@@ -10,7 +10,10 @@ var moment  = require('moment');
  */
 
 
+
  var flights = require('./flights.js');
+
+
 
 
 module.exports = function(app,mongo) {
@@ -25,7 +28,7 @@ module.exports = function(app,mongo) {
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
-
+    /* GET ALL Nationalities ENDPOINT */
     app.get('/api/data/nationalities', function(req, res){
     	var nationalities = require('../nationalities.json');
     	res.json(nationalities);
@@ -35,8 +38,15 @@ module.exports = function(app,mongo) {
     /* Middleware */
     app.use(function(req, res, next) {
     });
+
+
+
+
+
+
+
+
     //Round-Trip API
-    //call
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
         
 
@@ -81,6 +91,7 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
     });
 
 
+
 });
 
 //API BY ID
@@ -106,4 +117,29 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
  
 
 
+
+
+    app.get('/api/tickets', function (req, res, next) {
+        flights.getTicketsFromDB(function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+});
+
+   app.get('/api/reservationSearch/:resNum', function(req, res) {
+        flights.reservationSearch(resNum,function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+    });
+
+   //
+
+
+
+};
 
