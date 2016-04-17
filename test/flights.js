@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var app = require('../app/app.js');
 var request = require('supertest');
-var Flight = require('../flights.js');
+var Flight = require('../app/flights.js');
 var db = require('../db.js');
 before(function(done) {
     db.connect(function(err, db) {
