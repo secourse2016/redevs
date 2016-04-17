@@ -93,7 +93,7 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
 
                     if (err)
                         return err;
-                    result.send(result);
+                    res.send(result);
 
             });
 
