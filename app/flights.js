@@ -31,12 +31,38 @@ function getFlightsFromDB(cb){
 function checkSeats (array, minSeats,classs) {
     
    var res = [];
+
+   for(var i = 0; i<array.length; i++){
+   var flight = array.getJSONObject(i);
    
-   for(var i = 0;i<array.length; i++){
-       if(array(i).capacity> minSeats)
-        res.flightsWithMinSeats.push( array(i));
-       
+
+   
+      if (classs === "Economy Class"){
+        var economyClassSeats = flight.economyClassSeats;
+        
+            if(economyClassSeats>=minSeats){
+                res.push(flight);   
+            }
+         
+          
+      } else if (classs === "Business Class"){
+            var businessClassSeats = flight.businessClassSeats;
+            
+            if(businessClassSeats>=minSeats){
+                res.push(flight);
+            }
+         
+      } else if (classs === "First Class") {
+            var firstClassSeats = flight.firstClassSeats;
+
+            if(firstClassSeats>=minSeats){
+                res.push(flight);
+            }
+          
+      }
+
    }
+   return res;
 }
 
 
