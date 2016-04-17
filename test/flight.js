@@ -30,3 +30,24 @@ describe("getTicketsFromJSON", function() {
     });
 
 });
+
+describe('reservationSearch', function() {
+    it('should return the info of ticket AXY123  document', function(done) {
+        // TODO: see if it returns on of the quotes from all quotes
+       flight.reservationSearch('AXY123',function(error,ticket){
+        var allTickets= flight.getTicketsFromJSON();
+        assert.include(allTickets,ticket);
+        done();
+       });
+    });
+    it('should return the first quote if passed 0 after callback', function(done) {
+        // TODO: you know the content of object in the file
+        var allQuotes= Quote.getQuotesFromJSON();
+        var firstQuote = Quote.getElementByIndexElseRandom(allQuotes,0);
+       var returnedValue= Quote.getQuoteFromDB(function(error,quote){
+        assert.equal(returnedValue,firstQuote);
+       },0);
+       done();
+        
+    });
+});
