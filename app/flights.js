@@ -357,6 +357,12 @@ function getFlightByID(flightNumber,departureDateTime,cb) {
     ).toArray(cb);
 
     }
+    
+    
+    
+    
+    exports.getFlightsWithAirports = getFlightsWithAirports;
+    exports.getFlightByID = getFlightByID;
 
 
 
