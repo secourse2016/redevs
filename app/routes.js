@@ -2,6 +2,10 @@
 /**
  * App routes:
  */
+
+
+ var flights = require('./flights.js');
+
 module.exports = function(app,mongo) {
 
 
@@ -27,11 +31,14 @@ module.exports = function(app,mongo) {
     //Round-Trip API
     //call
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
-        var allFlights=
+        
 
     });
     //SINGLE WAY API
     app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+
+
+
 
     });
 
