@@ -8,7 +8,6 @@
     "body-parser"   : "~1.13.2",
     "express"       :"~4.13.1",
     "nodemon"       :"latest",
-<<<<<<< HEAD
     "dotenv"        : "latest",
     "mongodb"       : "latest",
     "jsonwebtoken"  : "latest",
@@ -19,14 +18,6 @@
    }
 
 }
-=======
-    "dotenv"        : "*",
-    "mongodb"       : "*",
-    "jsonwebtoken"  : "*",
-    "underscore"    : "*",
-    "moment"        : "2.10.6"
-  }
-   }
 
 
->>>>>>> origin/dev
+
