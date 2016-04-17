@@ -17,7 +17,7 @@ function seed(){
       {'origin': 'Rome', 'destination': 'Milan', 'duration': 3, 'capacity': 100, 'aircraft': 'Airbus a318', 'flightNumber': 'SE2804','departureTime':9,"firstClassCost":8000,"businessClassCost":5000,"economyClassCost":3000}
     ];
 
-
+    //insert outgoing flights
     for (var i = 0; i < routes.length; i++) {
         var route1 = routes[i];
         seedFlights(route1, route1.origin, route1.destination,"outgoing");
@@ -40,8 +40,6 @@ function seed(){
           "flightNumber"        :   flight.flightNumber,
           "aircraft"            :   flight.aircraft,
           "capacity"            :   flight.capacity,
-          //"departureDateTime" :   moment(date).add(i,'days').add(key*flight.departureTime,'hour').toDate().getTime(),          
-          //"arrivalDateTime"   :   moment(date).add(flight.duration,'hours').toDate().getTime(),
           "duration"            :   flight.duration,
           "origin"              :   _origin,
           "destination"         :   _destination,
@@ -94,3 +92,5 @@ function seed(){
     }
 
 }
+
+exports.seed = seed;
