@@ -360,7 +360,7 @@ function getFlightByID(flightNumber,departureDateTime,cb) {
     
     
     
-    
+    exports.getFlightsFromDB = getFlightsFromDB;
     exports.getFlightsWithAirports = getFlightsWithAirports;
     exports.getFlightByID = getFlightByID;
 
