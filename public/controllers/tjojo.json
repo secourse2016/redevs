@@ -1,0 +1,224 @@
+[{
+  "reservationCode":"AXY123",
+  "numberOfAdults":2,
+  "adults":[{
+    "seatNumber": "a",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  }
+
+  ],
+  "numberOfChildren":1,
+  "children":[{
+    "seatNumber": "w",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  },
+
+  ],
+  "flights":[{
+
+
+  "flightNumber":"123hh",
+  "aircraft":"jjj",
+  "capacity":400,
+  "date":"20/01/2016",
+  "duration":2,
+  "departureTime":"08:10",
+  "arrivalTime":"11:30",
+  "origin":"CAI",
+  "destination": "BCN",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+}
+    ,{"flightNumber":"12ZZZZh",
+  "aircraft":"ZZ",
+  "capacity":400,
+  "date":"20/01/2016",
+  "departureTime":"20:10",
+  "arrivalTime":"23:30",
+  "duration":2,
+  "origin":"BCN",
+  "destination": "CAI",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+
+      }],
+  "email":"jaida",
+  "creditCardNumber":1233,
+
+
+  "cvcNumber":2,
+  "mobileNumber":2,
+  "emergencyName":"zaher",
+  "emergencyNumber":"zahe233",
+
+},{
+  "reservationCode":"12ZZZZh",
+  "numberOfAdults":2,
+  "adults":[{
+    "seatNumber": "a",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  }
+
+  ],
+  "numberOfChildren":1,
+  "children":[{
+    "seatNumber": "w",
+    "price":123.44,
+    "window/aisle":"w",
+    "firstName":"jai",
+    "lastName":"yas",
+    "passport":"acyj",
+    "passportNumber":"1233"
+  },
+
+  ],
+  "flights":[{
+
+
+  "flightNumber":"123hh",
+  "aircraft":"jjj",
+  "capacity":400,
+  "date":"20/01/2016",
+  "duration":2,
+  "departureTime":"08:10",
+  "arrivalTime":"11:30",
+  "origin":"CAI",
+  "destination": "BCN",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+}
+    ,{"flightNumber":"12ZZZZh",
+  "aircraft":"ZZ",
+  "capacity":400,
+  "date":"20/01/2016",
+  "duration":2,
+  "departureTime":"20:10",
+  "arrivalTime":"23:30",
+  "origin":"BCN",
+  "destination": "CAI",
+
+
+
+  "firstclassSeatMap":[{
+    "seatNumber":"H2",
+    "price":123.444,
+    "window/aisle" : "W"
+  }
+  ],
+  "businessclassSeatMap":[
+    {
+    "seatNumber":"Z2",
+    "price":12345.0,
+    "window/aisle":"W"
+  }
+
+  ],
+
+  "economyclassSeatmap":
+            [
+              {
+              "seatNumber": "K4",
+              "price":9898.0,
+              "window/aisle":"A",
+            }
+         ],
+
+      }],
+  "email":"jaida",
+  "creditCardNumber":1233,
+
+
+  "cvcNumber":2,
+  "mobileNumber":2,
+  "emergencyName":"zaher",
+  "emergencyNumber":"zahe233",
+
+}
+];

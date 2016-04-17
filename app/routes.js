@@ -8,11 +8,15 @@ var moment  = require('moment');
 
  *
  */
+<<<<<<< HEAD
 
 
  var flights = require('./flights.js');
 
 
+=======
+ var flights = require('./flights.js');
+>>>>>>> jojo
 module.exports = function(app,mongo) {
 
 
@@ -81,6 +85,7 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
     });
 
 
+<<<<<<< HEAD
 });
 
 //API BY ID
@@ -107,3 +112,30 @@ var allFlights=flights.getFlightsFromDB(function(err,result){
 
 
 
+=======
+    app.get('/api/tickets', function (req, res, next) {
+        flights.getTicketsFromDB(function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+});
+
+   app.get('/api/reservationSearch/:resNum', function(req, res) {
+        flights.reservationSearch(resNum,function (err, tickets) {
+        if (err) return next(err);
+        res.json({
+          tickets: tickets
+        });
+    });
+    });
+
+   //
+   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+
+    });
+
+
+};
+>>>>>>> jojo
