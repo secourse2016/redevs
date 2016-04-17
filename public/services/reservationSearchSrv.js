@@ -1,5 +1,5 @@
 
-App.factory('reservationSearchSrv', function() {
+App.factory('reservationSearchSrv', function($http) {
   return {
   getReservationNumber: function(){
     return this.reservationNumber; 
