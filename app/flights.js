@@ -30,10 +30,7 @@ function getFlightsFromDB(cb){
 
 function checkSeats (array, minSeats,classs) {
     
-   var res = {
-       "flightsWithMinSeats":[]
-   };
-   
+   var res = [];
    
    for(var i = 0;i<array.length; i++){
        if(array(i).capacity> minSeats)
@@ -58,7 +55,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
         "returnFlights": []
     };
 
-    for (var n = 0; n < array.length(); n++) {
+    for (var n = 0; n < array.length; n++) {
         var flight = array.getJSONObject(n);
         var flightNumber = flight.flightNumber;
         var aircraft = flight.aircraft;
@@ -75,7 +72,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
         aircraft = aircraft.split(" ");
         var aircraftType = aircraft[0];
         var aircraftModel = aircraft[1];
-        if (arguments.length() === 3) {
+        if (arguments.length === 3) {
 
             if (departureDate === originDate) {
 
@@ -144,7 +141,7 @@ function getFlightsWithDates(array,originDate,destinationDate,classs) {
 
 
         }
-        if (arguments.length() === 4) {
+        if (arguments.length === 4) {
             if (departureDate === originDate) {
 
 
@@ -337,7 +334,8 @@ function getFlightByID(flightNumber,departureDateTime,cb) {
 
     }
 
-
+exports.checkSeats=checkSeats;
+exports.getFlightsWithDates=getFlightsWithDates;
 
 
 
