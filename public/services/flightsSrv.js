@@ -43,10 +43,10 @@ App.factory('FlightsSrv', function ($http) {
            return this.selectedFlights;
          },
 
-         setClasses : function(value){
+         setClass : function(value){
          this.classes=value;
          },
-         getClasses : function (){
+         getClass : function (){
          return this.classes;
          },
          setTripType : function(value){
@@ -120,6 +120,7 @@ App.factory('FlightsSrv', function ($http) {
         setYear : function(value){
             this.year = value;
         }
+
 
      };
  });

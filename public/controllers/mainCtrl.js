@@ -51,14 +51,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
 
 
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -84,6 +77,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+        FlightSrv.setClass($scope.checkResults);
       $location.url('/searchResults');
     };
 
@@ -105,16 +99,19 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     $scope.checkResults = [];
 
+    $scope.radioModel = 'BusinessClass';
+
+
+
     $scope.$watchCollection('checkModel', function () {
-        $scope.checkResults = [];
+        $scope.checkResults = null;
         angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
-                $scope.checkResults.push(key);
-               FlightsSrv.setClasses($scope.checkResults);
+                $scope.checkResults=key;
 
             }
         });
     });
-
-
 });
+
+

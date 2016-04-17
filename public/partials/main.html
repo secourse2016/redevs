@@ -66,7 +66,7 @@
                            id="fromDate"
                            uib-datepicker-popup="{{format}}"
                            ng-model="dtFrom"
-                           placeholder="Deparure Date"
+                           placeholder="Departure Date"
                            is-open="popup1.opened"
                            ng-required="true"
                            datepicker-options="dateOptions"
@@ -139,9 +139,9 @@
                         <div class="span7 text-center">
 
                             <div class="btn-group">
-                                <label class="btn btn-primary" ng-model="checkModel.economyBtn" uib-btn-checkbox>Economy Class</label>
-                                <label class="btn btn-primary" ng-model="checkModel.businessBtn" uib-btn-checkbox>Business Class</label>
-                                <label class="btn btn-primary" id="firstBtn" ng-model="checkModel.firstBtn" uib-btn-checkbox>First Class</label>
+                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'EconomyClass'" uncheckable>Economy Class</label>
+                                <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'BusinessClass'" uncheckable>Business Class</label>
+                                <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'FirstClass'" uncheckable>First Class</label>
 
                             </div>
                         </div>
