@@ -2,13 +2,14 @@
 var db = require('./db.js');
 
 //gets all flights from DB do not forget cb
-function getFlightsFromDB(array,cb){
+function getFlightsFromDB(cb){
     db.db().collection('flights').find({}).toArray(cb);
     }
 
 
 //Search for flights in the array with minSeats<=classSeats
 function checkSeats (array, minSeats,classs) {
+
 
 }
 //getFlights within a certain date
