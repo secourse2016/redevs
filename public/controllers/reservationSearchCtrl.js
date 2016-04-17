@@ -16,25 +16,25 @@ App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchS
 var $active = null;
 
 $('dt').click(function(){
-  
+
   if ($active !== null){
     $active.next().slideToggle("fast");
     $active.removeClass('aberto');
     $active.addClass('fechado');
-  } 
-  
+  }
+
   $active = $(this);
   $active.addClass('aberto');
   $next = $active.next();
-  
+
   if ($next.is(":hidden")){
     $next.slideToggle("fast");
   }else{
     $active.removeClass('aberto');
     $active.addClass('fechado');
-    $active = null;     
+    $active = null;
   }
-  
+
 })
 
   $scope.reservations=[{
@@ -271,14 +271,14 @@ $('dt').click(function(){
 $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
 
-   findReservation = function(resNum) { // <-- here is you value from the input
+   findReservation = function(resNum) { // <-- here is your value from the input
       flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
      //call api, and change the toggle flag to true
-        
+
         //da a7oto asln fl service
      $http.get('/api/reservationSearch/:'+resNum);
 
@@ -297,14 +297,14 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       }
        if(flag==false){
             $scope.toggle=false;
-            
+
            }
 
     });
 
-    
 
-  
+
+
       // for(i=0;i<$scope.reservations.length;i++){
       //        if($scope.reservations[i].reservationCode==reservationNumberValue){
       //         flag=true;
@@ -316,9 +316,9 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       //      }
       //      if(flag==false){
       //       $scope.toggle=false;
-            
+
       //      }
-        
+
 };
 
 

@@ -51,38 +51,39 @@ function getTicketsFromJSON() {
 
 
 
-function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,cb){
+function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,children,cb){
     getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){
       getFlightById(flights[1].flightNumber,flights[1].DepartureDateTime,function(err,flight2){
-        for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
+				if(class==="economy"){
+				for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight1.economyClassSeatMap.length;j++){ //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor
+            if(flight1.economyClassSeatMap[j].isReserved==="false"){
+              adults[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
+              flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
         for(int i=0;i<children.length;i++){
           for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
+            if(flight1.economyClassSeatMap[j].isReserved==="false"){
+              children[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
+              flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
         for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight2.seatMap.length;j++){
-            if(flight2.seatMap[j].isReserved==="false"){
-              adults[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
-              flight2.seatMap[j].isReserved="true";
+          for(int j=0;j<flight2.economyClassSeatMap.length;j++){
+            if(flight2.economyClassSeatMap[j].isReserved==="false"){
+              adults[i].ReturnSeatNumber = flight2.economyClassSeatMap[j].seatNumber ;
+              flight2.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
         for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight2.seatMap.length;j++){
-            if(flight2.seatMap[j].isReserved==="false"){
-              children[i].ReturnSeatNumber = flight2.seatMap[j].seatNumber ;
-              flight2.seatMap[j].isReserved="true";
+          for(int j=0;j<flight2.economyClassSeatMap.length;j++){
+            if(flight2.economyClassSeatMap[j].isReserved==="false"){
+              children[i].ReturnSeatNumber = flight2.economyClassSeatMap[j].seatNumber ;
+              flight2.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
@@ -102,27 +103,133 @@ function reserveRoundTripTicket(flights,email,creditCardNumber,adults,children,c
           cb();
         });
 
+			}
+			else{
+				if(class==="business"){
+					for(int i=0;i<adults.length;i++){
+	          for(int j=0;j<flight1.businessClassSeatMap.length;j++){ //business seat map is called that way, this is for checking for business class
+	            if(flight1.businessClassSeatMap[j].isReserved==="false"){
+	              adults[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
+	              flight1.businessClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<children.length;i++){
+	          for(int j=0;j<flight1.seatMap.length;j++){
+	            if(flight1.businessClassSeatMap[j].isReserved==="false"){
+	              children[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
+	              flight1.businessClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<adults.length;i++){
+	          for(int j=0;j<flight2.businessclassSeatMap.length;j++){
+	            if(flight2.businessClassSeatMap[j].isReserved==="false"){
+	              adults[i].ReturnSeatNumber = flight2.businessClassSeatMap[j].seatNumber ;
+	              flight2.businessClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<children.length;i++){
+	          for(int j=0;j<flight2.businessclassSeatMap.length;j++){
+	            if(flight2.businessClassSeatMap[j].isReserved==="false"){
+	              children[i].ReturnSeatNumber = flight2.businessClassSeatMap[j].seatNumber ;
+	              flight2.businessClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
 
+	        db.db().collection('tickets').insertOne({
+	          "reservationCode":0,
+	          "numberOfAdults":adults.length,
+	          "adults":adults,
+	          "numberOfChildren":children.length,
+	          "children":children,
+	          "flights":[flight1,flight2],
+	          "email":email,
+	          "creditCardNumber":creditCardNumber
+	        },function(err,result){
+	          assert.equal(err,null);
+	          console.log("Reservation done");
+	          cb();
+	        });
+
+
+				}
+				else{
+					if(class==="firstClass"){
+					for(int i=0;i<adults.length;i++){
+	          for(int j=0;j<flight1.firstClassSeatMap.length;j++){ //first class reservation same as above
+	            if(flight1.firstClassSeatMap[j].isReserved==="false"){
+	              adults[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
+	              flight1.firstClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<children.length;i++){
+	          for(int j=0;j<flight1.seatMap.length;j++){
+	            if(flight1.firstClassSeatMap[j].isReserved==="false"){
+	              children[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
+	              flight1.firstClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<adults.length;i++){
+	          for(int j=0;j<flight2.firstClassSeatMap.length;j++){
+	            if(flight2.firstClassSeatMap[j].isReserved==="false"){
+	              adults[i].ReturnSeatNumber = flight2.firstClassSeatMap[j].seatNumber ;
+	              flight2.firstClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+	        for(int i=0;i<children.length;i++){
+	          for(int j=0;j<flight2.firstClassSeatMap.length;j++){
+	            if(flight2.firstClassSeatMap[j].isReserved==="false"){
+	              children[i].ReturnSeatNumber = flight2.firstClassSeatMap[j].seatNumber ;
+	              flight2.firstClassSeatMap[j].isReserved="true";
+	            }
+	          }
+	        }
+
+	        db.db().collection('tickets').insertOne({
+	          "reservationCode":0,
+	          "numberOfAdults":adults.length,
+	          "adults":adults,
+	          "numberOfChildren":children.length,
+	          "children":children,
+	          "flights":[flight1,flight2],
+	          "email":email,
+	          "creditCardNumber":creditCardNumber
+	        },function(err,result){
+	          assert.equal(err,null);
+	          console.log("Reservation done");
+	          cb();
+	        });
+				}
+				}
+			}
       });
     });
 
+
 }
 
-function reserveOneWayTicket(flights,email,creditCardNumber,adults,children,cb){
-    getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){
-        for(int i=0;i<adults.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              adults[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
+function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,children,cb){
+    getFlightById(flights[0].flightNumber,flights[0].DepartureDateTime,function(err,flight1){ // same should be done as above regarding the classes
+			if(class===economy){
+				for(int i=0;i<adults.length;i++){
+          for(int j=0;j<flight1.economyClassSeatMap.length;j++){
+            if(flight1.economyClassSeatMap[j].isReserved==="false"){
+              adults[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
+              flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
         for(int i=0;i<children.length;i++){
-          for(int j=0;j<flight1.seatMap.length;j++){
-            if(flight1.seatMap[j].isReserved==="false"){
-              children[i].outgoingSeatNumber = flight1.seatMap[j].seatNumber ;
-              flight1.seatMap[j].isReserved="true";
+          for(int j=0;j<flight1.economyClassSeatMap.length;j++){
+            if(flight1.economyClassSeatMap[j].isReserved==="false"){
+              children[i].outgoingSeatNumber = flight1.economyClassSeatMap[j].seatNumber ;
+              flight1.economyClassSeatMap[j].isReserved="true";
             }
           }
         }
@@ -143,7 +250,78 @@ function reserveOneWayTicket(flights,email,creditCardNumber,adults,children,cb){
           cb();
         });
 
+			}
+			else{
+				if(class===business){
+					for(int i=0;i<adults.length;i++){
+						for(int j=0;j<flight1.businessClassSeatMap.length;j++){
+							if(flight1.businessClassSeatMap[j].isReserved==="false"){
+								adults[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
+								flight1.businessClassSeatMap[j].isReserved="true";
+							}
+						}
+					}
+					for(int i=0;i<children.length;i++){
+						for(int j=0;j<flight1.businessClassSeatMap.length;j++){
+							if(flight1.businessClassSeatMap[j].isReserved==="false"){
+								children[i].outgoingSeatNumber = flight1.businessClassSeatMap[j].seatNumber ;
+								flight1.businessClassSeatMap[j].isReserved="true";
+							}
+						}
+					}
 
+
+					db.db().collection('tickets').insertOne({
+						"reservationCode":0,
+						"numberOfAdults":adults.length,
+						"adults":adults,
+						"numberOfChildren":children.length,
+						"children":children,
+						"flights":[flight1],
+						"email":email,
+						"creditCardNumber":creditCardNumber
+					},function(err,result){
+						assert.equal(err,null);
+						console.log("Reservation done");
+						cb();
+					});
+				}
+				else{
+					for(int i=0;i<adults.length;i++){
+						for(int j=0;j<flight1.firstClassSeatMap.length;j++){
+							if(flight1.firstClassSeatMap[j].isReserved==="false"){
+								adults[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
+								flight1.firstClassSeatMap[j].isReserved="true";
+							}
+						}
+					}
+					for(int i=0;i<children.length;i++){
+						for(int j=0;j<flight1.firstClassSeatMap.length;j++){
+							if(flight1.firstClassSeatMap[j].isReserved==="false"){
+								children[i].outgoingSeatNumber = flight1.firstClassSeatMap[j].seatNumber ;
+								flight1.firstClassSeatMap[j].isReserved="true";
+							}
+						}
+					}
+
+
+					db.db().collection('tickets').insertOne({
+						"reservationCode":0,
+						"numberOfAdults":adults.length,
+						"adults":adults,
+						"numberOfChildren":children.length,
+						"children":children,
+						"flights":[flight1],
+						"email":email,
+						"creditCardNumber":creditCardNumber
+					},function(err,result){
+						assert.equal(err,null);
+						console.log("Reservation done");
+						cb();
+					});
+
+				}
+			}
       });
 
 
