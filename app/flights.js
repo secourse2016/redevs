@@ -48,7 +48,26 @@ function getTicketsFromJSON() {
     return tickets;
 }
 
+function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap, businessClassSeatMap, firstClassSeatMap, callback) {
 
+	 db.db().collection('flights').updateOne(
+      { "flightNumber" : flightNumber,
+				"departureDateTime": departureDateTime
+		 	},
+      {
+        $set: {
+					"economyClassSeatMap": economyClassSeatMap,
+					"businessClassSeatMap": businessClassSeatMap,
+					"firstClassSeatMap": firstClassSeatMap
+
+			 },
+
+      }, function(err, results) {
+      console.log(results);
+      callback();
+   });
+
+};
 
 
 function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,children,cb){
@@ -100,6 +119,11 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
         },function(err,result){
           assert.equal(err,null);
           console.log("Reservation done");
+					updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+						updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+							console.log("FLights Updated");
+	 									});
+ 									});
           cb();
         });
 
@@ -151,6 +175,11 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
 	        },function(err,result){
 	          assert.equal(err,null);
 	          console.log("Reservation done");
+						updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+							updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+								console.log("FLights Updated");
+		 									});
+	 									});
 	          cb();
 	        });
 
@@ -203,6 +232,11 @@ function reserveRoundTripTicket(class,flights,email,creditCardNumber,adults,chil
 	        },function(err,result){
 	          assert.equal(err,null);
 	          console.log("Reservation done");
+						updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+							updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+								console.log("FLights Updated");
+		 									});
+	 									});
 	          cb();
 	        });
 				}
@@ -247,6 +281,11 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
         },function(err,result){
           assert.equal(err,null);
           console.log("Reservation done");
+					updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+						updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+							console.log("FLights Updated");
+	 									});
+ 									});
           cb();
         });
 
@@ -283,6 +322,11 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
 					},function(err,result){
 						assert.equal(err,null);
 						console.log("Reservation done");
+						updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+							updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+								console.log("FLights Updated");
+		 									});
+	 									});
 						cb();
 					});
 				}
@@ -317,6 +361,11 @@ function reserveOneWayTicket(class,flights,email,creditCardNumber,adults,childre
 					},function(err,result){
 						assert.equal(err,null);
 						console.log("Reservation done");
+						updateFlights(db, flight1.flightNumber, flight1.departureDateTime, flight1.economyClassSeatMap, flight1.businessClassSeatMap, flight1.firstClassSeatMap, function() {
+							updateFlights(db, flight2.flightNumber, flight2.departureDateTime, flight2.economyClassSeatMap, flight2.businessClassSeatMap, flight2.firstClassSeatMap, function() {
+								console.log("FLights Updated");
+		 									});
+	 									});
 						cb();
 					});
 
