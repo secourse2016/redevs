@@ -37,7 +37,8 @@
                            type="text"
                            placeholder="reservation Code"
                            ng-model="rn"
-                           
+                           ng-minlength="3"
+                           ng-maxlength="8"
                            class="form-control"
                            required>
                   </div>
@@ -80,15 +81,15 @@
   <dt>Flight NUmber</dt>
     <dt>{{flight.flightNumber}}</dt>
   <dt>Date</dt>
-    <dt>{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</dt>
+    <dt>{{flight.date}}</dt>
   <dt>From</dt>
     <dt>{{flight.origin}}</dt>
   <dt>To</dt>
     <dt>{{flight.destination}}</dt>
     <dt>Departure Time</dt>
-    <dt>{{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}</dt>
+    <dt>{{flight.departureTime}}</dt>
     <dt>Arrival Time</dt>
-    <dt>{{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</dt>
+    <dt>{{flight.arrivalTime}}</dt>
 
 </dl>
 

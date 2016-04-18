@@ -19,8 +19,27 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.FlightDetails.FlightArrivaleDate = FlightsSrv.getSelectedArrivalDate();
 
 
+/*  searchFlights = function(){
+    for (var i = 0; i < $scope.Flights.length; i++) {
+      if($scope.FlightDetails.OriginAirport===$scope.Flights[i].origin && $scope.FlightDetails.DestinationAirport===$scope.Flights[i].destination){
+        $scope.FlightResults.push($scope.Flights[i]);
+        $scope.flag=true;
+      }
+      //console.log($scope.FlightDetails.OriginAirport.iata + $scope.Flights[0].origin);
+      //console.log(JSON.stringify($scope.FlightDetails.OriginAirport.iata));
+    }
+  };
 
+    returnFlights  = function(){
+      for (var i = 0; i < $scope.Flights.length; i++) {
+        if($scope.FlightDetails.OriginAirport===$scope.Flights[i].destination && $scope.FlightDetails.DestinationAirport===$scope.Flights[i].origin){
+          $scope.ReturnFlights.push($scope.Flights[i]);
 
+        }
+      }
+    };
+
+*/
   var tripType = FlightsSrv.getTripType();
   var tripOriginOutgoingDate = FlightsSrv.getSelectedDepartureDate();
   var tripOriginReturningDate = FlightsSrv.getSelectedArrivalDate();
@@ -47,7 +66,6 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
         console.log("entered one way trip")
     FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass).then(function(response){
       $scope.outgoingFlights = response.data.outgoingFlights;
-      $scope.flag=false;
     })
 
 
@@ -62,7 +80,6 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
     console.log(tripOriginAirport);
     console.log(tripDestinationAirport);
     console.log(tripClass);
-    $scope.flag=true;
 
     FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass).then(function(response){
       $scope.outgoingFlights = response.data.outgoingFlights;
