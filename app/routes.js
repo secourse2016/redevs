@@ -1,18 +1,13 @@
 
 var mongo   = require('./db');
 var moment  = require('moment');
-
-/**
- * App routes:
- *
- *
-
- *
- */
-
-
-
  var flights = require('./flights.js');
+
+
+
+
+
+
 
 
 
@@ -145,8 +140,8 @@ module.exports = function(app,mongo) {
     var classs = req.body.class;
 
 
-    if(tripType==='round-trip'){
-      flights.postRoundTripReservation(classs,flights,creditCardNumber,adults,children,function(){
+    if(tripType==='RoundTrip'){
+      flights.reserveRoundTripTicket(classs,flights,creditCardNumber,adults,children,function(){
         console.log('api post request  called');
       });
     }else{
