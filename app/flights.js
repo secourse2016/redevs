@@ -648,9 +648,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
         });
 
 }
-function test(){
-  console.log('sas');
-}
+
 
 function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
 
@@ -877,9 +875,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
                 console.log("Reservation done");
                 updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                    updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
-                        console.log("FLights Updated");
-                    });
+
                 });
                 cb();
             });
@@ -919,9 +915,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                        updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
-                            console.log("FLights Updated");
-                        });
+
                     });
                     cb();
                 });
@@ -959,9 +953,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                        updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
-                            console.log("FLights Updated");
-                        });
+
                     });
                     cb();
                 });
