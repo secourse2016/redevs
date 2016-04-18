@@ -2,8 +2,8 @@
 App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[1];
+    $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
 
     var date = new Date();
     $scope.minDate = date.setDate((new Date()).getDate() - 90);
@@ -46,12 +46,13 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
      };
 
     $scope.onChange = function(tripType) {
-        FlightsSrv.setTripType(tripType);
+      $scope.checkboxModel.valuecheck=tripType;
+
     };
 
 
 
-    
+
 
 
 
@@ -77,7 +78,9 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-        FlightSrv.setClass($scope.checkResults);
+        FlightsSrv.setClass($scope.radioModel);
+        FlightsSrv.setTripType($scope.radioModel2);
+        //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };
 
@@ -99,7 +102,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     $scope.checkResults = [];
 
-    $scope.radioModel = 'BusinessClass';
+
 
 
 
@@ -109,9 +112,46 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
             if (value) {
                 $scope.checkResults=key;
 
+
             }
         });
     });
+
+
+
+
+    $scope.checkTripType = {
+        roundTripBtn: false,
+        oneWayBtn: true,
+
+    };
+
+    $scope.checkResultsTrip = [];
+
+
+
+
+
+    $scope.$watchCollection('checkTripType', function () {
+        $scope.checkResultsTrip = null;
+        angular.forEach($scope.checkTripType, function (value, key) {
+            if (value) {
+                $scope.checkResultsTrip=key;
+
+
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 });
-
-
