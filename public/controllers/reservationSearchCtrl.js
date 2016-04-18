@@ -295,28 +295,30 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
         //console.log("ticket found");
            flag=true;
               $scope.reservationsObjects=response.data;
-              for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
-              $scope.reservationsObjects.flights[i].departureDateTime =x ;
-               $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
+              console.log(response.data);
+              // for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
+              // $scope.reservationsObjects.flights[i].departureDateTime =x ;
+              //  $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
 
-              departureTime=moment(x).format('hh:mm');
-              arrivalTime=moment(y).format('hh:mm');
-              date=moment(x).format('YYYY-MM-DD');
+              // departureTime=moment(x).format('hh:mm');
+              // arrivalTime=moment(y).format('hh:mm');
+              // date=moment(x).format('YYYY-MM-DD');
 
-              $scope.reservationsObjects.flights[i].push({
-                "departureTime":departureTime,
-                 "arrivalTime" :arrivalTime,
-                 "date" : date
-              });
+              // $scope.reservationsObjects.flights[i].push({
+              //   "departureTime":departureTime,
+              //    "arrivalTime" :arrivalTime,
+              //    "date" : date
+              // });
 
 
-              }
+              // }
 
               $scope.toggle=true;
               
       }
        if(flag==false){
             $scope.toggle=false;
+            console.log("ticket not found");
 
            }
 

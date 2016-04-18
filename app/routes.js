@@ -132,10 +132,10 @@ module.exports = function(app,mongo) {
                 if (err)
                   return err;
                 console.log(tickets);
-               // res.send(tickets); 
-                  res.json({
-                    tickets: tickets
-                    });
+               res.send(tickets); 
+                  // res.json({
+                  //   tickets: tickets
+                  //   });
        
     });
     });
