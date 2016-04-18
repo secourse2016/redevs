@@ -96,7 +96,7 @@ module.exports = function(app,mongo) {
         var flightNumber = req.param('flightNumber');
         var departureDateTime = req.param('departureDateTime');
 
-            var flightsbyID = flights.getFlightsByID(flightNumber, departureDateTime, function(err, result){
+            var flightsbyID = flights.getFlightByID(flightNumber, departureDateTime, function(err, result){
 
                     if (err)
                         return err;

@@ -562,10 +562,12 @@ function getFlightsWithAirports(input, originAirport, destinationAirport) {
 }
 
 function getFlightByID(flightNumber, departureDateTime, cb) {
+
+    var departureDateINT=parseInt(departureDateTime);
     db.db().collection('flights').find(
         {
             "flightNumber": flightNumber,
-            "departureDateTime": departureDateTime
+            "departureDateTime": departureDateINT
         }
     ).toArray(cb);
 
