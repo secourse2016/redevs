@@ -11,17 +11,17 @@ App.factory('FlightsSrv', function ($http) {
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
-                "headers" : { 'x-accsess-token': 'han7ot el token hena' }
+                "headers" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
             });
          },
          getTickets: function(){
             return $http.get('/api/tickets',{
-                "header" : { 'x-accsess-token': 'han7ot el token hena' }
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
             });
          },
          postReservation: function(){
             return $http.post('/api/postReservation/', {
-                "header" : { 'x-accsess-token': 'han7ot el token hena' }
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
             });
          }
          setSelectedOriginAirport: function(value) {
