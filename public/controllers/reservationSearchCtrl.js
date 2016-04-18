@@ -9,7 +9,7 @@
 
 
 
-App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchSrv) {
+App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchSrv,moment) {
 
   $('dt').addClass('fechado');
 
@@ -310,7 +310,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
 
               }
-              
+
               $scope.toggle=true;
               break;
       }
