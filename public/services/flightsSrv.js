@@ -131,6 +131,5 @@ App.factory('FlightsSrv', function ($http) {
             this.year = value;
         }
 
-
      };
  });
