@@ -312,7 +312,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
               }
 
               $scope.toggle=true;
-              break;
+              
       }
        if(flag==false){
             $scope.toggle=false;
