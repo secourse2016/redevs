@@ -647,7 +647,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 }
 
 
-function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults, children, cb) {
+function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
     getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) {
         getFlightById(flights[1].flightNumber, flights[1].DepartureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
@@ -749,7 +749,6 @@ function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults
                         "numberOfChildren": children.length,
                         "children": children,
                         "flights": [flight1, flight2],
-                        "email": email,
                         "creditCardNumber": creditCardNumber
                     }, function (err, result) {
                         assert.equal(err, null);
@@ -827,7 +826,7 @@ function reserveRoundTripTicket(classs, flights, email, creditCardNumber, adults
 
 }
 
-function reserveOneWayTicket(classs, flights, email, creditCardNumber, adults, children, cb) {
+function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children, cb) {
     getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) { // same should be done as above regarding the classes
         if (classs === "EconomyClass") {
             for (i = 0; i < adults.length; i++) {
