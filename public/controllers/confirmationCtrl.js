@@ -25,21 +25,33 @@ $scope.convertToTime = function(date){
 
 $scope.calculateAdultCost = function() {
   //$scope.flights[0].cost is the cost of 1 adult! 
+  var price = 0;
   if($scope.flights.length === 1){
-    return $scope.flights([0].cost);
+    price =  $scope.flights[0].cost*$scope.adultTickets;
   } else if($scope.flights.length === 2){
-        return $scope.flights[0].cost + $scope.flights[1].cost;
+      price = $scope.flights[0].cost*$scope.adultTickets + $scope.flights[1].cost*$scope.adultTickets;
 
   }
+
+  $scope.adultCost = price;
+  return price;
+
 }
 
 $scope.calculateChildrenCost = function() {
   //$scope.flights[0].cost is the cost of 1 adult! 
+  var price = 0; 
   if($scope.flights.length === 1){
-    return $scope.flights([0].cost / 2);
+    price =  $scope.flights[0].cost*$scope.childrenTickets*0.5;
   } else if($scope.flights.length === 2){
-        return $scope.flights[0].cost*0.5+ $scope.flights[1].cost*0.5;
+      price = $scope.flights[0].cost*$scope.childrenTickets*0.5 + $scope.flights[1].cost*$scope.childrenTickets*0.5;
+
   }
+
+  $scope.childrenCost = price;
+  return price;
 }
+
+$scope.totalAmount = $scope.calculateAdultCost() + $scope.calculateChildrenCost(); 
 
 });
