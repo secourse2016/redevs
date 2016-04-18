@@ -617,11 +617,16 @@ function reservationSearch(resNum, cb) {
 //return reservation based on the ResNumber passed
 
 //mmkn akhaliha teraga3li eli ana 3ayzah ml db 3ala tool w khalas as-hal
+    //parse el awl
+    var resNumInt=parseInt(resNum);
+    console.log(resNumInt);
 
     //.toArray() returns an array that contains all the documents from a cursor
-    db.db().collection('tickets').find({reservationCode: resNum}, function (err, data) {
-        cb(err, data);
-    });
+    db.db().collection('tickets').find(
+        {
+            reservationCode: resNumInt
+        }
+        ).toArray(cb);
 
 
 }

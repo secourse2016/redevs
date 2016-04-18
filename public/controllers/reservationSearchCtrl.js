@@ -284,8 +284,8 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
         //da a7oto asln fl service
      // $http.get('/api/reservationSearch/:'+resNum);
 
-    reservationSearchSrv.getReservationSearch(resNum).then(function(err, data) {
-      if(!data || data.length == 0){
+    reservationSearchSrv.getReservationSearch(resNum).then(function(response) {
+      if(!response.data || response.data.length == 0){
           //mala2ahosh
           flag=false;
 
@@ -293,7 +293,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       else{
         //la2a el ticket
            flag=true;
-              $scope.reservationsObjects=data;
+              $scope.reservationsObjects=response.data;
               for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
               $scope.reservationsObjects.flights[i].departureDateTime =x ;
                $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
