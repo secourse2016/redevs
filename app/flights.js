@@ -1,6 +1,7 @@
 var db = require('./db');
 var moment = require('moment');
 var flightsArray = [];
+var flights = require('./flights.js');
 
 
 // defining the seed function then export
@@ -645,13 +646,15 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
         });
 
 }
-
+function test(){
+  console.log('sas');
+}
 
 function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
-    getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) {
-        getFlightById(flights[1].flightNumber, flights[1].DepartureDateTime, function (err, flight2) {
+    getFlightByID(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) {
+        getFlightByID(flights[1].flightNumber, flights[1].DepartureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
-
+                console.log('zooozi');
                 for (var i = 0; i < adults.length; i++) {
 
                     for (var j = 0; j < flight1.economyClassSeatMap.length; j++) { //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor
@@ -827,7 +830,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
 }
 
 function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children, cb) {
-    getFlightById(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) { // same should be done as above regarding the classes
+    getFlightByID(flights[0].flightNumber, flights[0].DepartureDateTime, function (err, flight1) { // same should be done as above regarding the classes
         if (classs === "EconomyClass") {
             for (i = 0; i < adults.length; i++) {
                 for (j = 0; j < flight1.economyClassSeatMap.length; j++) {
