@@ -59,7 +59,7 @@ module.exports = function(app,mongo) {
                 var destination = req.param('destination');
 
 
-                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, destinationDate, classs);
+                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,destinationDate);
                 var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
                 res.send(getFlightswithAirports);
             }

@@ -249,8 +249,9 @@ function getFlightsFromDB(cb) {
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
-function getFlightsWithDates(array, originDate,classs, destinationDate ) {
+function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
     var count=0;
+    console.log(classs);
     var res = {
         "outgoingFlights": []
     };
@@ -356,13 +357,18 @@ function getFlightsWithDates(array, originDate,classs, destinationDate ) {
         if (arguments.length === 4) {
 
 
+
             if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
+                console.log(moment(flight.departureDateTime).format('YYYY-MM-DD'));
 
 
+                console.log("found date");
 
 
 
                 if (classs === "EconomyClass") {
+
+
 
 
 
@@ -491,9 +497,13 @@ function getFlightsWithDates(array, originDate,classs, destinationDate ) {
         }
     }
     console.log(resRT);
-    if(arguments.length===4)
-    return resRT;
-    return res;
+    if(arguments.length===4){
+        return resRT;
+
+    }else {
+
+        return res;
+    }
 }
 
 
