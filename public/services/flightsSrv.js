@@ -10,6 +10,16 @@ App.factory('FlightsSrv', function ($http) {
             return $http.get('/api/data/nationalities');
          },
 
+         getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs);
+
+         },
+
+         getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs);
+
+         },
+
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
@@ -43,14 +53,14 @@ App.factory('FlightsSrv', function ($http) {
            return this.selectedFlights;
          },
 
-         setClasses : function(value){
+         setClass : function(value){
          this.classes=value;
          },
-         getClasses : function (){
+         getClass : function (){
          return this.classes;
          },
          setTripType : function(value){
-         this.tripTpe=value;
+         this.tripType=value;
          },
          getTripType: function(){
 
@@ -120,6 +130,7 @@ App.factory('FlightsSrv', function ($http) {
         setYear : function(value){
             this.year = value;
         }
+
 
      };
  });
