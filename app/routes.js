@@ -1,18 +1,13 @@
 
 var mongo   = require('./db');
 var moment  = require('moment');
-
-/**
- * App routes:
- *
- *
-
- *
- */
-
-
-
  var flights = require('./flights.js');
+
+
+
+
+
+
 
 
 
@@ -101,7 +96,7 @@ module.exports = function(app,mongo) {
         var flightNumber = req.param('flightNumber');
         var departureDateTime = req.param('departureDateTime');
 
-            var flightsbyID = flights.getFlightsByID(flightNumber, departureDateTime, function(err, result){
+            var flightsbyID = flights.getFlightByID(flightNumber, departureDateTime, function(err, result){
 
                     if (err)
                         return err;
@@ -138,19 +133,21 @@ module.exports = function(app,mongo) {
 
    app.post('/api/postReservation/',function(req,res){
     var tripType = req.body.tripType ;
-    var flights = req.body.flights;
+    var flight = req.body.flights;
     var children = req.body.children;
     var adults = req.body.adults;
     var creditCardNumber = req.body.creditCardNumber;
-    var classs = req.body.class;
+    var classs = req.body.classs;
+    console.log(classs);
+    console.log(tripType);
 
-
-    if(tripType==='round-trip'){
-      flights.postRoundTripReservation(classs,flights,creditCardNumber,adults,children,function(){
-        console.log('api post request  called');
+    if(tripType==='RoundTrip'){
+      console.log(adults);
+       flights.reserveRoundTripTicket(classs,flight,creditCardNumber,adults,children,function(){
+      console.log('api post request  called');
       });
     }else{
-      flights.reserveOneWayTicket(classs,flights,creditCardNumber,adults,children,function(){
+      flights.reserveOneWayTicket(classs,flight,creditCardNumber,adults,children,function(){
         console.log('api post request called');
       });
     }

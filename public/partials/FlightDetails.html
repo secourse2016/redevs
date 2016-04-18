@@ -70,21 +70,23 @@
 
  	    			<tbody>
  	      				<tr>
- 	        				<td>Date: {{date1}}</td>
- 	        				<td>Date: {{date2}}</td>
+
+ 	        				<td>Date: {{flightOutgoing.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
+ 	        				<td>Date: {{flightReturning.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY'}}</td>
+
+
  	      				</tr>
 
  		  				<tr>
- 	        				<td>Departure Time: {{time1}}</td>
- 	        				<td>Departure Time: {{time2}}</td>
+ 	        				<td>Departure Time:  {{flightOutgoing.departureDateTime | amDateFormat:'h:mm:ss a'}}</td>
+ 	        				<td>Departure Time:  {{flightReturning.departureDateTime | amDateFormat:'h:mm:ss a'}}</td>
  	      				</tr>
 
 
         				<tr>
-        					<td>Arrival Time: {{arrival1}}</td>
-        					<td>Arrival Time: {{arrival2}}</td>
-                 	  <!--<td>Arrival Time: {{flightOutgoing.arrivalTime}}</td>
-                 	  <td>Arrival Time: {{flightReturning.arrivalTime}}</td> -->
+
+                 	  <td>Arrival Time: {{flightOutgoing.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</td>
+                 	  <td>Arrival Time: {{flightReturning.arrivalDateTime |  amDateFormat:'h:mm:ss a'}}</td>
               	</tr>
 
 
@@ -118,7 +120,7 @@
  	        		<td>x{{ adultsInput }}</td>
  	        		<td>{{ class }}</td>
  	        		<td>Adults</td>
- 	        		<td>${{flightOutgoing.cost * adultsInput + flightReturning.cost * adultsInput}}</td>
+ 	        		<td >${{flightOutgoing.cost * adultsInput + flightReturning.cost * adultsInput}}</td>
  	      		</tr>
 
  		  		<tr>
@@ -133,7 +135,7 @@
  	</div>
  	</div>
 
- 	<div class="well">Total amount: {{flightOutgoing.cost * adultsInput + flightReturning.cost * adultsInput+(flightOutgoing.cost * childrenInput + flightReturning.cost * childrenInput)*0.5}}</div>
+ 	<div class="well"><label ng-model="totalCost">Total amount: {{flightOutgoing.cost * adultsInput + flightReturning.cost * adultsInput+(flightOutgoing.cost * childrenInput + flightReturning.cost * childrenInput)*0.5}}</label></div>
  	<button type="button" class="btn btn-success" ng-click="proceed()">Procced</button> <br>
  	</div>
 

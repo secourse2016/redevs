@@ -1,4 +1,4 @@
-	App.controller('infoCtrl', function($scope, $location,FlightsSrv){
+	App.controller('infoCtrl', function($scope, $http,$location,FlightsSrv){
 
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
@@ -22,12 +22,24 @@
          $scope.proceed = function() {
             FlightsSrv.setAdultsInfo($scope.Adults);
             FlightsSrv.setChildrenInfo($scope.Children);
-            $location.url("/confirmation");
-         };
+					// 	var data = {
+					// 		tripType:FlightsSrv.getTripType(),
+					// 		flights:FlightsSrv.getFlights(),
+					// 		adults:FlightsSrv.getAdultsInfo(),
+					// 		children:FlightsSrv.getChildrenInfo(),
+					// 		creditCardNumber:"123",
+					// 		classs:FlightsSrv.getClass()
+					// 	};
+					// $http.post('/api/postReservation/',data).success(function(data,status){
+					//
+					// })
+						$location.url('/confirmation');
+         }
 
          function getNationalities() {
             FlightsSrv.getNationalities().success(function(Nationalities){
                $scope.nationalities = Nationalities;
+
             });
          }
 
