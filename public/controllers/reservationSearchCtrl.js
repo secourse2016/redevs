@@ -292,6 +292,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       }
       else{
         //la2a el ticket
+        //console.log("ticket found");
            flag=true;
               $scope.reservationsObjects=response.data;
               for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
