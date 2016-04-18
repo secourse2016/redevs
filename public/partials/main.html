@@ -107,6 +107,7 @@
                            uib-datepicker-popup="{{format}}"
                            min="'2016-03-01'"
                            ng-model="dtTo"
+                           ng-show="checkboxModel.valuecheck=='round-trip'"
                            datepicker-options="dateOptions"
                            id="toDate"
                            is-open="popup2.opened"
@@ -116,7 +117,9 @@
                     />
                              <span class="input-group-btn">
                                <button type="button"
+                                       ng-show="checkboxModel.valuecheck=='round-trip'"
                                        class="btn btn-default"
+
                                        ng-click="open2()">
                                    <i class="glyphicon glyphicon-calendar"></i>
                                </button>
