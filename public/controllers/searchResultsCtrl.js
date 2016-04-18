@@ -47,31 +47,49 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   var tripDestinationAirport = FlightsSrv.getSelectedDestinationAirport();
   var tripClass = FlightsSrv.getClass();
 
-  var reformatedOutgoingDate = tripOriginOutgoingDate.getFullYear()+'-'+'0'+tripOriginOutgoingDate.getMonth()+'-'+tripOriginOutgoingDate.getDate();
+  var reformatedOutgoingDate = tripOriginOutgoingDate.getFullYear()+'-'+'0'+(tripOriginOutgoingDate.getMonth()+1)+'-'+tripOriginOutgoingDate.getDate();
 
 
 
-  console.log(tripType);
-  console.log(tripOriginOutgoingDate);
-  console.log(tripOriginReturningDate);
-  console.log(reformatedReturningDate);
-  console.log(reformatedOutgoingDate);
-  console.log(tripOriginAirport);
-  console.log(tripDestinationAirport);
-  console.log(tripClass);
 
 
   if(tripType==="OneWayTrip"){
+    console.log(tripType);
+    console.log(tripOriginOutgoingDate);
+    console.log(tripOriginReturningDate);
+    console.log(reformatedReturningDate);
+    console.log(reformatedOutgoingDate);
+    console.log(tripOriginAirport);
+    console.log(tripDestinationAirport);
+    console.log(tripClass);
+
         console.log("entered one way trip")
-    var OneFlightsArray = FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass);
-    $scope.outgoingFlights = OneFlightsArray;
-    console.log(outgoingFlights);
+    FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass).then(function(response){
+      $scope.outgoingFlights = response.data.outgoingFlights;
+    })
+
+
   }
   else{
-    var reformatedReturningDate = tripOriginReturningDate.getFullYear()+'-'+'0'+tripOriginReturningDate.getMonth()+'-'+tripOriginReturningDate.getDate();
-    var TwoFlightsArray = FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass);
-    $scope.outgoingFlights = TwoFlightsArray.outgoingFlights;
-    $scope.returnFlights = TwoFlightsArray.returnFlights;
+    var reformatedReturningDate = tripOriginReturningDate.getFullYear()+'-'+'0'+(tripOriginReturningDate.getMonth()+1)+'-'+tripOriginReturningDate.getDate();
+    console.log(tripType);
+    console.log(tripOriginOutgoingDate);
+    console.log(tripOriginReturningDate);
+    console.log(reformatedReturningDate);
+    console.log(reformatedOutgoingDate);
+    console.log(tripOriginAirport);
+    console.log(tripDestinationAirport);
+    console.log(tripClass);
+
+    FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass).then(function(response){
+      $scope.outgoingFlights = response.data.outgoingFlights;
+      $scope.returnFlights = response.data.returnFlights;
+        console.log($scope.returnFlights);
+    });
+
+
+
+
   }
 
        $scope.proceed = function(){
