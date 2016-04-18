@@ -100,6 +100,10 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          $location.url('/flightDetails');
        };
 
+$scope.convert = function(date){
+  //console.log(date);
+  return moment(new Date(date)).format('YYYY-MM-DD HH:mm A');
+}
 
 
 
