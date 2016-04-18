@@ -9,16 +9,20 @@
   		<h2>Flight Information</h2>
   	</div>
 
-	<div class="container" style="color: lightgray";>
+	<div class="container">
   		<h5> Number of adult ticket(s): {{ adultTickets }}</h5><br>
   		<h5> Number of children ticket(s):{{ childrenTickets }}</h5><br>
   		<h5> Class of tickets(s): {{ classOfTickets }}<br>
 	</div>
 
 	<div class="panel-group">
-	    <div class="panel panel-default" ng-repeat="flight in flights"> <!--check name of array -->
-	      <div class="panel-heading">Flight + {{ index + 1 }}</div>
-	      <div class="panel-body">
+	    <div class="panel panel-default" ng-repeat="flight in flights">
+	      	
+	      	<div class="panel-heading">
+	      	Flight {{ index + 1 }}
+	      	</div>
+
+	      	<div class="panel-body">
 
   					<div class="col-sm-6">
 						<div class="container">
@@ -29,15 +33,16 @@
 						</div>
   					</div>
 
-					<div class="col-sm-6"><div class="col-sm-6">
+					<div class="col-sm-6">
+					<div class="col-sm-6">
 						<div class="container">
 					  		<h5> To: {{ flight.destination }}</h5><br>
 					  		<h5> Date: {{ convertToDate(flight.arrivalDateTime) }}</h5><br>
-					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</span></h5><br>
+					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</h5><br>
 						</div>
-  					</div></div>
-
-		  </div>
+  					</div>
+		  			</div>
+	    	</div>
 	    </div>
 	</div>
 
@@ -63,14 +68,14 @@
 			        <td>{{ adultTickets }}</td>
 			        <td>{{ classOfTickets }} </td>
 			        <td> Adult </td>
-			        <td>{{ flight.cost() }}</td>
+			        <td>{{ calculateAdultCost() }}</td>
 			      </tr>
 
 			      <tr ng-show="thereAreChildren">
 			        <td>{{ childrenTickets }}</td>
 			        <td>{{ classOfTickets }} </td>
 			        <td> Child </td>
-			        <td>{{ flight.cost() }}</td>
+			        <td>{{ calculateChildrenCost() }}</td>
 			      </tr>
 
 			    </tbody>
@@ -92,5 +97,3 @@
 
 	</div>
 </div>
-
-</body>

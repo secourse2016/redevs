@@ -24,14 +24,22 @@ $scope.convertToTime = function(date){
 }
 
 $scope.calculateAdultCost = function() {
+  //$scope.flights[0].cost is the cost of 1 adult! 
   if($scope.flights.length === 1){
-    return $scope.flights(0).cost;
+    return $scope.flights([0].cost);
   } else if($scope.flights.length === 2){
-        return $scope.flights(0).cost + $scope.flights(1).cost;
+        return $scope.flights[0].cost + $scope.flights[1].cost;
 
   }
-  
+}
 
+$scope.calculateChildrenCost = function() {
+  //$scope.flights[0].cost is the cost of 1 adult! 
+  if($scope.flights.length === 1){
+    return $scope.flights([0].cost / 2);
+  } else if($scope.flights.length === 2){
+        return $scope.flights[0].cost*0.5+ $scope.flights[1].cost*0.5;
+  }
 }
 
 });
