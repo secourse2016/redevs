@@ -131,8 +131,8 @@ module.exports = function(app,mongo) {
         flights.reservationSearch(resNum,function (err, tickets) {
                 if (err)
                   return err;
-                console.log(tickets);
-               res.send(tickets); 
+                console.log(tickets[0]);
+               res.send(tickets[0]); 
                   // res.json({
                   //   tickets: tickets
                   //   });
