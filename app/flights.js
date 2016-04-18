@@ -658,6 +658,8 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
         getFlightByID(flights[1].flightNumber, flights[1].departureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
 
+                console.log("IN ECONOMY CLASS");
+
                 for (var i = 0; i < adults.length; i++) {
 
                     for (var j = 0; j < flight1[0].economyClassSeatMap.length; j++) { //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor

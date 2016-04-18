@@ -22,7 +22,7 @@ $scope.flightReturning = $scope.flight[1];
 
 
 $scope.proceed = function (){
-	FlightsSrv.setTotalCost
+	FlightsSrv.setTotalCost($scope.totalCost);
 	FlightsSrv.setNumberOfChildren($scope.childrenInput);
 	FlightsSrv.setNumberOfAdults($scope.adultsInput);
 
