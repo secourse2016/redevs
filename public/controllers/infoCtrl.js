@@ -26,7 +26,7 @@
 							tripType:FlightsSrv.getTripType(),
 							flights:FlightsSrv.getFlights(),
 							adults:FlightsSrv.getAdultsInfo(),
-							Children:FlightsSrv.getChildrenInfo(),
+							children:FlightsSrv.getChildrenInfo(),
 							creditCardNumber:"123",
 							classs:FlightsSrv.getClass()
 						};
