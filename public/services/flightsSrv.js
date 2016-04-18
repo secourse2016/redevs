@@ -10,8 +10,20 @@ App.factory('FlightsSrv', function ($http) {
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs);
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs);
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
+                "headers" : { 'x-accsess-token': 'han7ot el token hena' }
+            });
          },
+         getTickets: function(){
+            return $http.get('/api/tickets',{
+                "header" : { 'x-accsess-token': 'han7ot el token hena' }
+            });
+         },
+         postReservation: function(){
+            return $http.post('/api/postReservation/', {
+                "header" : { 'x-accsess-token': 'han7ot el token hena' }
+            });
+         }
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
