@@ -697,7 +697,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                 }
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": 0,
+                    "reservationCode": moment().unix(),
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -756,7 +756,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                     }
 
                     db.db().collection('tickets').insertOne({
-                        "reservationCode": 0,
+                        "reservationCode": moment().unix(),
                         "numberOfAdults": adults.length,
                         "adults": adults,
                         "numberOfChildren": children.length,
@@ -816,7 +816,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                         }
 
                         db.db().collection('tickets').insertOne({
-                            "reservationCode": 0,
+                            "reservationCode": moment().unix(),
                             "numberOfAdults": adults.length,
                             "adults": adults,
                             "numberOfChildren": children.length,
@@ -866,7 +866,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
 
             db.db().collection('tickets').insertOne({
-                "reservationCode": 0,
+                "reservationCode": moment().unix(),
                 "numberOfAdults": adults.length,
                 "adults": adults,
                 "numberOfChildren": children.length,
@@ -886,12 +886,13 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
         }
         else {
-            if (classs === business) {
+            if (classs === "BusinessClass") {
                 for (i = 0; i < adults.length; i++) {
                     for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
                         if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
                             adults[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
                             flight1[0].businessClassSeatMap[j].isReserved = "true";
+                            break;
                         }
                     }
                 }
@@ -900,13 +901,14 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                         if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
                             children[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
                             flight1[0].businessClassSeatMap[j].isReserved = "true";
+                            break;
                         }
                     }
                 }
 
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": 0,
+                    "reservationCode": moment().unix(),
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -930,6 +932,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                         if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
                             adults[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
                             flight1[0].firstClassSeatMap[j].isReserved = "true";
+                            break;
                         }
                     }
                 }
@@ -938,13 +941,14 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                         if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
                             children[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
                             flight1[0].firstClassSeatMap[j].isReserved = "true";
+                            break;
                         }
                     }
                 }
 
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": 0,
+                    "reservationCode": moment().unix(),
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
