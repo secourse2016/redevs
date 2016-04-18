@@ -1,19 +1,11 @@
 
-var mongo   = require('./db');
-var moment  = require('moment');
-var flights = require('./flights.js');
-var jwt = require("jsonwebtoken");
-
-
-
-
-
-
-
-
-
-
 module.exports = function(app,mongo) {
+
+    var mongo   = require('./db');
+    var moment  = require('moment');
+    var flights = require('./flights.js');
+    var jwt = require("jsonwebtoken");
+
 
 
     /* GET ALL STATES ENDPOINT */
@@ -24,6 +16,7 @@ module.exports = function(app,mongo) {
     /* RENDER MAIN PAGE */
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/public/index.html');
+        console.log(req.payload);
     });
     /* GET ALL Nationalities ENDPOINT */
     app.get('/api/data/nationalities', function (req, res) {
@@ -45,7 +38,7 @@ module.exports = function(app,mongo) {
             next();
         }
         catch(err){
-            console.log('ERROR: JWT Error reason:' + err);
+            console.log('ERROR: JWT Error reason: ' + err);
            // res.status(403).sendFile(path.join(__dirname, 'public', '403.html'));
         }
 
