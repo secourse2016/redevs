@@ -1,6 +1,7 @@
 
 var mongo   = require('./db');
 var moment  = require('moment');
+
 /**
  * App routes:
  *
@@ -59,7 +60,7 @@ module.exports = function(app,mongo) {
                 var destination = req.param('destination');
 
 
-                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, destinationDate, classs);
+                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,destinationDate);
                 var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
                 res.send(getFlightswithAirports);
             }
@@ -135,8 +136,31 @@ module.exports = function(app,mongo) {
     });
     });
 
-   //
+   app.post('/api/postReservation/',function(req,res){
+    var tripType = req.body.tripType ;
+    var flights = req.body.flights;
+    var children = req.body.children;
+    var adults = req.body.adults;
+    var creditCardNumber = req.body.creditCardNumber;
+    var classs = req.body.class;
 
+
+    if(tripType==='round-trip'){
+      flights.postRoundTripReservation(classs,flights,creditCardNumber,adults,children,function(){
+        console.log('api post request  called');
+      });
+    }else{
+      flights.reserveOneWayTicket(classs,flights,creditCardNumber,adults,children,function(){
+        console.log('api post request called');
+      });
+    }
+
+
+
+
+
+
+  });
 
 
 };
