@@ -16,9 +16,9 @@
           <td>{{f.flightNumber}}</td>
           <td>{{ f.origin }}</td>
           <td>{{ f.destination }}</td>
-          <td>{{ f.departureDateTime }}</td>
+          <td>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
           <td>{{ f.cost }}$</td>
-          <td>{{ f.class }}$</td>
+          <td>{{ f.class }}</td>
 
         </tr>
         </table>
@@ -30,7 +30,7 @@
 
 <div class="container">
     <div class="row" >
-      <div class="jumbotron" >
+      <div class="jumbotron" ng-show="flag">
         <div class="row">
             <h1 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h1>
 
@@ -43,9 +43,9 @@
             <td>{{r.flightNumber}}</td>
             <td>{{ r.origin }}</td>
             <td>{{ r.destination }}</td>
-            <td>{{ r.departureDateTime }}</td>
+            <td>{{ r.departureDateTime| amDateFormat:'dddd, MMMM Do YYYY ' }}</td>
             <td>{{ r.cost }}$</td>
-            <td>{{ r.class }}$</td>
+            <td>{{ r.class }}</td>
 
 
           </tr>
@@ -53,11 +53,15 @@
         </div>
         <br></br>
         <br></br>
-        <div class="span7 text-center">
-        <button id=" Prcdbtn"  type="button" class="btn btn-success" ng-click="proceed()">Proceed</button>
+
       </div>
-      </div>
+
 
 
 </div>
+
+</div>
+
+<div class="span7 text-center">
+    <button id=" Prcdbtn"  type="button" class="btn btn-success" ng-click="proceed()">Proceed</button>
 </div>
