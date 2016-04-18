@@ -11,17 +11,17 @@ App.factory('FlightsSrv', function ($http) {
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
-                "headers" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
+                "headers" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjA4OTI5NDcsImV4cCI6MTQ5MjQyODk0NywiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.Qq7PRYpQbJ9YqVm081dSopK0bSk5da1_agXDV3mQMFU' }
             });
          },
          getTickets: function(){
             return $http.get('/api/tickets',{
-                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjA4OTI5NDcsImV4cCI6MTQ5MjQyODk0NywiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.Qq7PRYpQbJ9YqVm081dSopK0bSk5da1_agXDV3mQMFU' }
             });
          },
-         postReservation: function(){
-            return $http.post('/api/postReservation/', {
-                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWRyYWdvbnMuY29tIiwiaWF0IjoxNDYwODkyOTQ3LCJleHAiOjE0OTI0Mjg5NDcsImF1ZCI6InNlZHJhZ29ucy5jb20iLCJzdWIiOiJzZWRyYWdvbnMifQ.OIrvqvOnmDcVZGvjcaQUcbME9PtMwp5j6_8TG6VaJl8' }
+         postReservation: function(data){
+            return $http.post('/api/postReservation/', data, {
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjA4OTI5NDcsImV4cCI6MTQ5MjQyODk0NywiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.Qq7PRYpQbJ9YqVm081dSopK0bSk5da1_agXDV3mQMFU' }
             });
          }
          setSelectedOriginAirport: function(value) {

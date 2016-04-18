@@ -27,9 +27,9 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
       		creditCardNumber:"123",
       		classs:FlightsSrv.getClass()
       	};
-       $http.post('/api/postReservation/',data).success(function(data,status){
+       
 
-       });
+      FlightsSrv.postReservation(data);
 
 
 
