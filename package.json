@@ -13,7 +13,9 @@
     "jsonwebtoken"  : "latest",
     "underscore"    : "latest",
     "moment"        : "2.10.6",
-    "angular2-moment":"latest"
+
+    "angular-momentjs" :"latest"
+
 
 
    }
