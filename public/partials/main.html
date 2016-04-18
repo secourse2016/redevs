@@ -107,9 +107,9 @@
                            uib-datepicker-popup="{{format}}"
                            min="'2016-03-01'"
                            ng-model="dtTo"
-                           ng-show="checkboxModel.valuecheck=='round-trip'"
                            datepicker-options="dateOptions"
                            id="toDate"
+                           ng-show="radioModel2 == 'RoundTrip'"
                            is-open="popup2.opened"
                            placeholder="Return Date"
                            ng-required="true"
@@ -117,9 +117,8 @@
                     />
                              <span class="input-group-btn">
                                <button type="button"
-                                       ng-show="checkboxModel.valuecheck=='round-trip'"
                                        class="btn btn-default"
-
+                                       ng-show="radioModel2 == 'RoundTrip'"
                                        ng-click="open2()">
                                    <i class="glyphicon glyphicon-calendar"></i>
                                </button>
@@ -140,7 +139,7 @@
                 <div class = "col-md-4>">
                     <div >
                         <div class="span7 text-center">
-                          <pre>{{radioModel || 'null'}}</pre>
+
 
                             <div class="btn-group">
                                  <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'EconomyClass'" uncheckable>Economy Class</label>
@@ -152,6 +151,7 @@
                             </div>
                         </div>
                     </div>
+
                     </div>
                     <div class = "col-md-4>">
 
@@ -173,14 +173,18 @@
                 <div class="span7 text-center">
 
                   <div class="btn-group">
-                       <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'RoundTrip'" uncheckable>Round Trip</label>
-                      <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'OneWayTrip'" uncheckable>One Way Trip</label>
+                       <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'RoundTrip'" value="RoundTrip"  uncheckable>Round Trip</label>
+                      <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'OneWayTrip'" value="OneWayTrip" uncheckable>One Way Trip</label>
                     </div>
 
                 </div>
 
 
 
+            </div>
+
+            <div class="row">
+                <br></br>
             </div>
 
 

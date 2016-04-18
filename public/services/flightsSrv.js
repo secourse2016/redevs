@@ -129,6 +129,12 @@ App.factory('FlightsSrv', function ($http) {
         },
         setYear : function(value){
             this.year = value;
+        },
+        setTotalCost :function(value){
+          this.totalCost = value;
+        },
+        getTotalCost :function(){
+          return this.totalCost;
         }
 
 
