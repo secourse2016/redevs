@@ -25,7 +25,7 @@ module.exports = function(app,mongo) {
     });
 
 
-
+    /* MIDDLEWARE */
     app.use(function(req, res, next){
 
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
