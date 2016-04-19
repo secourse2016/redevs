@@ -32,6 +32,14 @@ App.factory('FlightsSrv', function ($http) {
             });
 
          },
+
+         getReservationNumber:function(){
+           return this.reservationNumber;
+         },
+
+         setReservationNumber:function(value){
+            this.reservationNumber = value;
+         },
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },

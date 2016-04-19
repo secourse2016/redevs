@@ -29,11 +29,13 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
       	};
 
 
-      FlightsSrv.postReservation(data).then(function(response){
-        console.log(response);
-         $location.url('/thankYou');
+      FlightsSrv.postReservation(data).success(function(response,status){
+      FlightsSrv.setReservationNumber(response.time);
       });
 
+
+
+ $location.url('/thankYou');
 
 
 
