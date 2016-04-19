@@ -617,11 +617,16 @@ function reservationSearch(resNum, cb) {
 //return reservation based on the ResNumber passed
 
 //mmkn akhaliha teraga3li eli ana 3ayzah ml db 3ala tool w khalas as-hal
+    //parse el awl
+    var resNumInt=parseInt(resNum);
+    console.log(resNumInt);
 
     //.toArray() returns an array that contains all the documents from a cursor
-    db.db().collection('tickets').find({reservationCode: resNum}, function (err, data) {
-        cb(err, data);
-    });
+    db.db().collection('tickets').find(
+        {
+            reservationCode: resNumInt
+        }
+        ).toArray(cb);
 
 
 }
@@ -876,6 +881,11 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                 console.log("Reservation done");
                 updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
+<<<<<<< HEAD
+=======
+                        console.log("FLights Updated");
+
+>>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                 });
                 cb();
             });
@@ -916,6 +926,11 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
+<<<<<<< HEAD
+=======
+                            console.log("FLights Updated");
+
+>>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                     });
                     cb();
                 });
@@ -953,7 +968,11 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
+<<<<<<< HEAD
 
+=======
+                      
+>>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                     });
                     cb();
                 });

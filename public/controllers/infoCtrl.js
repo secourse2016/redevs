@@ -20,8 +20,13 @@
    		$scope.thereIsChildren = !($scope.Children.length === 0);
 
          $scope.proceed = function() {
+
             FlightsSrv.setAdultsInfo($scope.Adults);
             FlightsSrv.setChildrenInfo($scope.Children);
+
+          //   FlightsSrv.setAdultsInfo($scope.Adults);
+          //   FlightsSrv.setChildrenInfo($scope.Children);
+
 					// 	var data = {
 					// 		tripType:FlightsSrv.getTripType(),
 					// 		flights:FlightsSrv.getFlights(),
@@ -32,8 +37,14 @@
 					// 	};
 					// $http.post('/api/postReservation/',data).success(function(data,status){
 					//
+
 					// })
-						$location.url('/confirmation');
+
+
+					// });
+					$location.url('/confirmation');
+
+
          }
 
          function getNationalities() {
