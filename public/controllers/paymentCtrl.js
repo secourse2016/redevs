@@ -45,7 +45,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
 
 
 
-     $location.url('/');
+     $location.url('/thankYou');
 
   }
 
