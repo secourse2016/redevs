@@ -42,10 +42,8 @@ module.exports = function(app,mongo) {
             res.status(403).sendFile(path.join(__dirname,'..' ,'public', '403.html'));
         }
 
+
     });
-
-
-
 
 
 
@@ -183,3 +181,4 @@ module.exports = function(app,mongo) {
 
 
 };
+
