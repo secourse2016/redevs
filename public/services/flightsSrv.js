@@ -10,7 +10,19 @@ App.factory('FlightsSrv', function ($http) {
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs);
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs);
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
+                "headers" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
+            });
+         },
+         getTickets: function(){
+            return $http.get('/api/tickets',{
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
+            });
+         },
+         postReservation: function(data){
+            return $http.post('/api/postReservation/', data, {
+                "header" : { 'x-accsess-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
+            });
          },
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
