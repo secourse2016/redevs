@@ -5,16 +5,15 @@ var flights = require('./flights.js');
 
 
 // defining the seed function then export
-function seedFlights(flight, _origin, _destination, key,callback) {
+function seedFlights(flight, _origin, _destination, key, callback) {
 
     // loop until May 31 2016 starting deadline 18th of April
     var date = moment('2016-04-18T00:00:00+0200');
     for (var i = 0; i < 44; i++) {
 
-        //not fixing the flight number 
         doc =
         {
-            "flightNumber" : flight.flightNumber,
+            "flightNumber": flight.flightNumber,
             "aircraft": flight.aircraft,
             "capacity": flight.capacity,
             "duration": flight.duration,
@@ -64,7 +63,11 @@ function seedFlights(flight, _origin, _destination, key,callback) {
 
         //the temporary doc array
         flightsArray.push(doc);
-        
+        //FINALLY insert!!
+        // mongo.db().collection('flights').insert(doc, function(err, data){
+        //   if (err) callback(err,false);
+        //   else callback(err,true);
+        // });
 
     }
 
@@ -130,7 +133,7 @@ function seed(cb) {
                 },
                 {
                     'origin': 'Riyadh',
-                    'destination': 'Jeddah', //Jeddah met3ada w 3amla azma! 
+                    'destination': 'Jeddah',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -201,11 +204,6 @@ function seed(cb) {
                     "economyClassCost": 3000
                 }
             ];
-
-            //array of 20 different flight numbers
-            // var flightNumbers=["AE123","BC230","EF250","DE756","AE783","AE883",
-            // "AZ783","BC334","SD380","ER890","AW321","AE700","AE783","RT125","AY324", 
-            // "TU736","OP247","WE244","TU452","QW234"];
 
             //insert outgoing flights
             for (var i = 0; i < routes.length; i++) {
@@ -663,8 +661,6 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
         getFlightByID(flights[1].flightNumber, flights[1].departureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
 
-                console.log("IN ECONOMY CLASS");
-
                 for (var i = 0; i < adults.length; i++) {
 
                     for (var j = 0; j < flight1[0].economyClassSeatMap.length; j++) { //economyclassSeatmap is supposedly the name of the seatmap for economy rabena yostor
@@ -885,11 +881,8 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                 console.log("Reservation done");
                 updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-<<<<<<< HEAD
-=======
                         console.log("FLights Updated");
 
->>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                 });
                 cb();
             });
@@ -930,11 +923,8 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-<<<<<<< HEAD
-=======
                             console.log("FLights Updated");
 
->>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                     });
                     cb();
                 });
@@ -972,11 +962,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-<<<<<<< HEAD
 
-=======
-                      
->>>>>>> 7157abb3e90e60fd3c223f740524c86a85c50755
                     });
                     cb();
                 });
