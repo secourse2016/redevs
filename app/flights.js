@@ -656,7 +656,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
 
 function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
-
+ var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) {
         getFlightByID(flights[1].flightNumber, flights[1].departureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
@@ -700,7 +700,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                 }
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": moment().unix(),
+                    "reservationCode":time,
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -715,7 +715,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                             console.log("FLights Updated");
                         });
                     });
-                    cb();
+                    cb(time);
                 });
 
             }
@@ -759,7 +759,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                     }
 
                     db.db().collection('tickets').insertOne({
-                        "reservationCode": moment().unix(),
+                        "reservationCode":time,
                         "numberOfAdults": adults.length,
                         "adults": adults,
                         "numberOfChildren": children.length,
@@ -774,7 +774,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                                 console.log("FLights Updated");
                             });
                         });
-                        cb();
+                        cb(time);
                     });
 
 
@@ -819,7 +819,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                         }
 
                         db.db().collection('tickets').insertOne({
-                            "reservationCode": moment().unix(),
+                            "reservationCode": time,
                             "numberOfAdults": adults.length,
                             "adults": adults,
                             "numberOfChildren": children.length,
@@ -834,7 +834,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                                     console.log("FLights Updated");
                                 });
                             });
-                            cb();
+                            cb(time);
                         });
                     }
                 }
@@ -846,6 +846,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
 }
 
 function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children, cb) {
+var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) { // same should be done as above regarding the classes
         if (classs === "EconomyClass") {
             for (i = 0; i < adults.length; i++) {
@@ -869,7 +870,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
 
             db.db().collection('tickets').insertOne({
-                "reservationCode": moment().unix(),
+                "reservationCode": time,
                 "numberOfAdults": adults.length,
                 "adults": adults,
                 "numberOfChildren": children.length,
@@ -884,7 +885,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                         console.log("FLights Updated");
 
                 });
-                cb();
+                cb(time);
             });
 
         }
@@ -911,7 +912,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": moment().unix(),
+                    "reservationCode":time,
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -926,7 +927,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                             console.log("FLights Updated");
 
                     });
-                    cb();
+                    cb(time);
                 });
             }
             else {
@@ -951,7 +952,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
 
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode": moment().unix(),
+                    "reservationCode": time,
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -964,7 +965,7 @@ function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
                     });
-                    cb();
+                    cb(time);
                 });
 
             }

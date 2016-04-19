@@ -53,6 +53,10 @@ App.config(function($routeProvider) {
             controller : 'paymentCtrl',
             css : 'styles/payment.css'
 
+        })
+        .when('/thankYou',{
+            templateUrl: '/partials/thankYou.html',
+            controller : 'thankYouCtrl'
         });
 
 
