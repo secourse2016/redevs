@@ -314,7 +314,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
               // }
 
               $scope.toggle=true;
-              
+
       }
        if(flag==false){
             $scope.toggle=false;

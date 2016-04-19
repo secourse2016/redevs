@@ -6,68 +6,44 @@
 	</div>
 
 	<div class="container">
-  		<h2>Flight Information</h2>
+  		<h2 style="color: lightgray">Flight Information</h2>
   	</div>
 
-	<div class="container">
-  		<h5> Number of adult ticket(s): <span class="badge"> {{ adultTickets }}</span></h5><br>
-  		<h5> Number of children ticket(s): <span class="badge"> {{ childrenTickets }}</span></h5><br>
-  		<h5> Class of tickets(s):  <span class="badge"> {{ class }}</span></h5><br>
+	<div class="container" style="color: lightgray">
+  		<h5> Number of adult ticket(s): {{ adultTickets }}</h5><br>
+  		<h5> Number of children ticket(s):{{ childrenTickets }}</h5><br>
+  		<h5> Class of tickets(s): {{ classOfTickets }}<br>
 	</div>
 
 	<div class="panel-group">
-	    <div class="panel panel-default" ng-repeat="x in flights"> <!--check name of array -->
-	      <div class="panel-heading">Flight + {{ $index + 1 }}</div>
-	      <div class="panel-body">
+	    <div class="panel panel-default" ng-repeat="flight in flights">
+	      	
+	      	<div class="panel-heading">
+	      	Flight {{ index + 1 }}
+	      	</div>
+
+	      	<div class="panel-body">
 
   					<div class="col-sm-6">
 						<div class="container">
-					  		<h5> From: <span class="badge"> {{ x.origin }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ x.departureTime }}</span></h5><br>
-					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal1 }}</span></h5><br>-->
+					  		<h5> From: {{ flight.origin }}</h5><br>
+					  		<h5> Date: {{ convertToDate(flight.departureDateTime) }}</h5><br>
+					  		<h5> Time: {{ convertToTime(flight.departureDateTime) }}</h5><br>
 					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
 						</div>
   					</div>
 
-					<div class="col-sm-6"><div class="col-sm-6">
+					<div class="col-sm-6">
+					<div class="col-sm-6">
 						<div class="container">
-					  		<h5> To: <span class="badge"> {{ x.destination }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ x.date }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ x.arrivalTime }}</span></h5><br>
-					  		<!-- <h5> Terminal:  <span class="badge"> {{ departTerminal2 }}</span></h5> -->
-
+					  		<h5> To: {{ flight.destination }}</h5><br>
+					  		<h5> Date: {{ convertToDate(flight.arrivalDateTime) }}</h5><br>
+					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</h5><br>
 						</div>
-  					</div></div>
-
-		  </div>
+  					</div>
+		  			</div>
+	    	</div>
 	    </div>
-
-	<!--<div class="panel panel-default">
-	      <div class="panel-heading">Return flight</div>
-	      <div class="panel-body">
-				<div class="row">
-  					<div class="col-sm-6">
-						<div class="container">
-					  		<h5> From: <span class="badge"> {{ returnFrom }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ returnDate1 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ returnTime1 }}</span></h5><br>
-
-					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
-						</div>
-  					</div>
-
-					<div class="col-sm-6"><div class="col-sm-6">
-						<div class="container">
-					  		<h5> To: <span class="badge"> {{ returnTo }}</span></h5><br>
-					  		<h5> Date:  <span class="badge"> {{ returnDate2 }}</span></h5><br>
-					  		<h5> Time:  <span class="badge"> {{ returnTime2 }}</span></h5><br>
-
-						</div>
-  					</div></div>
-				</div>
-		  </div>
-	    </div> -->
 	</div>
 
 	<div class="alert alert-info">
@@ -90,16 +66,16 @@
 			    <tbody> <!-- Might be wrong to repeat here -->
 			      <tr ng-show="thereAreAdults">
 			        <td>{{ adultTickets }}</td>
-			        <td>{{ class }} </td>
+			        <td>{{ classOfTickets }} </td>
 			        <td> Adult </td>
-			        <td>{{ adultTicketsCost }}</td>
+			        <td>{{ calculateAdultCost() }}</td>
 			      </tr>
 
 			      <tr ng-show="thereAreChildren">
 			        <td>{{ childrenTickets }}</td>
-			        <td>{{ class }} </td>
+			        <td>{{ classOfTickets }} </td>
 			        <td> Child </td>
-			        <td>{{ flights[0].economyPrice + flights[1].economyPrice }}</td>
+			        <td>{{ calculateChildrenCost() }}</td>
 			      </tr>
 
 			    </tbody>
@@ -108,7 +84,7 @@
 		</div>
 
 		<div>
-			<h3>Total amount: <span class="label label-default" ></span>{{ totalAmount }}</h3> <!--Modifying information - redirect to prev page -->
+			<h3>Total amount: <span class="label label-default" ></span>{{ totalAmount }}USD</h3> <!--Modifying information - redirect to prev page -->
 			<button type="button" class="btn btn-primary">
 				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 
@@ -121,5 +97,3 @@
 
 	</div>
 </div>
-
-</body>

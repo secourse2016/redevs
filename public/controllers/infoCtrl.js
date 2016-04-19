@@ -24,6 +24,7 @@
             FlightsSrv.setAdultsInfo($scope.Adults);
             FlightsSrv.setChildrenInfo($scope.Children);
 
+
           //   FlightsSrv.setAdultsInfo($scope.Adults);
           //   FlightsSrv.setChildrenInfo($scope.Children);
 
@@ -43,6 +44,8 @@
 
 					// });
 					$location.url('/confirmation');
+
+
 
 
          }

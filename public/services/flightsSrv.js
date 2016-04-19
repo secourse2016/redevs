@@ -2,24 +2,16 @@ App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
            return $http.get('/api/data/codes');
-
          },
-
-
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
-
          getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs);
-
          },
-
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs);
-
          },
-
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
          },
@@ -95,20 +87,16 @@ App.factory('FlightsSrv', function ($http) {
         getNumberOfAdults: function(){
           return this.numberOfAdults;
         },
-
-
-
-
         getName : function(){
                 return this.name;
-            },
-            setName : function(value){
-                 this.name = value ;
-            },
+        },
+        setName : function(value){
+            this.name = value ;
+        },
         getCreditCardNumber : function(){
             return this.creditNumber;
         },
-         setCreditCardNumber : function(value){
+        setCreditCardNumber : function(value){
              this.creditNumber = value;
         },
         getCVC : function(){
@@ -136,7 +124,6 @@ App.factory('FlightsSrv', function ($http) {
         getTotalCost :function(){
           return this.totalCost;
         }
-
 
      };
  });
