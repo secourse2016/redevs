@@ -122,7 +122,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     $scope.checkTripType = {
         roundTripBtn: false,
-        oneWayBtn: true
+        oneWayBtn: true,
 
     };
 

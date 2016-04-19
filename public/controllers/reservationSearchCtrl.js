@@ -284,41 +284,38 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
         //da a7oto asln fl service
      // $http.get('/api/reservationSearch/:'+resNum);
 
-    reservationSearchSrv.getReservationSearch(resNum).then(function(response) {
-      if(!response.data || response.data.length == 0){
+    reservationSearchSrv.getReservationSearch(resNum).then(function(err, data) {
+      if(!data || data.length == 0){
           //mala2ahosh
           flag=false;
 
       }
       else{
         //la2a el ticket
-        //console.log("ticket found");
            flag=true;
-              $scope.reservationsObjects=response.data;
-              console.log(response.data);
-              // for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
-              // $scope.reservationsObjects.flights[i].departureDateTime =x ;
-              //  $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
+              $scope.reservationsObjects=data;
+              for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
+              $scope.reservationsObjects.flights[i].departureDateTime =x ;
+               $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
 
-              // departureTime=moment(x).format('hh:mm');
-              // arrivalTime=moment(y).format('hh:mm');
-              // date=moment(x).format('YYYY-MM-DD');
+              departureTime=moment(x).format('hh:mm');
+              arrivalTime=moment(y).format('hh:mm');
+              date=moment(x).format('YYYY-MM-DD');
 
-              // $scope.reservationsObjects.flights[i].push({
-              //   "departureTime":departureTime,
-              //    "arrivalTime" :arrivalTime,
-              //    "date" : date
-              // });
+              $scope.reservationsObjects.flights[i].push({
+                "departureTime":departureTime,
+                 "arrivalTime" :arrivalTime,
+                 "date" : date
+              });
 
 
-              // }
+              }
 
               $scope.toggle=true;
-              
+              break;
       }
        if(flag==false){
             $scope.toggle=false;
-            console.log("ticket not found");
 
            }
 
