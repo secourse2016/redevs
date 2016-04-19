@@ -1,16 +1,9 @@
 
-var mongo   = require('./db');
-var moment  = require('moment');
- var flights = require('./flights.js');
-
-
-
-
-
-
-
-
-
+    var mongo   = require('./db');
+    var moment  = require('moment');
+    var flights = require('./flights.js');
+    var jwt = require("jsonwebtoken");
+    var path    = require('path');
 
 module.exports = function(app,mongo) {
 
@@ -23,6 +16,7 @@ module.exports = function(app,mongo) {
     /* RENDER MAIN PAGE */
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/public/index.html');
+        console.log(req.payload);
     });
     /* GET ALL Nationalities ENDPOINT */
     app.get('/api/data/nationalities', function (req, res) {
@@ -31,11 +25,25 @@ module.exports = function(app,mongo) {
     });
 
 
+    /* MIDDLEWARE */
+    app.use(function(req, res, next){
+
+        var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
+        console.log("{ TOKEN } ===> ", token);
+        var jwtSecret = process.env.JWTSECRET;
+
+        try {
+            var payload = jwt.verify(token, jwtSecret);
+            req.payload = payload;
+            next();
+        }
+        catch(err){
+            console.log('ERROR: JWT Error reason: ' + err);
+            res.status(403).sendFile(path.join(__dirname,'..' ,'public', '403.html'));
+        }
 
 
-
-
-
+    });
 
 
 
