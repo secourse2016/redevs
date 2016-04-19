@@ -133,11 +133,23 @@ module.exports = function(app,mongo) {
 });
 
    app.get('/api/reservationSearch/:resNum', function(req, res) {
+        //parse int
+
+      var resNum = req.param('resNum');
+        console.log(resNum);
+
         flights.reservationSearch(resNum,function (err, tickets) {
-        if (err) return next(err);
-        res.json({
-          tickets: tickets
-        });
+                if (err)
+                  return err;
+
+
+                console.log(tickets[0]);
+               res.send(tickets[0]);
+                  // res.json({
+                  //   tickets: tickets
+                  //   });
+
+
     });
     });
 
