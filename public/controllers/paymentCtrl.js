@@ -27,17 +27,15 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
       		creditCardNumber:"123",
       		classs:FlightsSrv.getClass()
       	};
-       
-
-      FlightsSrv.postReservation(data);
 
 
-
-
+      FlightsSrv.postReservation(data).success(function(response,status){
+      FlightsSrv.setReservationNumber(response.time);
+      });
 
 
 
-
+ $location.url('/thankYou');
 
 
 
@@ -45,7 +43,14 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
 
 
 
-     $location.url('/');
+
+
+
+
+
+
+
+
 
   }
 

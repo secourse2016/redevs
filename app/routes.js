@@ -163,12 +163,18 @@ module.exports = function(app,mongo) {
 
     if(tripType==='RoundTrip'){
       console.log(adults);
-       flights.reserveRoundTripTicket(classs,flight,creditCardNumber,adults,children,function(){
-      console.log('api post request  called');
+       flights.reserveRoundTripTicket(classs,flight,creditCardNumber,adults,children,function(time){
+        var object = {
+          "time":time
+        }
+        res.json(object);
       });
     }else{
-      flights.reserveOneWayTicket(classs,flight,creditCardNumber,adults,children,function(){
-        console.log('api post request called');
+      flights.reserveOneWayTicket(classs,flight,creditCardNumber,adults,children,function(time){
+        var object = {
+          "time":time
+        }
+        res.json(object);
       });
     }
 
