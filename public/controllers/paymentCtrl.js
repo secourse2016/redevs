@@ -1,4 +1,4 @@
-App.controller('paymentCtrl',function($scope, FlightsSrv,$location) {
+App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location) {
   //$scope
 
     $scope.name = "";
@@ -14,6 +14,37 @@ App.controller('paymentCtrl',function($scope, FlightsSrv,$location) {
      FlightsSrv.setCVC($scope.CVC);
      FlightsSrv.setMonth($scope.month);
      FlightsSrv.setYear($scope.year);
+
+
+
+
+
+	var data = {
+       		tripType:FlightsSrv.getTripType(),
+      		flights:FlightsSrv.getFlights(),
+      		adults:FlightsSrv.getAdultsInfo(),
+      		children:FlightsSrv.getChildrenInfo(),
+      		creditCardNumber:"123",
+      		classs:FlightsSrv.getClass()
+      	};
+       $http.post('/api/postReservation/',data).success(function(data,status){
+
+       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      $location.url('/');
 
   }

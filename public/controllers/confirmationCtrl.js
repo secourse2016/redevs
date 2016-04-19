@@ -1,9 +1,9 @@
 /**
  * Main Controller */
 App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
-  $scope.childrenTickets = FlightsSrv.getNumberOfChildren(); //sandy
-  $scope.adultTickets = FlightsSrv.getNumberOfAdults(); //sandy
-  $scope.classOfTickets = FlightsSrv.getClasses(); //karim
+  $scope.childrenTickets = FlightsSrv.getNumberOfChildren();
+  $scope.adultTickets = FlightsSrv.getNumberOfAdults();
+  $scope.classOfTickets = FlightsSrv.getClass();
 
   $scope.flights = FlightsSrv.getFlights();
 
@@ -15,29 +15,43 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
  }
 
 
-  /* $scope.departFrom = FlightsSrv.getSelectedOriginAirport(); //karim
-  $scope.departDate = FlightsSrv.getSelectedDepartureDate(); //karim
-  $scope.departTime = FlightsSrv.getSelectedDepartureTime(); // ** lessa me7tageen ne3melha 3and karim
-  //$scope.departTerminal1= FlightsSrv.getDepartTerminal1();
+$scope.convertToDate = function(date){
+  return moment(new Date(date)).format('YYYY-MM-DD');
+}
 
-  $scope.arriveTo = FlightsSrv.getSelectedDestinationAirport(); //karim
-  $scope.arrivalDate = FlightsSrv.getSelectedArrivalDate(); //karim
-  $scope.arrivalTime = FlightsSrv.getSelectedArrivalTime(); // ** lessa me7tageen ne3melha 3and karim
-  //$scope.departTerminal2 = FlightsSrv.getDepartTerminal2();
+$scope.convertToTime = function(date){
+  return moment(new Date(date)).format('HH:mm A');
+}
 
- /* $scope.returnFrom = FlightsSrv.getReturnFrom();
-  $scope.returnDate1 = FlightsSrv.getReturnDate1();
-  $scope.returnTime1 = FlightsSrv.getReturnTime1();
-  $scope.returnTerminal1 = FlightsSrv.getReturnTerminal1();
+$scope.calculateAdultCost = function() {
+  //$scope.flights[0].cost is the cost of 1 adult!
+  var price = 0;
+  if(FlightsSrv.getTripType()==='OneWayTrip'){
+    price =  $scope.flights[0].cost*$scope.adultTickets;
+  } else if(FlightsSrv.getTripType()==='RoundTrip'){
+      price = $scope.flights[0].cost*$scope.adultTickets + $scope.flights[1].cost*$scope.adultTickets;
 
-  $scope.returnTo = FlightsSrv.getReturnTo();
-  $scope.returnDate2 = FlightsSrv.getReturnDate2();
-  $scope.returnTime2 = FlightsSrv.getReturnTime2();
-  $scope.returnTerminal2 = FlightsSrv.getReturnTerminal2(); */
+  }
 
-  //lessa dool to be fixed!!
-  //$scope.userEmail = FlightsSrv.getUserEmail();
-  /* $scope.adultTicketsCost = FlightsSrv.getAdultTicketsCost();
-  $scope.childrenTicketsCost = FlightsSrv.getChildrenTicketsCost();
-  $scope.totalAmount = FlightsSrv.getTotalCost(); */
+  $scope.adultCost = price;
+  return price;
+
+}
+
+$scope.calculateChildrenCost = function() {
+  //$scope.flights[0].cost is the cost of 1 adult!
+  var price = 0;
+  if(FlightsSrv.getTripType()==='OneWayTrip'){
+    price =  $scope.flights[0].cost*$scope.childrenTickets*0.5;
+  } else if(FlightsSrv.getTripType()==='RoundTrip'){
+      price = $scope.flights[0].cost*$scope.childrenTickets*0.5 + $scope.flights[1].cost*$scope.childrenTickets*0.5;
+
+  }
+
+  $scope.childrenCost = price;
+  return price;
+}
+
+$scope.totalAmount = $scope.calculateAdultCost() + $scope.calculateChildrenCost();
+
 });

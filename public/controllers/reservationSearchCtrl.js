@@ -9,32 +9,34 @@
 
 
 
-App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchSrv) {
+App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchSrv,moment) {
 
   $('dt').addClass('fechado');
 
 var $active = null;
+var x="da test x";
+var y="da test y";
 
 $('dt').click(function(){
-  
+
   if ($active !== null){
     $active.next().slideToggle("fast");
     $active.removeClass('aberto');
     $active.addClass('fechado');
-  } 
-  
+  }
+
   $active = $(this);
   $active.addClass('aberto');
   $next = $active.next();
-  
+
   if ($next.is(":hidden")){
     $next.slideToggle("fast");
   }else{
     $active.removeClass('aberto');
     $active.addClass('fechado');
-    $active = null;     
+    $active = null;
   }
-  
+
 })
 
   $scope.reservations=[{
@@ -271,26 +273,74 @@ $('dt').click(function(){
 $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
 
-   findReservation = function(resNum) { // <-- here is you value from the input
-    flag=false;
+   findReservation = function(resNum) { // <-- here is your value from the input
+      flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
 
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
 
-      for(i=0;i<$scope.reservations.length;i++){
-             if($scope.reservations[i].reservationCode==reservationNumberValue){
-              flag=true;
-              $scope.reservationsObjects=$scope.reservations[i];
-              $scope.toggle=true;
-              break;
+     //call api, and change the toggle flag to true
 
-             }
-           }
-           if(flag==false){
+        //da a7oto asln fl service
+     // $http.get('/api/reservationSearch/:'+resNum);
+
+    reservationSearchSrv.getReservationSearch(resNum).then(function(response) {
+      if(!response.data || response.data.length == 0){
+          //mala2ahosh
+          flag=false;
+
+      }
+      else{
+        //la2a el ticket
+        //console.log("ticket found");
+           flag=true;
+              $scope.reservationsObjects=response.data;
+              console.log(response.data);
+              // for(var i=0;i<$scope.reservationsObjects.flights.length;i++){
+              // $scope.reservationsObjects.flights[i].departureDateTime =x ;
+              //  $scope.reservationsObjects.flights[i].arrivalDateTime =y ;
+
+              // departureTime=moment(x).format('hh:mm');
+              // arrivalTime=moment(y).format('hh:mm');
+              // date=moment(x).format('YYYY-MM-DD');
+
+              // $scope.reservationsObjects.flights[i].push({
+              //   "departureTime":departureTime,
+              //    "arrivalTime" :arrivalTime,
+              //    "date" : date
+              // });
+
+
+              // }
+
+              $scope.toggle=true;
+
+      }
+       if(flag==false){
             $scope.toggle=false;
-            
+            console.log("ticket not found");
+
            }
-        
+
+    });
+
+
+
+
+      // for(i=0;i<$scope.reservations.length;i++){
+      //        if($scope.reservations[i].reservationCode==reservationNumberValue){
+      //         flag=true;
+      //         $scope.reservationsObjects=$scope.reservations[i];
+      //         $scope.toggle=true;
+      //         break;
+
+      //        }
+      //      }
+      //      if(flag==false){
+      //       $scope.toggle=false;
+
+      //      }
+
 };
 
 
