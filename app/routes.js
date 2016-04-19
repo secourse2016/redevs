@@ -26,23 +26,23 @@ module.exports = function(app,mongo) {
 
 
 
-    app.use(function(req, res, next){
+    // app.use(function(req, res, next){
 
-        var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-        console.log("{ TOKEN } ===> ", token);
-        var jwtSecret = process.env.JWTSECRET;
+    //     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
+    //     console.log("{ TOKEN } ===> ", token);
+    //     var jwtSecret = process.env.JWTSECRET;
 
-        try {
-            var payload = jwt.verify(token, jwtSecret);
-            req.payload = payload;
-            next();
-        }
-        catch(err){
-            console.log('ERROR: JWT Error reason: ' + err);
-           // res.status(403).sendFile(path.join(__dirname, 'public', '403.html'));
-        }
+    //     try {
+    //         var payload = jwt.verify(token, jwtSecret);
+    //         req.payload = payload;
+    //         next();
+    //     }
+    //     catch(err){
+    //         console.log('ERROR: JWT Error reason: ' + err);
+    //        // res.status(403).sendFile(path.join(__dirname, 'public', '403.html'));
+    //     }
 
-    });
+    // });
 
 
 
