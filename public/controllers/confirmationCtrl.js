@@ -34,7 +34,7 @@ $scope.calculateAdultCost = function() {
   }
 
   $scope.adultCost = price;
-  return price;
+//  return price;
 
 }
 
@@ -49,7 +49,7 @@ $scope.calculateChildrenCost = function() {
   }
 
   $scope.childrenCost = price;
-  return price;
+//  return price;
 }
 
 $scope.totalAmount = $scope.calculateAdultCost() + $scope.calculateChildrenCost();
