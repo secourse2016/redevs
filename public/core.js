@@ -1,6 +1,14 @@
 
 /* Create Angular App Instance */
-App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate','ui.checkbox','angularMoment']);
+App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate','ui.checkbox','angularMoment','angular-stripe']);
+/**
+ * Stripe config
+ */
+
+App.config(function (stripeProvider) {
+    stripeProvider.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+  });
+
 
 /**
  * Angular Routes
