@@ -47,7 +47,7 @@
  <div class="form-group">
     <label class="control-label col-sm-2" for="pwd">Expiry Date:<small>mm/yy</small></label>
     <div class="col-sm-10">
-        <select name='expireMM' id='expireMM'>
+        <select name='expireMM' id='expireMM' ng-model='month'>
     <option value=''>Month</option>
     <option value='01'>Janaury</option>
     <option value='02'>February</option>
@@ -62,11 +62,14 @@
     <option value='11'>November</option>
     <option value='12'>December</option>
 </select>
-<select name='expireYY' id='expireYY'>
+<select name='expireYY' id='expireYY' ng-model='year'>
     <option value=''>Year</option>
-    <option value='10'>2010</option>
-    <option value='11'>2011</option>
-    <option value='12'>2012</option>
+    <option value='16'>2016</option>
+    <option value='17'>2017</option>
+    <option value='18'>2018</option>
+    <option value='19'>2019</option>
+    <option value='20'>2020</option>
+    <option value='21'>2021</option>
 </select>
 <!--<input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>-->
     </div>
@@ -82,4 +85,3 @@
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="submit()">Confirm Payment</button>
 
             </div>
-      
