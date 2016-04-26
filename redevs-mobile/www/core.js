@@ -22,17 +22,38 @@ App=angular.module('deltaAppMobile', ['ionic'])
 
 
     .state('landingPage', {
-    url: '/',
-    templateUrl: 'templates/landingPage.html',
-      controller : 'mainCtrl'
-  });  //remove this semi column to add a new state......
+    url: '/landingPage',
 
-  // Each tab has its own nav history stack:
+     templateUrl: 'templates/landingPage.html',
+      controller:'mainCtrl'
+  })
+    .state ('landingPage.oneWayTrip',{
+      url: '/oneway',
+      views:{
+        'tab-oneway':{
+          templateUrl: 'templates/landingPage-oneWay.html',
+          controller : 'mainCtrl'
+        }
+      }
+
+    })
+    .state ('landingPage.twoWayTrip',{
+      url: '/twoway',
+      views: {
+        'tab-twoway': {
+          templateUrl: 'templates/landingPage-twoWayTrip.html',
+          controller: 'mainCtrl'
+        }
+      }
+
+
+    });
+
 
 
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/#');
+  $urlRouterProvider.otherwise('/landingPage');
 
 });

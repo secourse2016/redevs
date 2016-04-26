@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+.twoWayTrip {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/2wayTrip.jpeg');
+}

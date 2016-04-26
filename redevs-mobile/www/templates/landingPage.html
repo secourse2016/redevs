@@ -1,24 +1,14 @@
 
-<ion-view title="Booking">
 
-  <ion-content class="has-header has-subheader">
-
-    <div class="list list-inset">
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Flying From:</span>
-        <input type="text" placeholder="CAI" ng-model="originAirport">
-      </label>
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Flying To:</span>
-        <input type="text" placeholder="FRA" ng-model="destinationAirport">
-      </label>
-    </div>
+  <ion-tab title="One Way Trip" icon-off="ion-android-plane" icon-on="ion-android-plane" href="#/landingPage/oneway">
+    <ion-nav-view name="tab-oneway"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="Two Way Trip" icon-off="ion-android-sync" icon-on="ion-android-sync" href="#/landingPage/twoway">
+    <ion-nav-view name="tab-twoway"></ion-nav-view>
+  </ion-tab>
 
-    <button class="button button-block button-calm"
-            ng-click="SearchFlights(originAirport, destinationAirport)">Search</button>
-    </div>
-  </ion-content>
 
-</ion-view>
+</ion-tabs>
