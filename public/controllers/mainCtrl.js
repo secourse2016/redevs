@@ -78,8 +78,10 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-        FlightsSrv.setClass($scope.radioModel);
-        FlightsSrv.setTripType($scope.radioModel2);
+      FlightsSrv.setClass($scope.radioModel);
+      FlightsSrv.setTripType($scope.radioModel2);
+      FlightsSrv.setNumberOfChildren($scope.childrenInput);
+      FlightsSrv.setNumberOfAdults($scope.adultsInput);
         //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };

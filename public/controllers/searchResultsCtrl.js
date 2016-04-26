@@ -11,11 +11,8 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.flag = false;
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
-
   $scope.FlightDetails.DestinationAirport = FlightsSrv.getSelectedDestinationAirport();
-
   $scope.FlightDetails.FlightDepartureDate = FlightsSrv.getSelectedDepartureDate();
-
   $scope.FlightDetails.FlightArrivaleDate = FlightsSrv.getSelectedArrivalDate();
 
 
@@ -80,7 +77,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          array.push($scope.gflight);
          array.push($scope.rflight);
          FlightsSrv.setFlights(array);
-         $location.url('/flightDetails');
+         $location.url('/information');
        };
 
 $scope.convert = function(date){
