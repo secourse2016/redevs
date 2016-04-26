@@ -48,7 +48,7 @@ module.exports = function(app,mongo) {
 
 
     //Round-Trip API
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class', function(req, res) {
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:class/:seats', function(req, res) {
 
 
             flights.getFlightsFromDB(function(err,result){
@@ -58,12 +58,13 @@ module.exports = function(app,mongo) {
                 var originDate = req.param('departingDate');
                 var destinationDate = req.param('returningDate');
                 var classs = req.param('class');
+                var seats=req.param("seats");
 
                 var origin = req.param('origin');
                 var destination = req.param('destination');
 
 
-                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,destinationDate);
+                var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,seats,destinationDate);
                 var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
                 res.send(getFlightswithAirports);
             }
@@ -72,7 +73,7 @@ module.exports = function(app,mongo) {
 
     });
     //SINGLE WAY API
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:class', function(req, res) {
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:class/:seats', function(req, res) {
 
             flights.getFlightsFromDB(function(err,result){
                 if(err)
@@ -82,9 +83,10 @@ module.exports = function(app,mongo) {
                     var classs = req.param('class');
                     var origin = req.param('origin');
                     var destination = req.param('destination');
+                    var seats =req.param("seats");
 
 
-                    var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs);
+                    var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,seats);
                     var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
                     res.send(getFlightswithAirports);
                 }

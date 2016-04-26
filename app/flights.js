@@ -250,7 +250,7 @@ function getFlightsFromDB(cb) {
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
-function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
+function getFlightsWithDates(array, originDate, classs,seats, destinationDate  ) {
     var count=0;
     console.log(classs);
     var res = {
@@ -266,6 +266,7 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
     for (var n = 0; n < array.length; n++) {
         var flight = array[n];
         var flightNumber = flight.flightNumber;
+        var objectID=flight._id;
         var aircraft = flight.aircraft;
         var departureDateTime = flight.departureDateTime;
         var arrivalDateTime = flight.arrivalDateTime;
@@ -281,7 +282,7 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
         var aircraftType = aircraft[0];
         var aircraftModel = aircraft[1];
 
-        if (arguments.length === 3) {
+        if (arguments.length === 4) {
             console.log(array.length);
             console.log(n);
             console.log(classs);
@@ -292,11 +293,12 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
 
 
 
-                if (classs === "EconomyClass") {
+                if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
 
                         console.log("hena");
 
                     res.outgoingFlights.push({
+                        "flightId": objectID,
                         "flightNumber": flightNumber,
                         "aircraftType": aircraftType,
                         "aircraftModel": aircraftModel,
@@ -312,8 +314,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                     });
                 } else {
 
-                    if (classs === "BusinessClass") {
+                    if((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
                         res.outgoingFlights.push({
+                            "flightId": objectID,
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
@@ -329,8 +332,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                         });
 
                     } else {
-                        if (classs === "FirstClass") {
+                        if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
                             res.outgoingFlights.push({
+                                "flightId": objectID,
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
@@ -355,19 +359,17 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
 
 
         }
-        if (arguments.length === 4) {
+        if (arguments.length === 5) {
 
 
 
             if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
-                console.log(moment(flight.departureDateTime).format('YYYY-MM-DD'));
-
-
-                console.log("found date");
 
 
 
-                if (classs === "EconomyClass") {
+
+
+                if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
 
 
 
@@ -375,6 +377,7 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
 
 
                     resRT.outgoingFlights.push({
+                        "flightId": objectID,
                         "flightNumber": flightNumber,
                         "aircraftType": aircraftType,
                         "aircraftModel": aircraftModel,
@@ -390,8 +393,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                     });
                 } else {
 
-                    if (classs === "BusinessClass") {
+                    if ((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
                         resRT.outgoingFlights.push({
+                            "flightId": objectID,
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
@@ -407,8 +411,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                         });
 
                     } else {
-                        if (classs === "FirstClass") {
+                        if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
                             resRT.outgoingFlights.push({
+                                "flightId": objectID,
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
@@ -432,11 +437,12 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
             } else {
                 if (destinationDate=== moment(flight.departureDateTime).format('YYYY-MM-DD')) {
 
-                    if (classs === "EconomyClass") {
+                    if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
 
 
 
                         resRT.returnFlights.push({
+                            "flightId": objectID,
                             "flightNumber": flightNumber,
                             "aircraftType": aircraftType,
                             "aircraftModel": aircraftModel,
@@ -452,8 +458,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                         });
                     } else {
 
-                        if (classs === "BusinessClass") {
+                        if ((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
                             resRT.returnFlights.push({
+                                "flightId": objectID,
                                 "flightNumber": flightNumber,
                                 "aircraftType": aircraftType,
                                 "aircraftModel": aircraftModel,
@@ -469,8 +476,9 @@ function getFlightsWithDates(array, originDate, classs, destinationDate  ) {
                             });
 
                         } else {
-                            if (classs === "FirstClass") {
+                            if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
                                 resRT.returnFlights.push({
+                                    "flightId": objectID,
                                     "flightNumber": flightNumber,
                                     "aircraftType": aircraftType,
                                     "aircraftModel": aircraftModel,
