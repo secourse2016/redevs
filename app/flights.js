@@ -698,7 +698,8 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                         }
                     }
                 }
-
+                flight1[0].economyClassSeats= flight1[0].economyClassSeats-adults.length - children.length
+                flight2[0].economyClassSeats= flight2[0].economyClassSeats-adults.length - children.length
                 db.db().collection('tickets').insertOne({
                     "reservationCode":time,
                     "numberOfAdults": adults.length,
@@ -757,7 +758,8 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                             }
                         }
                     }
-
+                    flight1[0].businessClassSeats= flight1[0].businessClassSeats-adults.length - children.length
+                    flight2[0].businessClassSeats= flight2[0].businessClassSeats-adults.length - children.length
                     db.db().collection('tickets').insertOne({
                         "reservationCode":time,
                         "numberOfAdults": adults.length,
@@ -817,7 +819,8 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                                 }
                             }
                         }
-
+                        flight1[0].firstClassSeats= flight1[0].firstClassSeats-adults.length - children.length
+                        flight2[0].firstClassSeats= flight2[0].firstClassSeats-adults.length - children.length
                         db.db().collection('tickets').insertOne({
                             "reservationCode": time,
                             "numberOfAdults": adults.length,
@@ -868,7 +871,7 @@ var time = moment().unix();
                 }
             }
 
-
+            flight1[0].economyClassSeats= flight1[0].economyClassSeats-adults.length - children.length
             db.db().collection('tickets').insertOne({
                 "reservationCode": time,
                 "numberOfAdults": adults.length,
@@ -910,7 +913,7 @@ var time = moment().unix();
                     }
                 }
 
-
+                flight1[0].businessClassSeats= flight1[0].businessClassSeats-adults.length - children.length
                 db.db().collection('tickets').insertOne({
                     "reservationCode":time,
                     "numberOfAdults": adults.length,
@@ -950,7 +953,7 @@ var time = moment().unix();
                     }
                 }
 
-
+                flight1[0].firstClassSeats= flight1[0].firstClassSeats-adults.length - children.length
                 db.db().collection('tickets').insertOne({
                     "reservationCode": time,
                     "numberOfAdults": adults.length,
