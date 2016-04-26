@@ -2,6 +2,7 @@ var db = require('./db');
 var moment = require('moment');
 var flightsArray = [];
 var flights = require('./flights.js');
+var stripe =require('stripe')(process.env.STRIPESECRETKEY);
 
 
 // defining the seed function then export
@@ -632,7 +633,8 @@ function reservationSearch(resNum, cb) {
 }
 
 
-function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap, businessClassSeatMap, firstClassSeatMap, callback) {
+function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap, businessClassSeatMap, firstClassSeatMap,
+  economyClassSeats,businessClassSeats,firstClassSeats, callback) {
 
     db.db().collection('flights').updateOne(
         {
@@ -643,7 +645,11 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
             $set: {
                 "economyClassSeatMap": economyClassSeatMap,
                 "businessClassSeatMap": businessClassSeatMap,
-                "firstClassSeatMap": firstClassSeatMap
+                "firstClassSeatMap": firstClassSeatMap,
+                "economyClassSeats": economyClassSeats,
+                "firstClassSeats": firstClassSeats,
+                "businessClassSeats":businessClassSeats
+
 
             }
 
@@ -655,11 +661,12 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 }
 
 
-function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
+function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children,token, cb) {
  var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) {
         getFlightByID(flights[1].flightNumber, flights[1].departureDateTime, function (err, flight2) {
             if (classs === "EconomyClass") {
+
 
                 for (var i = 0; i < adults.length; i++) {
 
@@ -711,8 +718,12 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                 }, function (err, result) {
 
                     console.log("Reservation done");
-                    updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                        updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
+                    updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap,
+                       flight1[0].firstClassSeatMap,
+                      flight1[0].departureDateTime, flight1[0].economyClassSeats, flight1[0].businessClassSeats, flight1[0].firstClassSeats, function () {
+                        updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap,
+                           flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap,
+                            flight2[0].departureDateTime, flight2[0].economyClassSeats, flight2[0].businessClassSeats, flight2[0].firstClassSeats,function () {
                             console.log("FLights Updated");
                         });
                     });
@@ -771,8 +782,12 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                     }, function (err, result) {
 
                         console.log("Reservation done");
-                        updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                            updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
+                        updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap,
+                           flight1[0].firstClassSeatMap,
+                          flight1[0].departureDateTime, flight1[0].economyClassSeats, flight1[0].businessClassSeats, flight1[0].firstClassSeats, function () {
+                            updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap,
+                               flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap,
+                                flight2[0].departureDateTime, flight2[0].economyClassSeats, flight2[0].businessClassSeats, flight2[0].firstClassSeats,function () {
                                 console.log("FLights Updated");
                             });
                         });
@@ -832,8 +847,12 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                         }, function (err, result) {
 
                             console.log("Reservation done");
-                            updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-                                updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap, flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap, function () {
+                            updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap,
+                               flight1[0].firstClassSeatMap,
+                              flight1[0].departureDateTime, flight1[0].economyClassSeats, flight1[0].businessClassSeats, flight1[0].firstClassSeats, function () {
+                                updateFlights(db, flight2[0].flightNumber, flight2[0].departureDateTime, flight2[0].economyClassSeatMap,
+                                   flight2[0].businessClassSeatMap, flight2[0].firstClassSeatMap,
+                                    flight2[0].departureDateTime, flight2[0].economyClassSeats, flight2[0].businessClassSeats, flight2[0].firstClassSeats,function () {
                                     console.log("FLights Updated");
                                 });
                             });
@@ -848,128 +867,217 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
 
 }
 
-function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children, cb) {
+function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children,token, cb) {
 var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) { // same should be done as above regarding the classes
         if (classs === "EconomyClass") {
-            for (i = 0; i < adults.length; i++) {
-                for (j = 0; j < flight1[0].economyClassSeatMap.length; j++) {
-                    if (flight1[0].economyClassSeatMap[j].isReserved === "false") {
-                        adults[i].outgoingSeatNumber = flight1[0].economyClassSeatMap[j].seatNumber;
-                        flight1[0].economyClassSeatMap[j].isReserved = "true";
-                        break;
-                    }
-                }
+          var charge = stripe.charges.create({
+            amount:(flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100,
+            currency:"usd",
+            source:token,
+            description:"oneWayEconomy"
+          },function(err,charge){
+            if (err ){
+              console.log(err);
+            }else{
+
+              for (i = 0; i < adults.length; i++) {
+                  for (j = 0; j < flight1[0].economyClassSeatMap.length; j++) {
+                      if (flight1[0].economyClassSeatMap[j].isReserved === "false") {
+                          adults[i].outgoingSeatNumber = flight1[0].economyClassSeatMap[j].seatNumber;
+                          flight1[0].economyClassSeatMap[j].isReserved = "true";
+                          break;
+                      }
+                  }
+              }
+              for (i = 0; i < children.length; i++) {
+                  for (j = 0; j < flight1[0].economyClassSeatMap.length; j++) {
+                      if (flight1[0].economyClassSeatMap[j].isReserved === "false") {
+                          children[i].outgoingSeatNumber = flight1[0].economyClassSeatMap[j].seatNumber;
+                          flight1[0].economyClassSeatMap[j].isReserved = "true";
+                          break;
+                      }
+                  }
+              }
+
+              flight1[0].economyClassSeats= flight1[0].economyClassSeats-adults.length - children.length
+              db.db().collection('tickets').insertOne({
+                  "reservationCode": time,
+                  "numberOfAdults": adults.length,
+                  "adults": adults,
+                  "numberOfChildren": children.length,
+                  "children": children,
+                  "flights": [flight1[0]],
+                  "creditCardNumber": creditCardNumber
+              }, function (err, result) {
+
+                  console.log("Reservation done");
+                  updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap,
+                     flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap,
+                     flight1[0].economyClassSeats,
+                        flight1[0].businessClassSeats, flight1[0].firstClassSeats,
+                      function () {
+
+                          console.log("FLights Updated");
+
+                  });
+                  cb(time);
+              });
             }
-            for (i = 0; i < children.length; i++) {
-                for (j = 0; j < flight1[0].economyClassSeatMap.length; j++) {
-                    if (flight1[0].economyClassSeatMap[j].isReserved === "false") {
-                        children[i].outgoingSeatNumber = flight1[0].economyClassSeatMap[j].seatNumber;
-                        flight1[0].economyClassSeatMap[j].isReserved = "true";
-                        break;
-                    }
-                }
-            }
+          });
 
-            flight1[0].economyClassSeats= flight1[0].economyClassSeats-adults.length - children.length
-            db.db().collection('tickets').insertOne({
-                "reservationCode": time,
-                "numberOfAdults": adults.length,
-                "adults": adults,
-                "numberOfChildren": children.length,
-                "children": children,
-                "flights": [flight1[0]],
-                "creditCardNumber": creditCardNumber
-            }, function (err, result) {
 
-                console.log("Reservation done");
-                updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-                        console.log("FLights Updated");
 
-                });
-                cb(time);
-            });
+
+
+
+
+
+
+
+
+
 
         }
         else {
             if (classs === "BusinessClass") {
-                for (i = 0; i < adults.length; i++) {
-                    for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
-                        if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
-                            adults[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
-                            flight1[0].businessClassSeatMap[j].isReserved = "true";
-                            break;
-                        }
-                    }
+
+              var charge = stripe.charges.create({
+                amount:(flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100,
+                currency:"usd",
+                source:token,
+                description:"oneWayEconomy"
+              },function(err,charge){
+                if (err ){
+                  console.log(err);
+                }else{
+
+                  for (i = 0; i < adults.length; i++) {
+                      for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
+                          if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
+                              adults[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
+                              flight1[0].businessClassSeatMap[j].isReserved = "true";
+                              break;
+                          }
+                      }
+                  }
+                  for (i = 0; i < children.length; i++) {
+                      for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
+                          if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
+                              children[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
+                              flight1[0].businessClassSeatMap[j].isReserved = "true";
+                              break;
+                          }
+                      }
+                  }
+
+                  flight1[0].businessClassSeats= flight1[0].businessClassSeats-adults.length - children.length
+                  db.db().collection('tickets').insertOne({
+                      "reservationCode":time,
+                      "numberOfAdults": adults.length,
+                      "adults": adults,
+                      "numberOfChildren": children.length,
+                      "children": children,
+                      "flights": [flight1[0]],
+                      "creditCardNumber": creditCardNumber
+                  }, function (err, result) {
+
+                      console.log("Reservation done");
+                      updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap,
+                         flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap,
+                         flight1[0].economyClassSeats,
+                            flight1[0].businessClassSeats, flight1[0].firstClassSeats,
+                          function () {
+
+                              console.log("FLights Updated");
+
+                      });
+                      cb(time);
+                  });
+
+
                 }
-                for (i = 0; i < children.length; i++) {
-                    for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
-                        if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
-                            children[i].outgoingSeatNumber = flight1[0].businessClassSeatMap[j].seatNumber;
-                            flight1[0].businessClassSeatMap[j].isReserved = "true";
-                            break;
-                        }
-                    }
-                }
 
-                flight1[0].businessClassSeats= flight1[0].businessClassSeats-adults.length - children.length
-                db.db().collection('tickets').insertOne({
-                    "reservationCode":time,
-                    "numberOfAdults": adults.length,
-                    "adults": adults,
-                    "numberOfChildren": children.length,
-                    "children": children,
-                    "flights": [flight1[0]],
-                    "creditCardNumber": creditCardNumber
-                }, function (err, result) {
 
-                    console.log("Reservation done");
-                    updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-                            console.log("FLights Updated");
+              });
 
-                    });
-                    cb(time);
-                });
+
+
+
+
+
+
+
+
+
+
+
+
             }
+
+
             else {
-                for (i = 0; i < adults.length; i++) {
-                    for (j = 0; j < flight1[0].firstClassSeatMap.length; j++) {
-                        if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
-                            adults[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
-                            flight1[0].firstClassSeatMap[j].isReserved = "true";
-                            break;
-                        }
-                    }
+
+
+
+              var charge = stripe.charges.create({
+                amount:(flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100,
+                currency:"usd",
+                source:token,
+                description:"oneWayEconomy"
+              },function(err,charge){
+                if (err ){
+                  console.log(err);
+                }else{
+                  for (i = 0; i < adults.length; i++) {
+                      for (j = 0; j < flight1[0].firstClassSeatMap.length; j++) {
+                          if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
+                              adults[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
+                              flight1[0].firstClassSeatMap[j].isReserved = "true";
+                              break;
+                          }
+                      }
+                  }
+                  for (i = 0; i < children.length; i++) {
+                      for (j = 0; j < flight1[0].firstClassSeatMap.length; j++) {
+                          if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
+                              children[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
+                              flight1[0].firstClassSeatMap[j].isReserved = "true";
+                              break;
+                          }
+                      }
+                  }
+
+                  flight1[0].firstClassSeats= flight1[0].firstClassSeats-adults.length - children.length
+                  db.db().collection('tickets').insertOne({
+                      "reservationCode": time,
+                      "numberOfAdults": adults.length,
+                      "adults": adults,
+                      "numberOfChildren": children.length,
+                      "children": children,
+                      "flights": [flight1[0]],
+                      "creditCardNumber": creditCardNumber
+                  }, function (err, result) {
+
+                      console.log("Reservation done");
+                      updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap,
+                         flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap,
+                         flight1[0].economyClassSeats,
+                            flight1[0].businessClassSeats, flight1[0].firstClassSeats,
+                          function () {
+
+                              console.log("FLights Updated");
+
+                      });
+                      cb(time);
+                  });
+
+
                 }
-                for (i = 0; i < children.length; i++) {
-                    for (j = 0; j < flight1[0].firstClassSeatMap.length; j++) {
-                        if (flight1[0].firstClassSeatMap[j].isReserved === "false") {
-                            children[i].outgoingSeatNumber = flight1[0].firstClassSeatMap[j].seatNumber;
-                            flight1[0].firstClassSeatMap[j].isReserved = "true";
-                            break;
-                        }
-                    }
-                }
+              });
 
-                flight1[0].firstClassSeats= flight1[0].firstClassSeats-adults.length - children.length
-                db.db().collection('tickets').insertOne({
-                    "reservationCode": time,
-                    "numberOfAdults": adults.length,
-                    "adults": adults,
-                    "numberOfChildren": children.length,
-                    "children": children,
-                    "flights": [flight1[0]],
-                    "creditCardNumber": creditCardNumber
-                }, function (err, result) {
-
-                    console.log("Reservation done");
-                    updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
-
-                    });
-                    cb(time);
-                });
 
             }
         }

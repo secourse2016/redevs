@@ -158,19 +158,20 @@ module.exports = function(app,mongo) {
     var adults = req.body.adults;
     var creditCardNumber = req.body.creditCardNumber;
     var classs = req.body.classs;
+    var token = req.body.token;
     console.log(classs);
     console.log(tripType);
 
     if(tripType==='RoundTrip'){
       console.log(adults);
-       flights.reserveRoundTripTicket(classs,flight,creditCardNumber,adults,children,function(time){
+       flights.reserveRoundTripTicket(classs,flight,creditCardNumber,adults,children,token,function(time){
         var object = {
           "time":time
         }
         res.json(object);
       });
     }else{
-      flights.reserveOneWayTicket(classs,flight,creditCardNumber,adults,children,function(time){
+      flights.reserveOneWayTicket(classs,flight,creditCardNumber,adults,children,token,function(time){
         var object = {
           "time":time
         }
