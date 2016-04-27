@@ -20,7 +20,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.dateOptions = {
 
         formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
+        maxDate: new Date(2020, 4, 31),
         minDate: new Date(),
         startingDay: 1
     };
@@ -78,6 +78,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+
       FlightsSrv.setClass($scope.radioModel);
       FlightsSrv.setTripType($scope.radioModel2);
       FlightsSrv.setNumberOfChildren($scope.childrenInput);
