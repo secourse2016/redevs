@@ -1123,6 +1123,15 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
                       }
 
+                      function getFlightByObjectId(id,cb){
+                        var collection  = db.db().collection('flights');
+
+                        collection.findOne({_id:id}).then(function(doc){
+                          cb(doc);
+                        });
+                      }
+
+                      exports.getFlightByObjectId=getFlightByObjectId;
                       exports.getTicketsFromDB = getTicketsFromDB;
                       exports.reservationSearch = reservationSearch;
                       exports.reserveRoundTripTicket = reserveRoundTripTicket;
