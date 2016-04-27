@@ -35,8 +35,27 @@
         <ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>
         <ion-item >Number Of Children</ion-item>
         <ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>
-        <ion-item >{{item}}</ion-item>
-        <ion-item ng-repeat="item in items">{{item}}</ion-item>
+        
+        
+        <div ng-repeat="flight in reservationsObjects.flights">
+       
+        <ion-item >Flight Number</ion-item>
+        <ion-item >{{flight.flightNumber}}</ion-item>
+        <ion-item >Date</ion-item>
+        <ion-item >{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</ion-item>
+        <ion-item >From</ion-item>
+        <ion-item >{{flight.origin}}</ion-item>
+        <ion-item >To</ion-item>
+        <ion-item >{{flight.destination}}</ion-item>
+        <ion-item >Departure Time</ion-item>
+        <ion-item >{{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
+        <ion-item >Arrival Time</ion-item>
+        <ion-item >{{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
+        
+        
+        
+        
+        </div>
       </ion-list>
 
 </body>
