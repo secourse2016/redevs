@@ -16,3 +16,12 @@ body {
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.custom-icon {
+  
+  color : blue;
+}
+.custom-icon {
+  
+  color : calm;
+}
