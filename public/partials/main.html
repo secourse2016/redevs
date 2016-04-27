@@ -58,7 +58,7 @@
                        ng-model="selectedOrigin"
                        uib-typeahead="airport.city for airport in Airports | filter:$viewValue | limitTo:10"
                        class="form-control",
-                       typeahead-on-select="SetOriginAirport($item.city)">
+                       typeahead-on-select="SetOriginAirport($item.iata)">
 
                 <p class="input-group">
                     <input type="text"
@@ -98,7 +98,7 @@
                        ng-model="selectedDestination"
                        uib-typeahead="airport.city for airport in Airports | filter:$viewValue | limitTo:10"
                        class="form-control",
-                       typeahead-on-select="SetDestinationAirport($item.city)">
+                       typeahead-on-select="SetDestinationAirport($item.iata)">
 
 
                 <p class="input-group">
@@ -164,8 +164,8 @@
 
 
                             <div class="btn-group">
-                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'EconomyClass'" uncheckable>Economy Class</label>
-                                <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'BusinessClass'" uncheckable>Business Class</label>
+                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'economy'" uncheckable>Economy Class</label>
+                                <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'business'" uncheckable>Business Class</label>
                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'FirstClass'" uncheckable>First Class</label>
 
 
