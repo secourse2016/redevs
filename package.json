@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-momentjs": "latest",
+    "angular-stripe": "^4.2.12",
     "body-parser": "~1.13.2",
     "dotenv": "latest",
     "express": "~4.13.1",
@@ -15,6 +16,10 @@
     "mongodb": "latest",
     "ms": "^0.7.1",
     "nodemon": "latest",
+    "underscore": "latest",
+    "stripe": "latest",
     "underscore": "latest"
+
+
   }
 }
