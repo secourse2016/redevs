@@ -4,6 +4,7 @@ var moment  = require('moment');
 var flights = require('./flights.js');
 var jwt = require("jsonwebtoken");
 var path    = require('path');
+var booking = require('./booking.js');
 
 module.exports = function(app,mongo) {
 
