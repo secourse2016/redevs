@@ -55,7 +55,9 @@ module.exports = function(app,mongo) {
             if(err)
             return err;
         else {
+
                 var originDate = req.param('departingDate');
+                console.log(originDate);
                 var destinationDate = req.param('returningDate');
                 var classs = req.param('class');
 
