@@ -1,6 +1,20 @@
-/* Empty. Add your own CSS if you like */
-.twoWayTrip {
-  background-repeat: no-repeat;
-  background-position:center;
-  background-image: url('../img/2wayTrip.jpeg');
+.pane {
+  background: url(../background-delta.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
+
+
+#input_1{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#input_1:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+

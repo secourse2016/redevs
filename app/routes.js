@@ -4,6 +4,7 @@
     var flights = require('./flights.js');
     var jwt = require("jsonwebtoken");
     var path    = require('path');
+    var http = require('http');
 
 module.exports = function(app,mongo) {
 
@@ -97,6 +98,117 @@ module.exports = function(app,mongo) {
 
 
 });
+
+    ///API BY-ACCESS EL SERVERS EL TANYA W BY-ACCESSNA
+    //Round Trip
+
+    app.get('/api/flights/searchAirlines/:origin/:destination/:departingDate/:returningDate/:class/:seats',function(req,res){
+
+        var airlines = [ '52.25.15.124','ec2-52-90-41-197.compute-1.amazonaws.com'];
+
+        var departingDate = req.param('departingDate');
+        var returningDate = req.param('returningDate');
+        var classs = req.param('class');
+        var seats=req.param("seats");
+
+        var origin = req.param('origin');
+        var destination = req.param('destination');
+
+        var getOtherAirlines = function(cb, origin, destination, date, flightClass, i) {
+            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk';
+
+
+            if(i < airlines.length){
+
+
+                // Specify the options of the GET request
+                var options = {
+                    host: airlines[i],
+                    path: '/api/flights/search/'+origin+'/'+destination+'/'+date+'/'+flightClass+'/'+seats+'?wt='+token,
+                    headers : {'x-access-token' : token}
+                };
+
+
+                // Send the GET request to the current airline [i]
+                http.get(options, function(res) {
+
+                    var flightsData = "";
+                    res.on('data',function(data){
+                            flightsData += data;
+                        })
+                        .on('end',function(){
+
+                            // Make sure that the returned data are in JSON format
+                            var validJSON = true;
+                            try{
+                                flightsData = JSON.parse(flightsData);
+                            }
+                            catch(e)
+                            {
+                                validJSON = false;
+                            }
+
+                            // Get the flights of the next airlines, starting from i+1
+                            getOtherAirlines(function(newFlights){
+
+                                // Only concat JSON data that are in valid format
+                                if(validJSON && flightsData.outgoingFlights)
+                                    newFlights.outgoingFlights = newFlights.outgoingFlights.concat(flightsData.outgoingFlights);
+
+                                // Backtrack and return the current list of flights to the previous call
+                                cb(newFlights);
+
+                            }, origin, destination, date, flightClass, i+1)
+
+
+
+                        });
+                }).on('error',function(e){
+
+                    console.log('ERROR: '+e);
+
+                    /**
+                     * An error happened in the request to the current airline. So we will ignore the
+                     current flightsData and proceed with our recursion to the next airline
+                     */
+                    getOtherAirlines(function(newFlights){
+
+                        // Backtrack and return the current list of flights to the previous call
+                        cb(newFlights);
+
+                    }, origin, destination, date, flightClass, i+1)
+
+                }).setTimeout(3000,function(){
+                    /**
+                     Adding this function to make sure that no airline takes forever to return data.
+                     the abort() function below terminates the http request and executes  the
+                     above .on('error') function
+                     Now the maximum allowed time for each individual airline to return data is 3 seconds
+                     You can modify this number according to your airline needs, but make sure it's not too large
+                     or too small.
+                     */
+                    this.abort();
+                });
+            }
+            else {
+                // We reached the base case ==> (i = airlines.length) ==> No more airlines, return empty array
+                cb({outgoingFlights:[]});
+            }
+        };
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
 
 //API BY ID
     app.get('/api/flights/search/:flightNumber/:departureDateTime', function(req, res){

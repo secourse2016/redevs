@@ -1,0 +1,81 @@
+
+<ion-view view-title="Round Trip">
+  <ion-content class="padding">
+
+    <div class="list card">
+    <div class="row">
+      <div class="col col-40 col-offset-10"><div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" placeholder="From">
+        </label>
+      </div></div>
+      <div class="col col-40 "><div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-location placeholder-icon"></i>
+          <input type="text" placeholder="To">
+        </label>
+      </div></div>
+    </div>
+    <div class="row ">
+      <div class="col col-40 col-offset-10">
+
+        <label class="item item-input">
+          <i class="icon ion-calendar"></i>
+
+          <input type="date" placeholder="From Date">
+        </label>
+      </div>
+      <div class="col col-40 ">
+
+        <label class="item item-input" >
+          <i class="icon ion-calendar"></i>
+          <input type="date" placeholder="Return Date">
+        </label>
+      </div>
+
+    </div>
+    <div class="list">
+
+        <h5>
+          Number Of Adults
+        </h5>
+        <div class="item range range-positive">
+          <i class="ion-ios-person"></i>
+          <input type="range" name="adults" min="0" max="10" value="1" step="1" ng-model="adults.count">
+          <i class="ion-ios-people"></i>
+          {{adults.count}}
+
+        </div>
+
+    </div>
+
+    <div class="list">
+
+        <h5>
+          Number Of Children
+        </h5>
+        <div class="item range range-positive">
+          <i class="ion-happy-outline"></i>
+          <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="children.count">
+          <i class="ion-happy"></i>
+          <i class="ion-happy"></i>
+          <i class="ion-happy"></i>
+          {{children.count}}
+
+
+      </div>
+
+
+    </div>
+
+    </div>
+
+
+
+
+
+    </div>
+
+  </ion-content>
+</ion-view>

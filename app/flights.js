@@ -250,8 +250,8 @@ function getFlightsFromDB(cb) {
 //getFlights within a certain date
 //if 3 arguments return 2 way trip
 //if 2 arguments return 1 way trip
-function getFlightsWithDates(array, originDate, classs,seats, destinationDate  ) {
-    var count=0;
+function getFlightsWithDates(array, originDate, classs, seats, destinationDate) {
+    var count = 0;
     console.log(classs);
     var res = {
         "outgoingFlights": []
@@ -266,7 +266,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
     for (var n = 0; n < array.length; n++) {
         var flight = array[n];
         var flightNumber = flight.flightNumber;
-        var objectID=flight._id;
+        var objectID = flight._id;
         var aircraft = flight.aircraft;
         var departureDateTime = flight.departureDateTime;
         var arrivalDateTime = flight.arrivalDateTime;
@@ -287,15 +287,15 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
             console.log(n);
             console.log(classs);
             console.log((moment(flight.departureDateTime).format('YYYY-MM-DD')));
-            console.log(originDate);
+            console.log(moment(parseInt(originDate)).format('YYYY-MM-DD'));
 
-            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
+            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === moment(parseInt(originDate)).format('YYYY-MM-DD')) {
 
+                console.log('found date');
 
+                if ((classs === "economy" ) && flight.economyClassSeats >= seats) {
 
-                if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
-
-                        console.log("hena");
+                    console.log("hena");
 
                     res.outgoingFlights.push({
                         "flightId": objectID,
@@ -314,7 +314,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                     });
                 } else {
 
-                    if((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
+                    if ((classs === "business") && flight.businessClassSeats >= seats) {
                         res.outgoingFlights.push({
                             "flightId": objectID,
                             "flightNumber": flightNumber,
@@ -332,7 +332,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                         });
 
                     } else {
-                        if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
+                        if ((classs === "FirstClass") && flight.firstClassSeats >= seats) {
                             res.outgoingFlights.push({
                                 "flightId": objectID,
                                 "flightNumber": flightNumber,
@@ -357,23 +357,14 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
             }
 
 
-
         }
         if (arguments.length === 5) {
 
 
-
-            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === originDate) {
-
+            if (moment(flight.departureDateTime).format('YYYY-MM-DD') === moment(parseInt(originDate)).format('YYYY-MM-DD')) {
 
 
-
-
-                if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
-
-
-
-
+                if ((classs === "economy" ) && flight.economyClassSeats >= seats) {
 
 
                     resRT.outgoingFlights.push({
@@ -393,7 +384,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                     });
                 } else {
 
-                    if ((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
+                    if ((classs === "business") && flight.businessClassSeats >= seats) {
                         resRT.outgoingFlights.push({
                             "flightId": objectID,
                             "flightNumber": flightNumber,
@@ -411,7 +402,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                         });
 
                     } else {
-                        if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
+                        if ((classs === "FirstClass") && flight.firstClassSeats >= seats) {
                             resRT.outgoingFlights.push({
                                 "flightId": objectID,
                                 "flightNumber": flightNumber,
@@ -435,10 +426,9 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
 
                 }
             } else {
-                if (destinationDate=== moment(flight.departureDateTime).format('YYYY-MM-DD')) {
+                if (moment(flight.departureDateTime).format('YYYY-MM-DD') === moment(parseInt(destinationDate)).format('YYYY-MM-DD')) {
 
-                    if ((classs === "EconomyClass" )&&flight.economyClassSeats>=seats) {
-
+                    if ((classs === "economy" ) && flight.economyClassSeats >= seats) {
 
 
                         resRT.returnFlights.push({
@@ -458,7 +448,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                         });
                     } else {
 
-                        if ((classs === "BusinessClass")&&flight.businessClassSeats>=seats) {
+                        if ((classs === "business") && flight.businessClassSeats >= seats) {
                             resRT.returnFlights.push({
                                 "flightId": objectID,
                                 "flightNumber": flightNumber,
@@ -476,7 +466,7 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
                             });
 
                         } else {
-                            if ((classs === "FirstClass")&&flight.firstClassSeats>=seats) {
+                            if ((classs === "FirstClass") && flight.firstClassSeats >= seats) {
                                 resRT.returnFlights.push({
                                     "flightId": objectID,
                                     "flightNumber": flightNumber,
@@ -505,11 +495,11 @@ function getFlightsWithDates(array, originDate, classs,seats, destinationDate  )
             }
         }
     }
-    console.log(resRT);
-    if(arguments.length===4){
+    console.log(res);
+    if (arguments.length === 5) {
         return resRT;
 
-    }else {
+    } else {
 
         return res;
     }
@@ -549,7 +539,6 @@ function getFlightsWithAirports(input, originAirport, destinationAirport) {
     if (Object.keys(input).length === 2) {
 
 
-
         for (i = 0; i < input.outgoingFlights.length; i++) {
             var outFlight = input.outgoingFlights[i];
             if (outFlight.origin === originAirport && outFlight.destination === destinationAirport)
@@ -571,7 +560,7 @@ function getFlightsWithAirports(input, originAirport, destinationAirport) {
 
 function getFlightByID(flightNumber, departureDateTime, cb) {
 
-    var departureDateINT=parseInt(departureDateTime);
+    var departureDateINT = parseInt(departureDateTime);
     db.db().collection('flights').find(
         {
             "flightNumber": flightNumber,
@@ -588,7 +577,7 @@ function checkSeats(array, minSeats, classs) {
         var flight = array[i];
 
 
-        if (classs === "EconomyClass") {
+        if (classs === "economy") {
             var economyClassSeats = flight.economyClassSeats;
 
             if (economyClassSeats >= minSeats) {
@@ -596,7 +585,7 @@ function checkSeats(array, minSeats, classs) {
             }
 
 
-        } else if (classs === "BusinessClass") {
+        } else if (classs === "business") {
             var businessClassSeats = flight.businessClassSeats;
 
             if (businessClassSeats >= minSeats) {
@@ -626,7 +615,7 @@ function reservationSearch(resNum, cb) {
 
 //mmkn akhaliha teraga3li eli ana 3ayzah ml db 3ala tool w khalas as-hal
     //parse el awl
-    var resNumInt=parseInt(resNum);
+    var resNumInt = parseInt(resNum);
     console.log(resNumInt);
 
     //.toArray() returns an array that contains all the documents from a cursor
@@ -634,7 +623,7 @@ function reservationSearch(resNum, cb) {
         {
             reservationCode: resNumInt
         }
-        ).toArray(cb);
+    ).toArray(cb);
 
 
 }
@@ -664,10 +653,10 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
 
 function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, children, cb) {
- var time = moment().unix();
+    var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) {
         getFlightByID(flights[1].flightNumber, flights[1].departureDateTime, function (err, flight2) {
-            if (classs === "EconomyClass") {
+            if (classs === "economy") {
 
                 for (var i = 0; i < adults.length; i++) {
 
@@ -708,7 +697,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                 }
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode":time,
+                    "reservationCode": time,
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -728,7 +717,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
 
             }
             else {
-                if (classs === "BusinessClass") {
+                if (classs === "business") {
                     for (i = 0; i < adults.length; i++) {
                         for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) { //business seat map is called that way, this is for checking for business class
                             if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
@@ -767,7 +756,7 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
                     }
 
                     db.db().collection('tickets').insertOne({
-                        "reservationCode":time,
+                        "reservationCode": time,
                         "numberOfAdults": adults.length,
                         "adults": adults,
                         "numberOfChildren": children.length,
@@ -854,9 +843,9 @@ function reserveRoundTripTicket(classs, flights, creditCardNumber, adults, child
 }
 
 function reserveOneWayTicket(classs, flights, creditCardNumber, adults, children, cb) {
-var time = moment().unix();
+    var time = moment().unix();
     getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) { // same should be done as above regarding the classes
-        if (classs === "EconomyClass") {
+        if (classs === "economy") {
             for (i = 0; i < adults.length; i++) {
                 for (j = 0; j < flight1[0].economyClassSeatMap.length; j++) {
                     if (flight1[0].economyClassSeatMap[j].isReserved === "false") {
@@ -890,7 +879,7 @@ var time = moment().unix();
                 console.log("Reservation done");
                 updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-                        console.log("FLights Updated");
+                    console.log("FLights Updated");
 
                 });
                 cb(time);
@@ -898,7 +887,7 @@ var time = moment().unix();
 
         }
         else {
-            if (classs === "BusinessClass") {
+            if (classs === "business") {
                 for (i = 0; i < adults.length; i++) {
                     for (j = 0; j < flight1[0].businessClassSeatMap.length; j++) {
                         if (flight1[0].businessClassSeatMap[j].isReserved === "false") {
@@ -920,7 +909,7 @@ var time = moment().unix();
 
 
                 db.db().collection('tickets').insertOne({
-                    "reservationCode":time,
+                    "reservationCode": time,
                     "numberOfAdults": adults.length,
                     "adults": adults,
                     "numberOfChildren": children.length,
@@ -932,7 +921,7 @@ var time = moment().unix();
                     console.log("Reservation done");
                     updateFlights(db, flight1[0].flightNumber, flight1[0].departureDateTime, flight1[0].economyClassSeatMap, flight1[0].businessClassSeatMap, flight1[0].firstClassSeatMap, function () {
 
-                            console.log("FLights Updated");
+                        console.log("FLights Updated");
 
                     });
                     cb(time);
