@@ -84,8 +84,8 @@ function seed(cb) {
 
             routes = [
                 {
-                    'origin': 'Mumbai',
-                    'destination': 'Delhi',
+                    'origin': 'BOM',
+                    'destination': 'DEL',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -96,8 +96,8 @@ function seed(cb) {
                     "economyClassCost": 2000
                 },
                 {
-                    'origin': 'Cairo',
-                    'destination': 'Jeddah',
+                    'origin': 'CAI',
+                    'destination': 'JED',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -108,8 +108,8 @@ function seed(cb) {
                     "economyClassCost": 4000
                 },
                 {
-                    'origin': 'Hong Kong',
-                    'destination': 'Taiwan',
+                    'origin': 'HKG',
+                    'destination': 'TPE',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -120,8 +120,8 @@ function seed(cb) {
                     "economyClassCost": 3000
                 },
                 {
-                    'origin': 'Johannesburg',
-                    'destination': 'Cape Town',
+                    'origin': 'JNE',
+                    'destination': 'CPT',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -132,8 +132,8 @@ function seed(cb) {
                     "economyClassCost": 5000
                 },
                 {
-                    'origin': 'Riyadh',
-                    'destination': 'Jeddah',
+                    'origin': 'RUH',
+                    'destination': 'JED',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -144,8 +144,8 @@ function seed(cb) {
                     "economyClassCost": 7000
                 },
                 {
-                    'origin': 'London Heathrew',
-                    'destination': 'New York-John F. Kennedy',
+                    'origin': 'LHR',
+                    'destination': 'JFK',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -156,8 +156,8 @@ function seed(cb) {
                     "economyClassCost": 9000
                 },
                 {
-                    'origin': 'Las Vegas',
-                    'destination': 'Las Angeles',
+                    'origin': 'LCF',
+                    'destination': 'LAX',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -168,8 +168,8 @@ function seed(cb) {
                     "economyClassCost": 3000
                 },
                 {
-                    'origin': 'Las Angeles',
-                    'destination': 'San Francisco',
+                    'origin': 'LAX',
+                    'destination': 'SFO',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -180,8 +180,8 @@ function seed(cb) {
                     "economyClassCost": 5000
                 },
                 {
-                    'origin': 'Frankfurt',
-                    'destination': 'Berlin',
+                    'origin': 'FRA',
+                    'destination': 'TXL',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
@@ -192,8 +192,8 @@ function seed(cb) {
                     "economyClassCost": 4000
                 },
                 {
-                    'origin': 'Rome',
-                    'destination': 'Milan',
+                    'origin': 'FCO',
+                    'destination': 'LIN',
                     'duration': 3,
                     'capacity': 100,
                     'aircraft': 'Airbus a318',
