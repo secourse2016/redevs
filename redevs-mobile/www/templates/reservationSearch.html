@@ -29,27 +29,27 @@
 </button>
 
  <ion-list ng-show="toggle">
-        <ion-item >Your reservation Code </ion-item>
+        <ion-item class="custom-icon">Your reservation Code </ion-item>
         <ion-item >{{reservationsObjects.reservationCode}}</ion-item>
-        <ion-item >Number of Adults</ion-item>
+        <ion-item class="custom-icon" >Number of Adults</ion-item>
         <ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>
-        <ion-item >Number Of Children</ion-item>
+        <ion-item class="custom-icon" >Number Of Children</ion-item>
         <ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>
         
         
         <div ng-repeat="flight in reservationsObjects.flights">
        
-        <ion-item >Flight Number</ion-item>
+        <ion-item class="custom-icon">Flight Number</ion-item>
         <ion-item >{{flight.flightNumber}}</ion-item>
-        <ion-item >Date</ion-item>
+        <ion-item class="custom-icon">Date</ion-item>
         <ion-item >{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</ion-item>
-        <ion-item >From</ion-item>
+        <ion-item class="custom-icon">From</ion-item>
         <ion-item >{{flight.origin}}</ion-item>
-        <ion-item >To</ion-item>
+        <ion-item class="custom-icon">To</ion-item>
         <ion-item >{{flight.destination}}</ion-item>
-        <ion-item >Departure Time</ion-item>
+        <ion-item class="custom-icon">Departure Time</ion-item>
         <ion-item >{{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
-        <ion-item >Arrival Time</ion-item>
+        <ion-item class="custom-icon">Arrival Time</ion-item>
         <ion-item >{{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
         
         
