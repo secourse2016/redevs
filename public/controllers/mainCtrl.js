@@ -49,6 +49,16 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
       $scope.checkboxModel.valuecheck=tripType;
 
     };
+    $scope.enabled = true;
+    $scope.label= "Search Other Flights";
+
+
+    $scope.changeCallback = function() {
+        if($scope.enabled)
+            $scope.label="Search Other Airlines";
+        else
+            $scope.label="Search This Airline Only";
+    };
 
 
 
@@ -82,6 +92,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
       FlightsSrv.setTripType($scope.radioModel2);
       FlightsSrv.setNumberOfChildren($scope.childrenInput);
       FlightsSrv.setNumberOfAdults($scope.adultsInput);
+        FlightsSrv.setOtherAirlinesSwitch($scope.enabled);
         //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };
