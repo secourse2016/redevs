@@ -135,8 +135,8 @@ module.exports = function(app,mongo) {
         ];
         async.map(urls, httpGet, function (err, res) {
           if (err) return console.log(err);
-          console.log(res[0]);
-          res2.send(res);
+          var x=flights.formatReturnOutgoing(res,1);
+          res2.send(x);
         });
       });
 
@@ -152,7 +152,6 @@ module.exports = function(app,mongo) {
     var classs=req.param('class');
     console.log(origin);
     console.log(destination);
-    console.log(date);
     console.log(classs);
     function httpGet(url, cb) {
       var options = {
@@ -174,8 +173,10 @@ module.exports = function(app,mongo) {
     ];
     async.map(urls, httpGet, function (err, res) {
       if (err) return console.log(err);
-      console.log(res[0]);
-      res2.send(res);
+
+      var x=flights.formatReturnOutgoing(res,2);
+
+      res2.send(x);
     });
   });
 
