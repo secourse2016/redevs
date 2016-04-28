@@ -47,7 +47,13 @@ App=angular.module('deltaAppMobile', ['ionic'])
       }
 
 
-    });
+    })
+    .state('confirmation', {
+    url: '/confirmation',
+
+     templateUrl: 'templates/confirmation.html',
+      controller:'mainCtrl'
+  });
 
 
 
