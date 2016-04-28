@@ -33,14 +33,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
 
   if(tripType==="OneWayTrip"){
-    console.log(tripType);
-    console.log(tripOriginOutgoingDate);
-    console.log(tripOriginReturningDate);
-    console.log(reformatedReturningDate);
-    console.log(reformatedOutgoingDate);
-    console.log(tripOriginAirport);
-    console.log(tripDestinationAirport);
-    console.log(tripClass);
+
 
         console.log("entered one way trip");
     FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass,seats).then(function(response){

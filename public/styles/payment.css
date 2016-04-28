@@ -5,6 +5,7 @@ h2  {font-size:50px; text-align:center; font-family: 'Raleway',sans-serif; margi
 
 input[type=text] {
 width: 130px;
+height: 40px;
 box-sizing: border-box;
 border: 2px solid grey;
 border-radius: 4px;
@@ -19,6 +20,7 @@ transition: width 0.4s ease-in-out;
 
 input[type=text]:focus {
 width: 100%;
+
 }
 
 input[type=date] {
@@ -41,6 +43,7 @@ width: 100%;
 
 input[type=Number] {
 width: 130px;
+height: 40px;
 box-sizing: border-box;
 border: 2px solid grey;
 border-radius: 4px;
@@ -55,6 +58,7 @@ transition: width 0.4s ease-in-out;
 
 input[type=Number]:focus {
 width: 100%;
+
 }
 
 
