@@ -47,6 +47,10 @@ App=angular.module('deltaAppMobile', ['ionic'])
       }
 
 
+    }).state('information', {
+      url: '/information',
+      templateUrl: 'templates/information.html',
+      controller: 'infoCtrl'
     });
 
 

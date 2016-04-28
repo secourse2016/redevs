@@ -1,76 +1,75 @@
-<ion-view view-title="Round Trip">
-<ion-content class="padding">
+<ion-view view-title="information">
+<ion-content>
+<h2 ng-show="thereIsAdults">  Adults</h2>
+  <div class="list list-inset" ng-repeat="i in AdultsArray track by $index">
+    <div class="item item-divider">
+        Adult {{index+1}}
+      </div>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" ng-model="$parent.Adults[$index].firstName">
+      </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Last Name</span>
+      <input type="text" ng-model="$parent.Adults[$index].lastName">
+    </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Passport Nationality</span>
+        <input type="text" ng-model="$parent.Adults[$index].passNationality">
+      </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Passport Number</span>
+        <input type="text" ng-model="$parent.Adults[$index].passNumber">
+    </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" placeholder="example@delta.com" ng-model="$parent.Adults[$index].email">
+    </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Mobile Number</span>
+        <input type="text" ng-model="$parent.Adults[$index].mobileNumber">
+    </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Emergency Contact</span>
+        <input type="text" ng-model="$parent.Adults[$index].emergencyContact">
+    </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Emergency Contact Mobile Number</span>
+        <input type="text" ng-model="$parent.Adults[$index].emergencyMobileNumber">
+      </label>
+  </div>
 
-<h2>Adult</h2>
-	<div class="list">
-		<div class="item item-divider">
-  			Adult {{index+1}}
-  		</div>
-  		<label class="item item-input item-stacked-label">
-    		<span class="input-label">First Name</span>
-    		<input type="text">
-  		</label>
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">Last Name</span>
-			<input type="text">
-		</label>
-    	<label class="item item-input item-stacked-label">
-    		<span class="input-label">Passport Nationality</span>
-    		<input type="text">
-  		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Passport Number</span>
-    		<input type="text">
-		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Email</span>
-    		<input type="text" placeholder="example@delta.com">
-		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Mobile Number</span>
-    		<input type="text">
-		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Emergency Contact</span>
-    		<input type="text">
-		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Emergency Contact Mobile Number</span>
-    		<input type="text">
-  		</label>
-	</div>
 
-
-<h2>Children</h2>
-	<div class="list">
-  		<div class="item item-divider">
-  			Child {{index+1}}
-  		</div>
-  		<label class="item item-input item-stacked-label">
-    		<span class="input-label">First Name</span>
-    		<input type="text">
-  		</label>
-  		<label class="item item-input item-stacked-label">
-   			<span class="input-label">Last Name</span>
-    		<input type="text">
-  		</label>
-		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Passport Nationality</span>
-    		<input type="text">
-  		</label>
-  		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Passport Number</span>
-    		<input type="text">
-  		</label>
-  		<label class="item item-input item-stacked-label">
-    		<span class="input-label">Supervisor Name</span>
-    		<input type="text">
-  		</label>
-  		<label class="item item-input item-stacked-label">
-		    <span class="input-label">Supervisor Mobile Number</span>
-		    <input type="text">
-  		</label>
-  	</div>
+<h2 ng-show="thereIsChildren">  Children</h2>
+  <div class="list list-inset" ng-repeat="j in ChildrenArray track by $index">
+      <div class="item item-divider">
+        Child {{index+1}}
+      </div>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">First Name</span>
+        <input type="text" ng-model="$parent.Children[$index].firstName">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Last Name</span>
+        <input type="text" ng-model="$parent.Children[$index].lastName">
+      </label>
+    <label class="item item-input item-stacked-label">
+        <span class="input-label">Passport Nationality</span>
+        <input type="text" ng-model="$parent.Children[$index].passNationality">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Passport Number</span>
+        <input type="text" ng-model="$parent.Children[$index].passNumber">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Supervisor Name</span>
+        <input type="text" ng-model="$parent.Children[$index].supervisorName">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Supervisor Mobile Number</span>
+        <input type="text" ng-model="$parent.Children[$index].supervisorMobileNumber">
+      </label>
+    </div>
 
 </ion-content>
 </ion-view>
