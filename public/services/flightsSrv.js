@@ -22,14 +22,14 @@ App.factory('FlightsSrv', function ($http) {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
-         getRoundTripSearchResultsOthers :function(origin,destination,departingdate,returningdate,class){
-          return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs+'/' {
+         getRoundTripSearchResultsOthers :function(origin,destination,departingdate,returningdate,classs){
+          return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
                          "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
                      });
 
          },
-           getOneWayTripSearchResultsOthers : function(origin, destination, departingdate, classs,seats){
-                     return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+classs+'/'+seats, {
+           getOneWayTripSearchResultsOthers : function(origin, destination, departingdate, classs){
+                     return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
                          "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
                      });
                   },
