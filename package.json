@@ -18,7 +18,10 @@
     "nodemon": "latest",
     "underscore": "latest",
     "stripe": "latest",
-    "underscore": "latest"
+    "async" :"latest",
+    "map":"latest",
+    "request":"latest"
+
 
 
   }
