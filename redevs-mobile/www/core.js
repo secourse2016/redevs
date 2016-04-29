@@ -1,4 +1,4 @@
-App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
+App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -57,16 +57,16 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
 
 .state ('searchResults',{
       url: '/searchResults',
-       
+
         templateUrl: 'templates/searchResults.html',
         controller: 'searchResultsCtrl'
-        
+
       });
 
 
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/searchResults');
+  $urlRouterProvider.otherwise('/landingPage');
 
 });

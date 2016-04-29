@@ -1,6 +1,6 @@
 
 <ion-view view-title="Round Trip">
-  <ion-content class="padding">
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
 
     <div class="list card">
     <div class="row">
@@ -68,6 +68,36 @@
 
 
     </div>
+      <div class="row">
+        <div class="col col-50"><label class="item item-input item-select col-1">
+          <div class="input-label">
+            Classes
+          </div>
+          <select>
+            <option>Economy Class</option>
+            <option selected>Business Class</option>
+            <option>First Class</option>
+          </select>
+        </label></div>
+        <div class="col"> </div>
+        <div class="col">
+
+          {{}}
+
+
+
+          <label class="toggle toggle-assertive">
+            <input type="checkbox">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label></div>
+      </div>
+      <div class="row">
+        <button class="button button-full button-assertive">
+          Search Flights!!
+        </button>
+      </div>
 
     </div>
 

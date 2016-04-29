@@ -1,6 +1,6 @@
 
 <ion-view view-title="One Way Trip">
-  <ion-content class="padding">
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
 
     <div class="list card">
 
@@ -8,7 +8,12 @@
       <div class="col col-40 col-offset-10"><div class="list list-inset">
         <label class="item item-input">
           <i class="icon ion-location placeholder-icon"></i>
-          <input id="input_1" type="text" placeholder="From">
+          <input id="input_1" type="search" placeholder="From"  ng-change="search()" ng-model="data.search">
+          <ion-content>
+            <div class="list">
+              <li class="item" ng-repeat="airline in data.airlines">{{airline.name}}</li>
+            </div>
+          </ion-content>
         </label>
       </div></div>
       <div class="col col-40 "><div class="list list-inset">
@@ -68,7 +73,7 @@
             <select>
               <option>Economy Class</option>
               <option selected>Business Class</option>
-              <option>First <Class></Class></option>
+              <option>First Class </option>
             </select>
           </label></div>
           <div class="col"> </div>
@@ -85,6 +90,11 @@
             </div>
           </label></div>
         </div>
+        <div class="row">
+          <button class="button button-full button-assertive">
+            Search Flights!!
+          </button>
+          </div>
 
 
 
