@@ -9,37 +9,37 @@
 
 
 
-angular.module('deltaMobileApp', ['ionic'])
+//angular.module('deltaMobileApp', ['ionic'])
 
-.controller('reservationSearchCtrl', function($scope, $timeout,$http,reservationSearchSrv,moment) {
+App.controller('reservationSearchCtrl', function($scope, $timeout,$http,reservationSearchSrv) {
 
-  $('dt').addClass('fechado');
+//   $('dt').addClass('fechado');
 
-    var $active = null;
-    var x="da test x";
-    var y="da test y";
+//     var $active = null;
+//     var x="da test x";
+//     var y="da test y";
 
-  $('dt').click(function(){
+//   $('dt').click(function(){
 
-    if ($active !== null){
-      $active.next().slideToggle("fast");
-      $active.removeClass('aberto');
-      $active.addClass('fechado');
-    }
+//     if ($active !== null){
+//       $active.next().slideToggle("fast");
+//       $active.removeClass('aberto');
+//       $active.addClass('fechado');
+//     }
 
-  $active = $(this);
-  $active.addClass('aberto');
-  $next = $active.next();
+//   $active = $(this);
+//   $active.addClass('aberto');
+//   $next = $active.next();
 
-  if ($next.is(":hidden")){
-    $next.slideToggle("fast");
-  }else{
-    $active.removeClass('aberto');
-    $active.addClass('fechado');
-    $active = null;
-  }
+//   if ($next.is(":hidden")){
+//     $next.slideToggle("fast");
+//   }else{
+//     $active.removeClass('aberto');
+//     $active.addClass('fechado');
+//     $active = null;
+//   }
 
-})
+// })
 
   $scope.reservations=[{
   "reservationCode":"AXY123",
@@ -274,12 +274,15 @@ angular.module('deltaMobileApp', ['ionic'])
 
 $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
+console.log(reservationNumber);
 
    findReservation = function(resNum) { // <-- here is your value from the input
       flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
-
+      console.log("dakhal el method");
+      console.log(resNum);
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
+      console.log(reservationNumberValue);
 
      //call api, and change the toggle flag to true
 
@@ -290,9 +293,11 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       if(!response.data || response.data.length == 0){
           //mala2ahosh
           flag=false;
+          console.log("mala2ash el ticket");
 
       }
       else{
+        console.log("la2a el ticket");
         //la2a el ticket
         //console.log("ticket found");
            flag=true;
@@ -348,7 +353,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
   findReservation(reservationNumber);
 
-   $scope.findReservation = findReservation ;
+  $scope.findReservation = findReservation ;
 
 
 
