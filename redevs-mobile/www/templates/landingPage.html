@@ -1,6 +1,6 @@
 
 
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+<!-- <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
 
   <ion-tab title="One Way Trip" icon-off="ion-android-plane" class="slide-left-right" icon-on="ion-android-plane" href="#/landingPage/oneway">
@@ -11,4 +11,69 @@
   </ion-tab>
 
 
-</ion-tabs>
+</ion-tabs> -->
+
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Ionic Pull to Refresh</title>
+
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    
+  </head>
+<ion-view view-title="reservationSearch">
+    
+     <body ng-controller="reservationSearchCtrl">
+      <ion-header-bar class="bar-positive">
+     
+    </ion-header-bar>
+  <ion-content class="padding">
+  
+      <div class="list">
+  <label class="item item-input">
+<!--     <span class="input-label">Enter reservation Code</span> -->    
+	<input type="text" placeholder="Enter your reservation code" ng-model="rn">
+  </label>
+
+</div>
+
+    <button  ng-click="findReservation(rn)" class="button button-positive">
+  Find Now
+</button>
+
+ <ion-list ng-show="toggle">
+        <ion-item class="custom-icon">Your reservation Code </ion-item>
+        <ion-item >{{reservationsObjects.reservationCode}}</ion-item>
+        <ion-item class="custom-icon" >Number of Adults</ion-item>
+        <ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>
+        <ion-item class="custom-icon" >Number Of Children</ion-item>
+        <ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>
+        
+        
+        <div ng-repeat="flight in reservationsObjects.flights">
+       
+        <ion-item class="custom-icon">Flight Number</ion-item>
+        <ion-item >{{flight.flightNumber}}</ion-item>
+        <ion-item class="custom-icon">Date</ion-item>
+        <ion-item >{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</ion-item>
+        <ion-item class="custom-icon">From</ion-item>
+        <ion-item >{{flight.origin}}</ion-item>
+        <ion-item class="custom-icon">To</ion-item>
+        <ion-item >{{flight.destination}}</ion-item>
+        <ion-item class="custom-icon">Departure Time</ion-item>
+        <ion-item >{{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
+        <ion-item class="custom-icon">Arrival Time</ion-item>
+        <ion-item >{{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
+        
+        
+        
+        
+        </div>
+      </ion-list>
+
+</body>
+
+  </ion-content>
+</ion-view>

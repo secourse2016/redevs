@@ -47,6 +47,11 @@ App=angular.module('deltaAppMobile', ['ionic'])
       }
 
 
+    })
+    .state('reservationSearch', {
+        url: '/reservationSearch',
+        templateUrl: 'templates/reservationSearch.html',
+        controller: 'reservationSearchCtrl'
     });
 
 

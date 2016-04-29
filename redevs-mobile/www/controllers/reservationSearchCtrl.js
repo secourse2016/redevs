@@ -15,17 +15,17 @@ angular.module('deltaMobileApp', ['ionic'])
 
   $('dt').addClass('fechado');
 
-var $active = null;
-var x="da test x";
-var y="da test y";
+    var $active = null;
+    var x="da test x";
+    var y="da test y";
 
-$('dt').click(function(){
+  $('dt').click(function(){
 
-  if ($active !== null){
-    $active.next().slideToggle("fast");
-    $active.removeClass('aberto');
-    $active.addClass('fechado');
-  }
+    if ($active !== null){
+      $active.next().slideToggle("fast");
+      $active.removeClass('aberto');
+      $active.addClass('fechado');
+    }
 
   $active = $(this);
   $active.addClass('aberto');
