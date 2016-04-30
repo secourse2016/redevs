@@ -35,7 +35,6 @@ App=angular.module('deltaAppMobile', ['ionic'])
           controller : 'mainCtrl'
         }
       }
-
     })
     .state ('landingPage.twoWayTrip',{
       url: '/twoway',
@@ -45,12 +44,16 @@ App=angular.module('deltaAppMobile', ['ionic'])
           controller: 'mainCtrl'
         }
       }
-
-
-    }).state('information', {
+    })
+    .state('information', {
       url: '/information',
       templateUrl: 'templates/information.html',
       controller: 'infoCtrl'
+    })
+    .state('reservationSearch', {
+        url: '/reservationSearch',
+        templateUrl: 'templates/reservationSearch.html',
+        controller: 'reservationSearchCtrl'
     });
 
 

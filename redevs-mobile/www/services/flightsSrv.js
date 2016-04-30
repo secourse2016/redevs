@@ -33,6 +33,8 @@ App.factory('FlightsSrv', function ($http) {
 
          },
 
+         // check how to contact the server correctly in www!!
+
          getReservationNumber:function(){
            return this.reservationNumber;
          },
