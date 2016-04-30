@@ -53,28 +53,36 @@
 </body>
   
 -->
-<div>
 <ion-list ng-controller = "searchResultsCtrl">
-<h1>hiii</h1>
+<div>
+  <ion-item ng-repeat="f in headers" ng-model="$parent.gflight" ng-value="f">
+<i class="icon ion-plane"></i> 
 
-  <ion-item ng-repeat="f in outgoingflights" ng-model="$parent.gflight" ng-value="f">
+    Flight Number: <h1>{{ f.flightNumber }}</h1>
+    Origin:      <h1>{{ f.origin }}</h1>
+    Destination:     <h1>{{ f.destination }}</h1>
 
+    <!-->Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1><-->
+<i class="icon ion-pricetag"></i> 
+    Price:     <h2>{{ f.cost }}$1000</h2>
+    Class:     <h1>{{ f.class }}</h1>
 
-    <h1>{{ f.flightNumber }}</h1>
-          <h1>{{ f.origin }}</h1>
-          <h1>{{ f.destination }}</h1>
+    <br>
+    </ion-item>
+    </div>
 
-          <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+    <div>
+<ion-item ng-repeat="r in headers" ng-model="$parent.rflight" ng-value="r">
 
-          <h1>{{ f.cost }}$</h1>
-          <h1>{{ f.class }}</h1>
+    Flight Number: <h1>{{ r.flightNumber }}</h1>
+    Origin:      <h1>{{ r.origin }}</h1>
+    Destination:      <h1>{{ r.destination }}</h1>
 
+   <!--> Time:      <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1><-->
+<i class="icon ion-pricetag"></i> 
+    Price:      <h2>{{ r.cost }}</h2>
+    Class:      <h1>{{ r.class }}</h1>
 
-    <p></p>
-  </ion-item>
- <ion-item></ion-item>
-
-
-
-</ion-list>
+</ion-item>
 </div>
+</ion-list>
