@@ -55,7 +55,7 @@
 -->
 <ion-list ng-controller = "searchResultsCtrl">
 <div>
-  <ion-item ng-repeat="f in headers" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-center">
+  <ion-item ng-repeat="f in headers" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
 <i class="icon ion-plane"></i> 
 
     Flight Number: <h1>{{ f.flightNumber }}</h1>
@@ -72,7 +72,7 @@
     </div>
 
     <div>
-<ion-item ng-repeat="r in headers" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-center">
+<ion-item ng-repeat="r in headers" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left">
 
     Flight Number: <h1>{{ r.flightNumber }}</h1>
     Origin:      <h1>{{ r.origin }}</h1>
