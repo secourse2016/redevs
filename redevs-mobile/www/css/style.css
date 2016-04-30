@@ -77,5 +77,11 @@
 h2 {
   font-size: 50;
   font-weight: 10px;
-  color: blue;
+  color: rgb(247, 255, 46);
+}
+
+.item.item-trns {
+  /*border-color: rgba(0, 0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
 }
