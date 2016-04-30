@@ -29,11 +29,11 @@
         
         <div ng-repeat="flight in reservationsObjects.flights">
        
-        <ion-item class="custom-icon">Flight Number</ion-item>
+        <ion-item class="positive-bg">Flight Number</ion-item>
         <ion-item >{{flight.flightNumber}}</ion-item>
-        <ion-item class="custom-icon">Date</ion-item>
+        <ion-item class="positive-bg">Date</ion-item>
         <ion-item >{{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</ion-item>
-        <ion-item class="custom-icon">From</ion-item>
+        <ion-item class="positive-bg">From</ion-item>
         <ion-item >{{flight.origin}}</ion-item>
         <ion-item class="custom-icon">To</ion-item>
         <ion-item >{{flight.destination}}</ion-item>
