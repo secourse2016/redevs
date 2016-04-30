@@ -19,13 +19,15 @@
 </button>
 
  <ion-list ng-show="toggle">
+         
+         <div class="list card animated bounceInLeft">
         <ion-item class="positive-bg">Your reservation Code </ion-item>
         <ion-item >{{reservationsObjects.reservationCode}}</ion-item>
         <ion-item class="positive-bg" >Number of Adults</ion-item>
         <ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>
         <ion-item class="positive-bg" >Number Of Children</ion-item>
         <ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>
-        
+        </div>
         
         <div ng-repeat="flight in reservationsObjects.flights">
        
