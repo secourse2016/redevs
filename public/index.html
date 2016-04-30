@@ -64,22 +64,67 @@
     <link rel="stylesheet" href="./styles/style.css">
 
   </head>
-    <body>
+    <body id="page-top">
 
     <!-- TOP NAVBAR -->
-    <nav class='navbar navbar-inverse navbar-fixed-top bg-faded' id="navigationBar">
+
+    <!-- <nav class='navbar navbar-inverse navbar-fixed-top bg-faded' id="navigationBar">
       <div class="container">
         <a class="navbar-brand" href="/#/"><img src="img/delta-nav-logo.png"></a>
         <div class="navbar-header">
           <a href="/#/" class="navbar-brand">Home</a>
         </div>
       </div>
+    </nav> -->
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/#/"><img src="img/delta-nav-logo.png"></a>
+                <a class="navbar-brand page-scroll" href="/#/">Welcome to Delta Airlines</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="/#/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
+    <br>
+    <br><br>
+
+
     <!-- TOP NAVBAR -->
 
     <!-- ANGULAR DYNAMIC TEMPLATING -->
     <div ng-view></div>
     <!-- ANGULAR DYNAMIC TEMPLATING -->
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading" style="text-align: center;">Made by ReDevs</h2>
+                    <hr class="light">
+                    <h3>Contact us</h3>
+                    <p class="text-faded" style="text-align: left;">Phone number: +(02) 123 456 789</p>
+                    <p class="text-faded" style="text-align: left;">Email: redevs@redevs.com</p>
+                    <p class="text-faded" style="text-align: left;">Address: Cairo, Egypt</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     </body>
 </html>
