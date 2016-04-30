@@ -10,6 +10,11 @@ var booking = require('./booking.js');
 
 module.exports = function(app,mongo) {
 
+  app.all('*', function(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+  });
 
   /* GET ALL STATES ENDPOINT */
   app.get('/api/data/codes', function (req, res) {
@@ -27,6 +32,10 @@ module.exports = function(app,mongo) {
     res.json(nationalities);
   });
 
+  app.get('api/dummy', function(req,res){
+    var dummy = {"data": "dummyData"};
+    res.json(dummy);
+  });
 
   /* MIDDLEWARE */
   app.use(function(req, res, next){

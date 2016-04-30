@@ -1,5 +1,19 @@
 App=angular.module('deltaAppMobile', ['ionic'])
 
+.config(function($httpProvider){
+  $httpProvider.interceptors.push(function(){
+    return {
+      request: function(req){
+        if(/^(\/api)|(\/db)/.test(req.url)){
+          req.url = 'http://localhost:3000' + req.url;
+          req.withCredentials = false;
+        }
+        return req;
+      }
+    };
+  });
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
