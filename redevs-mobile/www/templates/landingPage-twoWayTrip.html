@@ -4,16 +4,62 @@
 
     <div class="list card">
     <div class="row">
-      <div class="col col-40 col-offset-10"><div class="list list-inset">
-        <label class="item item-input">
-          <i class="icon ion-location placeholder-icon"></i>
-          <input id="input_1" type="text" placeholder="From">
+      <div class="col col-50"><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive">
+          <div class = "input-label">
+            From
+          </div>
+
+          <select>
+            <option>Berlin</option>
+            <option>Cairo</option>
+            <option>Cape Town</option>
+            <option selected>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
         </label>
       </div></div>
-      <div class="col col-40 "><div class="list list-inset">
-        <label class="item item-input">
-          <i class="icon ion-location placeholder-icon"></i>
-          <input id="input_1" type="text" placeholder="To">
+      <div class="col col-50 "><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive">
+          <div class = "input-label">
+            To
+          </div>
+
+          <select>
+            <option>Berlin</option>
+            <option selected>Cairo</option>
+            <option>Cape Town</option>
+            <option>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
         </label>
       </div></div>
     </div>
@@ -67,32 +113,31 @@
       </div>
 
 
-    </div>
       <div class="row">
-        <div class="col col-50"><label class="item item-input item-select col-1">
-          <div class="input-label">
-            Classes
-          </div>
-          <select>
-            <option>Economy Class</option>
-            <option selected>Business Class</option>
-            <option>First Class</option>
-          </select>
-        </label></div>
-        <div class="col"> </div>
-        <div class="col">
-
-          {{}}
-
-
-
-          <label class="toggle toggle-assertive">
-            <input type="checkbox">
-            <div class="track">
-              <div class="handle"></div>
+        <div class="col col-100">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Classes
             </div>
+            <select>
+              <option>Economy Class</option>
+              <option selected>Business Class</option>
+              <option>First Class </option>
+            </select>
           </label></div>
+
       </div>
+
+      <div class="row">
+        <ion-toggle toggle-class="toggle-assertive"
+                    ng-model="searchingAirlines"
+                    ng-true-value="'Search Other Airlines'"
+                    ng-false-value="'Search This Airline Only'">
+          {{searchingAirlines}}
+        </ion-toggle>
+
+      </div>
+
       <div class="row">
         <button class="button button-full button-assertive">
           Search Flights!!
@@ -106,6 +151,14 @@
 
 
     </div>
+
+    </div>
+
+
+
+
+
+
 
   </ion-content>
 </ion-view>

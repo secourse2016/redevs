@@ -53,12 +53,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.label= "Search Other Flights";
 
 
-    $scope.changeCallback = function() {
-        if($scope.enabled)
-            $scope.label="Search Other Airlines";
-        else
-            $scope.label="Search This Airline Only";
-    };
+
 
 
 

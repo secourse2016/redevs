@@ -13,6 +13,10 @@ App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $loc
     }
   };
 
+  $scope.searchingAirlines="Search This Airline Only";
+
+
+/*
 
 
   function AirportCodes() {
@@ -43,7 +47,7 @@ App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $loc
     FlightsSrv.setSelectedDestinationAirport(destAirport);
   };
 
-  /* Find All Available Flights  */
+
  $scope.SearchFlights = function() {
     FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
     FlightsSrv.setSelectedArrivalDate($scope.dtTo);
@@ -59,13 +63,10 @@ App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $loc
 
 
 
-  /*$scope.searchReservation = function() {
+  /!*$scope.searchReservation = function() {
     reservationSearchSrv.setReservationNumber($scope.ticketCodeTextBox);
     $location.url('/reservationSearch');
-  };*/
-
-  /* Get Airports on page render  */
-
-
+  };
+*/
 
 });
