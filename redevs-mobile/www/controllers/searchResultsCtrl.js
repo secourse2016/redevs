@@ -5,7 +5,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
 
   $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Price", "Class"];
-  /*$scope.FlightDetails = {};
+  $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
   $scope.flag = false;
@@ -93,6 +93,5 @@ $scope.convert = function(date){
 
 
 
-*/
 
 });
