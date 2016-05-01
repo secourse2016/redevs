@@ -39,7 +39,7 @@ App=angular.module('deltaAppMobile', ['ionic'])
     url: '/landingPage',
 
      templateUrl: 'templates/landingPage.html',
-      controller:'mainCtrl'
+      controller:'reservationSearchCtrl'
   })
     .state ('landingPage.oneWayTrip',{
       url: '/oneway',
