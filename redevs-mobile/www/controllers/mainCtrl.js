@@ -1,4 +1,4 @@
-App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location) {
+App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $state) {
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
     if (selected != -1) {
@@ -18,7 +18,7 @@ App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $loc
 
 
 
-App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location) {
+App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state) {
 
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
@@ -201,10 +201,11 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     console.log($scope.scope.adultsCountTwoWay);
     console.log($scope.scope.fromDateTwoWay);
     console.log($scope.scope.toDateTwoWay);
+    $state.go('searchResults');
   }
 });
 
-App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location) {
+App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state) {
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
     if (selected != -1) {
@@ -378,11 +379,10 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
-    console.log(fromCountry);
-    console.log(toCountry);
-    console.log(classes);
-    console.log($scope.scope.adultsCountOneWay);
-    console.log($scope.scope.fromDateOneWay);
+   
+    console.log(FlightsSrv.getTripType());
+    
+    $state.go('searchResults');
   }
 });
 
