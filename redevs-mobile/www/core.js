@@ -23,16 +23,15 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
     .state('landingPage', {
     url: '/landingPage',
-
-     templateUrl: 'templates/landingPage.html',
-      controller:'mainCtrl'
+    abstract :true,
+     templateUrl: 'templates/landingPage.html'
   })
     .state ('landingPage.oneWayTrip',{
       url: '/oneway',
       views:{
         'tab-oneway':{
           templateUrl: 'templates/landingPage-oneWay.html',
-          controller : 'mainCtrl'
+          controller : 'oneWayCtrl'
         }
       }
 
@@ -42,7 +41,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
       views: {
         'tab-twoway': {
           templateUrl: 'templates/landingPage-twoWayTrip.html',
-          controller: 'mainCtrl'
+          controller: 'twoWayCtrl'
         }
       }
 

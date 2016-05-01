@@ -64,7 +64,12 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
-
+         setOtherAirlinesSwitch(value){
+            this.switch=value
+         },
+          getOtherAirlinesSwitch(){
+             return this.switch
+         },
 
          setFlights: function(value){
            this.selectedFlights = value;
