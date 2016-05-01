@@ -6,20 +6,21 @@ App.factory('FlightsSrv', function ($http) {
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
-         getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
-                "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
-            });
+         getDummyDataFromServer: function(){
+            return $http.get('/api/dummy');
          },
-         getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
-                "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
-            });
+         getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs,seats){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+            );
+         },
+         getOneWayTripSearchResults : function(origin, destination, departingdate, classs,seats){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+            );
          },
          getTickets: function(){
-            return $http.get('/api/tickets',{
-                "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
-            });
+            return $http.get('/api/tickets/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+
+            );
          },
 
          postReservation: function(dataa){
@@ -32,6 +33,8 @@ App.factory('FlightsSrv', function ($http) {
             });
 
          },
+
+         // check how to contact the server correctly in www!!
 
          getReservationNumber:function(){
            return this.reservationNumber;
@@ -65,6 +68,12 @@ App.factory('FlightsSrv', function ($http) {
             this.selectedArrivalDate=value;
          },
 
+         setOtherAirlinesSwitch:function (value){
+            this.switch=value
+         },
+          getOtherAirlinesSwitch:function (){
+             return this.switch
+         },
 
          setFlights: function(value){
            this.selectedFlights = value;

@@ -65,3 +65,70 @@
   border-bottom: 1px solid red;
   outline: 0;
 }
+
+.item-image {
+  background: #000;
+}
+ 
+.item-image img:first-child, .item-image .list-img {
+  width: 200px;
+}
+
+h2 {
+  font-size: 50;
+  font-weight: 10px;
+  color: rgb(247, 255, 46);
+}
+
+.item.item-trns {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+#main_body input.checkbox,#main_body input.radio{
+   background-color: transparent !important;
+}
+
+ion-item.item:hover a {
+  background-color: slategrey;
+  box-shadow: inset 0px 0px 0px 1px red;
+}
+ 
+
+.button {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+h2{
+  color: white;
+}

@@ -8,5 +8,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="redevs node_modules" level="project" />
     <orderEntry type="library" name="angular-animate" level="application" />
+    <orderEntry type="library" name="ionic.bundle" level="application" />
   </component>
 </module>

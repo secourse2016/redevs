@@ -1,80 +1,61 @@
-  
 
- <!-- 
-<body>
-     
-    <ion-header-bar class="bar bar-header bar-dark">
-      <h1 class="title">Search The Movie Database</h1>
-    </ion-header-bar>
-    <ion-content>
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Search" ng-model="movie.name" ng-change="searchMovieDB()">
-      </label>
-      <ion-list>
-        <div class="list">
- 
-          <a ng-repeat="movie in movies" href="#/movie/{{movie.id}}" class="item item-thumbnail-left">
-            <img ng-src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}" onerror="this.src = 'https://www.ginesisnatural.com/images/no_image.jpg';">
-            <h2>{{movie.original_title}}</h2>
-            <h4>{{movie.release_date}}</h4>
-          </a>
- 
-        </div>
-      </ion-list>
-    </ion-content>
-  
-   
-  <script id="view.html" type="text/ng-template">
-    <ion-header-bar class="bar bar-header bar-dark">
-      <h1 class="title">Movie details</h1>
-    </ion-header-bar>
-    <ion-content>
-      <div class="list card">
- 
-        <div class="item item-avatar">
-          <img src="http://files.softicons.com/download/object-icons/movies-icons-by-pinchodesigns/png/32x32/Movie.png">
-          <h2>{{movie.original_title}}</h2>
-          <p>{{movie.release_date}}</p>
-        </div>
- 
-        <div class="item item-image">
-          <img ng-src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}" width="200px" />
-        </div>
- 
-        <a class="item" href="#">
-            Average Vote: <strong>{{movie.vote_average}}</strong> (Votes: {{movie.vote_count}})
-          </a>
- 
-      </div>
-    </ion-content>
-  </script>   
-   
-</body>
-  
--->
-<div>
+
+
+<ion-spinner icon="spiral"></ion-spinner>
+
+
+<label>
+<h1>Choose the flights you want to book.</h1>
+</label>
 <ion-list ng-controller = "searchResultsCtrl">
-<h1>hiii</h1>
-
-  <ion-item ng-repeat="f in outgoingflights" ng-model="$parent.gflight" ng-value="f">
-
-
-    <h1>{{ f.flightNumber }}</h1>
-          <h1>{{ f.origin }}</h1>
-          <h1>{{ f.destination }}</h1>
-
-          <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
-
-          <h1>{{ f.cost }}$</h1>
-          <h1>{{ f.class }}</h1>
+<div>
+  <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
+  <input type="radio" ng-model="$parent.gflight" ng-value="f">
 
 
-    <p></p>
-  </ion-item>
- <ion-item></ion-item>
+<i class="icon ion-plane"></i>
+
+    Flight Number: <h1>{{ f.flightNumber }}</h1>
+    Origin:      <h1>{{ f.origin }}</h1>
+    Destination:     <h1>{{ f.destination }}</h1>
+
+<i class="icon ion-clock"></i>
+    Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+<i class="icon ion-pricetag"></i>
+    Price:     <h2>{{ f.cost }}$</h2>
+
+    Class:     <h1>{{ f.class }}</h1>
+
+    <br>
+    </ion-item>
+    </div>
+
+    <div>
+<ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left" ng-show="flag">
+
+    <input type="radio" ng-model="$parent.rflight" ng-value="r">
 
 
+<i class="icon ion-plane"></i>
+    Flight Number: <h1>{{ r.flightNumber }}</h1>
+    Origin:      <h1>{{ r.origin }}</h1>
+    Destination:      <h1>{{ r.destination }}</h1>
+
+<i class="icon ion-clock"></i>
+    Time:      <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+<i class="icon ion-pricetag"></i>
+    Price:      <h2>{{ r.cost }}</h2>
+    Class:      <h1>{{ r.class }}</h1>
+
+</ion-item>
+</div>
 
 </ion-list>
+
+
+<div class="text-center">
+    <button id=" Prcdbtn"  type="button" class="btn btn-success button-clear" ng-click="proceed()"> <h2>Proceed<h2> <i class="icon ion-chevron-right"></i>   </button>
+
 </div>

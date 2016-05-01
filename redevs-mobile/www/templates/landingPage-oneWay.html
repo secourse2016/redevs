@@ -1,21 +1,66 @@
 
 <ion-view view-title="One Way Trip">
-  <ion-content class="padding">
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
 
     <div class="list card">
 
     <div class="row">
-      <div class="col col-40 col-offset-10"><div class="list list-inset">
-        <label class="item item-input">
-          <i class="icon ion-location placeholder-icon"></i>
-          <input id="input_1" type="text" placeholder="From">
+      <div class="col col-50"><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive" >
+          <div class = "input-label">
+           From
+          </div>
+
+          <select ng-model="scope.fromOneWay">
+            <option>Berlin</option>
+            <option>Cairo</option>
+            <option>Cape Town</option>
+            <option selected>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
         </label>
       </div></div>
-      <div class="col col-40 "><div class="list list-inset">
-        <label class="item item-input" novalidate="">
+      <div class="col col-50 "><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive">
+          <div class = "input-label">
+            To
+          </div>
 
-          <i class="icon ion-location placeholder-icon"></i>
-          <input id="input_1" type="text" placeholder="To">
+          <select ng-model="scope.toOneWay">
+            <option>Berlin</option>
+            <option selected>Cairo</option>
+            <option>Cape Town</option>
+            <option>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
         </label>
       </div></div>
     </div>
@@ -24,7 +69,7 @@
 
       <label class="item item-input">
         <i class="icon ion-calendar"></i>
-        <input id="input_1" type="date" placeholder="From Date" class="input input-stable">
+        <input id="input_1" type="date" placeholder="From Date" class="input input-stable" ng-model="scope.fromDateOneWay">
       </label>
       </div>
 
@@ -36,62 +81,64 @@
       </h5>
     <div class="item range range-positive">
       <i class="ion-ios-person"></i>
-      <input type="range" name="adults" min="0" max="10" value="1" step="1" ng-model="adults.count">
+      <input type="range" name="adults" min="1" max="10" value="1" step="1" ng-model="scope.adultsCountOneWay">
       <i class="ion-ios-people"></i>
-      {{adults.count}}
+      {{scope.adultsCountOneWay}}
 
     </div>
       </div>
 
-      <div class="list">
+
 
           <h5>
             Number Of Children
           </h5>
           <div class="item range range-positive">
             <i class="ion-happy-outline"></i>
-            <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="children.count">
+            <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="scope.childrenCountOneWay">
             <i class="ion-happy"></i>
             <i class="ion-happy"></i>
             <i class="ion-happy"></i>
-            {{children.count}}
+            {{scope.childrenCountOneWay}}
 
 
         </div>
 
-
         <div class="row">
-          <div class="col col-50"><label class="item item-input item-select col-1">
+          <div class="col col-100">
+          <label class="item item-input item-select">
             <div class="input-label">
               Classes
             </div>
-            <select>
+            <select ng-model="scope.classOneWay">
               <option>Economy Class</option>
               <option selected>Business Class</option>
-              <option>First <Class></Class></option>
+              <option>First Class </option>
             </select>
           </label></div>
-          <div class="col"> </div>
-          <div class="col">
-
-            {{}}
-
-
-
-            <label class="toggle toggle-assertive">
-            <input type="checkbox">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label></div>
-        </div>
-
-
-
 
         </div>
 
-        </div>
+    <div class="row">
+    <ion-toggle toggle-class="toggle-assertive"
+                ng-model="scope.searchingAirlinesOneWay"
+                ng-true-value="'Search Other Airlines'"
+                ng-false-value="'Search This Airline Only'">
+      {{scope.searchingAirlinesOneWay}}
+    </ion-toggle>
+
+</div>
+      <div class="row">
+        <button class="button button-full button-assertive" ng-click="onClick()">
+          Search Flights!!
+        </button>
+      </div>
+
+
+    </div>
+
+
+
     </div>
 
     </div>

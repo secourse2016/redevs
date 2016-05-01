@@ -66,6 +66,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
 
 
+
     function AirportCodes() {
         FlightsSrv.getAirportCodes().success(function(airports) {
             $scope.Airports = airports;

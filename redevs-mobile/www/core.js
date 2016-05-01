@@ -1,4 +1,18 @@
-App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
+App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
+
+.config(function($httpProvider){
+  $httpProvider.interceptors.push(function(){
+    return {
+      request: function(req){
+        if(/^(\/api)|(\/db)/.test(req.url)){
+          req.url = 'http://localhost:3000' + req.url;
+          req.withCredentials = false;
+        }
+        return req;
+      }
+    };
+  });
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,51 +36,62 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
 
 
     .state('landingPage', {
-    url: '/landingPage',
 
-     templateUrl: 'templates/landingPage.html',
+      url: '/landingPage',
+      templateUrl: 'templates/landingPage.html',
       controller:'mainCtrl'
-  })
+
+    })
+
     .state ('landingPage.oneWayTrip',{
       url: '/oneway',
       views:{
         'tab-oneway':{
           templateUrl: 'templates/landingPage-oneWay.html',
-          controller : 'mainCtrl'
+          controller : 'oneWayCtrl'
         }
       }
-
     })
     .state ('landingPage.twoWayTrip',{
       url: '/twoway',
       views: {
         'tab-twoway': {
           templateUrl: 'templates/landingPage-twoWayTrip.html',
-          controller: 'mainCtrl'
+          controller: 'twoWayCtrl'
         }
       }
-
-
     })
+
     .state('confirmation', {
-    url: '/confirmation',
-
-     templateUrl: 'templates/confirmation.html',
+      url: '/confirmation',
+      templateUrl: 'templates/confirmation.html',
       controller:'mainCtrl'
-  })
+    })
 
-.state ('searchResults',{
+    .state ('searchResults',{
       url: '/searchResults',
-       
         templateUrl: 'templates/searchResults.html',
         controller: 'searchResultsCtrl'
-        
-      });
+    })
+
+  
+
+    .state('information', {
+      url: '/information',
+      templateUrl: 'templates/information.html',
+      controller: 'infoCtrl'
+    })
+    .state('reservationSearch', {
+        url: '/reservationSearch',
+        templateUrl: 'templates/reservationSearch.html',
+        controller: 'reservationSearchCtrl'
+    });
+
 
 
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/searchResults');
+  $urlRouterProvider.otherwise('/landingPage/oneway');
 
 });
