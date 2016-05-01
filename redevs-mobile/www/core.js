@@ -60,13 +60,12 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
         templateUrl: 'templates/searchResults.html',
         controller: 'searchResultsCtrl'
-
       });
 
 
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/landingPage');
+  $urlRouterProvider.otherwise('/searchResults');
 
 });

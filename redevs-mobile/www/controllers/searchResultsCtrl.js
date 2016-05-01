@@ -5,7 +5,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
 
   $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Price", "Class"];
-  /*$scope.FlightDetails = {};
+  $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];
   $scope.flag = false;
@@ -28,7 +28,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   var tripDestinationAirport = FlightsSrv.getSelectedDestinationAirport();
   var tripClass = FlightsSrv.getClass();
 
-  var reformatedOutgoingDate = tripOriginOutgoingDate.getFullYear()+'-'+'0'+(tripOriginOutgoingDate.getMonth()+1)+'-'+tripOriginOutgoingDate.getDate();
+  //var reformatedOutgoingDate = tripOriginOutgoingDate.getFullYear()+'-'+'0'+(tripOriginOutgoingDate.getMonth()+1)+'-'+tripOriginOutgoingDate.getDate();
 
 
 
@@ -88,7 +88,6 @@ $scope.convert = function(date){
   return moment(new Date(date)).format('YYYY-MM-DD HH:mm A');
 }
 
-*/
 
 
 
