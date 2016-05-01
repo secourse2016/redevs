@@ -7,22 +7,20 @@
   "dependencies": {
     "angular-momentjs": "latest",
     "angular-stripe": "^4.2.12",
+    "async": "latest",
     "body-parser": "~1.13.2",
+    "cors": "^2.7.1",
     "dotenv": "latest",
     "express": "~4.13.1",
     "jsonwebtoken": "latest",
+    "map": "latest",
     "mobile-detect": "^1.3.2",
     "moment": "2.10.6",
     "mongodb": "latest",
     "ms": "^0.7.1",
     "nodemon": "latest",
-    "underscore": "latest",
+    "request": "latest",
     "stripe": "latest",
-    "async" :"latest",
-    "map":"latest",
-    "request":"latest"
-
-
-
+    "underscore": "latest"
   }
 }

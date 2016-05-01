@@ -151,13 +151,6 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
         });
     });
 
-    $scope.changeCallback=function(){
-        if($scope.enabled)
-            $scope.label='Search Other Airlines';
-        elses
-            $scope.label='Search This Airline Only';
-    }
-
 
 
 
