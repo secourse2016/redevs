@@ -6,6 +6,9 @@ App.factory('FlightsSrv', function ($http) {
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
+         getDummyDataFromServer: function(){
+            return $http.get('/api/dummy');
+         },
          getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
             return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
@@ -32,6 +35,8 @@ App.factory('FlightsSrv', function ($http) {
             });
 
          },
+
+         // check how to contact the server correctly in www!!
 
          getReservationNumber:function(){
            return this.reservationNumber;
@@ -64,10 +69,11 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
-         setOtherAirlinesSwitch(value){
+
+         setOtherAirlinesSwitch:function (value){
             this.switch=value
          },
-          getOtherAirlinesSwitch(){
+          getOtherAirlinesSwitch:function (){
              return this.switch
          },
 

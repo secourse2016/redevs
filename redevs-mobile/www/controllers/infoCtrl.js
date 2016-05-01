@@ -5,6 +5,16 @@
    		$scope.AdultsArray = new Array($scope.AdultsCount);
    		$scope.ChildrenArray = new Array($scope.ChildrenCount);
 
+         /* TRYING TO GET A PIECE OF DUMMY DATA FROM SERVER */
+         // function getDummyDataFromServer(){
+         //    FlightsSrv.getDummyDataFromServer().success(function(response){
+         //       console.log(response);
+         //    });
+         // }
+         // getDummyDataFromServer();
+
+         console.log($scope.AdultsCount);
+
    		$scope.Adults = [];
    		$scope.Children = [];
 

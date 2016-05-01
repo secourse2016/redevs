@@ -9,35 +9,37 @@
 
 
 
-App.controller('reservationSearchCtrl', function($scope,$http,reservationSearchSrv,moment) {
+//angular.module('deltaMobileApp', ['ionic'])
 
-  $('dt').addClass('fechado');
+App.controller('reservationSearchCtrl', function($scope, $timeout,$http,reservationSearchSrv) {
 
-var $active = null;
-var x="da test x";
-var y="da test y";
+//   $('dt').addClass('fechado');
 
-$('dt').click(function(){
+//     var $active = null;
+//     var x="da test x";
+//     var y="da test y";
 
-  if ($active !== null){
-    $active.next().slideToggle("fast");
-    $active.removeClass('aberto');
-    $active.addClass('fechado');
-  }
+//   $('dt').click(function(){
 
-  $active = $(this);
-  $active.addClass('aberto');
-  $next = $active.next();
+//     if ($active !== null){
+//       $active.next().slideToggle("fast");
+//       $active.removeClass('aberto');
+//       $active.addClass('fechado');
+//     }
 
-  if ($next.is(":hidden")){
-    $next.slideToggle("fast");
-  }else{
-    $active.removeClass('aberto');
-    $active.addClass('fechado');
-    $active = null;
-  }
+//   $active = $(this);
+//   $active.addClass('aberto');
+//   $next = $active.next();
 
-})
+//   if ($next.is(":hidden")){
+//     $next.slideToggle("fast");
+//   }else{
+//     $active.removeClass('aberto');
+//     $active.addClass('fechado');
+//     $active = null;
+//   }
+
+// })
 
   $scope.reservations=[{
   "reservationCode":"AXY123",
@@ -272,12 +274,15 @@ $('dt').click(function(){
 
 $scope.reservationsObjects={};
 var reservationNumber = reservationSearchSrv.getReservationNumber();
+console.log(reservationNumber);
 
    findReservation = function(resNum) { // <-- here is your value from the input
       flag=false;
       reservationSearchSrv.setReservationNumber(resNum);
-
+      console.log("dakhal el method");
+      console.log(resNum);
       var reservationNumberValue = reservationSearchSrv.getReservationNumber();
+      console.log(reservationNumberValue);
 
      //call api, and change the toggle flag to true
 
@@ -288,9 +293,11 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
       if(!response.data || response.data.length == 0){
           //mala2ahosh
           flag=false;
+          console.log("mala2ash el ticket");
 
       }
       else{
+        console.log("la2a el ticket");
         //la2a el ticket
         //console.log("ticket found");
            flag=true;
@@ -346,7 +353,7 @@ var reservationNumber = reservationSearchSrv.getReservationNumber();
 
   findReservation(reservationNumber);
 
-   $scope.findReservation = findReservation ;
+  $scope.findReservation = findReservation ;
 
 
 
