@@ -36,11 +36,13 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
 
     .state('landingPage', {
-    url: '/landingPage',
 
-     templateUrl: 'templates/landingPage.html',
+      url: '/landingPage',
+      templateUrl: 'templates/landingPage.html',
       controller:'mainCtrl'
+
     })
+
     .state ('landingPage.oneWayTrip',{
       url: '/oneway',
       views:{
@@ -59,10 +61,10 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
         }
       }
     })
-    .state('confirmation', {
-    url: '/confirmation',
 
-     templateUrl: 'templates/confirmation.html',
+    .state('confirmation', {
+      url: '/confirmation',
+      templateUrl: 'templates/confirmation.html',
       controller:'mainCtrl'
     })
 
@@ -70,7 +72,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
       url: '/searchResults',
         templateUrl: 'templates/searchResults.html',
         controller: 'searchResultsCtrl'
-      });
     })
     .state('information', {
       url: '/information',
