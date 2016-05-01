@@ -1,71 +1,71 @@
 <ion-view view-title="reservationSearch">
-    
-    <!--  <body ng-controller="reservationSearchCtrl"> -->
-      <ion-header-bar class="bar-positive">
-     
-    </ion-header-bar>
-  <ion-content class="padding">
-  
-      <div class="list">
-  <label class="item item-input">
-<!--     <span class="input-label">Enter reservation Code</span> -->    
-  <input type="text" placeholder="Enter your reservation code" ng-model="rn">
-  </label>
 
-</div>
+  <!--  <body ng-controller="reservationSearchCtrl"> -->
+  <ion-header-bar class="bar-positive">
+
+  </ion-header-bar>
+  <ion-content class="padding">
+
+    <div class="list">
+      <label class="item item-input">
+        <!--     <span class="input-label">Enter reservation Code</span> -->
+        <input type="text" placeholder="Enter your reservation code" ng-model="rn">
+      </label>
+
+    </div>
 
     <button  ng-click="findReservation(rn)" class="button button-positive">
-  Find Now
-</button>
+      Find Now
+    </button>
 
- <ion-list ng-show="toggle">
-         
-       
-             <div class="list card animated bounceInLeft">
-      <div class="item item-divider">Your reservation Code</div>
-      <div class="item item-body">
-        <div>
-         {{reservationsObjects.reservationCode}}
+    <ion-list ng-show="toggle">
+
+
+      <div class="list card animated bounceInLeft">
+        <div class="item item-divider">Your reservation Code</div>
+        <div class="item item-body">
+          <div>
+            {{reservationsObjects.reservationCode}}
+          </div>
         </div>
       </div>
-    </div>       
-       
-       <div class="list card animated bounceInRight">
-      <div class="item item-divider">>Number of Adults</div>
-      <div class="item item-body">
-        <div>
-         {{reservationsObjects.numberOfAdults}}
+
+      <div class="list card animated bounceInRight">
+        <div class="item item-divider">>Number of Adults</div>
+        <div class="item item-body">
+          <div>
+            {{reservationsObjects.numberOfAdults}}
+          </div>
         </div>
       </div>
-    </div>
-        
-           <div class="list card animated bounceInLeft">
-      <div class="item item-divider">Number Of Children</div>
-      <div class="item item-body">
-        <div>
-       {{reservationsObjects.numberOfChildren}}
+
+      <div class="list card animated bounceInLeft">
+        <div class="item item-divider">Number Of Children</div>
+        <div class="item item-body">
+          <div>
+            {{reservationsObjects.numberOfChildren}}
+          </div>
         </div>
       </div>
-    </div>  
-       
-       
-       
-       
-       
-       
-       
-       
-        <!-- <div class="list card animated bounceInLeft">-->
-        <!--<ion-item class="positive-bg">Your reservation Code </ion-item>-->
-        <!--<ion-item >{{reservationsObjects.reservationCode}}</ion-item>-->
-        <!--<ion-item class="positive-bg" >Number of Adults</ion-item>-->
-        <!--<ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>-->
-        <!--<ion-item class="positive-bg" >Number Of Children</ion-item>-->
-        <!--<ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>-->
-        <!--</div>-->
-        
-        <div ng-repeat="flight in reservationsObjects.flights" class="list card animated bounceInRight">
-       
+
+
+
+
+
+
+
+
+      <!-- <div class="list card animated bounceInLeft">-->
+      <!--<ion-item class="positive-bg">Your reservation Code </ion-item>-->
+      <!--<ion-item >{{reservationsObjects.reservationCode}}</ion-item>-->
+      <!--<ion-item class="positive-bg" >Number of Adults</ion-item>-->
+      <!--<ion-item >{{reservationsObjects.numberOfAdults}}</ion-item>-->
+      <!--<ion-item class="positive-bg" >Number Of Children</ion-item>-->
+      <!--<ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>-->
+      <!--</div>-->
+
+      <div ng-repeat="flight in reservationsObjects.flights" class="list card animated bounceInRight">
+
         <ion-item class="positive-bg">Flight Number</ion-item>
         <ion-item >{{flight.flightNumber}}</ion-item>
         <ion-item class="positive-bg">Date</ion-item>
@@ -78,14 +78,14 @@
         <ion-item >{{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
         <ion-item class="positive-bg">Arrival Time</ion-item>
         <ion-item >{{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}</ion-item>
-        
-        
-        
-        
-        </div>
-      </ion-list>
 
-</body>
+
+
+
+      </div>
+    </ion-list>
+
+    </body>
 
   </ion-content>
 </ion-view>
