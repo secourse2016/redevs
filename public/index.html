@@ -55,6 +55,15 @@
     <script src="./controllers/thankYouCtrl.js"></script>
 
     <script src="./controllers/searchResultsCtrl.js"></script>
+    <script type="text/javascript">
+        $(window).scroll(function() {
+          if ($(document).scrollTop() > 50) {
+                $('nav').addClass('scroll');
+              } else {
+                $('nav').removeClass('scroll');
+              }
+            });
+    </script>
 
 
     <link rel="icon" href="http://landoftravel.com/wp-content/uploads/2013/02/fly-delta-icon.png">

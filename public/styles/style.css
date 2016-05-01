@@ -8,6 +8,11 @@ body {
 	opacity: 0.9;
 }
 
+div.jumbotron{
+	background-color: rgb(180,180,180);
+}
+
+
 /*#navigationBar{
 	background-color: #222222;
 	margin-right: 0px;
@@ -56,6 +61,11 @@ body {
 .navbar-default .nav > li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
     background-color: transparent;
+}
+
+.navbar.scroll {
+  min-height: 35px;
+  background-color: rgba(20,20,20,0.8);
 }
 
 section#about {

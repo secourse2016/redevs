@@ -1,8 +1,8 @@
 
 	<div class="container">
 		 <div class="jumbotron">
-    		<h1>Tickets Information</h1>
-    			<p>Please Fill the information below to complete your reservations.</p>
+    		<h2 style="text-align: center">Tickets Information</h2>
+    			<p style="color: #000">Please Fill the information below to complete your reservations.</p>
     		<h2>
     		</h2>
 		</div>
@@ -14,13 +14,13 @@
 			  	<div class="row">
 
 			  		<div class="col-sm-3">
-			  			<span class="badge">First Name</span>
+			  			<p>First Name</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Adults[$index].firstName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Last Name</span>
+			  			<p>Last Name</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Adults[$index].lastName"></input>
@@ -31,13 +31,13 @@
 	  			<div class="row">
 
 		  			<div class="col-sm-3">
-			  			<span class="badge">Passport Nationality</span>
+			  			<p>Passport Nationality</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" uib-typeahead="nationality.name for nationality in nationalities | filter:$viewValue | limitTo: 10" required="true" ng-model="$parent.Adults[$index].passNationality"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Passport Number</span>
+			  			<p>Passport Number</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Adults[$index].passNumber"></input>
@@ -49,13 +49,13 @@
 	  			<div class="row">
 
 	  				<div class="col-sm-3">
-			  			<span class="badge">Email</span>
+			  			<p>Email</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Adults[$index].email"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Mobile Number</span>
+			  			<p>Mobile Number</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Adults[$index].mobileNumber"></input>
@@ -67,7 +67,7 @@
 	  			<div class="row">
 
 	  				<div class="col-sm-3">
-			  			<span class="badge">Date Of Birth</span>
+			  			<p>Date Of Birth</p>
 			  		</div>
 			  		<div class="col-sm-9">
 			  			<input type="text" ng-model="$parent.Adults[$index].dateOfBirth" placeholder="dd/MM/YYYY"></input>
@@ -77,13 +77,13 @@
 	  			<div class="row">
 
 	  				<div class="col-sm-3">
-			  			<span class="badge">Emergency Contact</span>
+			  			<p>Emergency Contact</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" ng-model="$parent.Adults[$index].emergencyContact"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Mobile Number</span>
+			  			<p>Mobile Number</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" ng-model="$parent.Adults[$index].emergencyMobileNumber"></input>
@@ -100,13 +100,13 @@
   				<div class="row">
 
 			  		<div class="col-sm-3">
-			  			<span class="badge">First Name</span>
+			  			<p>First Name</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Children[$index].firstName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Last Name</span>
+			  			<p>Last Name</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Children[$index].lastName"></input>
@@ -117,13 +117,13 @@
 	  			<div class="row">
 
 			  		<div class="col-sm-3">
-			  			<span class="badge">Passport Nationality</span>
+			  			<p>Passport Nationality</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" uib-typeahead="nationality.name for nationality in nationalities | filter:$viewValue | limitTo: 10" required="true" ng-model="$parent.Children[$index].passNationality"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Passport Number</span>
+			  			<p>Passport Number</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Children[$index].passNumber"></input>
@@ -134,7 +134,7 @@
 	  			<div class="row">
 
 	  				<div class="col-sm-3">
-			  			<span class="badge">Date Of Birth</span>
+			  			<p>Date Of Birth</p>
 			  		</div>
 			  		<div class="col-sm-9">
 			  			<input type="text" ng-model="$parent.Adults[$index].dateOfBirth" placeholder="dd/MM/YYYY"></input>
@@ -144,13 +144,13 @@
 	  			<div class="row">
 
 			  		<div class="col-sm-3">
-			  			<span class="badge">Supervisor Name</span>
+			  			<p>Supervisor Name</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Children[$index].supervisorName"></input>
 		  			</div>
 		  			<div class="col-sm-3">
-			  			<span class="badge">Mobile Number</span>
+			  			<p>Mobile Number</p>
 			  		</div>
 			  		<div class="col-sm-3">
 			  			<input type="text" required="true" ng-model="$parent.Children[$index].supervisorMobileNumber"></input>
@@ -163,8 +163,10 @@
   		</div>
 
 
-
-  	<button type="button" class="btn btn-primary" ng-click="proceed()">Proceed</button>
-
-
 	</div>
+	<div class="row" id="proceedBtn">
+	    <div class="span7 text-center">
+			<button type="button" class="btn btn-primary" ng-click="proceed()">Proceed</button>
+		</div>
+	</div>
+
