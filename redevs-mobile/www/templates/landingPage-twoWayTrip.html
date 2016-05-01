@@ -10,7 +10,7 @@
             From
           </div>
 
-          <select ng-model="fromTwoWay">
+          <select ng-model="scope.fromTwoWay">
             <option>Berlin</option>
             <option>Cairo</option>
             <option>Cape Town</option>
@@ -39,7 +39,7 @@
             To
           </div>
 
-          <select ng-model="toTwoWay">
+          <select ng-model="scope.toTwoWay">
             <option>Berlin</option>
             <option>Cairo</option>
             <option>Cape Town</option>
@@ -69,14 +69,14 @@
         <label class="item item-input">
           <i class="icon ion-calendar"></i>
 
-          <input id="input_1" type="date" placeholder="From Date" ng-model="fromDateTwoWay">
+          <input id="input_1" type="date" placeholder="From Date" ng-model="scope.fromDateTwoWay">
         </label>
       </div>
       <div class="col col-40 ">
 
         <label class="item item-input" >
           <i class="icon ion-calendar"></i>
-          <input id="input_1" type="date" placeholder="Return Date" ng-model="toDateTwoWay">
+          <input id="input_1" type="date" placeholder="Return Date" ng-model="scope.toDateTwoWay">
         </label>
       </div>
 
@@ -88,9 +88,9 @@
         </h5>
         <div class="item range range-positive">
           <i class="ion-ios-person"></i>
-          <input type="range" name="adults" min="0" max="10" value="1" step="1" ng-model="adultscountTwoWay">
+          <input type="range" name="adults" min="1" max="10" value="1" step="1" ng-model="scope.adultsCountTwoWay">
           <i class="ion-ios-people"></i>
-          {{adultscountTwoWay}}
+          {{scope.adultsCountTwoWay}}
 
         </div>
 
@@ -103,11 +103,11 @@
         </h5>
         <div class="item range range-positive">
           <i class="ion-happy-outline"></i>
-          <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="childrencountTwoWay">
+          <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="scope.childrenCountTwoWay">
           <i class="ion-happy"></i>
           <i class="ion-happy"></i>
           <i class="ion-happy"></i>
-          {{childrencountTwoWay}}
+          {{scope.childrenCountTwoWay}}
 
 
       </div>
@@ -119,7 +119,7 @@
             <div class="input-label">
               Classes
             </div>
-            <select ng-model="classTwoWay">
+            <select ng-model="scope.classTwoWay">
               <option>Economy Class</option>
               <option selected>Business Class</option>
               <option>First Class </option>
@@ -130,16 +130,17 @@
 
       <div class="row">
         <ion-toggle toggle-class="toggle-assertive"
-                    ng-model="searchingAirlinesTwoWay"
+                    ng-model="scope.searchingAirlinesTwoWay"
                     ng-true-value="'Search Other Airlines'"
                     ng-false-value="'Search This Airline Only'">
-          {{searchingAirlinesTwoWay}}
+          {{scope.searchingAirlinesTwoWay}}
         </ion-toggle>
 
       </div>
 
       <div class="row">
         <button class="button button-full button-assertive" ng-click="onClick()">
+          Search Flights!!
           </button>
       </div>
 

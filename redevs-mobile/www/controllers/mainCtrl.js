@@ -1,3 +1,23 @@
+App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location) {
+  $scope.goForward = function () {
+    var selected = $ionicTabsDelegate.selectedIndex();
+    if (selected != -1) {
+      $ionicTabsDelegate.select(selected + 1);
+    }
+  };
+
+  $scope.goBack = function () {
+    var selected = $ionicTabsDelegate.selectedIndex();
+    if (selected != -1 && selected != 0) {
+      $ionicTabsDelegate.select(selected - 1);
+    }
+  };
+
+  $scope.searchingAirlines = "Search This Airline Only";
+});
+
+
+
 App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location) {
 
   $scope.goForward = function () {
@@ -13,11 +33,17 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
       $ionicTabsDelegate.select(selected - 1);
     }
   };
+  $scope.scope={
+    fromTwoWay:'Delhi',
+    toTwoWay:'Cairo',
+    adultsCountTwoWay :1,
+    childrenCountTwoWay:0,
+    searchingAirlinesTwoWay :"Search This Airline Only",
+    classTwoWay:'Business Class',
+    fromDateTwoWay:'',
+    toDateTwoWay :''
+  };
 
-  $scope.searchingAirlinesTwoWay = "Search This Airline Only";
-  $scope.classTwoWay='Business Class';
-  $scope.fromTwoWay='Delhi';
-  $scope.toTwoWay='Cairo';
 
 
   $scope.onClick=function() {
@@ -27,7 +53,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     var fromCountry;
     var toCountry;
 
-    switch ($scope.classTwoWay) {
+    switch ($scope.scope.classTwoWay) {
       case "Economy Class":
         classes = 'economy';
         break;
@@ -39,7 +65,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
 
-    switch ($scope.fromTwoWay) {
+    switch ($scope.scope.fromTwoWay) {
       case 'Mumbai':
         fromCountry = 'BOM';
             break;
@@ -99,7 +125,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
 
     }
-    switch ($scope.toTwoWay) {
+    switch ($scope.scope.toTwoWay) {
       case 'Mumbai':
         toCountry = 'BOM';
         break;
@@ -161,20 +187,20 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("RoundTrip");
-    FlightsSrv.setNumberOfChildren($scope.childrencountTwoWay);
-    FlightsSrv.setNumberOfAdults($scope.adultscountTwoWay);
-    FlightsSrv.setOtherAirlinesSwitch($scope.searchingAirlinesTwoWay);
+    FlightsSrv.setNumberOfChildren($scope.scope.childrenCountTwoWay);
+    FlightsSrv.setNumberOfAdults($scope.scope.adultsCountTwoWay);
+    FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesTwoWay);
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
-    FlightsSrv.setSelectedDepartureDate($scope.fromDateTwoWay);
-    FlightsSrv.setSelectedArrivalDate($scope.toDateTwoWay);
+    FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateTwoWay);
+    FlightsSrv.setSelectedArrivalDate($scope.scope.toDateTwoWay);
     console.log(fromCountry);
     console.log(toCountry);
     console.log(classes);
-    console.log($scope.searchingAirlinesTwoWay);
-    console.log($scope.adultsCountTwoWay);
-    console.log($scope.fromDateTwoWay);
-    console.log($scope.toDateTwoWay);
+    console.log($scope.scope.searchingAirlinesTwoWay);
+    console.log($scope.scope.adultsCountTwoWay);
+    console.log($scope.scope.fromDateTwoWay);
+    console.log($scope.scope.toDateTwoWay);
   }
 });
 
@@ -194,10 +220,17 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     }
   };
 
-  $scope.searchingAirlinesOneWay = "Search This Airline Only";
-  $scope.classOneWay='Business Class';
-  $scope.fromOneWay='Delhi';
-  $scope.toOneWay='Cairo';
+
+  $scope.scope={
+    fromOneWay:'Delhi',
+    toOneWay:'Cairo',
+    adultsCountOneWay :1,
+    childrenCountOneWay:0,
+    searchingAirlinesOneWay :"Search This Airline Only",
+    classOneWay:'Business Class',
+    fromDateOneWay:''
+  };
+
 
   $scope.onClick=function() {
     var classes;
@@ -205,7 +238,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     var fromCountry;
     var toCountry;
 
-    switch ($scope.classOneWay) {
+    switch ($scope.scope.classOneWay) {
       case "Economy Class":
         classes = 'economy';
         break;
@@ -217,7 +250,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
 
-    switch ($scope.fromOneWay) {
+    switch ($scope.scope.fromOneWay) {
       case 'Mumbai':
         fromCountry = 'BOM';
         break;
@@ -277,7 +310,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
 
     }
-    switch ($scope.toOneWay) {
+    switch ($scope.scope.toOneWay) {
       case 'Mumbai':
         toCountry = 'BOM';
         break;
@@ -339,17 +372,17 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("OneWayTrip");
-    FlightsSrv.setNumberOfChildren($scope.childrencountTwoWay);
-    FlightsSrv.setNumberOfAdults($scope.adultscountTwoWay);
-    FlightsSrv.setOtherAirlinesSwitch($scope.searchingAirlinesTwoWay);
+    FlightsSrv.setNumberOfChildren($scope.scope.childrenCountOneWay);
+    FlightsSrv.setNumberOfAdults($scope.scope.adultsCountOneWay);
+    FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesOneWay);
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
-    FlightsSrv.setSelectedDepartureDate($scope.fromDateTwoWay);
+    FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
     console.log(fromCountry);
     console.log(toCountry);
     console.log(classes);
-    console.log($scope.adultscountTwoWay);
-    console.log($scope.fromDateTwoWay);
+    console.log($scope.scope.adultsCountOneWay);
+    console.log($scope.scope.fromDateOneWay);
   }
 });
 

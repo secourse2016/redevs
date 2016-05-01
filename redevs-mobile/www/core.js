@@ -23,8 +23,9 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
     .state('landingPage', {
     url: '/landingPage',
-    abstract :true,
-     templateUrl: 'templates/landingPage.html'
+
+     templateUrl: 'templates/landingPage.html',
+      controller:'mainCtrl'
   })
     .state ('landingPage.oneWayTrip',{
       url: '/oneway',
