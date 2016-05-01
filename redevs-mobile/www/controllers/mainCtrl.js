@@ -187,8 +187,8 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("RoundTrip");
-    FlightsSrv.setNumberOfChildren($scope.scope.childrenCountTwoWay);
-    FlightsSrv.setNumberOfAdults($scope.scope.adultsCountTwoWay);
+    FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountTwoWay));
+    FlightsSrv.setNumberOfAdults(parseInt($scope.scope.adultsCountTwoWay));
     FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesTwoWay);
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
@@ -198,7 +198,6 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     console.log(toCountry);
     console.log(classes);
     console.log($scope.scope.searchingAirlinesTwoWay);
-    console.log($scope.scope.adultsCountTwoWay);
     console.log($scope.scope.fromDateTwoWay);
     console.log($scope.scope.toDateTwoWay);
     $state.go('searchResults');
@@ -373,15 +372,15 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("OneWayTrip");
-    FlightsSrv.setNumberOfChildren($scope.scope.childrenCountOneWay);
-    FlightsSrv.setNumberOfAdults($scope.scope.adultsCountOneWay);
+    FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountOneWay));
+    FlightsSrv.setNumberOfAdults(parseInt($scope.scope.adultsCountOneWay));
     FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesOneWay);
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
-   
+
     console.log(FlightsSrv.getTripType());
-    
+
     $state.go('searchResults');
   }
 });

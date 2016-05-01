@@ -2,6 +2,10 @@
 
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
+    console.log(FlightsSrv.getNumberOfAdults());
+    console.log(FlightsSrv.getNumberOfChildren());
+    console.log(FlightsSrv.getNumberOfAdults()+FlightsSrv.getNumberOfChildren());
+
    		$scope.AdultsArray = new Array($scope.AdultsCount);
    		$scope.ChildrenArray = new Array($scope.ChildrenCount);
 
