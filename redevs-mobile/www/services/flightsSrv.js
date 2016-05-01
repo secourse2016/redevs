@@ -1,23 +1,23 @@
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
-           return $http.get('/api/data/codes');
+           return $http.get('localhost:3000/api/data/codes');
          },
          getNationalities : function() {
-            return $http.get('/api/data/nationalities');
+            return $http.get('localhost:3000/api/data/nationalities');
          },
          getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
+            return $http.get('localhost:3000/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
+            return $http.get('localhost:3000/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
          getTickets: function(){
-            return $http.get('/api/tickets',{
+            return $http.get('localhost:3000/api/tickets',{
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
@@ -25,7 +25,7 @@ App.factory('FlightsSrv', function ($http) {
          postReservation: function(dataa){
             return $http({
               method: 'POST',
-              url : '/api/postReservation/',
+              url : 'localhost:3000/api/postReservation/',
               data: dataa,
               headers : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' },
 
@@ -64,10 +64,11 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
-         setOtherAirlinesSwitch(value){
+
+         setOtherAirlinesSwitch:function (value){
             this.switch=value
          },
-          getOtherAirlinesSwitch(){
+          getOtherAirlinesSwitch:function (){
              return this.switch
          },
 
