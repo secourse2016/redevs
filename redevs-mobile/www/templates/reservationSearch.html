@@ -48,7 +48,63 @@
         </div>
       </div>
 
+      <div ng-repeat="flight in reservationsObjects.flights">
+       
+        <div class="list card animated bounceInRight">
+        <div class="item item-divider">>Flight Number</div>
+        <div class="item item-body">
+          <div>
+            {{flight.flightNumber}}
+          </div>
+        </div>
+      </div>
 
+         <div class="list card animated bounceInLeft">
+        <div class="item item-divider">Date</div>
+        <div class="item item-body">
+          <div>
+            {{flight.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}
+          </div>
+        </div>
+      </div>
+
+         <div class="list card animated bounceInRight">
+        <div class="item item-divider">>From</div>
+        <div class="item item-body">
+          <div>
+            {{flight.origin}}
+          </div>
+        </div>
+      </div>
+
+         <div class="list card animated bounceInLeft">
+        <div class="item item-divider">to</div>
+        <div class="item item-body">
+          <div>
+            {{flight.destination}}
+          </div>
+        </div>
+      </div>
+
+            <div class="list card animated bounceInRight">
+        <div class="item item-divider">>Departure time</div>
+        <div class="item item-body">
+          <div>
+            {{flight.departureDateTime | amDateFormat:'h:mm:ss a'}}
+          </div>
+        </div>
+      </div>
+
+          <div class="list card animated bounceInLeft">
+        <div class="item item-divider">Arrival time</div>
+        <div class="item item-body">
+          <div>
+            {{flight.arrivalDateTime | amDateFormat:'h:mm:ss a'}}
+          </div>
+        </div>
+      </div>
+
+      </div>>
 
 
 
@@ -64,7 +120,7 @@
       <!--<ion-item >{{reservationsObjects.numberOfChildren}}</ion-item>-->
       <!--</div>-->
 
-      <div ng-repeat="flight in reservationsObjects.flights" class="list card animated bounceInRight">
+ <!--      <div ng-repeat="flight in reservationsObjects.flights" class="list card animated bounceInRight">
 
         <ion-item class="positive-bg">Flight Number</ion-item>
         <ion-item >{{flight.flightNumber}}</ion-item>
@@ -82,7 +138,7 @@
 
 
 
-      </div>
+      </div> -->
     </ion-list>
 
     </body>
