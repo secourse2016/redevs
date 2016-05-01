@@ -8,3 +8,15 @@ input{
 	div.row{
 	padding-bottom: 10px;
 }
+.panel{
+	background-color: rgb(180,180,180);
+
+}
+.panel > .panel-heading {
+	background-color: rgb(180,180,180);
+	border-color: #000;
+}
+
+div#proceedBtn{
+	padding:0px;
+}

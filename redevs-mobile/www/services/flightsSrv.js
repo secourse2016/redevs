@@ -1,23 +1,26 @@
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
-           return $http.get('localhost:3000/api/data/codes');
+           return $http.get('/api/data/codes');
          },
          getNationalities : function() {
-            return $http.get('localhost:3000/api/data/nationalities');
+            return $http.get('/api/data/nationalities');
+         },
+         getDummyDataFromServer: function(){
+            return $http.get('/api/dummy');
          },
          getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
-            return $http.get('localhost:3000/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
          getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('localhost:3000/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
          getTickets: function(){
-            return $http.get('localhost:3000/api/tickets',{
+            return $http.get('/api/tickets',{
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
@@ -25,13 +28,15 @@ App.factory('FlightsSrv', function ($http) {
          postReservation: function(dataa){
             return $http({
               method: 'POST',
-              url : 'localhost:3000/api/postReservation/',
+              url : '/api/postReservation/',
               data: dataa,
               headers : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' },
 
             });
 
          },
+
+         // check how to contact the server correctly in www!!
 
          getReservationNumber:function(){
            return this.reservationNumber;
