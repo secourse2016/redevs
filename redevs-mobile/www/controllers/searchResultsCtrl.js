@@ -24,7 +24,8 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   var tripOriginAirport = FlightsSrv.getSelectedOriginAirport();
   var tripDestinationAirport = FlightsSrv.getSelectedDestinationAirport();
   var tripClass = FlightsSrv.getClass();
-  var seats=FlightsSrv.getNumberOfChildren()+FlightsSrv.getNumberOfAdults();
+  var seats=parseInt(FlightsSrv.getNumberOfChildren())+parseInt(FlightsSrv.getNumberOfAdults());
+  console.log(seats);
 
   var reformatedOutgoingDate =moment(tripOriginOutgoingDate).toDate().getTime();
 
@@ -38,6 +39,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
         console.log("entered one way trip");
     FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass,seats).then(function(response){
       $scope.outgoingFlights = response.data.outgoingFlights;
+      console.log(response.data.outgoingFlights);
       $scope.flag=false;
     })
 

@@ -70,8 +70,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
       url: '/searchResults',
         templateUrl: 'templates/searchResults.html',
         controller: 'searchResultsCtrl'
-      });
-    })
+      })
     .state('information', {
       url: '/information',
       templateUrl: 'templates/information.html',
@@ -83,7 +82,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
         controller: 'reservationSearchCtrl'
     });
 
-      
+
 
 
 
