@@ -256,8 +256,11 @@
                   <div class="btn-group">
                        <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'RoundTrip'" value="RoundTrip"  uncheckable>Round Trip</label>
                       <label class="btn btn-primary" ng-model="radioModel2" uib-btn-radio="'OneWayTrip'" value="OneWayTrip" uncheckable>One Way Trip</label>
+                      <div class="row">
+                      <br><br><br>
                       <switch name="enabled" ng-model="enabled" ng-change="changeCallback"></switch>
-
+                       <p>{{ label }}</p>
+                      </div>
                   </div>
 
 
@@ -269,12 +272,6 @@
 
             </div>
 
-            <div class="row" id="otherAirlines">
-              <switch name="enabled" ng-model="enabled" ng-change="changeCallback"></switch>
-              <p>{{ label }}
-              </p>
-
-            </div>
 
 
             <div class="row">
