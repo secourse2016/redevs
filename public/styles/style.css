@@ -71,6 +71,26 @@ section {
     transition: all .35s;
 }
 
+div#carousel{
+	opacity: 1;
+}
+#mycarousel{
+	width: 100%;
+}
+div#carousel{
+	width: 100%;
+}
+
+.carousel-caption{
+	margin-bottom: 20px;
+}
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      margin: auto;
+}
+
 @media(min-width:768px) {
     .navbar-default {
         border-color: rgba(255,255,255,.3); 
@@ -121,6 +141,7 @@ section {
         color: #ff0000;
     }
     section#about {
+    margin-top: 20px;
 	background: rgba(47,47,47,0.5);
 	border-color: rgba(255,255,255,.3); 
 	}
