@@ -67,6 +67,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/landingPage');
+  $urlRouterProvider.otherwise('/landingPage/oneway');
 
 });
