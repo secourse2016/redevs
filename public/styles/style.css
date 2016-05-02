@@ -10,6 +10,17 @@ div.jumbotron{
     background-color: rgba(50,50,50,0.5);
 }
 h2{
+    color: #eee;
+}
+p {
+    color: #eee;
+}
+.table {
+    background-color: rgba(50,50,50,0.5);
+}
+.form-control{
+    background-color: rgba(50,50,50,0.7);
+    border-color: transparent;
     color: white;
 }
 
