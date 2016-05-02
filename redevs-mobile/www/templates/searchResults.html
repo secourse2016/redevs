@@ -17,7 +17,7 @@
       </div>
       <br><br><br>
 
-      <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
+      <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight.flight" ng-value="f" class="item item-trns text-left">
 
 
         <div class="list card">
@@ -25,7 +25,7 @@
             <h1 class="title">Outgoing Flight</h1>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.gflight" ng-value="f" name="Outgoing Flights">
+          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights">
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
@@ -57,14 +57,14 @@
     </div>
     <div>
 
-      <ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left" ng-show="flag">
+      <ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight.flight" ng-value="r" class="item item-trns text-left" ng-show="flag">
 
         <div class="list card">
           <div class="bar  bar-assertive">
             <h1 class="title">Returning Flight</h1>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.rflight" ng-value="r" name="Returning Flights">
+          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights">
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 

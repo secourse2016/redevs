@@ -3,6 +3,12 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
 
 
 
+  $scope.gflight={
+    flight:null
+  };
+  $scope.rflight={
+    flight:null
+  };
 
   $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Price", "Class"];
   $scope.FlightDetails = {};
@@ -84,9 +90,13 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
 
        $scope.proceed = function(){
          var array=[];
-         array.push($scope.gflight);
-         array.push($scope.rflight);
+         array.push($scope.gflight.flight);
+         if(FlightsSrv.getTripType()==="RoundTrip") {
+           array.push($scope.rflight.flight);
+         }
          FlightsSrv.setFlights(array);
+         console.log((FlightsSrv.getFlights())[0]);
+         console.log((FlightsSrv.getFlights())[1]);
          $state.go('information');
        };
 

@@ -1,12 +1,13 @@
 
 <ion-view title="Confirmation">
 	<ion-content class="padding">
+    <div class="card">
 		<div class="bar bar-header">
   			<h1 class="title">Ticket Confirmation</h1>
 		</div>
-				
 
-		<div class="bar bar-subheader">
+<br><br>
+		<div class="bar bar-assertive ">
  			<h2 class="title">Flight Information</h2>
 		</div>
 
@@ -17,15 +18,7 @@
   				<h5> Class of tickets(s): {{ classOfTickets }}</h5>
     		</li>
 		</ul>
-
-		<div class="panel-group">
-	    	<div class="panel panel-default" ng-repeat="flight in flights">
-	      	
-	      		<div class="panel-heading">
-	      			Flight {{ index + 1 }}
-	      		</div>
-
-	      		<div class="panel-body">
+        <div ng-repeat="flight in flights">
   					<ul class="list">
    						<li class="item">
    							<h5> From: {{ flight.origin }}</h5>
@@ -35,7 +28,7 @@
     					</li>
 					</ul>
 
-						
+
 		  			<ul class="list">
    						<li class="item">
 					  		<h5> To: {{ flight.destination }}</h5>
@@ -45,8 +38,7 @@
 					</ul>
 
 	    		</div>
-	    	</div>
-		</div>
+    </div>
 
 		<div class="alert alert-info">
 			<strong>Note: Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.</strong><br>
