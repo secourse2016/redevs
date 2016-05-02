@@ -192,9 +192,9 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
         template: 'Please complete filling the search options'
       });
 
-      
+
     }
-    
+
     else{
     $scope.scope.fillingError = false;
     FlightsSrv.setClass(classes);
@@ -218,7 +218,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 });
 
 App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state, $ionicPopup) {
-  
+
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
     if (selected != -1) {
@@ -393,18 +393,18 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
     else{
-      $socpe.scope.fillingError = false;
+      $scope.scope.fillingError = false;
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("OneWayTrip");
     FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountOneWay));
     FlightsSrv.setNumberOfAdults(parseInt($scope.scope.adultsCountOneWay));
     FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesOneWay);
+
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
 
-    console.log(FlightsSrv.getTripType());
-    console.log(FlightsSrv.getOtherAirlinesSwitch()+'in mainctrl');
+
 
     $state.go('searchResults');
     }
