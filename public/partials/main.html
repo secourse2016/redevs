@@ -109,7 +109,7 @@
                 <p style='font-size: 22px;'>
                     Book Now</p>
             </div>
-            <form name="toForm">
+            <form name="fromForm">
             <div class="col-md-4">
                 <input name="originAirports"
                        id="originAirports"
@@ -150,8 +150,8 @@
             </div>
             </form>
            
-            <span style="color:red" ng-show="toForm.originAirports.$invalid">
-               <span ng-show="toForm.originAirports.$error.required && toForm.$submitted">airport is required.</span>
+            <span style="color:red" ng-show="fromForm.originAirports.$invalid">
+               <span ng-show="toForm.originAirports.$error.required && fromForm.$submitted">airport is required.</span>
             </span>
 
            <!-- <span ng-show="toForm.originAirports.$invalid || toForm.fromDate.$invalid">
@@ -163,15 +163,18 @@
 
 
             </div>
+
+            <form name="toForm">
             <div class="col-md-4">
                 <input name="destinationAirports"
                        id="destinationAirports"
                        type="text"
                        placeholder="Flying To"
-                       ng-model="selectedDestination"
+                       
                        uib-typeahead="airport.city for airport in Airports | filter:$viewValue | limitTo:10"
                        class="form-control",
-                       typeahead-on-select="SetDestinationAirport($item.iata)">
+                       typeahead-on-select="SetDestinationAirport($item.iata)"
+                       ng-model="selectedDestination" required>
 
 
                 <p class="input-group">
@@ -179,7 +182,7 @@
                            class="form-control"
                            uib-datepicker-popup="{{format}}"
                            min="'2016-03-01'"
-                           ng-model="dtTo"
+                           
                            datepicker-options="dateOptions"
                            id="toDate"
                            ng-show="radioModel2 == 'RoundTrip'"
@@ -187,6 +190,7 @@
                            placeholder="Return Date"
                            ng-required="true"
                            close-text="Close"
+                           ng-model="dtTo" required
                     />
                              <span class="input-group-btn">
                                <button type="button"
@@ -200,7 +204,9 @@
 
 
             </div>
+            </form>
             <div class="row">
+            <form name="numbers">
               <div class="col-sm-15">
                 <table class="table table-striped">
                   <thead>
@@ -224,6 +230,7 @@
 
                 </table>
               </div>
+            </form>
             </div>
             
 
@@ -235,7 +242,7 @@
                     <div >
                         <div class="span7 text-center">
 
-
+                        <form name="classes">
                             <div class="btn-group">
                                  <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'economy'" uncheckable>Economy Class</label>
                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'business'" uncheckable>Business Class</label>
@@ -244,6 +251,7 @@
 
 
                             </div>
+                        </form>
                         </div>
                     </div>
 
@@ -290,22 +298,17 @@
 
 
             </div>
-<!-- 
-=======
 
->>>>>>> mobileAppLandingPage
-            <div class="row">
-                <br></br>
-            </div>
-
- -->
 
 
 
             <div class="row">
 
                 <div class="span7 text-center">
-                    <button id="bookBtn" type="button" ng-click="SearchFlights()" class="btn btn-success">Book Now</button>
+                    <button id="bookBtn" type="button" ng-disable="toForm.$invalid || 
+                    fromForm.$invalid || classes.$invalid || numbers.$invalid" 
+
+                    ng-click="SearchFlights()" class="btn btn-success">Book Now</button>
                 </div>
 
 
