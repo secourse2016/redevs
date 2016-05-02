@@ -1,4 +1,4 @@
-	App.controller('infoCtrl', function($scope, $http,$location,FlightsSrv){
+	App.controller('infoCtrl', function($scope, $http,$state,FlightsSrv){
 
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
@@ -57,7 +57,7 @@
 
 
 					// });
-					$location.url('/confirmation');
+					$state.go('flightConfirmation');
 
 
 
