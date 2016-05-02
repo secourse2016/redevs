@@ -369,18 +369,18 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
 
-
+    console.log($scope.scope.fromDateOneWay);
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("OneWayTrip");
     FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountOneWay));
     FlightsSrv.setNumberOfAdults(parseInt($scope.scope.adultsCountOneWay));
     FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesOneWay);
+
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
 
-    console.log(FlightsSrv.getTripType());
-    console.log(FlightsSrv.getOtherAirlinesSwitch()+'in mainctrl');
+
 
     $state.go('searchResults');
   }
