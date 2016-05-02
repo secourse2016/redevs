@@ -150,6 +150,10 @@
             </div>
             </form>
            
+            <span style="color:red" ng-show="toForm.originAirports.$invalid">
+               <span ng-show="toForm.originAirports.$error.required && toForm.$submitted">airport is required.</span>
+            </span>
+
            <!-- <span ng-show="toForm.originAirports.$invalid || toForm.fromDate.$invalid">
               Please fill in all the fields
             </span> -->
