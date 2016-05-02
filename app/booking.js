@@ -7,7 +7,8 @@ console.log(today.year());
 
   function getAdults(passengerDetails){
     var adults = [];
-   for(var i =0;i<passengerDetails;i++){
+     
+   for(var i =0;i<passengerDetails.length;i++){
 
      if( (passengerDetails[i].dateOfBirth - today.year()) > 12  ){
        adults.push(passengerDetails[i]);
@@ -21,7 +22,7 @@ console.log(today.year());
 
   function getChildren(passengerDetails){
     var children = [];
-   for(var i =0;i<passengerDetails;i++){
+   for(var i =0;i<passengerDetails.length;i++){
 
      if( (passengerDetails[i].dateOfBirth - today.year()) <= 12  ){
        children.push(passengerDetails[i]);
