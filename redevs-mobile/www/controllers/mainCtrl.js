@@ -38,7 +38,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     toTwoWay:'Cairo',
     adultsCountTwoWay :1,
     childrenCountTwoWay:0,
-    searchingAirlinesTwoWay :"Search This Airline Only",
+    searchingAirlinesTwoWay :"Search For Flights in Delta Only",
     classTwoWay:'Business Class',
     fromDateTwoWay:'',
     toDateTwoWay :''
@@ -226,7 +226,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     toOneWay:'Cairo',
     adultsCountOneWay :1,
     childrenCountOneWay:0,
-    searchingAirlinesOneWay :"Search This Airline Only",
+    searchingAirlinesOneWay :"Search For Flights in Delta Only",
     classOneWay:'Business Class',
     fromDateOneWay:''
   };

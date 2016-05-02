@@ -1,4 +1,4 @@
-App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
+App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
 
 
 
@@ -72,7 +72,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
          array.push($scope.gflight);
          array.push($scope.rflight);
          FlightsSrv.setFlights(array);
-         $location.url('/information');
+         $state.go('information');
        };
 
 $scope.convert = function(date){
