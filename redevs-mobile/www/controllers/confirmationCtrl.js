@@ -32,7 +32,7 @@ $scope.calculateAdultCost = function() {
   } else if(FlightsSrv.getTripType()==='RoundTrip'){
 
     console.log($scope.flights);
-      price = $scope.flights[0].cost*$scope.adultTickets + $scope.flights[1].cost*$scope.adultTickets;
+      price = $scope.flights[0].cost*$scope.adultTickets+ $scope.flights[1].cost*$scope.adultTickets;
 
   }
 

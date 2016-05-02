@@ -10,12 +10,13 @@
 		<div class="bar bar-assertive ">
  			<h2 class="title">Flight Information</h2>
 		</div>
+      <br><br>
 
 		<ul class="list">
    			<li class="item">
-      			<h5> Number of adult ticket(s): {{ adultTickets }}</h5>
-  				<h5> Number of children ticket(s):{{ childrenTickets }}</h5>
-  				<h5> Class of tickets(s): {{ classOfTickets }}</h5>
+          <h3> Number of adult ticket(s): {{ adultTickets }}</h3>
+  				<h3> Number of children ticket(s):{{ childrenTickets }}</h3>
+  				<h3> Class of tickets(s): {{ classOfTickets }}</h3>
     		</li>
 		</ul>
         <div ng-repeat="flight in flights">
@@ -24,7 +25,7 @@
    							<h5> From: {{ flight.origin }}</h5>
 					  		<h5> Date: {{ convertToDate(flight.departureDateTime) }}</h5>
 					  		<h5> Time: {{ convertToTime(flight.departureDateTime) }}</h5>
-					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
+
     					</li>
 					</ul>
 
@@ -35,14 +36,15 @@
 					  		<h5> Date: {{ convertToDate(flight.arrivalDateTime) }}</h5>
 					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</h5>
     					</li>
+              <strong> Maximum baggage allowed: 24 Kilograms</strong>
 					</ul>
 
 	    		</div>
     </div>
-
-		<div class="alert alert-info">
-			<strong>Note: Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.</strong><br>
-		</div>
+    <div class="bar bar-positive">
+      <h1 class="title">Note: Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.</h1>
+    </div>
+    <br><br><br>
 
 		<div class="list">
   			<div class="item item-divider">
@@ -69,13 +71,19 @@
 
 		<div class="well">
 			<div>
-				<h3>Total amount: <span class="label label-default" ></span>{{ totalAmount }}USD</h3> <!--Modifying information - redirect to prev page -->
-				<button type="button" class="btn btn-primary">
-				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
 
-				<button type="button" class="btn btn-info" ng-click="goToCheckOut()"> <!--ng click -->
-	      		<span class="glyphicon glyphicon-ok-sign"></span> Check Out</button>
+        <div class="list">
 
+          <a class="item item-icon-left" >
+            <i class="icon ion-cash"></i>
+            Total Amount: {{ totalAmount }} USD
+
+          </a>
+          </div>
+        <button class="button button-full button-assertive" ng-click="goToCheckOut()">
+          <i class="icon ion-card"></i>
+          Check Out
+        </button>
 			</div>
 
 		</div>

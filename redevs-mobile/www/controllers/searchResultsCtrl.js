@@ -96,7 +96,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
          }
          FlightsSrv.setFlights(array);
          console.log((FlightsSrv.getFlights())[0]);
-         console.log((FlightsSrv.getFlights())[1]);
+         console.log((FlightsSrv.getFlights())[1]+"sfrgegegehehehrr");
          $state.go('information');
        };
 
