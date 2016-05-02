@@ -1,0 +1,92 @@
+
+<ion-view title="Confirmation">
+	<ion-content class="padding">
+    <div class="card">
+		<div class="bar bar-header">
+  			<h1 class="title">Ticket Confirmation</h1>
+		</div>
+
+<br><br>
+		<div class="bar bar-assertive ">
+ 			<h2 class="title">Flight Information</h2>
+		</div>
+      <br><br>
+
+		<ul class="list">
+   			<li class="item">
+          <h3> Number of adult ticket(s): {{ adultTickets }}</h3>
+  				<h3> Number of children ticket(s):{{ childrenTickets }}</h3>
+  				<h3> Class of tickets(s): {{ classOfTickets }}</h3>
+    		</li>
+		</ul>
+        <div ng-repeat="flight in flights">
+  					<ul class="list">
+   						<li class="item">
+   							<h5> From: {{ flight.origin }}</h5>
+					  		<h5> Date: {{ convertToDate(flight.departureDateTime) }}</h5>
+					  		<h5> Time: {{ convertToTime(flight.departureDateTime) }}</h5>
+
+    					</li>
+					</ul>
+
+
+		  			<ul class="list">
+   						<li class="item">
+					  		<h5> To: {{ flight.destination }}</h5>
+					  		<h5> Date: {{ convertToDate(flight.arrivalDateTime) }}</h5>
+					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</h5>
+    					</li>
+              <strong> Maximum baggage allowed: 24 Kilograms</strong>
+					</ul>
+
+	    		</div>
+    </div>
+    <div class="bar bar-positive">
+      <h1 class="title">Note: Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.</h1>
+    </div>
+    <br><br><br>
+
+		<div class="list">
+  			<div class="item item-divider">
+    			Adults
+ 			</div>
+
+  			<a class="item">
+   				<h5>{{ adultTickets }}</h5>
+				<h5>{{ classOfTickets }} </h5>
+				<h5>{{ calculateAdultCost() }}</h5>
+  			</a>
+
+  			<div class="item item-divider">
+    			Children
+  			</div>
+
+  			<a class="item">
+    			<h5>{{ childrenTickets }}</h5>
+				<h5>{{ classOfTickets }} </h5>
+				<h5>{{ calculateChildrenCost() }}</h5>
+ 			</a>
+
+		</div>
+
+		<div class="well">
+			<div>
+
+        <div class="list">
+
+          <a class="item item-icon-left" >
+            <i class="icon ion-cash"></i>
+            Total Amount: {{ totalAmount }} USD
+
+          </a>
+          </div>
+        <button class="button button-full button-assertive" ng-click="goToCheckOut()">
+          <i class="icon ion-card"></i>
+          Check Out
+        </button>
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>
