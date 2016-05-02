@@ -1,4 +1,8 @@
-App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
+App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','angular-stripe'])
+
+.config(function (stripeProvider) {
+    stripeProvider.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+  })
 
 .config(function($httpProvider){
   $httpProvider.interceptors.push(function(){
@@ -65,7 +69,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox'])
     .state('confirmation', {
       url: '/confirmation',
       templateUrl: 'templates/confirmation.html',
-      controller:'mainCtrl'
+      controller:'paymentCtrl'
     })
 
     .state ('searchResults',{
