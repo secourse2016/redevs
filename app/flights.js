@@ -955,7 +955,10 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
                   var time = moment().unix();
                   getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) { // same should be done as above regarding the classes
                     if (classs === "economy") {
+                        console.log((flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100);
+                        console.log(adults);
                       var charge = stripe.charges.create({
+
                         amount:(flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100,
                         currency:"usd",
                         source:token,
@@ -1152,11 +1155,33 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
 
 
-                      function getFlightByObjectId(id,cb){
+                      function getFlightByObjectId(id,classs,cb){
                         var collection  = db.db().collection('flights');
 
                         collection.findOne({_id:id}).then(function(doc){
-                          cb(doc);
+                        var  result={
+                          flightNumber:doc.flightNumber,
+                          aircraftType:doc.aircraft,
+                          aircraftModel:doc.aircraftModel,
+                          departureDateTime:doc.departureDateTime,
+                          arrivalDateTime:doc.arrivalDateTime,
+                          origin:doc.origin,
+                          destination:doc.destination,
+                          currency:'usd',
+                          class:classs,
+                          Airline:'Delta'
+                          }
+                          if(classs='economy'){
+                            result.cost=doc.economyClassCost;
+                          }else if(classs='business'){
+                            result.cost=doc.businessClassCost;
+                          }
+
+
+
+
+
+                          cb(result);
                         });
                       }
 

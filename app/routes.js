@@ -98,7 +98,7 @@ module.exports = function(app,mongo) {
           var destination = req.param('destination');
           var seats =req.param("seats");
 
-            console.log("wgegeh");
+
           var getFlightswithDates = flights.getFlightsWithDates(result, originDate, classs,seats);
           var getFlightswithAirports = flights.getFlightsWithAirports(getFlightswithDates, origin, destination);
           res.send(getFlightswithAirports);
@@ -289,9 +289,13 @@ module.exports = function(app,mongo) {
         var outgoingFlightId = req.body.outgoingFlightId;
         var returnFlightId = req.body.returnFlightId;
 
-        if(returnFlightId!=undefined){
-          flights.getFlightByObjectId(outgoingFlightId,function(data){
+
+        if(returnFlightId===undefined || returnFlightId===null){
+
+
+          flights.getFlightByObjectId(require('mongodb').ObjectID(outgoingFlightId),flightClass,function(data){
             flight.push(data);
+
             flights.reserveOneWayTicket(flightClass,flight,0,adults,children,stripeToken,function(refNum){
               var object = {
                 refNum:refNum
@@ -301,9 +305,10 @@ module.exports = function(app,mongo) {
           });
         }
         else{
-          flights.getFlightByObjectId(outgoingFlightId,function(data){
+
+          flights.getFlightByObjectId(require('mongodb').ObjectID(outgoingFlightId),flightClass,function(data){
             flight.push(data);
-            flights.getFlightByObjectId(returnFlightId,function(data1){
+            flights.getFlightByObjectId(require('mongodb').ObjectID(returnFlightId),flightClass,function(data1){
               flight.push(data1);
               flights.reserveRoundTripTicket(flightClass,flight,0,adults,children,stripeToken,function(refNum){
                 var object = {
