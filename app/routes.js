@@ -290,7 +290,7 @@ module.exports = function(app,mongo) {
         var returnFlightId = req.body.returnFlightId;
 
 
-        if(returnFlightId!='undefined'){
+        if(returnFlightId===undefined || returnFlightId===null){
 
 
           flights.getFlightByObjectId(require('mongodb').ObjectID(outgoingFlightId),flightClass,function(data){
@@ -306,9 +306,9 @@ module.exports = function(app,mongo) {
         }
         else{
 
-          flights.getFlightByObjectId(require('mongodb').ObjectID(outgoingFlightId),function(data){
+          flights.getFlightByObjectId(require('mongodb').ObjectID(outgoingFlightId),flightClass,function(data){
             flight.push(data);
-            flights.getFlightByObjectId(require('mongodb').ObjectID(returnFlightId),function(data1){
+            flights.getFlightByObjectId(require('mongodb').ObjectID(returnFlightId),flightClass,function(data1){
               flight.push(data1);
               flights.reserveRoundTripTicket(flightClass,flight,0,adults,children,stripeToken,function(refNum){
                 var object = {
