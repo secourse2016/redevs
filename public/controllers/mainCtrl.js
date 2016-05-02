@@ -50,14 +50,14 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     };
     $scope.enabled = true;
-    $scope.label= "Search for flights in other airlines";
+    $scope.label= "Search For Flights in Other Airlines";
 
 
     $scope.changeCallback = function() {
         if($scope.enabled)
-            $scope.label="Search for flights in other airlines";
+            $scope.label="Search For Flights in Other Airlines";
         else
-            $scope.label="Search for flights in Delta only";
+            $scope.label="Search For Flights in Delta Only";
     };
 
 
