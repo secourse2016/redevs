@@ -1,6 +1,6 @@
 
 /* Create Angular App Instance */
-App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate','ui.checkbox','angularMoment','angular-stripe']);
+App = angular.module('deltaApp', ['ui.bootstrap', 'ngRoute','ngAnimate','ui.checkbox','angularMoment','angular-stripe','uiSwitch']);
 /**
  * Stripe config
  */

@@ -1,9 +1,38 @@
 var moment = require('moment');
 
+var today = moment();
+console.log(today.year());
 
-var date = new Date(2016,5,6);
 
-console.log(moment('2016-05-02').toDate().getTime());
-// function getAdults(passengerDetails){
-//
-// }
+
+  function getAdults(passengerDetails){
+    var adults = [];
+   for(var i =0;i<passengerDetails;i++){
+
+     if( (passengerDetails[i].dateOfBirth - today.year()) > 12  ){
+       adults.push(passengerDetails[i]);
+     }
+
+
+
+   }
+   return adults ;
+  }
+
+  function getChildren(passengerDetails){
+    var children = [];
+   for(var i =0;i<passengerDetails;i++){
+
+     if( (passengerDetails[i].dateOfBirth - today.year()) <= 12  ){
+       children.push(passengerDetails[i]);
+     }
+
+
+
+   }
+   return children ;
+  }
+
+
+  exports.getAdults = getAdults ;
+  exports.getChildren = getChildren;

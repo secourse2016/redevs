@@ -427,7 +427,7 @@ function getFlightsWithDates(array, originDate, classs, seats, destinationDate) 
 
 
 
-      } else {
+      }
         if (moment(flight.departureDateTime).format('YYYY-MM-DD') === moment(parseInt(destinationDate)).format('YYYY-MM-DD')) {
 
           if ((classs === "economy" ) && flight.economyClassSeats >= seats) {
@@ -495,7 +495,7 @@ function getFlightsWithDates(array, originDate, classs, seats, destinationDate) 
         }
       }
     }
-  }
+
 
 
   console.log(res);
@@ -658,6 +658,42 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
         callback();
       });
+
+    }
+
+    function formatReturnOutgoing(array,n){
+      var i=0;
+      var res = {
+        "outgoingFlights": []
+      };
+
+      var resRT = {
+        "outgoingFlights": [],
+        "returnFlights": []
+      };
+      if(n===1){
+
+        for (i=0;i<array.length;i++){
+          res.outgoingFlights.push(array[i].outgoingFlights);
+        }
+        return res;
+
+      }
+
+      if(n===2){
+
+        for (i=0;i<array.length;i++){
+
+
+          resRT.outgoingFlights.push(array[i].outgoingFlights);
+          resRT.returnFlights.push(array[i].returnFlights);
+        }
+        return resRT;
+
+      }
+
+
+
 
     }
 
@@ -1135,3 +1171,4 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
                       exports.checkSeats = checkSeats;
                       exports.getFlightsWithDates = getFlightsWithDates;
                       exports.seed = seed;
+                      exports.formatReturnOutgoing=formatReturnOutgoing;

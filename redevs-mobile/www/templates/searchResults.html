@@ -1,4 +1,4 @@
-  
+<!--   
 
  
 <ion-spinner icon="spiral"></ion-spinner>
@@ -9,7 +9,7 @@
 </label>
 <ion-list ng-controller = "searchResultsCtrl">
 <div>
-  <ion-item ng-repeat="f in headers" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
+  <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
   <input type="radio" ng-model="$parent.gflight" ng-value="f">
 
 
@@ -31,8 +31,11 @@
     </ion-item>
     </div>
 
+
+
     <div>
-<ion-item ng-repeat="r in headers" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left" ng-show="flag">
+
+<ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left" ng-show="flag">
 
     <input type="radio" ng-model="$parent.rflight" ng-value="r">
 
@@ -59,3 +62,81 @@
     <button id=" Prcdbtn"  type="button" class="btn btn-success button-clear" ng-click="proceed()"> <h2>Proceed<h2> <i class="icon ion-chevron-right"></i>   </button>
 
 </div>
+
+
+
+
+ -->
+
+ <ion-view view-title="searchResults">
+
+
+ <ion-content>
+
+<ion-spinner icon="spiral"></ion-spinner>
+
+
+<label>
+<h1>Choose the flights you want to book.</h1>
+</label>
+
+
+<div class="item item-divider">
+One Way Trips
+  </div>
+
+
+ <ion-list ng-controller = searchResultsCtrl>
+  <ion-radio ng-repeat = "f in outgoingFlights" ng-model="$parent.gflight" ng-value="f">
+
+<i class="icon ion-plane"></i> 
+
+    Flight Number: <h1>{{ f.flightNumber }}</h1>
+    Origin:      <h1>{{ f.origin }}</h1>
+    Destination:     <h1>{{ f.destination }}</h1>
+
+<i class="icon ion-clock"></i>  
+    Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+<i class="icon ion-pricetag"></i> 
+    Price:     <h2>{{ f.cost }}$</h2>
+
+    Class:     <h1>{{ f.class }}</h1>
+
+    <br>
+
+
+
+
+
+
+  </ion-radio>
+</ion-list>
+
+
+<div class="item item-divider" ng-show = "flag">
+Return Trips
+  </div>
+
+ <ion-list ng-controller = searchResultsCtrl>
+  <ion-radio ng-repeat = "r in returnFlights" ng-model="$parent.rflight" ng-value="r" ng-show="flag">
+<i class="icon ion-plane"></i> 
+    Flight Number: <h1>{{ r.flightNumber }}</h1>
+    Origin:      <h1>{{ r.origin }}</h1>
+    Destination:      <h1>{{ r.destination }}</h1>
+
+<i class="icon ion-clock"></i>  
+    Time:      <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+<i class="icon ion-pricetag"></i> 
+    Price:      <h2>{{ r.cost }}</h2>
+    Class:      <h1>{{ r.class }}</h1>
+
+
+
+  </ion-radio>
+</ion-list>
+
+</ion-content>
+
+</ion-view>

@@ -20,4 +20,54 @@
 
 h2{
   color: white;
+
+}
+
+#Name{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#iName:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#Credit{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#Credit:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#cvc{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#cvc:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#Expiry{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#Expiry:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+
 }

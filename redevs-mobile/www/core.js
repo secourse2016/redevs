@@ -1,4 +1,4 @@
-App=angular.module('deltaAppMobile', ['ionic'])
+App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
 
 .config(function($httpProvider){
   $httpProvider.interceptors.push(function(){
@@ -58,6 +58,7 @@ App=angular.module('deltaAppMobile', ['ionic'])
           controller: 'mainCtrl'
         }
       }
+<<<<<<< HEAD
     })
     .state('information', {
       url: '/information',
@@ -69,12 +70,30 @@ App=angular.module('deltaAppMobile', ['ionic'])
         templateUrl: 'templates/reservationSearch.html',
         controller: 'reservationSearchCtrl'
     });
+=======
 
+
+    })
+    .state('confirmation', {
+    url: '/confirmation',
+
+     templateUrl: 'templates/confirmation.html',
+      controller:'mainCtrl'
+  })
+>>>>>>> 872f9926ad214680b8a2c070bc11168d51d3bfa5
+
+.state ('searchResults',{
+      url: '/searchResults',
+       
+        templateUrl: 'templates/searchResults.html',
+        controller: 'searchResultsCtrl'
+        
+      });
 
 
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/landingPage');
+  $urlRouterProvider.otherwise('/searchResults');
 
 });
