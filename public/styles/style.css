@@ -23,6 +23,14 @@ p {
     border-color: transparent;
     color: white;
 }
+input.adultsNum {
+    background-color: #eee;
+    color: black;
+}
+input.childrenNum {
+    background-color: #eee;
+    color: black;
+}
 
 
 /*#navigationBar{
