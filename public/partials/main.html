@@ -109,29 +109,32 @@
                 <p style='font-size: 22px;'>
                     Book Now</p>
             </div>
+            <form name="toForm">
             <div class="col-md-4">
                 <input name="originAirports"
                        id="originAirports"
                        type="text"
                        placeholder="Flying From"
-                       ng-model="selectedOrigin"
+                       
                        uib-typeahead="airport.city for airport in Airports | filter:$viewValue | limitTo:10"
                        class="form-control",
-                       typeahead-on-select="SetOriginAirport($item.iata)">
+                       typeahead-on-select="SetOriginAirport($item.iata)"
+                       ng-model="selectedOrigin" required>
 
                 <p class="input-group">
-                    <input type="text"
+                    <input name="fromDate"
+                           type="text"
                            class="form-control"
                            id="fromDate"
-                           uib-datepicker-popup="{{format}}"
-                           ng-model="dtFrom"
+                           uib-datepicker-popup="{{format}}"                           
                            placeholder="Departure Date"
                            is-open="popup1.opened"
                            ng-required="true"
                            datepicker-options="dateOptions"
                            close-text="Close"
-                           alt-input-formats="altInputFormats"
-                    />
+                           alt-input-formats="altInputFormats" 
+                           ng-model="dtFrom" required>
+
                              <span class="input-group-btn">
                                <button type="button"
                                        class="btn btn-default"
@@ -145,6 +148,13 @@
 
 
             </div>
+            </form>
+           
+           <!-- <span ng-show="toForm.originAirports.$invalid || toForm.fromDate.$invalid">
+              Please fill in all the fields
+            </span> -->
+        
+
             <div class="col-md-2">
 
 
