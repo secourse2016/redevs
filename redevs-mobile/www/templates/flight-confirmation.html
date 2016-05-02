@@ -1,0 +1,92 @@
+
+<ion-view title="Confirmation">
+	<ion-content class="padding">
+		<div class="bar bar-header">
+  			<h1 class="title">Ticket Confirmation</h1>
+		</div>
+				
+
+		<div class="bar bar-subheader">
+ 			<h2 class="title">Flight Information</h2>
+		</div>
+
+		<ul class="list">
+   			<li class="item">
+      			<h5> Number of adult ticket(s): {{ adultTickets }}</h5>
+  				<h5> Number of children ticket(s):{{ childrenTickets }}</h5>
+  				<h5> Class of tickets(s): {{ classOfTickets }}</h5>
+    		</li>
+		</ul>
+
+		<div class="panel-group">
+	    	<div class="panel panel-default" ng-repeat="flight in flights">
+	      	
+	      		<div class="panel-heading">
+	      			Flight {{ index + 1 }}
+	      		</div>
+
+	      		<div class="panel-body">
+  					<ul class="list">
+   						<li class="item">
+   							<h5> From: {{ flight.origin }}</h5>
+					  		<h5> Date: {{ convertToDate(flight.departureDateTime) }}</h5>
+					  		<h5> Time: {{ convertToTime(flight.departureDateTime) }}</h5>
+					  		<strong> Maximum baggage allowed: 24 Kilograms</strong>
+    					</li>
+					</ul>
+
+						
+		  			<ul class="list">
+   						<li class="item">
+					  		<h5> To: {{ flight.destination }}</h5>
+					  		<h5> Date: {{ convertToDate(flight.arrivalDateTime) }}</h5>
+					  		<h5> Time: {{ convertToTime(flight.arrivalDateTime) }}</h5>
+    					</li>
+					</ul>
+
+	    		</div>
+	    	</div>
+		</div>
+
+		<div class="alert alert-info">
+			<strong>Note: Please remember to check in 24 hours before the flight in order to reserve your seat and choose a special meal, if needed.</strong><br>
+		</div>
+
+		<div class="list">
+  			<div class="item item-divider">
+    			Adults
+ 			</div>
+
+  			<a class="item">
+   				<h5>{{ adultTickets }}</h5>
+				<h5>{{ classOfTickets }} </h5>
+				<h5>{{ calculateAdultCost() }}</h5>
+  			</a>
+
+  			<div class="item item-divider">
+    			Children
+  			</div>
+
+  			<a class="item">
+    			<h5>{{ childrenTickets }}</h5>
+				<h5>{{ classOfTickets }} </h5>
+				<h5>{{ calculateChildrenCost() }}</h5>
+ 			</a>
+
+		</div>
+
+		<div class="well">
+			<div>
+				<h3>Total amount: <span class="label label-default" ></span>{{ totalAmount }}USD</h3> <!--Modifying information - redirect to prev page -->
+				<button type="button" class="btn btn-primary">
+				<span class="glyphicon glyphicon-circle-arrow-left"></span> Modify information</button>
+
+				<button type="button" class="btn btn-info" ng-click="goToCheckOut()"> <!--ng click -->
+	      		<span class="glyphicon glyphicon-ok-sign"></span> Check Out</button>
+
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>
