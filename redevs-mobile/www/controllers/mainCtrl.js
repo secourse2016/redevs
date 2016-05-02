@@ -380,6 +380,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
 
     console.log(FlightsSrv.getTripType());
+    console.log(FlightsSrv.getOtherAirlinesSwitch()+'in mainctrl');
 
     $state.go('searchResults');
   }
