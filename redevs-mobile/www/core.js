@@ -58,7 +58,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
           controller: 'mainCtrl'
         }
       }
-<<<<<<< HEAD
     })
     .state('information', {
       url: '/information',
@@ -69,18 +68,15 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
         url: '/reservationSearch',
         templateUrl: 'templates/reservationSearch.html',
         controller: 'reservationSearchCtrl'
-    });
-=======
-
-
     })
+
+
     .state('confirmation', {
     url: '/confirmation',
 
      templateUrl: 'templates/confirmation.html',
       controller:'mainCtrl'
   })
->>>>>>> 872f9926ad214680b8a2c070bc11168d51d3bfa5
 
 .state ('searchResults',{
       url: '/searchResults',
@@ -94,6 +90,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment'])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/searchResults');
+  $urlRouterProvider.otherwise('/landingPage');
 
 });
