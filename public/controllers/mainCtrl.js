@@ -50,14 +50,14 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     };
     $scope.enabled = true;
-    $scope.label= "Search for flights in other airlines";
+    $scope.label= "Search For Flights in Other Airlines";
 
 
     $scope.changeCallback = function() {
         if($scope.enabled)
-            $scope.label="Search for flights in other airlines";
+            $scope.label="Search For Flights in Other Airlines";
         else
-            $scope.label="Search for flights in Delta only";
+            $scope.label="Search For Flights in Delta Only";
     };
 
 
@@ -93,7 +93,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
       FlightsSrv.setTripType($scope.radioModel2);
       FlightsSrv.setNumberOfChildren($scope.childrenInput);
       FlightsSrv.setNumberOfAdults($scope.adultsInput);
-        FlightsSrv.setOtherAirlinesSwitch($scope.enabled);
+
+        FlightsSrv.setOtherAirlinesSwitch($scope.label);
         //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };

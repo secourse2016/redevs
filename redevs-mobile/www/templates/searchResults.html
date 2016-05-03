@@ -4,58 +4,107 @@
 <ion-spinner icon="spiral"></ion-spinner>
 
 
-<label>
-<h1>Choose the flights you want to book.</h1>
-</label>
-<ion-list ng-controller = "searchResultsCtrl">
-<div>
-  <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight" ng-value="f" class="item item-trns text-left">
-  <input type="radio" ng-model="$parent.gflight" ng-value="f">
+
+<ion-content ng-controller="searchResultsCtrl" scroll="true">
 
 
-<i class="icon ion-plane"></i>
 
-    Flight Number: <h1>{{ f.flightNumber }}</h1>
-    Origin:      <h1>{{ f.origin }}</h1>
-    Destination:     <h1>{{ f.destination }}</h1>
-
-<i class="icon ion-clock"></i>
-    Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
-
-<i class="icon ion-pricetag"></i>
-    Price:     <h2>{{ f.cost }}$</h2>
-
-    Class:     <h1>{{ f.class }}</h1>
-
-    <br>
-    </ion-item>
-    </div>
+  <ion-list >
 
     <div>
-<ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight" ng-value="r" class="item item-trns text-left" ng-show="flag">
+      <div class="bar sub-header bar-positive">
+        <h1 class="title">Choose The Flight(s) You Want To Book</h1>
+      </div>
+      <br><br><br>
 
-    <input type="radio" ng-model="$parent.rflight" ng-value="r">
-
-
-<i class="icon ion-plane"></i>
-    Flight Number: <h1>{{ r.flightNumber }}</h1>
-    Origin:      <h1>{{ r.origin }}</h1>
-    Destination:      <h1>{{ r.destination }}</h1>
-
-<i class="icon ion-clock"></i>
-    Time:      <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
-
-<i class="icon ion-pricetag"></i>
-    Price:      <h2>{{ r.cost }}</h2>
-    Class:      <h1>{{ r.class }}</h1>
-
-</ion-item>
-</div>
-
-</ion-list>
+      <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight.flight" ng-value="f" class="item item-trns text-left">
 
 
-<div class="text-center">
-    <button id=" Prcdbtn"  type="button" class="btn btn-success button-clear" ng-click="proceed()"> <h2>Proceed<h2> <i class="icon ion-chevron-right"></i>   </button>
+        <div class="list card">
+          <div class="bar bar-assertive">
+            <h1 class="title">Outgoing Flight</h1>
+          </div>
+          <br><br>
+          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights">
+            <a  class="item item-icon-left">
+              <i class="icon ion-plane"></i>
 
-</div>
+              Flight Number: <h1>{{ f.flightNumber }}</h1>
+              Origin:      <h1>{{ f.origin }}</h1>
+              Destination:     <h1>{{ f.destination }}</h1>
+            </a>
+            <a  class="item item-icon-left">
+              <i class="icon ion-clock"></i>
+              Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+            </a>
+            <a  class="item item-icon-left">
+
+              <i class="icon ion-pricetag"></i>
+              Price:     <h1>{{ f.cost }}$</h1>
+
+              Class:     <h1>{{ f.class }}</h1>
+
+              <br>
+            </a>
+            <a  class="item item-icon-left">
+
+              <i class="icon ion-paper-airplane"></i>
+              Airline:     <h1>{{ f.Airline }}</h1>
+              <br>
+            </a>
+        </div>
+      </ion-item>
+    </div>
+    <div>
+
+      <ion-item ng-repeat="r in returnFlights" ng-model="$parent.rflight.flight" ng-value="r" class="item item-trns text-left" ng-show="flag">
+
+        <div class="list card">
+          <div class="bar  bar-assertive">
+            <h1 class="title">Returning Flight</h1>
+          </div>
+          <br><br>
+          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights">
+            <a  class="item item-icon-left">
+              <i class="icon ion-plane"></i>
+
+              Flight Number: <h1>{{ r.flightNumber }}</h1>
+              Origin:      <h1>{{ r.origin }}</h1>
+              Destination:     <h1>{{ r.destination }}</h1>
+            </a>
+            <a  class="item item-icon-left">
+              <i class="icon ion-clock"></i>
+              Time:     <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+            </a>
+            <a  class="item item-icon-left">
+
+              <i class="icon ion-pricetag"></i>
+              Price:     <h1>{{ r.cost }}$</h1>
+
+              Class:     <h1>{{ r.class }}</h1>
+
+              <br>
+            </a>
+            <a  class="item item-icon-left">
+
+              <i class="icon ion-paper-airplane"></i>
+              Airline:     <h1>{{ r.Airline }}</h1>
+              <br>
+            </a>
+
+        </div>
+      </ion-item>
+    </div>
+
+  </ion-list>
+  <div class="row">
+    <div class ="col text-center">
+      <button id ="button proceed search" class="button button-assertive " ng-click="proceed()">
+        Proceed
+      </button>
+    </div>
+  </div>
+
+</ion-content>
+
+
