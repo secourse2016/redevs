@@ -7,6 +7,11 @@
 
    		$scope.Adults = [];
    		$scope.Children = [];
+         $scope.fillingError = false;
+
+         $scope.resetFillingError = function (){
+            $scope.fillingError = false;
+         }
 
    		for(var i = 0; i < $scope.AdultsCount; i++){
    			$scope.Adults[i] = {};
@@ -53,17 +58,11 @@
                 if (!flag){
                    FlightsSrv.setAdultsInfo($scope.Adults);
                    FlightsSrv.setChildrenInfo($scope.Children);
-                   $location.url('flightConfirmation');
-                }
-               }
-
-
-
-					$location.url('/confirmation');
-
-
-
-
+                     $location.url('/confirmation');                
+                  }
+                  else {
+                     $scope.fillingError = true;
+                  }
          }
 
          function getNationalities() {
