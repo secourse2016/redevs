@@ -202,7 +202,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
                     FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
                       stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                      FlightsSrv.setReservationNumber("flight1 ref ="+f1+"Flight 2 ref = "+response.refNum);
+                      FlightsSrv.setReservationNumber("Flight 1 ref = "+f1+" Flight 2 ref = "+response.refNum);
                       console.log(response);
                       $location.url('/thankYou');
                     });
@@ -245,7 +245,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
               FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
                 stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                FlightsSrv.setReservationNumber("flight1 ref ="+response.refNum);
+                FlightsSrv.setReservationNumber("Flight1 ref = "+response.refNum);
                 console.log(response);
                 stripe.card.createToken({
                   number: $scope.creditNumber,
@@ -268,7 +268,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                     };
 
                     FlightsSrv.postReservation(data).success(function(response,status){
-                      FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"flight2 refNum= "+response.time);
+                      FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+" Flight2 refNum = "+response.time);
                       $location.url('/thankYou');
 
                     });
@@ -310,7 +310,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
             FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
               stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-              FlightsSrv.setReservationNumber(response.refNum + "search here : "+url);
+              FlightsSrv.setReservationNumber(response.refNum);
               console.log(response);
               $location.url('/thankYou');
             });
@@ -343,7 +343,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
               FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
                 stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                FlightsSrv.setReservationNumber("flight1 ref ="+response.refNum);
+                FlightsSrv.setReservationNumber("Flight1 ref = "+response.refNum);
                 console.log(response);
                 var url = getURL(flights[1].Airline);
                 FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
@@ -368,7 +368,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
                       FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
                         stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                        FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"flight2 ref ="+response.refNum);
+                        FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+" Flight2 ref = "+response.refNum);
                         console.log(response);
                         $location.url('/thankYou');
                       });
