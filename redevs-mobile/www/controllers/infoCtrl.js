@@ -58,7 +58,7 @@
           }else{
           $ionicPopup.alert({
               title: 'Attention!',
-              template: 'Please complete filling passenger information'
+              template: 'Please complete filling passenger information.'
            });
         }
         }
