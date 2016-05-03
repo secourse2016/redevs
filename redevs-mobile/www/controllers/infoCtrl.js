@@ -1,3 +1,4 @@
+
 	App.controller('infoCtrl', function($scope, $http,$state,FlightsSrv, $ionicPopup){
 
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();

@@ -3,16 +3,19 @@
 <div class="container">
   <div class="row">
     <div class="jumbotron">
-      <div class="row">
-          <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
 
-          <table align="center">
-            <th ng-repeat= "header in headers">
+<div ng-hide="outgoingFlights.length"><h1 style="color:#FFFFFF" align="center">No flights found.</h1></div>
+
+      <div class="row">
+
+          <table align="center" ng-hide="!outgoingFlights.length">
+           <h2 id="xflight" ng-hide="!outgoingFlights.length">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
+            <th ng-repeat= "header in headers" ng-hide="!outgoingFlights.length">
               <a> {{headers[$index]}} </a>
             </th>
 
             <tr ng-repeat="f in outgoingFlights">
-              <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
+              <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights" required></td>
                 <td>{{ f.flightNumber }}</td>
                 <td>{{ f.origin }}</td>
                 <td>{{ f.destination }}</td>
@@ -29,18 +32,18 @@
 </div>
 
 
-<div class="container">
+<div class="container" ng-hide="!outgoingFlights.length">
     <div class="row" >
       <div class="jumbotron" ng-show="flag">
         <div class="row">
-            <h2 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h2>
+            <h2 id="yflight" ng-hide="!returnFlights.length">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h2>
 
             <table align="center">
-              <th ng-repeat= "header in headers">
+              <th ng-repeat= "header in headers" ng-hide="!returnFlights.length">
                 <a> {{headers[$index]}} </a>
               </th>
               <tr ng-repeat="r in returnFlights">
-                <td> <input type="radio" ng-model="$parent.rflight.flight" ng-value="r"></td>
+                <td> <input type="radio" ng-model="$parent.rflight.flight" ng-value="r"  name="Returning Flights" required></td>
                 <td>{{r.flightNumber}}</td>
                 <td>{{ r.origin }}</td>
                 <td>{{ r.destination }}</td>
