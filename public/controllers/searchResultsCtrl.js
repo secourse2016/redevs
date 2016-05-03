@@ -4,7 +4,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
 
 
-  $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Price", "Class"];
+  $scope.headers = ["", "Flight Number", "From", "To", "Departure Date", "Price", "Class","AirLine"];
   $scope.FlightDetails = {};
   $scope.FlightResults = [];
   $scope.ReturnFlights = [];

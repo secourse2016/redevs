@@ -11,7 +11,7 @@
               <a> {{headers[$index]}} </a>
             </th>
 
-            <tr ng-repeat="f in outgoingFlights"> 
+            <tr ng-repeat="f in outgoingFlights">
               <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
                 <td>{{ f.flightNumber }}</td>
                 <td>{{ f.origin }}</td>
@@ -19,6 +19,7 @@
                 <td>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
                 <td>{{ f.cost }}$</td>
                 <td>{{ f.class }}</td>
+                <td>{{f.Airline}}</td>
 
             </tr>
         </table>
@@ -46,6 +47,7 @@
                 <td>{{ r.departureDateTime| amDateFormat:'dddd, MMMM Do YYYY ' }}</td>
                 <td>{{ r.cost }}$</td>
                 <td>{{ r.class }}</td>
+                <td>{{r.Airline}}</td>
               </tr>
             </table>
         </div>

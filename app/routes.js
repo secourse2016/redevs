@@ -323,11 +323,11 @@ module.exports = function(app,mongo) {
     };
 
   });
-  app.get('/pubkey', function(req, res){
-    var result={
-      pubkey:'pk_test_lnXZPy220d1EMqYfHlOj1XOt'
-    }
-    res.json(result);
+  app.get('/stripe/pubkey', function(req, res){
+
+    res.send('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+
+
   });
 
 
