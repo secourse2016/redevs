@@ -34,10 +34,12 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-    <link href="./css/tabSlideBox.css" rel="stylesheet"/>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
+    <link href="./css/tabSlideBox.css" rel="stylesheet">
     <script src="./js/tabSlideBox.js"></script>
     <!-- your app's js -->
     <script src="core.js"></script>
@@ -98,9 +100,9 @@
         <ion-content has-header="true">
           <ion-list>
                 <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
-                <ion-item nav-clear menu-close ui-sref="landingPage.oneWayTrip">Home</ion-item>
-                <ion-item nav-clear menu-close ui-sref="reservationSearch">Check Reservation</ion-item>
-                <ion-item nav-clear menu-close ui-sref="aboutUs">About Us</ion-item>
+                <ion-item nav-clear="" menu-close="" ui-sref="landingPage.oneWayTrip" ui-sref-opts="{reload: true, inherit: false}">Home</ion-item>
+                <ion-item nav-clear="" menu-close="" ui-sref="reservationSearch" ui-sref-opts="{reload: true, inherit: false}">Check Reservation</ion-item>
+                <ion-item nav-clear="" menu-close="" ui-sref="aboutUs" ui-sref-opts="{reload: true, inherit: false}">About Us</ion-item>
               <!--  <a href="#/event/attendees" class="item" menu-close>Attendees</a>-->
 
             </ion-list>

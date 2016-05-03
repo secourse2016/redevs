@@ -1,6 +1,5 @@
-App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe) {
+App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,$state) {
   //$scope
-
     $scope.name = "";
     $scope.creditNumber = 0;
     $scope.CVC=0;

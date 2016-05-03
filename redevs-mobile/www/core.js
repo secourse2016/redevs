@@ -9,7 +9,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
     return {
       request: function(req){
         if(/^(\/api)|(\/db)/.test(req.url)){
-          req.url = 'http://localhost:3000' + req.url;
+          req.url = 'http://52.25.15.124' + req.url;
           req.withCredentials = false;
         }
         return req;
@@ -44,6 +44,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
       url: '/landingPage',
       templateUrl: 'templates/landingPage.html',
       controller:'mainCtrl',
+      cache: false,
       abstract:true
 
     })
@@ -53,6 +54,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
       views:{
         'tab-oneway':{
           templateUrl: 'templates/landingPage-oneWay.html',
+          cache: false,
           controller : 'oneWayCtrl'
         }
       }
@@ -62,6 +64,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
       views: {
         'tab-twoway': {
           templateUrl: 'templates/landingPage-twoWayTrip.html',
+          cache: false,
           controller: 'twoWayCtrl'
         }
       }
@@ -70,12 +73,14 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
     .state('confirmation', {
       url: '/confirmation',
       templateUrl: 'templates/confirmation.html',
+      cache: false,
       controller:'paymentCtrl'
     })
 
     .state ('searchResults',{
       url: '/searchResults',
         templateUrl: 'templates/searchResults.html',
+      cache: false,
         controller: 'searchResultsCtrl'
     })
 
@@ -84,29 +89,34 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
     .state('information', {
       url: '/information',
       templateUrl: 'templates/information.html',
+      cache: false,
       controller: 'infoCtrl'
     })
     .state('reservationSearch', {
         url: '/reservationSearch',
         templateUrl: 'templates/reservationSearch.html',
+      cache: false,
         controller: 'reservationSearchCtrl'
     })
 
     .state('thankYou', {
         url: '/thankYou',
         templateUrl: 'templates/thankYou.html',
+      cache: false,
         controller: 'thankYouCtrl'
     })
 
     .state('aboutUs', {
         url: '/aboutUs',
         templateUrl: 'templates/aboutUs.html',
+      cache: false,
         controller: 'mainCtrl'
     })
 
     .state('flightConfirmation',{
       url: '/flightConfirmation',
       templateUrl: 'templates/flight-confirmation.html',
+      cache: false,
       controller: 'confirmationCtrl'
     });
 
@@ -118,3 +128,10 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
   $urlRouterProvider.otherwise('/landingPage/oneway');
 
 });
+
+/*
+App.config(function($ionicConfigProvider) {
+
+  $ionicConfigProvider.views.maxCache(1);
+});
+*/

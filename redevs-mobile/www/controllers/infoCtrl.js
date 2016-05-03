@@ -1,5 +1,4 @@
 	App.controller('infoCtrl', function($scope, $http,$state,FlightsSrv){
-
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
     console.log(FlightsSrv.getNumberOfAdults());

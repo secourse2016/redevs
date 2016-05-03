@@ -11,7 +11,7 @@
 
 //angular.module('deltaMobileApp', ['ionic'])
 
-App.controller('reservationSearchCtrl', function($scope, $timeout,$http,reservationSearchSrv) {
+App.controller('reservationSearchCtrl', function($scope, $timeout,$http,reservationSearchSrv,$state) {
 
 //   $('dt').addClass('fechado');
 
