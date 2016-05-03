@@ -661,8 +661,9 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
     }
 
-    function formatReturnOutgoing(array,n){
+    function formatReturnOutgoing(flights,isRoundTrip){
       var i=0;
+      var j=0;
       var res = {
         "outgoingFlights": []
       };
@@ -671,22 +672,36 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
         "outgoingFlights": [],
         "returnFlights": []
       };
-      if(n===1){
+      if(isRoundTrip===0){
 
-        for (i=0;i<array.length;i++){
-          res.outgoingFlights.push(array[i].outgoingFlights);
+        for (i=0;i<flights.length;i++){
+          for(j=0;j<flights[i].outgoingFlights.length;j++) {
+            if(flights[i].outgoingFlights[j]!=null) {
+              res.outgoingFlights.push(flights[i].outgoingFlights[j]);
+            }
+          }
         }
         return res;
 
       }
 
-      if(n===2){
+      if(isRoundTrip===1){
 
-        for (i=0;i<array.length;i++){
+        for (i=0;i<flights.length;i++){
 
 
-          resRT.outgoingFlights.push(array[i].outgoingFlights);
-          resRT.returnFlights.push(array[i].returnFlights);
+          for(j=0;j<flights[i].outgoingFlights.length;j++) {
+            if(flights[i].outgoingFlights[j]!=null){
+            resRT.outgoingFlights.push(flights[i].outgoingFlights[j]);
+              console.log(i);
+            }
+          }
+          for(j=0;j<flights[i].returnFlights.length;j++) {
+            if(flights[i].returnFlights[j]!=null) {
+
+              resRT.returnFlights.push(flights[i].returnFlights[j]);
+            }
+          }
         }
         return resRT;
 
@@ -955,7 +970,10 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
                   var time = moment().unix();
                   getFlightByID(flights[0].flightNumber, flights[0].departureDateTime, function (err, flight1) { // same should be done as above regarding the classes
                     if (classs === "economy") {
+                        console.log((flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100);
+                        console.log(adults);
                       var charge = stripe.charges.create({
+
                         amount:(flights[0].cost*adults.length + flights[0].cost*children.length*0.5)*100,
                         currency:"usd",
                         source:token,
@@ -1152,11 +1170,33 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
 
 
-                      function getFlightByObjectId(id,cb){
+                      function getFlightByObjectId(id,classs,cb){
                         var collection  = db.db().collection('flights');
 
                         collection.findOne({_id:id}).then(function(doc){
-                          cb(doc);
+                        var  result={
+                          flightNumber:doc.flightNumber,
+                          aircraftType:doc.aircraft,
+                          aircraftModel:doc.aircraftModel,
+                          departureDateTime:doc.departureDateTime,
+                          arrivalDateTime:doc.arrivalDateTime,
+                          origin:doc.origin,
+                          destination:doc.destination,
+                          currency:'usd',
+                          class:classs,
+                          Airline:'Delta'
+                          }
+                          if(classs='economy'){
+                            result.cost=doc.economyClassCost;
+                          }else if(classs='business'){
+                            result.cost=doc.businessClassCost;
+                          }
+
+
+
+
+
+                          cb(result);
                         });
                       }
 

@@ -19,7 +19,20 @@
    		$scope.thereIsAdults = !($scope.Adults.length === 0);
    		$scope.thereIsChildren = !($scope.Children.length === 0);
 
+			function setDates(){
+				for(var i = 0;i<$scope.Adults.length;i++){
+					if($scope.Adults[i].dateOfBirth != undefined)
+					$scope.Adults[i].dateOfBirth = moment($scope.Adults[i].dateOfBirth,'DD/MM/YYYY').toDate().getTime();
+				}
+
+				for(var i = 0;i<$scope.Children.length;i++){
+					if($scope.Children[i].dateOfBirth != undefined)
+					$scope.Children[i].dateOfBirth = moment($scope.Children[i].dateOfBirth,'DD/MM/YYYY').toDate().getTime();
+				}
+			}
+
          $scope.proceed = function() {
+
 
             FlightsSrv.setAdultsInfo($scope.Adults);
             FlightsSrv.setChildrenInfo($scope.Children);

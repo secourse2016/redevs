@@ -1,22 +1,35 @@
-span{
+span {
 	padding: 0px;
 	margin: 2px;
 }
-input{
+input {
 	margin: 0px;
 }
-	div.row{
+
+div.row {
 	padding-bottom: 10px;
 }
-.panel{
-	background-color: rgb(180,180,180);
 
+.panel {
+	background-color: rgba(50,50,50,0.5);
+	border-color: transparent;
 }
+
 .panel > .panel-heading {
-	background-color: rgb(180,180,180);
-	border-color: #000;
+	background-color: rgba(50,50,50,0.5);
+	border-color: transparent;
+	color: #eee;
 }
 
-div#proceedBtn{
+div#proceedBtn {
 	padding:0px;
+}
+
+p {
+	color: #eee;
+}
+input {
+	background-color: rgba(100,100,100,0.5);
+	border-color: transparent;
+	color: white;
 }

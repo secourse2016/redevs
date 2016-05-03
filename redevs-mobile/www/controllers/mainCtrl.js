@@ -18,7 +18,7 @@ App.controller('mainCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $sta
 
 
 
-App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state) {
+App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state, $ionicPopup) {
 
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
@@ -40,8 +40,9 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     childrenCountTwoWay:0,
     searchingAirlinesTwoWay :"Search For Flights in Delta Only",
     classTwoWay:'Business Class',
-    fromDateTwoWay:'',
-    toDateTwoWay :''
+    fromDateTwoWay:'null',
+    toDateTwoWay :'null',
+    fillingError: false
   };
 
 
@@ -184,7 +185,18 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
 
+    if ($scope.scope.fromDateTwoWay === 'null' || $scope.scope.toDateTwoWay === 'null'){
+      $scope.scope.fillingError = true;
+      $ionicPopup.alert({
+        title: 'Attention!',
+        template: 'Please complete filling the search options'
+      });
 
+
+    }
+
+    else{
+    $scope.scope.fillingError = false;
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("RoundTrip");
     FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountTwoWay));
@@ -201,10 +213,12 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     console.log($scope.scope.fromDateTwoWay);
     console.log($scope.scope.toDateTwoWay);
     $state.go('searchResults');
+    }
   }
 });
 
-App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state) {
+App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $location,$state, $ionicPopup) {
+
   $scope.goForward = function () {
     var selected = $ionicTabsDelegate.selectedIndex();
     if (selected != -1) {
@@ -228,7 +242,8 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     childrenCountOneWay:0,
     searchingAirlinesOneWay :"Search For Flights in Delta Only",
     classOneWay:'Business Class',
-    fromDateOneWay:''
+    fromDateOneWay:'null',
+    fillingError: false
   };
 
 
@@ -369,20 +384,30 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
 
     }
 
+    if ($scope.scope.fromDateOneWay === 'null'){
+      $ionicPopup.alert({
+        title: 'Attention!',
+        template: 'Please complete filling the search options'
+      });
+      $scope.scope.fillingError = true;
 
+    }
+    else{
+      $scope.scope.fillingError = false;
     FlightsSrv.setClass(classes);
     FlightsSrv.setTripType("OneWayTrip");
     FlightsSrv.setNumberOfChildren(parseInt($scope.scope.childrenCountOneWay));
     FlightsSrv.setNumberOfAdults(parseInt($scope.scope.adultsCountOneWay));
     FlightsSrv.setOtherAirlinesSwitch($scope.scope.searchingAirlinesOneWay);
+
     FlightsSrv.setSelectedOriginAirport(fromCountry);
     FlightsSrv.setSelectedDestinationAirport(toCountry);
     FlightsSrv.setSelectedDepartureDate($scope.scope.fromDateOneWay);
 
-    console.log(FlightsSrv.getTripType());
-    console.log(FlightsSrv.getOtherAirlinesSwitch()+'in mainctrl');
+
 
     $state.go('searchResults');
+    }
   }
 });
 

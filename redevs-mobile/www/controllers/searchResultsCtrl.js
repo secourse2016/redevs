@@ -72,12 +72,26 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
   else{
 
       if (tripType === "OneWayTrip") {
-        FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
+        FlightsSrv. getOneWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
           $scope.outgoingFlights = response.data.outgoingFlights;
           console.log(response.data.outgoingFlights);
           $scope.flag = false;
         })
 
+
+      }else{
+        reformatedReturningDate = moment(tripOriginReturningDate).toDate().getTime();
+        $scope.flag = true;
+        console.log("entered 2 way other airlines");
+        FlightsSrv.getTwoWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
+
+
+          $scope.outgoingFlights = response.data.outgoingFlights;
+          $scope.returnFlights = response.data.returnFlights;
+          console.log($scope.outgoingFlights);
+          console.log($scope.returnFlights);
+
+        })
 
       }
 
@@ -95,8 +109,6 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
            array.push($scope.rflight.flight);
          }
          FlightsSrv.setFlights(array);
-         console.log((FlightsSrv.getFlights())[0]);
-         console.log((FlightsSrv.getFlights())[1]+"sfrgegegehehehrr");
          $state.go('information');
        };
 
