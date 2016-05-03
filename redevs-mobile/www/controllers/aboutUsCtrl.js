@@ -12,9 +12,9 @@ App.directive('noScroll', function() {
 
 App.controller('aboutUsCtrl', function($scope) {
     var cardTypes = [
-        { image: 'img/Zaher.jpg', title: 'ben'},
-        { image: 'img/Souidan.jpg', title: 'ionic'},
-        { image: 'img/Karim.jpg', title: 'max'},
+        { image: 'img/Zaher.jpg', title: 'zaher'},
+        { image: 'img/Souidan.jpg', title: 'souidan'},
+        { image: 'img/Karim.jpg', title: 'Karim'},
 
     ];
 
