@@ -47,13 +47,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
     }
     else {
       var reformatedReturningDate = moment(tripOriginReturningDate).toDate().getTime();
-      console.log(tripOriginOutgoingDate);
-      console.log(tripOriginReturningDate);
-      console.log(reformatedReturningDate);
-      console.log(reformatedOutgoingDate);
-      console.log(tripOriginAirport);
-      console.log(tripDestinationAirport);
-      console.log(tripClass);
+
       $scope.flag = true;
 
       FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
@@ -100,8 +94,9 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
        $scope.proceed = function(){
          var array=[];
-         array.push($scope.gflight);
-         array.push($scope.rflight);
+         array.push($scope.gflight.flight);
+         if(tripType==="RoundTrip")
+         array.push($scope.rflight.flight);
          FlightsSrv.setFlights(array);
          $location.url('/information');
        };

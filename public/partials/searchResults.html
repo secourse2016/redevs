@@ -5,7 +5,7 @@
     <div class="jumbotron">
       <div class="row">
           <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
-          
+
           <table align="center">
             <th ng-repeat= "header in headers">
               <a> {{headers[$index]}} </a>
@@ -16,9 +16,7 @@
                 <td>{{ f.flightNumber }}</td>
                 <td>{{ f.origin }}</td>
                 <td>{{ f.destination }}</td>
-
                 <td>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
-
                 <td>{{ f.cost }}$</td>
                 <td>{{ f.class }}</td>
 

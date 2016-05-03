@@ -1182,7 +1182,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
                           destination:doc.destination,
                           currency:'usd',
                           class:classs,
-                          Airline:'Delta'
+                          Airline:'Delta Airlines'
                           }
                           if(classs='economy'){
                             result.cost=doc.economyClassCost;

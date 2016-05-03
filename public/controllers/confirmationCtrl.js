@@ -6,6 +6,7 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.classOfTickets = FlightsSrv.getClass();
 
   $scope.flights = FlightsSrv.getFlights();
+  console.log(FlightsSrv.getFlights()[0]);
 
   $scope.thereAreAdults = !($scope.adultTickets === 0);
   $scope.thereAreChildren = !($scope.childrenTickets === 0);
