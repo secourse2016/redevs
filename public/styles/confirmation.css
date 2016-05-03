@@ -4,6 +4,10 @@ h2,h4{
 	font-weight: bold;
 }
 
+strong{
+  color: lightgreen;
+}
+
 .info{
 	color: lightgray;
 }
