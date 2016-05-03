@@ -43,7 +43,8 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
 
       url: '/landingPage',
       templateUrl: 'templates/landingPage.html',
-      controller:'mainCtrl'
+      controller:'mainCtrl',
+      abstract:true
 
     })
 
@@ -90,6 +91,19 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
         templateUrl: 'templates/reservationSearch.html',
         controller: 'reservationSearchCtrl'
     })
+
+    .state('thankYou', {
+        url: '/thankYou',
+        templateUrl: 'templates/thankYou.html',
+        controller: 'thankYouCtrl'
+    })
+
+    .state('sideMenu', {
+        url: '/sideMenu',
+        templateUrl: 'templates/sideMenu.html',
+        controller: 'sideMenuCtrl'
+    })
+
     .state('flightConfirmation',{
       url: '/flightConfirmation',
       templateUrl: 'templates/flight-confirmation.html',
@@ -101,6 +115,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/landingPage/oneway');
+  $urlRouterProvider.otherwise('/landingPage');
 
 });

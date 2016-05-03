@@ -122,7 +122,7 @@ if(FlightsSrv.getTripType()==="OneWayTrip"){
 
               FlightsSrv.postReservation(data).success(function(response,status){
               FlightsSrv.setReservationNumber(response.time);
-               $location.url('/thankYou');
+               $state.go('thankYou');
               });
 
         }
