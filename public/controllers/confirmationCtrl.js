@@ -12,6 +12,8 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.thereAreChildren = !($scope.childrenTickets === 0);
 
  $scope.goToCheckOut = function(){
+   FlightsSrv.setTotalCost($scope.totalAmount);
+   console.log(FlightsSrv.getTotalCost());
    $location.url('/payment');
  }
 
