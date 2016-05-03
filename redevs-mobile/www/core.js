@@ -9,7 +9,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
     return {
       request: function(req){
         if(/^(\/api)|(\/db)/.test(req.url)){
-          req.url = 'http://localhost:3000' + req.url;
+          req.url = 'http://52.25.15.124/' + req.url;
           req.withCredentials = false;
         }
         return req;
