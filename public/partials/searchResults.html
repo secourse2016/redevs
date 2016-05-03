@@ -8,21 +8,21 @@
           
           <table align="center">
             <th ng-repeat= "header in headers">
-        <a> {{headers[$index]}} </a>
-    </th>
+              <a> {{headers[$index]}} </a>
+            </th>
 
-          <tr ng-repeat="f in outgoingFlights"> 
-        <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
-          <td>{{ f.flightNumber }}</td>
-          <td>{{ f.origin }}</td>
-          <td>{{ f.destination }}</td>
+            <tr ng-repeat="f in outgoingFlights"> 
+              <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
+                <td>{{ f.flightNumber }}</td>
+                <td>{{ f.origin }}</td>
+                <td>{{ f.destination }}</td>
 
-          <td>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
+                <td>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</td>
 
-          <td>{{ f.cost }}$</td>
-          <td>{{ f.class }}</td>
+                <td>{{ f.cost }}$</td>
+                <td>{{ f.class }}</td>
 
-        </tr>
+            </tr>
         </table>
     </div>
     </div>
@@ -36,22 +36,20 @@
         <div class="row">
             <h2 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h2>
 
-            <table>
+            <table align="center">
               <th ng-repeat= "header in headers">
-          <a> {{headers[$index]}} </a>
-      </th>
-            <tr ng-repeat="r in returnFlights">
-            <td> <input type="radio" ng-model="$parent.rflight.flight" ng-value="r"></td>
-            <td>{{r.flightNumber}}</td>
-            <td>{{ r.origin }}</td>
-            <td>{{ r.destination }}</td>
-            <td>{{ r.departureDateTime| amDateFormat:'dddd, MMMM Do YYYY ' }}</td>
-            <td>{{ r.cost }}$</td>
-            <td>{{ r.class }}</td>
-
-
-          </tr>
-        </table>
+                <a> {{headers[$index]}} </a>
+              </th>
+              <tr ng-repeat="r in returnFlights">
+                <td> <input type="radio" ng-model="$parent.rflight.flight" ng-value="r"></td>
+                <td>{{r.flightNumber}}</td>
+                <td>{{ r.origin }}</td>
+                <td>{{ r.destination }}</td>
+                <td>{{ r.departureDateTime| amDateFormat:'dddd, MMMM Do YYYY ' }}</td>
+                <td>{{ r.cost }}$</td>
+                <td>{{ r.class }}</td>
+              </tr>
+            </table>
         </div>
         <br></br>
         <br></br>
