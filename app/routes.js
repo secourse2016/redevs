@@ -114,12 +114,13 @@ module.exports = function(app,mongo) {
       ///API BY-ACCESS EL SERVERS EL TANYA W BY-ACCESSNA
       //SINGLE WAY TRIP
 
-      app.get('/api/flights/searchAirlines/:origin/:destination/:date/:class',function(req,res2) {
+      app.get('/api/flights/searchAirlines/:origin/:destination/:date/:class/:seats',function(req,res2) {
 
         var origin=req.param('origin');
         var destination=req.param('destination');
         var date=req.param('date');
         var classs=req.param('class');
+        var seats=req.param('seats');
         console.log(origin);
         console.log(destination);
         console.log(date);
@@ -137,14 +138,14 @@ module.exports = function(app,mongo) {
         }
 
         const urls = [
-          "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-          "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-          "http://localhost:3000/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/1/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+          "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
+          "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
+          "http://localhost:3000/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
 
         ];
         async.map(urls, httpGet, function (err, res) {
           if (err) return console.log(err);
-          var x=flights.formatReturnOutgoing(res,1);
+          var x=flights.formatReturnOutgoing(res,0);
           res2.send(x);
         });
       });
@@ -152,13 +153,14 @@ module.exports = function(app,mongo) {
   ///API BY-ACCESS EL SERVERS EL TANYA W BY-ACCESSNA
   //ROUND WAY TRIP
 
-  app.get('/api/flights/searchAirlines/:origin/:destination/:departureDate/:returnDate/:class',function(req,res2) {
+  app.get('/api/flights/searchAirlines/:origin/:destination/:departureDate/:returnDate/:class/:seats',function(req,res2) {
 
     var origin=req.param('origin');
     var destination=req.param('destination');
     var departureDate=req.param('departureDate');
     var returnDate=req.param('returnDate');
     var classs=req.param('class');
+    var seats=req.param('seats');
     console.log(origin);
     console.log(destination);
     console.log(classs);
@@ -175,15 +177,15 @@ module.exports = function(app,mongo) {
     }
 
     const urls = [
-      "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://localhost:3000/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/1/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+      "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
+      "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
+      "http://localhost:3000/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
 
     ];
     async.map(urls, httpGet, function (err, res) {
       if (err) return console.log(err);
 
-      var x=flights.formatReturnOutgoing(res,2);
+      var x=flights.formatReturnOutgoing(res,1);
 
       res2.send(x);
     });
