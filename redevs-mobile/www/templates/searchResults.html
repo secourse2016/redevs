@@ -13,7 +13,7 @@
 
     <div>
       <div class="bar sub-header bar-positive">
-        <h1 class="title">Choose The Flight(s) You Want To Book</h1>
+        <h1 class="title">Choose the flight you wish to book</h1>
       </div>
       <br><br><br>
 
@@ -29,27 +29,27 @@
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
-              Flight Number: <h1>{{ f.flightNumber }}</h1>
-              Origin:      <h1>{{ f.origin }}</h1>
-              Destination:     <h1>{{ f.destination }}</h1>
+              Flight Number: <h2>{{ f.flightNumber }}</h2>
+              Origin:      <h2>{{ f.origin }}</h2>
+              Destination:     <h2>{{ f.destination }}</h2>
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+              Time:     <h2>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h2>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ f.cost }}$</h1>
+              Price:     <h2>{{ f.cost }}$</h2>
 
-              Class:     <h1>{{ f.class }}</h1>
+              Class:     <h2>{{ f.class }}</h2>
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ f.Airline }}</h1>
+              Airline:     <h2>{{ f.Airline }}</h2>
               <br>
             </a>
         </div>
@@ -61,34 +61,34 @@
 
         <div class="list card">
           <div class="bar  bar-assertive">
-            <h1 class="title">Returning Flight</h1>
+            <h2 class="title">Returning Flight</h2>
           </div>
           <br><br>
           <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights">
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
-              Flight Number: <h1>{{ r.flightNumber }}</h1>
-              Origin:      <h1>{{ r.origin }}</h1>
-              Destination:     <h1>{{ r.destination }}</h1>
+              Flight Number: <h2>{{ r.flightNumber }}</h2>
+              Origin:      <h2>{{ r.origin }}</h2>
+              Destination:     <h2>{{ r.destination }}</h2>
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+              Time:     <h2>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h2>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ r.cost }}$</h1>
+              Price:     <h2>{{ r.cost }}$</h2>
 
-              Class:     <h1>{{ r.class }}</h1>
+              Class:     <h2>{{ r.class }}</h2>
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ r.Airline }}</h1>
+              Airline:     <h2>{{ r.Airline }}</h2>
               <br>
             </a>
 
