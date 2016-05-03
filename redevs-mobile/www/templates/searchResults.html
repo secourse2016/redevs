@@ -1,4 +1,4 @@
-
+<ion-view view-title="Delta Airlines">
 
 
 <ion-spinner icon="spiral"></ion-spinner>
@@ -27,7 +27,7 @@
             <h1 class="title">Outgoing Flight</h1>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights">
+          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights" required>
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
@@ -37,21 +37,21 @@
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+              Time:     <h4>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h4>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
               Price:     <h4>{{ f.cost }}$</h4>
 
-              Class:     <h1>{{ f.class }}</h1>
+              Class:     <h4>{{ f.class }}</h4>
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ f.Airline }}</h1>
+              Airline:     <h4>{{ f.Airline }}</h4>
               <br>
             </a>
         </div>
@@ -66,7 +66,7 @@
             <h1 class="title">Returning Flight</h1>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights">
+          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights" required>
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
@@ -76,21 +76,21 @@
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+              Time:     <h4>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h4>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
               Price:     <h4>{{ r.cost }}$</h4>
 
-              Class:     <h1>{{ r.class }}</h1>
+              Class:     <h4>{{ r.class }}</h4>
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ r.Airline }}</h1>
+              Airline:     <h4>{{ r.Airline }}</h4>
               <br>
             </a>
 
@@ -108,5 +108,4 @@
   </div>
 
 </ion-content>
-
-
+</ion-view>
