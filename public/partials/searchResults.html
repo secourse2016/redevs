@@ -12,7 +12,8 @@
     </th>
 
           <tr ng-repeat="f in outgoingFlights"> 
-        <td><input type="radio" ng-model="$parent.gflight" ng-value="f"></td>
+          
+        <td><input type="radio"  ng-model="$parent.gflight" ng-value="f" name ="group" required></td>
           <td>{{ f.flightNumber }}</td>
           <td>{{ f.origin }}</td>
           <td>{{ f.destination }}</td>
