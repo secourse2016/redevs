@@ -5,13 +5,13 @@
     <div class="jumbotron">
       <div class="row">
           <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
-          
+
           <table align="center">
             <th ng-repeat= "header in headers">
         <a> {{headers[$index]}} </a>
     </th>
 
-          <tr ng-repeat="f in outgoingFlights"> 
+          <tr ng-repeat="f in outgoingFlights">
         <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
           <td>{{ f.flightNumber }}</td>
           <td>{{ f.origin }}</td>
