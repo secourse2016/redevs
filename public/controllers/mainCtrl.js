@@ -84,8 +84,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.SetDestinationAirport = function(destAirport) {
         FlightsSrv.setSelectedDestinationAirport(destAirport);
     };
-
-
+        $scope.radioModel2='OneWayTrip';
+        $scope.radioModel='business';
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
