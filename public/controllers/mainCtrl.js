@@ -20,7 +20,7 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.dateOptions = {
 
         formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
+        maxDate: new Date(2020, 4, 31),
         minDate: new Date(),
         startingDay: 1
     };
@@ -49,6 +49,17 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
       $scope.checkboxModel.valuecheck=tripType;
 
     };
+    $scope.enabled = true;
+    $scope.label= "Search For Flights in Other Airlines";
+
+
+    $scope.changeCallback = function() {
+        if($scope.enabled)
+            $scope.label="Search For Flights in Other Airlines";
+        else
+            $scope.label="Search For Flights in Delta Only";
+    };
+
 
 
 
@@ -75,11 +86,15 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
       FlightsSrv.setSelectedArrivalDate($scope.dtTo);
-        FlightsSrv.setClass($scope.radioModel);
-        FlightsSrv.setTripType($scope.radioModel2);
+
+      FlightsSrv.setClass($scope.radioModel);
+      FlightsSrv.setTripType($scope.radioModel2);
+      FlightsSrv.setNumberOfChildren($scope.childrenInput);
+      FlightsSrv.setNumberOfAdults($scope.adultsInput);
+
+        FlightsSrv.setOtherAirlinesSwitch($scope.label);
         //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };

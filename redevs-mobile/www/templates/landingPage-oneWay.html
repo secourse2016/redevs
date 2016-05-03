@@ -1,0 +1,153 @@
+
+<ion-view view-title="One Way Trip">
+  <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
+
+    <div class="list card">
+
+    <div class="row">
+      <div class="col col-50"><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive" >
+          <div class = "input-label">
+           From
+          </div>
+
+          <select ng-model="scope.fromOneWay">
+            <option>Berlin</option>
+            <option>Cairo</option>
+            <option>Cape Town</option>
+            <option selected>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
+        </label>
+      </div></div>
+      <div class="col col-50 "><div class="list list-inset">
+        <label class = "item item-input item-select item-assertive">
+          <div class = "input-label">
+            To
+          </div>
+
+          <select ng-model="scope.toOneWay">
+            <option>Berlin</option>
+            <option selected>Cairo</option>
+            <option>Cape Town</option>
+            <option>Delhi</option>
+            <option>Frankfurt</option>
+            <option>Hong Kong</option>
+            <option>Jeddah</option>
+            <option>Johannesburg</option>
+            <option>Las Vegas</option>
+            <option>London Heathrow</option>
+            <option>Los Angeles</option>
+            <option>Milan</option>
+            <option>Mumbai</option>
+            <option>New York-John F. Kenndey</option>
+            <option>Riyadh</option>
+            <option>Rome</option>
+            <option>San Francisco</option>
+            <option>Taiwan</option>
+
+          </select>
+        </label>
+      </div></div>
+    </div>
+    <div class="row ">
+      <div class="col col-33 col-offset-33 text-center">
+
+      <label class="item item-input">
+        <i class="icon ion-calendar"></i>
+        <input id="input_1" type="date" placeholder="From Date" class="input input-stable" ng-model="scope.fromDateOneWay">
+      </label>
+      </div>
+
+    </div>
+    <div class="list">
+
+      <h5>
+        Number Of Adults
+      </h5>
+    <div class="item range range-positive">
+      <i class="ion-ios-person"></i>
+      <input type="range" name="adults" min="1" max="10" value="1" step="1" ng-model="scope.adultsCountOneWay">
+      <i class="ion-ios-people"></i>
+      {{scope.adultsCountOneWay}}
+
+    </div>
+      </div>
+
+
+
+          <h5>
+            Number Of Children
+          </h5>
+          <div class="item range range-positive">
+            <i class="ion-happy-outline"></i>
+            <input type="range" name="children" min="0" max="10" value="1" step="1" ng-model="scope.childrenCountOneWay">
+            <i class="ion-happy"></i>
+            <i class="ion-happy"></i>
+            <i class="ion-happy"></i>
+            {{scope.childrenCountOneWay}}
+
+
+        </div>
+
+        <div class="row">
+          <div class="col col-100">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Classes
+            </div>
+            <select ng-model="scope.classOneWay">
+              <option>Economy Class</option>
+              <option selected>Business Class</option>
+              <option>First Class </option>
+            </select>
+          </label></div>
+
+        </div>
+
+    <div class="row">
+    <ion-toggle toggle-class="toggle-assertive"
+                ng-model="scope.searchingAirlinesOneWay"
+                ng-true-value="'Search For Flights in Other Airlines'"
+                ng-false-value="'Search For Flights in Delta Only'">
+      {{scope.searchingAirlinesOneWay}}
+    </ion-toggle>
+
+</div>
+      <div class="row">
+        <button class="button button-full button-assertive" ng-click="onClick()">
+          Search Flights!!
+        </button>
+      </div>
+
+
+    </div>
+
+
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+  </ion-content>
+</ion-view>

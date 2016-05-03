@@ -4,15 +4,15 @@
   <div class="row">
     <div class="jumbotron">
       <div class="row">
-          <h1 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h1>
-          
+          <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
+
           <table align="center">
             <th ng-repeat= "header in headers">
         <a> {{headers[$index]}} </a>
     </th>
 
-          <tr ng-repeat="f in outgoingFlights"> 
-        <td><input type="radio" ng-model="$parent.gflight" ng-value="f"></td>
+          <tr ng-repeat="f in outgoingFlights">
+        <td><input type="radio" ng-model="$parent.gflight.flight" ng-value="f"></td>
           <td>{{ f.flightNumber }}</td>
           <td>{{ f.origin }}</td>
           <td>{{ f.destination }}</td>
@@ -34,14 +34,14 @@
     <div class="row" >
       <div class="jumbotron" ng-show="flag">
         <div class="row">
-            <h1 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h1>
+            <h2 id="yflight">Flights from {{FlightDetails.DestinationAirport}} to {{FlightDetails.OriginAirport}}</h2>
 
             <table>
               <th ng-repeat= "header in headers">
           <a> {{headers[$index]}} </a>
       </th>
             <tr ng-repeat="r in returnFlights">
-            <td> <input type="radio" ng-model="$parent.rflight" ng-value="r"></td>
+            <td> <input type="radio" ng-model="$parent.rflight.flight" ng-value="r"></td>
             <td>{{r.flightNumber}}</td>
             <td>{{ r.origin }}</td>
             <td>{{ r.destination }}</td>

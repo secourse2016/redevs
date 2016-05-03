@@ -1,0 +1,50 @@
+<ion-view>
+
+<div class="list card">
+
+  <div class="list">
+
+    <div class="row">
+
+  <div class="col col-center col-75">
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Name</span>
+      <input id="Name" type="text" placeholder="Name" ng-model="name">
+    </label>
+  </div>
+    </div>
+
+<div class="row">
+  <div class="col col-center col-75">
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Credit Card Number</span>
+      <input id="Credit" type="number" placeholder="Credit Card Number" ng-model="creditNumber">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-center col-75">
+      <label class="item item-input item-floating-label">
+      <span class="input-label">cvc</span>
+      <input id="cvc" type="tel" placeholder="cvc" ng-model="CVC">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-center col-75">
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Expiry Date</span>
+      <input id="Expiry" type="month" placeholder="Expiry Date" ng-model="date">
+    </label>
+  </div>
+</div>
+
+</div>
+
+</div>
+<button class="button button-block button-assertive" ng-click="submit()">
+  Submit
+</button>
+</ion-view>

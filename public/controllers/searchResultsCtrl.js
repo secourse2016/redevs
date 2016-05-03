@@ -11,11 +11,8 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   $scope.flag = false;
 
   $scope.FlightDetails.OriginAirport = FlightsSrv.getSelectedOriginAirport();
-
   $scope.FlightDetails.DestinationAirport = FlightsSrv.getSelectedDestinationAirport();
-
   $scope.FlightDetails.FlightDepartureDate = FlightsSrv.getSelectedDepartureDate();
-
   $scope.FlightDetails.FlightArrivaleDate = FlightsSrv.getSelectedArrivalDate();
 
 
@@ -27,48 +24,68 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
   var tripOriginAirport = FlightsSrv.getSelectedOriginAirport();
   var tripDestinationAirport = FlightsSrv.getSelectedDestinationAirport();
   var tripClass = FlightsSrv.getClass();
+  var seats=FlightsSrv.getNumberOfChildren()+FlightsSrv.getNumberOfAdults();
 
-  var reformatedOutgoingDate = tripOriginOutgoingDate.getFullYear()+'-'+'0'+(tripOriginOutgoingDate.getMonth()+1)+'-'+tripOriginOutgoingDate.getDate();
-
-
-
+  var reformatedOutgoingDate =moment(tripOriginOutgoingDate).toDate().getTime();
 
 
-  if(tripType==="OneWayTrip"){
-    console.log(tripType);
-    console.log(tripOriginOutgoingDate);
-    console.log(tripOriginReturningDate);
-    console.log(reformatedReturningDate);
-    console.log(reformatedOutgoingDate);
-    console.log(tripOriginAirport);
-    console.log(tripDestinationAirport);
-    console.log(tripClass);
-
-        console.log("entered one way trip")
-    FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass).then(function(response){
-      $scope.outgoingFlights = response.data.outgoingFlights;
-      $scope.flag=false;
-    })
 
 
+  if(FlightsSrv.getOtherAirlinesSwitch()==="Search For Flights in Delta Only") {
+
+    if (tripType === "OneWayTrip") {
+
+
+      console.log("entered one way trip");
+      FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
+        $scope.outgoingFlights = response.data.outgoingFlights;
+        console.log(response.data.outgoingFlights);
+        $scope.flag = false;
+      })
+
+
+    }
+    else {
+      var reformatedReturningDate = moment(tripOriginReturningDate).toDate().getTime();
+
+      $scope.flag = true;
+
+      FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
+        $scope.outgoingFlights = response.data.outgoingFlights;
+        $scope.returnFlights = response.data.returnFlights;
+        console.log($scope.returnFlights);
+      });
+
+
+    }
   }
   else{
-    var reformatedReturningDate = tripOriginReturningDate.getFullYear()+'-'+'0'+(tripOriginReturningDate.getMonth()+1)+'-'+tripOriginReturningDate.getDate();
-    console.log(tripType);
-    console.log(tripOriginOutgoingDate);
-    console.log(tripOriginReturningDate);
-    console.log(reformatedReturningDate);
-    console.log(reformatedOutgoingDate);
-    console.log(tripOriginAirport);
-    console.log(tripDestinationAirport);
-    console.log(tripClass);
-    $scope.flag=true;
 
-    FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass).then(function(response){
-      $scope.outgoingFlights = response.data.outgoingFlights;
-      $scope.returnFlights = response.data.returnFlights;
+    if (tripType === "OneWayTrip") {
+      FlightsSrv. getOneWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
+        $scope.outgoingFlights = response.data.outgoingFlights;
+        console.log(response.data.outgoingFlights);
+        $scope.flag = false;
+      })
+
+
+    }else{
+      reformatedReturningDate = moment(tripOriginReturningDate).toDate().getTime();
+      $scope.flag = true;
+      console.log("entered 2 way other airlines");
+      FlightsSrv.getTwoWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
+
+
+        $scope.outgoingFlights = response.data.outgoingFlights;
+        $scope.returnFlights = response.data.returnFlights;
+        console.log($scope.outgoingFlights);
         console.log($scope.returnFlights);
-    });
+        $scope.flag = true;
+      })
+
+    }
+
+
 
 
 
@@ -77,10 +94,11 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
        $scope.proceed = function(){
          var array=[];
-         array.push($scope.gflight);
-         array.push($scope.rflight);
+         array.push($scope.gflight.flight);
+         if(tripType==="RoundTrip")
+         array.push($scope.rflight.flight);
          FlightsSrv.setFlights(array);
-         $location.url('/flightDetails');
+         $location.url('/information');
        };
 
 $scope.convert = function(date){

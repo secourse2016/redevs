@@ -6,6 +6,7 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $location) {
   $scope.classOfTickets = FlightsSrv.getClass();
 
   $scope.flights = FlightsSrv.getFlights();
+  console.log(FlightsSrv.getFlights()[0]);
 
   $scope.thereAreAdults = !($scope.adultTickets === 0);
   $scope.thereAreChildren = !($scope.childrenTickets === 0);
@@ -27,14 +28,16 @@ $scope.calculateAdultCost = function() {
   //$scope.flights[0].cost is the cost of 1 adult!
   var price = 0;
   if(FlightsSrv.getTripType()==='OneWayTrip'){
+
     price =  $scope.flights[0].cost*$scope.adultTickets;
+
   } else if(FlightsSrv.getTripType()==='RoundTrip'){
       price = $scope.flights[0].cost*$scope.adultTickets + $scope.flights[1].cost*$scope.adultTickets;
 
   }
 
   $scope.adultCost = price;
-  return price;
+    return price;
 
 }
 
@@ -49,7 +52,7 @@ $scope.calculateChildrenCost = function() {
   }
 
   $scope.childrenCost = price;
-  return price;
+    return price;
 }
 
 $scope.totalAmount = $scope.calculateAdultCost() + $scope.calculateChildrenCost();

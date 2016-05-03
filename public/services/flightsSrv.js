@@ -6,13 +6,14 @@ App.factory('FlightsSrv', function ($http) {
          getNationalities : function() {
             return $http.get('/api/data/nationalities');
          },
-         getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs, {
+
+         getRoundTripSearchResults : function(origin, destination, departingdate, returningdate, classs,seats){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+returningdate+'/'+classs+'/'+seats, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
-         getOneWayTripSearchResults : function(origin, destination, departingdate, classs){
-            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs, {
+         getOneWayTripSearchResults : function(origin, destination, departingdate, classs,seats){
+            return $http.get('/api/flights/search/'+origin+'/'+destination+'/'+departingdate+'/'+classs+'/'+seats, {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
@@ -21,6 +22,24 @@ App.factory('FlightsSrv', function ($http) {
                 "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
             });
          },
+         getOneWayTripSearchResultsOtherAirlines:  function(origin, destination, departingdate, classs,seats){
+                  return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+classs+'/'+seats,{
+                          "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
+                                       }) ;
+
+
+
+
+                  },
+                  getTwoWayTripSearchResultsOtherAirlines: function(origin, destination, departingdate,returnDate, classs,seats){
+                           return $http.get('/api/flights/searchAirlines/'+origin+'/'+destination+'/'+departingdate+'/'+returnDate+'/'+classs+'/'+seats,{
+                           "headers" : { 'x-access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk' }
+                                                }) ;
+
+
+
+
+                           },
 
          postReservation: function(dataa){
             return $http({
@@ -64,8 +83,12 @@ App.factory('FlightsSrv', function ($http) {
          setSelectedArrivalDate: function(value){
             this.selectedArrivalDate=value;
          },
-
-
+         setOtherAirlinesSwitch(value){
+         this.switch=value
+         },
+         getOtherAirlinesSwitch(){
+         return this.switch
+         },
          setFlights: function(value){
            this.selectedFlights = value;
          },

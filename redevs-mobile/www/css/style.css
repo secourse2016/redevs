@@ -1,0 +1,134 @@
+.pane {
+  background: url(../background-delta.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+
+#input_1{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#input_1:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#Name{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#iName:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#Credit{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#Credit:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#cvc{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#cvc:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+#Expiry{
+  border: 0;
+  border-bottom: 1px solid grey;
+  outline: 0;
+}
+
+#Expiry:focus{
+  border: 0;
+  border-bottom: 1px solid red;
+  outline: 0;
+}
+
+.item-image {
+  background: #000;
+}
+ 
+.item-image img:first-child, .item-image .list-img {
+  width: 200px;
+}
+
+h2 {
+  font-size: 50;
+  font-weight: 10px;
+  color: rgb(247, 255, 46);
+}
+
+.item.item-trns {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+#main_body input.checkbox,#main_body input.radio{
+   background-color: transparent !important;
+}
+
+ion-item.item:hover a {
+  background-color: slategrey;
+  box-shadow: inset 0px 0px 0px 1px red;
+}
+ 
+
+.button {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+h2{
+  color: white;
+}
