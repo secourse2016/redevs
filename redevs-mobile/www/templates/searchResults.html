@@ -7,19 +7,20 @@
 
 <ion-content ng-controller="searchResultsCtrl" scroll="true">
 
-<div ng-hide="outgoingFlights.length"><h1>No flights found.</h1></div>
+<div ng-hide="outgoingFlights.length"><h1 style="color:#FFFFFF">No flights found.</h1></div>
 
 
   <ion-list >
 
     <div>
-      <div class="bar sub-header bar-positive">
-        <h1 class="title">Choose The Flight(s) You Want To Book</h1>
-      </div>
+      
       <br><br><br>
 
       <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight.flight" ng-value="f" class="item item-trns text-left">
 
+<div class="bar sub-header bar-positive">
+        <h1 class="title">Choose The Flight(s) You Want To Book</h1>
+      </div>
 
         <div class="list card">
           <div class="bar bar-assertive">
