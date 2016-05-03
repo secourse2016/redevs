@@ -32,9 +32,10 @@
 			}
 
          $scope.proceed = function() {
-
+					 setDates();
 
             FlightsSrv.setAdultsInfo($scope.Adults);
+
             FlightsSrv.setChildrenInfo($scope.Children);
 
 
