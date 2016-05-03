@@ -7,6 +7,7 @@
 
 <ion-content ng-controller="searchResultsCtrl" scroll="true">
 
+<div ng-hide="outgoingFlights.length"><h1>No flights found.</h1></div>
 
 
   <ion-list >
@@ -40,7 +41,7 @@
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ f.cost }}$</h1>
+              Price:     <h4>{{ f.cost }}$</h4>
 
               Class:     <h1>{{ f.class }}</h1>
 
@@ -79,7 +80,7 @@
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ r.cost }}$</h1>
+              Price:     <h4>{{ r.cost }}$</h4>
 
               Class:     <h1>{{ r.class }}</h1>
 
