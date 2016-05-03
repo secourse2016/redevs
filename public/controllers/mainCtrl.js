@@ -93,7 +93,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
       FlightsSrv.setTripType($scope.radioModel2);
       FlightsSrv.setNumberOfChildren($scope.childrenInput);
       FlightsSrv.setNumberOfAdults($scope.adultsInput);
-        FlightsSrv.setOtherAirlinesSwitch($scope.enabled);
+
+        FlightsSrv.setOtherAirlinesSwitch($scope.label);
         //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
       $location.url('/searchResults');
     };
