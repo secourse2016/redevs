@@ -109,8 +109,9 @@
                 <p style='font-size: 22px;'>
                     Book Now</p>
             </div>
-            <form name="fromForm">
+            
             <div class="col-md-4">
+            <div ng-form="fromForm">
                 <input name="originAirports"
                        id="originAirports"
                        type="text"
@@ -145,26 +146,20 @@
 
                 </p>
 
-
+            <div class="error-message"
+                  ng-show="(fromForm.originAirports.$invalid && fromForm.originAirports.$submitted) || (fromForm.fromDate.$invalid && fromForm.fromDate.$submitted)) ">
+                  There is a missing field
+            </div>
 
             </div>
-            </form>
-           
-            <span style="color:red" ng-show="fromForm.originAirports.$invalid">
-               <span ng-show="toForm.originAirports.$error.required && fromForm.$submitted">airport is required.</span>
-            </span>
-
-           <!-- <span ng-show="toForm.originAirports.$invalid || toForm.fromDate.$invalid">
-              Please fill in all the fields
-            </span> -->
-        
+            </div>
 
             <div class="col-md-2">
 
 
             </div>
 
-            <form name="toForm">
+            <div ng-form="toForm">
             <div class="col-md-4">
                 <input name="destinationAirports"
                        id="destinationAirports"
@@ -204,9 +199,10 @@
 
 
             </div>
-            </form>
+            </div>
+           
             <div class="row">
-            <form name="numbers">
+            
               <div class="col-sm-15">
                 <table class="table table-striped">
                   <thead>
@@ -221,7 +217,7 @@
                         <input type="number" min="0" string-to-number ng-model="adultsInput" placeholder="Number Of Tickets" />
                       </td>
                       <td>
-                        <input type="number" min="0" string-to-number ng-model="childrenInput" placeholder="Number Of Tickets"/>
+                        <input type="number" min="0" string-to-number ng-model="childrenInput" placeholder="Number Of Tickets" />
                       </td>
 
                     </tr>
@@ -230,7 +226,7 @@
 
                 </table>
               </div>
-            </form>
+            
             </div>
             
 
@@ -242,16 +238,16 @@
                     <div >
                         <div class="span7 text-center">
 
-                        <form name="classes">
+                            <div ng-form="classForm">
                             <div class="btn-group">
                                  <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'economy'" uncheckable>Economy Class</label>
                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'business'" uncheckable>Business Class</label>
                                 <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'FirstClass'" uncheckable>First Class</label>
 
 
-
                             </div>
-                        </form>
+                            </div>
+                       
                         </div>
                     </div>
 
@@ -305,10 +301,9 @@
             <div class="row">
 
                 <div class="span7 text-center">
-                    <button id="bookBtn" type="button" ng-disable="toForm.$invalid || 
-                    fromForm.$invalid || classes.$invalid || numbers.$invalid" 
-
-                    ng-click="SearchFlights()" class="btn btn-success">Book Now</button>
+                    <button id="bookBtn" type="button" ng-click="SearchFlights()" 
+                    class="btn btn-success" ng-disabled="toForm.$invalid || 
+                    fromForm.$invalid || classForm.$invalid">Book Now</button>
                 </div>
 
 
@@ -330,31 +325,4 @@
             </div>
         </div>
     </section>
-
-<!--contact info -->
-
-  <!-- <div class="container" style="opacity: 0.8";>
-  <div class="row">
-    <div class="jumbotron">
-    <div class="row">
-      <h2 style="text-align: center;">Made by ReDevs</h2>
-      <h2>Contact us</h1>
-      <div class= "col-sm-6">
-      <h4>
-          Phone number: +(02) 123 456 789
-      </h4>
-      <h4>
-          Email: redevs@redevs.com
-      </h4>
-      <h4>
-          Address: Cairo, Egypt
-      </h4>
-      </div>
-    </div>
-    </div>
-  </div>
-  </div> -->
-
-
-<!--contact info -->
 </div>
