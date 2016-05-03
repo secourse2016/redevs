@@ -154,12 +154,231 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           }
         });
       }else if(flights[0].Airline==="Delta Airlines" && flights[1].Airline!="Delta Airlines" ){
-        ;
+        var f1;
+        var f2;
+        //Reserve the first ticket
+        stripe.card.createToken({
+          number: $scope.creditNumber,
+          cvc : $scope.CVC,
+          exp_month:$scope.month,
+          exp_year:$scope.year
+        },function(status,response){
+          if(response.error){
+            console.log(response.error);
+            console.log($scope.year);
+          }else{
+            var data = {
+              tripType:"OneWayTrip",
+              flights:[FlightsSrv.getFlights()[0]],
+              adults:FlightsSrv.getAdultsInfo(),
+              children:FlightsSrv.getChildrenInfo(),
+              classs:FlightsSrv.getClass(),
+              token:response.id
+
+            };
+
+            FlightsSrv.postReservation(data).success(function(response,status){
+              f1 = response.time;
+              var url = getURL(flights[1].Airline);
+              FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+                stripe.setPublishableKey(response);
+                stripe.card.createToken({
+                  number: $scope.creditNumber,
+                  cvc : $scope.CVC,
+                  exp_month:$scope.month,
+                  exp_year:$scope.year
+                },function(status,response){
+                  if(response.error){
+                    console.log(response.error);
+                  }else{
+                    var data={
+                      passengerDetails : passengerDetails,
+                      outgoingFlightId:flights[1].flightId,
+                      cost:parseInt(flights[1].cost),
+                      paymentToken:response.id,
+                      class:FlightsSrv.getClass()
+                    };
+                    console.log(data);
+
+                    FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                      stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+                      FlightsSrv.setReservationNumber("flight1 ref ="+f1+"Flight 2 ref = "+response.refNum);
+                      console.log(response);
+                      $location.url('/thankYou');
+                    });
+                  }
+                });
+              });
+
+            });
+
+          }
+        });
+        // reserve the second ticket
+
+
+
+
+
+
       }else if(flights[0].Airline!="Delta Airlines" && flights[1].Airline=="Delta Airlines" ){
-        ;
-      }else if(flights[0].Airline!="Delta Airlines" && flights[1].Airline!="Delta Airlines" &&  flights[0].Airline=== flights[1].Airline  ){
+        var url = getURL(flights[0].Airline);
+        FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+          stripe.setPublishableKey(response);
+          stripe.card.createToken({
+            number: $scope.creditNumber,
+            cvc : $scope.CVC,
+            exp_month:$scope.month,
+            exp_year:$scope.year
+          },function(status,response){
+            if(response.error){
+              console.log(response.error);
+            }else{
+              var data={
+                passengerDetails : passengerDetails,
+                outgoingFlightId:flights[0].flightId,
+                cost:parseInt(flights[0].cost),
+                paymentToken:response.id,
+                class:FlightsSrv.getClass()
+              };
+              console.log(data);
+
+              FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+                FlightsSrv.setReservationNumber("flight1 ref ="+response.refNum);
+                console.log(response);
+                stripe.card.createToken({
+                  number: $scope.creditNumber,
+                  cvc : $scope.CVC,
+                  exp_month:$scope.month,
+                  exp_year:$scope.year
+                },function(status,response){
+                  if(response.error){
+                    console.log(response.error);
+                    console.log($scope.year);
+                  }else{
+                    var data = {
+                      tripType:"OneWayTrip",
+                      flights:[FlightsSrv.getFlights()[1]],
+                      adults:FlightsSrv.getAdultsInfo(),
+                      children:FlightsSrv.getChildrenInfo(),
+                      classs:FlightsSrv.getClass(),
+                      token:response.id
+
+                    };
+
+                    FlightsSrv.postReservation(data).success(function(response,status){
+                      FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"flight2 refNum= "+response.time);
+                      $location.url('/thankYou');
+
+                    });
+
+                  }
+                });
+              });
+            }
+          });
+        });
+
+
+
+
+
+
+      }else if(flights[0].Airline!="Delta Airlines" && flights[1].Airline!="Delta Airlines" &&  flights[0].Airline === flights[1].Airline  ){
+        var url = getURL(flights[0].Airline);
+        FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+        stripe.setPublishableKey(response);
+        stripe.card.createToken({
+          number: $scope.creditNumber,
+          cvc : $scope.CVC,
+          exp_month:$scope.month,
+          exp_year:$scope.year
+        },function(status,response){
+          if(response.error){
+            console.log(response.error);
+          }else{
+            var data={
+              passengerDetails : passengerDetails,
+              outgoingFlightId:flights[0].flightId,
+              returnFlightId:flights[1].flightId,
+              cost:parseInt(FlightsSrv.getTotalCost),
+              paymentToken:response.id,
+              class:FlightsSrv.getClass()
+            };
+            console.log(data);
+
+            FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+              stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+              FlightsSrv.setReservationNumber(response.refNum + "search here : "+url);
+              console.log(response);
+              $location.url('/thankYou');
+            });
+          }
+        });
+      });
+
 
       }else{
+        var url = getURL(flights[0].Airline);
+        FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+          stripe.setPublishableKey(response);
+          stripe.card.createToken({
+            number: $scope.creditNumber,
+            cvc : $scope.CVC,
+            exp_month:$scope.month,
+            exp_year:$scope.year
+          },function(status,response){
+            if(response.error){
+              console.log(response.error);
+            }else{
+              var data={
+                passengerDetails : passengerDetails,
+                outgoingFlightId:flights[0].flightId,
+                cost:parseInt(flights[0].cost),
+                paymentToken:response.id,
+                class:FlightsSrv.getClass()
+              };
+              console.log(data);
+
+              FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+                FlightsSrv.setReservationNumber("flight1 ref ="+response.refNum);
+                console.log(response);
+                var url = getURL(flights[1].Airline);
+                FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+                  stripe.setPublishableKey(response);
+                  stripe.card.createToken({
+                    number: $scope.creditNumber,
+                    cvc : $scope.CVC,
+                    exp_month:$scope.month,
+                    exp_year:$scope.year
+                  },function(status,response){
+                    if(response.error){
+                      console.log(response.error);
+                    }else{
+                      var data={
+                        passengerDetails : passengerDetails,
+                        outgoingFlightId:flights[1].flightId,
+                        cost:parseInt(flights[1].cost),
+                        paymentToken:response.id,
+                        class:FlightsSrv.getClass()
+                      };
+                      console.log(data);
+
+                      FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                        stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+                        FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"flight2 ref ="+response.refNum);
+                        console.log(response);
+                        $location.url('/thankYou');
+                      });
+                    }
+                  });
+                });
+              });
+            }
+          });
+        });
 
       }
     }
