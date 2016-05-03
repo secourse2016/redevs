@@ -9,19 +9,24 @@ div.jumbotron{
 /*	background-color: rgb(180,180,180);  */
     background-color: rgba(50,50,50,0.5);
 }
-h2{
+h2, h5, p, h4, h3{
     color: #eee;
 }
-p {
-    color: #eee;
-}
-.table {
-    background-color: rgba(50,50,50,0.5);
-}
+
 .form-control{
     background-color: rgba(50,50,50,0.7);
     border-color: transparent;
     color: white;
+}
+.panel {
+    background-color: rgba(50,50,50,0.5);
+    border-color: transparent;
+}
+
+.panel > .panel-heading{
+    background-color: rgba(50,50,50,0.5);
+    border-color: transparent;
+    color: #eee;
 }
 input.adultsNum {
     background-color: #eee;
