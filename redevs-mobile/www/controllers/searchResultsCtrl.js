@@ -1,6 +1,14 @@
-App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPopup){
+App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPopup,$ionicLoading){
 
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
 
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
 
 
   $scope.gflight={
@@ -24,6 +32,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
 
 
 
+
   var tripType = FlightsSrv.getTripType();
   var tripOriginOutgoingDate = FlightsSrv.getSelectedDepartureDate();
   var tripOriginReturningDate = FlightsSrv.getSelectedArrivalDate();
@@ -41,10 +50,12 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
 
 
         console.log("entered one way trip");
+        $scope.show($ionicLoading);
         FlightsSrv.getOneWayTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
           $scope.outgoingFlights = response.data.outgoingFlights;
           console.log(response.data.outgoingFlights);
           $scope.flag = false;
+          $scope.hide($ionicLoading);
         })
 
 
@@ -59,11 +70,13 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
         console.log(tripDestinationAirport);
         console.log(tripClass);
         $scope.flag = true;
+        $scope.show($ionicLoading);
 
         FlightsSrv.getRoundTripSearchResults(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
           $scope.outgoingFlights = response.data.outgoingFlights;
           $scope.returnFlights = response.data.returnFlights;
           console.log($scope.returnFlights);
+          $scope.hide($ionicLoading);
         });
 
 
@@ -72,10 +85,12 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
   else{
 
       if (tripType === "OneWayTrip") {
+        $scope.show($ionicLoading);
         FlightsSrv. getOneWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, tripClass, seats).then(function (response) {
           $scope.outgoingFlights = response.data.outgoingFlights;
           console.log(response.data.outgoingFlights);
           $scope.flag = false;
+          $scope.hide($ionicLoading);
         })
 
 
@@ -83,6 +98,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
         reformatedReturningDate = moment(tripOriginReturningDate).toDate().getTime();
         $scope.flag = true;
         console.log("entered 2 way other airlines");
+        $scope.show($ionicLoading);
         FlightsSrv.getTwoWayTripSearchResultsOtherAirlines(tripOriginAirport, tripDestinationAirport, reformatedOutgoingDate, reformatedReturningDate, tripClass, seats).then(function (response) {
 
 
@@ -90,6 +106,7 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPo
           $scope.returnFlights = response.data.returnFlights;
           console.log($scope.outgoingFlights);
           console.log($scope.returnFlights);
+          $scope.hide($ionicLoading);
 
         })
 
