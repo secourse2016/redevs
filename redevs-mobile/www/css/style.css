@@ -5,6 +5,10 @@
   background-size: cover;
 }
 
+#aboutCard{
+  opacity: 0.75;
+
+}
 
 #input_1{
   border: 0;
@@ -69,12 +73,12 @@
 .item-image {
   background: #000;
 }
- 
+
 .item-image img:first-child, .item-image .list-img {
   width: 200px;
 }
 
-h2 {
+h4 {
   font-size: 50;
   font-weight: 10px;
   color: rgb(247, 255, 46);
@@ -92,7 +96,7 @@ ion-item.item:hover a {
   background-color: slategrey;
   box-shadow: inset 0px 0px 0px 1px red;
 }
- 
+
 
 .button {
     position: relative;
@@ -130,5 +134,5 @@ ion-item.item:hover a {
     transition: 0s
 }
 h2{
-  color: white;
+  color: black;
 }

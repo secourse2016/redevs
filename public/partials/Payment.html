@@ -10,16 +10,16 @@
 
 
 
-<div class="well">
+<div class="jumbotron">
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="name">Name:</label>
+    <label class="control-label col-sm-2" for="name">Name: </label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="name" placeholder="Name" ng-model="name">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">Credit Card Number:</label>
+    <label class="control-label col-sm-2" for="pwd">Credit Card Number: </label>
     <div class="col-sm-10">
         <input type="text" pattern="[0-9]{13,16}" class="form-control" id="pwd" ng-model="creditNumber">
 
@@ -35,7 +35,7 @@
   </div>
 
  <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">Expiry Date:<small>mm/yy</small></label>
+    <label class="control-label col-sm-2" for="pwd">Expiry Date: </label>
     <div class="col-sm-10">
         <select name='expireMM' id='expireMM' ng-model='month'>
     <option value=''>Month</option>

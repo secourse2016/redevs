@@ -7,6 +7,11 @@
 
    		$scope.Adults = [];
    		$scope.Children = [];
+         $scope.fillingError = false;
+
+         $scope.resetFillingError = function (){
+            $scope.fillingError = false;
+         }
 
    		for(var i = 0; i < $scope.AdultsCount; i++){
    			$scope.Adults[i] = {};
@@ -32,35 +37,32 @@
 			}
 
          $scope.proceed = function() {
+					 setDates();
 
+            var flag = false;
+                for (var k = 0; k < $scope.Adults.length; k++){
+                  if ($scope.Adults[k].firstName === undefined || $scope.Adults[k].lastName === undefined || $scope.Adults[k].passNumber === undefined ||
+                    $scope.Adults[k].passNationality === undefined || $scope.Adults[k].email === undefined){
+                    flag = true;
+                    break;
+                  }
+                }
+                for (var k = 0; k < $scope.Children.length; k++){
+                  if ($scope.Children[k].firstName === undefined || $scope.Children[k].lastName === undefined || $scope.Children[k].passNumber === undefined ||
+                    $scope.Children[k].passNationality === undefined || $scope.Children[k].email === undefined){
+                    flag = true;
+                    break;
+                  }
+                }
 
-            FlightsSrv.setAdultsInfo($scope.Adults);
-            FlightsSrv.setChildrenInfo($scope.Children);
-
-
-          //   FlightsSrv.setAdultsInfo($scope.Adults);
-          //   FlightsSrv.setChildrenInfo($scope.Children);
-
-					// 	var data = {
-					// 		tripType:FlightsSrv.getTripType(),
-					// 		flights:FlightsSrv.getFlights(),
-					// 		adults:FlightsSrv.getAdultsInfo(),
-					// 		children:FlightsSrv.getChildrenInfo(),
-					// 		creditCardNumber:"123",
-					// 		classs:FlightsSrv.getClass()
-					// 	};
-					// $http.post('/api/postReservation/',data).success(function(data,status){
-					//
-
-					// })
-
-
-					// });
-					$location.url('/confirmation');
-
-
-
-
+                if (!flag){
+                   FlightsSrv.setAdultsInfo($scope.Adults);
+                   FlightsSrv.setChildrenInfo($scope.Children);
+                     $location.url('/confirmation');                
+                  }
+                  else {
+                     $scope.fillingError = true;
+                  }
          }
 
          function getNationalities() {

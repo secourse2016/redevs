@@ -1,11 +1,12 @@
 
-App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location) {
+App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $location,$window) {
 
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
     $scope.adultsInput = 1;
     $scope.childrenInput = 0;
+
 
     var date = new Date();
     $scope.minDate = date.setDate((new Date()).getDate() - 90);
@@ -84,21 +85,62 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.SetDestinationAirport = function(destAirport) {
         FlightsSrv.setSelectedDestinationAirport(destAirport);
     };
-
-
+        $scope.radioModel2='OneWayTrip';
+        $scope.radioModel='business';
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
-      FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
-      FlightsSrv.setSelectedArrivalDate($scope.dtTo);
 
-      FlightsSrv.setClass($scope.radioModel);
-      FlightsSrv.setTripType($scope.radioModel2);
-      FlightsSrv.setNumberOfChildren($scope.childrenInput);
-      FlightsSrv.setNumberOfAdults($scope.adultsInput);
+        if ($scope.radioModel2 == 'OneWayTrip') {
 
-        FlightsSrv.setOtherAirlinesSwitch($scope.label);
-        //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
-      $location.url('/searchResults');
+            console.log($scope.dtFrom);
+
+            if (($scope.dtFrom == undefined)
+                || ($scope.adultsInput <= 0) || ($scope.childrenInput < 0)
+                || ($scope.radioModel == undefined) || ($scope.selectedDestination == undefined) ||
+                ($scope.selectedOrigin == undefined)) {
+                $window.alert('Please Make sure you chose a Class,Origin,Desitination,a Departure Date, and trip Type ');
+
+                ///put pop up
+
+            } else {
+                FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+                FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+
+                FlightsSrv.setClass($scope.radioModel);
+                FlightsSrv.setTripType($scope.radioModel2);
+                FlightsSrv.setNumberOfChildren($scope.childrenInput);
+                FlightsSrv.setNumberOfAdults($scope.adultsInput);
+
+                FlightsSrv.setOtherAirlinesSwitch($scope.label);
+                //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
+                $location.url('/searchResults');
+            }
+        } else {
+            if (($scope.dtFrom == undefined || $scope.dtTo == undefined)
+                || ($scope.adultsInput <= 0) || ($scope.childrenInput < 0)
+                || ($scope.radioModel == undefined) || ($scope.selectedDestination == undefined) ||
+                ($scope.selectedOrigin == undefined)) {
+                $window.alert('Please Make sure you chose a Class,Origin,Desitination,Departure Dates, and trip Type ');
+
+                ///put pop up
+
+            } else {
+                FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
+                FlightsSrv.setSelectedArrivalDate($scope.dtTo);
+
+                FlightsSrv.setClass($scope.radioModel);
+                FlightsSrv.setTripType($scope.radioModel2);
+                FlightsSrv.setNumberOfChildren($scope.childrenInput);
+                FlightsSrv.setNumberOfAdults($scope.adultsInput);
+
+                FlightsSrv.setOtherAirlinesSwitch($scope.label);
+                //FlightsSrv.setTripType($scope.checkboxModel.valuecheck);
+                $location.url('/searchResults');
+            }
+
+
+        }
+
     };
 
 

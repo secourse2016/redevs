@@ -189,7 +189,7 @@ App.controller('twoWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
       $scope.scope.fillingError = true;
       $ionicPopup.alert({
         title: 'Attention!',
-        template: 'Please complete filling the search options'
+        template: 'Please complete filling the search options.'
       });
 
 
@@ -387,7 +387,7 @@ App.controller('oneWayCtrl', function ($scope, $ionicTabsDelegate,FlightsSrv, $l
     if ($scope.scope.fromDateOneWay === 'null'){
       $ionicPopup.alert({
         title: 'Attention!',
-        template: 'Please complete filling the search options'
+        template: 'Please complete filling the search options.'
       });
       $scope.scope.fillingError = true;
 

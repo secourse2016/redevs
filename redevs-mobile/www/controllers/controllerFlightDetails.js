@@ -1,4 +1,5 @@
-App.controller('controllerFlightDetails', function($scope,$http,FlightsSrv,$location) {
+App.controller('controllerFlightDetails', function($scope,$http,FlightsSrv,$location,$state) {
+
 
 $scope.flight = FlightsSrv.getFlights();
 

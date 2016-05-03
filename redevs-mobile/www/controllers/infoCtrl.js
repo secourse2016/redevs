@@ -1,4 +1,5 @@
-	App.controller('infoCtrl', function($scope, $http,$state,FlightsSrv){
+
+	App.controller('infoCtrl', function($scope, $http,$state,FlightsSrv, $ionicPopup){
 
    		$scope.AdultsCount = FlightsSrv.getNumberOfAdults();
    		$scope.ChildrenCount = FlightsSrv.getNumberOfChildren();
@@ -33,36 +34,48 @@
    		$scope.thereIsAdults = !($scope.Adults.length === 0);
    		$scope.thereIsChildren = !($scope.Children.length === 0);
 
+			function setDates(){
+				for(var i = 0;i<$scope.Adults.length;i++){
+					if($scope.Adults[i].dateOfBirth != undefined)
+					$scope.Adults[i].dateOfBirth = moment($scope.Adults[i].dateOfBirth,'DD/MM/YYYY').toDate().getTime();
+				}
+
+				for(var i = 0;i<$scope.Children.length;i++){
+					if($scope.Children[i].dateOfBirth != undefined)
+					$scope.Children[i].dateOfBirth = moment($scope.Children[i].dateOfBirth,'DD/MM/YYYY').toDate().getTime();
+				}
+			}
+
          $scope.proceed = function() {
 
-            FlightsSrv.setAdultsInfo($scope.Adults);
-            FlightsSrv.setChildrenInfo($scope.Children);
+          var flag = false;
+          for (var k = 0; k < $scope.Adults.length; k++){
+            if ($scope.Adults[k].firstName === undefined || $scope.Adults[k].lastName === undefined || $scope.Adults[k].passNumber === undefined ||
+              $scope.Adults[k].passNationality === undefined || $scope.Adults[k].email === undefined){
+              flag = true;
+              break;
+            }
+          }
+          for (var k = 0; k < $scope.Children.length; k++){
+            if ($scope.Children[k].firstName === undefined || $scope.Children[k].lastName === undefined || $scope.Children[k].passNumber === undefined ||
+              $scope.Children[k].passNationality === undefined || $scope.Children[k].email === undefined){
+              flag = true;
+              break;
+            }
+          }
 
-
-          //   FlightsSrv.setAdultsInfo($scope.Adults);
-          //   FlightsSrv.setChildrenInfo($scope.Children);
-
-					// 	var data = {
-					// 		tripType:FlightsSrv.getTripType(),
-					// 		flights:FlightsSrv.getFlights(),
-					// 		adults:FlightsSrv.getAdultsInfo(),
-					// 		children:FlightsSrv.getChildrenInfo(),
-					// 		creditCardNumber:"123",
-					// 		classs:FlightsSrv.getClass()
-					// 	};
-					// $http.post('/api/postReservation/',data).success(function(data,status){
-					//
-
-					// })
-
-
-					// });
+          if (!flag){
+					setDates();
+          FlightsSrv.setAdultsInfo($scope.Adults);
+          FlightsSrv.setChildrenInfo($scope.Children);
 					$state.go('flightConfirmation');
-
-
-
-
-         }
+          }else{
+          $ionicPopup.alert({
+              title: 'Attention!',
+              template: 'Please complete filling passenger information.'
+           });
+        }
+        }
 
          function getNationalities() {
             FlightsSrv.getNationalities().success(function(Nationalities){

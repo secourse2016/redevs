@@ -693,10 +693,12 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
           for(j=0;j<flights[i].outgoingFlights.length;j++) {
             if(flights[i].outgoingFlights[j]!=null){
             resRT.outgoingFlights.push(flights[i].outgoingFlights[j]);
+              console.log(i);
             }
           }
           for(j=0;j<flights[i].returnFlights.length;j++) {
             if(flights[i].returnFlights[j]!=null) {
+
               resRT.returnFlights.push(flights[i].returnFlights[j]);
             }
           }

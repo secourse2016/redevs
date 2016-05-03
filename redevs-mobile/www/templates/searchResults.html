@@ -1,4 +1,4 @@
-
+<ion-view view-title="Delta Airlines">
 
 
 <ion-spinner icon="spiral"></ion-spinner>
@@ -13,11 +13,15 @@
 
     <div>
       <div class="bar sub-header bar-positive">
+
         <h1 class="title">Choose The Flight(s) You Want To Book</h1>
+        <br><br><br>
       </div>
+
       <br><br><br>
 
       <ion-item ng-repeat="f in outgoingFlights" ng-model="$parent.gflight.flight" ng-value="f" class="item item-trns text-left">
+
 
 
         <div class="list card">
@@ -25,31 +29,36 @@
             <h1 class="title">Outgoing Flight</h1>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights">
+          <ion-radio  ng-model="$parent.gflight.flight" ng-value="f" name="Outgoing Flights" required ng-required="true">
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
-              Flight Number: <h1>{{ f.flightNumber }}</h1>
-              Origin:      <h1>{{ f.origin }}</h1>
-              Destination:     <h1>{{ f.destination }}</h1>
+              Flight Number: <h2>{{ f.flightNumber }}</h2>
+              Origin:      <h2>{{ f.origin }}</h2>
+              Destination:     <h2>{{ f.destination }}</h2>
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+              Time:     <h4>{{ f.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h4>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ f.cost }}$</h1>
 
-              Class:     <h1>{{ f.class }}</h1>
+              Price:     <h4>{{ f.cost }}$</h4>
+
+              Class:     <h4>{{ f.class }}</h4>
+
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ f.Airline }}</h1>
+
+              Airline:     <h4>{{ f.Airline }}</h4>
+
               <br>
             </a>
         </div>
@@ -61,34 +70,40 @@
 
         <div class="list card">
           <div class="bar  bar-assertive">
-            <h1 class="title">Returning Flight</h1>
+            <h2 class="title">Returning Flight</h2>
           </div>
           <br><br>
-          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights">
+          <ion-radio  ng-model="$parent.rflight.flight" ng-value="r" name="Returning Flights" required ng-required="true">
             <a  class="item item-icon-left">
               <i class="icon ion-plane"></i>
 
-              Flight Number: <h1>{{ r.flightNumber }}</h1>
-              Origin:      <h1>{{ r.origin }}</h1>
-              Destination:     <h1>{{ r.destination }}</h1>
+              Flight Number: <h2>{{ r.flightNumber }}</h2>
+              Origin:      <h2>{{ r.origin }}</h2>
+              Destination:     <h2>{{ r.destination }}</h2>
             </a>
             <a  class="item item-icon-left">
               <i class="icon ion-clock"></i>
-              Time:     <h1>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h1>
+
+              Time:     <h4>{{ r.departureDateTime | amDateFormat:'dddd, MMMM Do YYYY '}}</h4>
+
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-pricetag"></i>
-              Price:     <h1>{{ r.cost }}$</h1>
 
-              Class:     <h1>{{ r.class }}</h1>
+              Price:     <h4>{{ r.cost }}$</h4>
+
+              Class:     <h4>{{ r.class }}</h4>
+
 
               <br>
             </a>
             <a  class="item item-icon-left">
 
               <i class="icon ion-paper-airplane"></i>
-              Airline:     <h1>{{ r.Airline }}</h1>
+
+              Airline:     <h4>{{ r.Airline }}</h4>
+
               <br>
             </a>
 
@@ -106,5 +121,4 @@
   </div>
 
 </ion-content>
-
-
+</ion-view>

@@ -11,6 +11,7 @@ App.controller('confirmationCtrl', function($scope, FlightsSrv, $state) {
   $scope.thereAreChildren = !($scope.childrenTickets === 0);
 
  $scope.goToCheckOut = function(){
+   FlightsSrv.setTotalCost($scope.totalAmount);
    $state.go('confirmation');
  }
 
