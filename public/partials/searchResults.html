@@ -3,10 +3,13 @@
 <div class="container">
   <div class="row">
     <div class="jumbotron">
+
+<div ng-hide="outgoingFlights.length"><h1 style="color:#FFFFFF" align="center">No flights found.</h1></div>
+
       <div class="row">
-          <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
 
           <table align="center">
+           <h2 id="xflight">Flights from {{FlightDetails.OriginAirport}} to {{FlightDetails.DestinationAirport}}</h2>
             <th ng-repeat= "header in headers">
               <a> {{headers[$index]}} </a>
             </th>
