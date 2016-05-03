@@ -1,4 +1,4 @@
-App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
+App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state,$ionicPopup){
 
 
 
@@ -104,13 +104,47 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $state){
 
        $scope.proceed = function(){
          var array=[];
-         array.push($scope.gflight.flight);
+
          if(FlightsSrv.getTripType()==="RoundTrip") {
-           array.push($scope.rflight.flight);
+           if (($scope.gflight.flight === undefined || $scope.gflight.flight === null)||
+             ($scope.rflight.flight === undefined || $scope.rflight.flight === null)){
+
+             $ionicPopup.alert({
+               title: 'Alert',
+               template: 'Please Select 2 Flights'
+             });
+           } else {
+             array.push($scope.rflight.flight);
+             array.push($scope.gflight.flight);
+             FlightsSrv.setFlights(array);
+             $state.go('information');
+           }
          }
-         FlightsSrv.setFlights(array);
-         $state.go('information');
-       };
+         else{
+           console.log($scope.gflight.flight);
+           if ($scope.gflight.flight === undefined || $scope.gflight.flight=== null){
+             console.log("popup");
+               $ionicPopup.alert({
+                 title: 'Alert',
+                 template: 'Please Select 1 Flight'
+               });
+
+           } else {
+             array.push($scope.gflight.flight);
+             FlightsSrv.setFlights(array);
+             $state.go('information');
+           }
+
+
+           }
+
+
+
+
+         };
+
+
+
 
 $scope.convert = function(date){
   //console.log(date);

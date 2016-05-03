@@ -10,14 +10,15 @@
 
 
 table, th , td  {
-  padding: 30px;
-  font-size: 20px;
+  padding: 10px;
+  font-size: 18px;
   text-align: center;
   border: 0px solid black;
   font-family: Helvetica;
   text-decoration-color: white;
   border-collapse: collapse;
   border-spacing: 0;
+  color: #eee;
 
 
 }

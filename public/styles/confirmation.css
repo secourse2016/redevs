@@ -4,11 +4,37 @@ h2,h4{
 	font-weight: bold;
 }
 
+strong{
+  color: lightgreen;
+}
+
 .info{
 	color: lightgray;
 }
 
 .panel-group, .well{
 	opacity: 0.8;
+}
+
+table, th , td  {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  border: 0px solid black;
+  font-family: Helvetica;
+  text-decoration-color: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #eee;
+
+
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: transparent;
 }
 

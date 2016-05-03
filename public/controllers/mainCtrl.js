@@ -4,6 +4,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
+    $scope.adultsInput = 1;
+    $scope.childrenInput = 0;
 
     var date = new Date();
     $scope.minDate = date.setDate((new Date()).getDate() - 90);
@@ -82,8 +84,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     $scope.SetDestinationAirport = function(destAirport) {
         FlightsSrv.setSelectedDestinationAirport(destAirport);
     };
-
-
+        $scope.radioModel2='OneWayTrip';
+        $scope.radioModel='business';
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
       FlightsSrv.setSelectedDepartureDate($scope.dtFrom);
