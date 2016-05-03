@@ -4,6 +4,8 @@ App.controller('mainCtrl', function($scope,FlightsSrv,reservationSearchSrv, $loc
     /*----------- Angular Bootstrap Datepicker -----------*/
     $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
+    $scope.adultsInput = 1;
+    $scope.childrenInput = 0;
 
     var date = new Date();
     $scope.minDate = date.setDate((new Date()).getDate() - 90);

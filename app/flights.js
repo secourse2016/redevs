@@ -256,7 +256,7 @@ function getFlightsFromDB(cb) {
 
 function getFlightsWithDates(array, originDate, classs, seats, destinationDate) {
   var count = 0;
-  console.log(classs);
+  //console.log(classs);
   var res = {
     "outgoingFlights": []
   };
@@ -265,7 +265,7 @@ function getFlightsWithDates(array, originDate, classs, seats, destinationDate) 
     "outgoingFlights": [],
     "returnFlights": []
   };
-  console.log(array.length);
+  //console.log(array.length);
 
   for (var n = 0; n < array.length; n++) {
     var flight = array[n];
@@ -287,19 +287,19 @@ function getFlightsWithDates(array, originDate, classs, seats, destinationDate) 
     var aircraftModel = aircraft[1];
 
     if (arguments.length === 4) {
-      console.log(array.length);
-      console.log(n);
-      console.log(classs);
-      console.log((moment(flight.departureDateTime).format('YYYY-MM-DD')));
-      console.log(moment(parseInt(originDate)).format('YYYY-MM-DD'));
+      //console.log(array.length);
+      //console.log(n);
+      //console.log(classs);
+      //console.log((moment(flight.departureDateTime).format('YYYY-MM-DD')));
+      //console.log(moment(parseInt(originDate)).format('YYYY-MM-DD'));
 
       if (moment(flight.departureDateTime).format('YYYY-MM-DD') === moment(parseInt(originDate)).format('YYYY-MM-DD')) {
 
-        console.log('found date');
+        //console.log('found date');
 
         if ((classs === "economy" ) && flight.economyClassSeats >= seats) {
 
-          console.log("hena");
+          //console.log("hena");
 
           res.outgoingFlights.push({
             "flightId": objectID,
@@ -498,7 +498,7 @@ function getFlightsWithDates(array, originDate, classs, seats, destinationDate) 
 
 
 
-  console.log(res);
+  //console.log(res);
   if (arguments.length === 5) {
     return resRT;
 
@@ -621,7 +621,7 @@ function reservationSearch(resNum, cb) {
   //mmkn akhaliha teraga3li eli ana 3ayzah ml db 3ala tool w khalas as-hal
   //parse el awl
   var resNumInt = parseInt(resNum);
-  console.log(resNumInt);
+  //console.log(resNumInt);
 
   //.toArray() returns an array that contains all the documents from a cursor
   db.db().collection('tickets').find(
@@ -1184,7 +1184,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
                           destination:doc.destination,
                           currency:'usd',
                           class:classs,
-                          Airline:'Delta'
+                          Airline:'Delta Airlines'
                           }
                           if(classs='economy'){
                             result.cost=doc.economyClassCost;
