@@ -1,4 +1,4 @@
-App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
+App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location,$window){
 
 
 
@@ -94,11 +94,35 @@ App.controller('searchResultsCtrl', function($scope, FlightsSrv, $location){
 
        $scope.proceed = function(){
          var array=[];
-         array.push($scope.gflight.flight);
-         if(tripType==="RoundTrip")
-         array.push($scope.rflight.flight);
-         FlightsSrv.setFlights(array);
-         $location.url('/information');
+
+         if(FlightsSrv.getTripType()==="RoundTrip") {
+           if (($scope.gflight === undefined || $scope.gflight === null)||
+               ($scope.rflight === undefined || $scope.rflight === null)){
+
+             $window.alert('Please Select 2 Trips!!!');
+
+           } else {
+             array.push($scope.rflight.flight);
+             array.push($scope.gflight.flight);
+             FlightsSrv.setFlights(array);
+             $location.url('/information');
+           }
+         }
+         else{
+           console.log($scope.gflight);
+           if ($scope.gflight === undefined || $scope.gflight=== null){
+             console.log("popup");
+             $window.alert('Please Select 1 Trip!!');
+
+
+           } else {
+             array.push($scope.gflight.flight);
+             FlightsSrv.setFlights(array);
+             $location.url('/information');
+           }
+
+
+         }
        };
 
 $scope.convert = function(date){
