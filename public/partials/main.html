@@ -169,7 +169,8 @@
                        uib-typeahead="airport.city for airport in Airports | filter:$viewValue | limitTo:10"
                        class="form-control",
                        typeahead-on-select="SetDestinationAirport($item.iata)"
-                       ng-model="selectedDestination" required>
+                       ng-model="selectedDestination"
+                       required>
 
 
                 <p class="input-group">
@@ -185,7 +186,8 @@
                            placeholder="Return Date"
                            ng-required="true"
                            close-text="Close"
-                           ng-model="dtTo" required
+                           ng-model="dtTo"
+                           ng-required="checkTripType.roundTripBtn"
                     />
                              <span class="input-group-btn">
                                <button type="button"
