@@ -98,10 +98,10 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
         controller: 'thankYouCtrl'
     })
 
-    .state('sideMenu', {
-        url: '/sideMenu',
-        templateUrl: 'templates/sideMenu.html',
-        controller: 'sideMenuCtrl'
+    .state('aboutUs', {
+        url: '/aboutUs',
+        templateUrl: 'templates/aboutUs.html',
+        controller: 'mainCtrl'
     })
 
     .state('flightConfirmation',{
@@ -115,6 +115,6 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/landingPage');
+  $urlRouterProvider.otherwise('/landingPage/oneway');
 
 });
