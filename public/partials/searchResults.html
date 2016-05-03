@@ -42,7 +42,7 @@
           <a> {{headers[$index]}} </a>
       </th>
             <tr ng-repeat="r in returnFlights">
-            <td> <input type="radio" ng-model="$parent.rflight" ng-value="r"></td>
+            <td> <input type="radio" ng-model="$parent.rflight" ng-value="r" name ="group" required></td>
             <td>{{r.flightNumber}}</td>
             <td>{{ r.origin }}</td>
             <td>{{ r.destination }}</td>
