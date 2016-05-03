@@ -4,13 +4,19 @@
 
   <div class="list">
 
+
     <div class="row">
 
   <div class="col col-center col-75">
     <label class="item item-input item-floating-label">
+
       <span class="input-label">Name</span>
-      <input id="Name" type="text" placeholder="Name" ng-model="name">
+      <input id="Name" type="text" placeholder="Name" ng-model="name" required>
+      <p ng-show="name.$error.required">* Name is required</p>
+
     </label>
+
+
   </div>
     </div>
 
@@ -18,7 +24,10 @@
   <div class="col col-center col-75">
     <label class="item item-input item-floating-label">
       <span class="input-label">Credit Card Number</span>
-      <input id="Credit" type="number" placeholder="Credit Card Number" ng-model="creditNumber">
+      <input id="Credit" type="number" placeholder="Credit Card Number" ng-model="creditNumber"  ng-minlength="16" ng-maxlength="16" required>
+      <p ng-show="creditNumber.$error.minlength">* Credit Card Number must be 16 numbers</p>
+
+
     </label>
   </div>
 </div>
@@ -27,7 +36,8 @@
   <div class="col col-center col-75">
       <label class="item item-input item-floating-label">
       <span class="input-label">cvc</span>
-      <input id="cvc" type="tel" placeholder="cvc" ng-model="CVC">
+      <input id="cvc" type="tel" placeholder="cvc" ng-model="CVC"  ng-minlength="3" required>
+        <p ng-show="creditNumber.$error.minlength">* CVC Number must be 3 numbers</p>
     </label>
   </div>
 </div>
@@ -36,11 +46,11 @@
   <div class="col col-center col-75">
     <label class="item item-input item-floating-label">
       <span class="input-label">Expiry Date</span>
-      <input id="Expiry" type="month" placeholder="Expiry Date" ng-model="date">
+      <input id="Expiry" type="month" placeholder="Expiry Date" ng-model="date" required>
     </label>
   </div>
 </div>
-
+    </form>
 </div>
 
 </div>
