@@ -1,4 +1,4 @@
-App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','angular-stripe'])
+App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','angular-stripe','ionic.contrib.ui.tinderCards'])
 
 .config(function (stripeProvider) {
     stripeProvider.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
@@ -101,7 +101,7 @@ App=angular.module('deltaAppMobile', ['ionic', 'angularMoment','tabSlideBox','an
     .state('aboutUs', {
         url: '/aboutUs',
         templateUrl: 'templates/aboutUs.html',
-        controller: 'mainCtrl'
+        controller: 'aboutUsCtrl'
     })
 
     .state('flightConfirmation',{
