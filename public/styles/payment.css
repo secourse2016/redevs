@@ -9,7 +9,7 @@ box-sizing: border-box;
 border: 2px solid grey;
 border-radius: 4px;
 font-size: 16px;
-background-color: white;
+background-color: rgba(50,50,50,0.5);
 background-position: 10px 10px;
 background-repeat: no-repeat;
 padding: 12px 20px 12px 40px;
@@ -21,6 +21,9 @@ input[type=text]:focus {
 width: 100%;
 
 }
+label {
+	color: #eee;
+}
 
 input[type=date] {
 width: 130px;
@@ -28,7 +31,7 @@ box-sizing: border-box;
 border: 2px solid black;
 border-radius: 4px;
 font-size: 16px;
-background-color: white;
+background-color: rgba(50,50,50,0.5);
 background-position: 10px 10px;
 background-repeat: no-repeat;
 padding: 12px 20px 12px 40px;
@@ -47,7 +50,7 @@ box-sizing: border-box;
 border: 2px solid grey;
 border-radius: 4px;
 font-size: 16px;
-background-color: white;
+background-color: rgba(50,50,50,0.5);
 background-position: 10px 10px;
 background-repeat: no-repeat;
 padding: 12px 20px 12px 40px;
