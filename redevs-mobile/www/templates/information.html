@@ -1,4 +1,4 @@
-<ion-view view-title="information">
+<ion-view view-title="Delta Airlines">
 <ion-content>
 <h2 ng-show="thereIsAdults">  Adults</h2>
   <div class="list list-inset" ng-repeat="i in AdultsArray track by $index">
@@ -20,6 +20,10 @@
     <label class="item item-input item-stacked-label">
         <span class="input-label">Passport Number</span>
         <input type="text" ng-model="$parent.Adults[$index].passNumber">
+    </label>
+     <label class="item item-input item-stacked-label">
+        <span class="input-label">Date Of Birth</span>
+        <input type="text" ng-model="$parent.Adults[$index].dateOfBirth" placeholder="dd/MM/YYYY">
     </label>
     <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
@@ -60,6 +64,10 @@
       <label class="item item-input item-stacked-label">
         <span class="input-label">Passport Number</span>
         <input type="text" ng-model="$parent.Children[$index].passNumber">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Date Of Birth</span>
+        <input type="text" ng-model="$parent.Adults[$index].dateOfBirth" placeholder="dd/MM/YYYY">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Supervisor Name</span>

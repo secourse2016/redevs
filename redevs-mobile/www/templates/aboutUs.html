@@ -1,0 +1,69 @@
+<ion-view view-title="The Team">
+<ion-pane align="center">
+<div id = "aboutCard" class="card">
+<body ng-app="deltaAppMobile" no-scroll>
+
+<br></br>
+
+  <h1 align="center" style="color:red;">ABOUT DELTA</h1>
+
+  <br></br>
+
+
+
+
+  <h4 align="center" style="color:red;">What started as a humble, little aerial crop dusting operation called Huff Daland Dusters in 1924 has now grown into one of the world’s largest global airlines, helping more than 160 million travelers get to the places they want to go to each year.</h2>
+  <br></br>
+  <h4 align="center" style="color:red;">For years Delta Airlines has led the industry in terms of quality, safety and customer satisfaction. Our pilots have proven to be leaders in the industry and our staff have led the competiton in terms of caliber and excellence. </h2>
+  <br></br>
+  <h4 align="center" style="color:red;">Delta is the sixth-oldest operating airline by foundation date, and the oldest airline still operating in the United States.
+  The company's history can be traced back to Huff Daland Dusters, founded in 1924 in Macon, Georgia as a crop dusting operation.
+  The company moved to Monroe, Louisiana, and was later renamed Delta Air Services, in reference to the nearby Mississippi Delta region,
+  and commenced passenger services on June 17, 1929. Among predecessors of today's Delta Air Lines, Western Airlines and Northwest
+  Airlines began flying passengers in 1926 and 1927, respectively.</h4>
+  <br></br>
+  <h4 align="center" style="color:red;">In 2013, Delta Air Lines was the world's largest airline in terms of scheduled passengers carried (120.6 million),
+  and the second-largest in terms of both revenue passenger-kilometers flown (277.6 billion)and capacity (4.4 billion ASM/week; March 2013).</h4>
+  <br></br>
+</div>
+
+
+
+
+    <!--  <ion-pane ng-controller="aboutUsCtrl">-->
+
+          <td-cards>
+              <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)"
+              on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"
+              on-partial-swipe="cardPartialSwipe(amt)">
+                  <div class="image">
+                      <div class="no-text overlayBox"><div class="noBox boxed"></div></div>
+                      <img ng-src="{{card.image}}">
+                      <div class="no-text overlayBox"><div class="noBox boxed"></div></div>
+                  </div>
+              </td-card>
+          </td-cards>
+
+  <!--    </ion-pane>-->
+
+
+
+
+
+
+  </body>
+
+
+
+
+
+
+
+</ion-pane>
+
+<div class="bar bar-footer bar-assertive">
+  <div class="title">&copy; Developed by reDevs Inc.&reg;</div>
+</div>
+
+
+</ion-view>
