@@ -6,6 +6,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
   $scope.CVC=0;
   $scope.month=0;
   $scope.year=0;
+  $scope.paying=true;
 
 
   var flights = FlightsSrv.getFlights();
@@ -71,6 +72,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
 
   $scope.submit = function(){
+    $scope.paying=false;
     console.log(FlightsSrv.getTripType());
     if(FlightsSrv.getTripType()==="OneWayTrip"){
       if(flights[0].Airline==="Delta Airlines"){
@@ -82,7 +84,8 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
-            $scope.error = true;
+              $scope.error= true;
+
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -98,6 +101,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
             FlightsSrv.postReservation(data).success(function(response,status){
               FlightsSrv.setReservationNumber(response.time);
+              $scope.paying=true;
               $location.url('/thankYou');
             });
 
@@ -117,6 +121,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           },function(status,response){
             if(response.error){
               console.log(response.error);
+
               $scope.error = true;
             }else{
               var data={
@@ -132,6 +137,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                 stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                 FlightsSrv.setReservationNumber(response.refNum);
                 console.log(response);
+                $scope.paying=true
                 $location.url('/thankYou');
               });
             }
@@ -152,6 +158,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
         },function(status,response){
           if(response.error){
             $scope.error = true;
+            $scope.paying=true
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -167,6 +174,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
             FlightsSrv.postReservation(data).success(function(response,status){
               FlightsSrv.setReservationNumber(response.time);
+
               $location.url('/thankYou');
             });
 
@@ -184,6 +192,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
         },function(status,response){
           if(response.error){
             $scope.error = true;
+
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -209,6 +218,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                   exp_year:$scope.year
                 },function(status,response){
                   if(response.error){
+
                     $scope.error = true;
                     console.log(response.error);
                   }else{
@@ -225,6 +235,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                       stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                       FlightsSrv.setReservationNumber("Flight 1 ref = "+f1+" Flight 2 ref = "+response.refNum);
                       console.log(response);
+                      $scope.paying=true;
                       $location.url('/thankYou');
                     });
                   }
@@ -253,6 +264,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
             exp_year:$scope.year
           },function(status,response){
             if(response.error){
+
               $scope.error = true;
               console.log(response.error);
             }else{
@@ -277,6 +289,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                 },function(status,response){
                   if(response.error){
                     $scope.error = true;
+
                     console.log(response.error);
                     console.log($scope.year);
                   }else{
@@ -292,6 +305,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
 
                     FlightsSrv.postReservation(data).success(function(response,status){
                       FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+" Flight2 refNum = "+response.time);
+                      $scope.paying=true;
                       $location.url('/thankYou');
 
                     });
@@ -319,6 +333,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
+
             $scope.error = true;
             console.log(response.error);
           }else{
@@ -336,6 +351,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
               stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
               FlightsSrv.setReservationNumber(response.refNum);
               console.log(response);
+              $scope.paying=true;
               $location.url('/thankYou');
             });
           }
@@ -355,6 +371,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           },function(status,response){
             if(response.error){
               $scope.error = true;
+
               console.log(response.error);
             }else{
               var data={
@@ -381,6 +398,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                   },function(status,response){
                     if(response.error){
                       $scope.error = true;
+
                       console.log(response.error);
                     }else{
                       var data={
@@ -396,6 +414,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                         stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                         FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+" Flight2 ref = "+response.refNum);
                         console.log(response);
+                        $scope.paying=true;
                         $location.url('/thankYou');
                       });
                     }
