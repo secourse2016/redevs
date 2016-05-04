@@ -673,49 +673,55 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
         "returnFlights": []
       };
       if (isRoundTrip === 0) {
+
         if (flights!== undefined) {
+
           for (i = 0; i < flights.length; i++) {
 
+            if (flights[i] !== undefined) {
+              if (flights[i].hasOwnProperty('outgoingFlights')) {
 
-            if (flights[i].hasOwnProperty('outgoingFlights')) {
 
-
-              for (j = 0; j < flights[i].outgoingFlights.length; j++) {
-                if (flights[i].outgoingFlights[j].length != 0) {
-                  res.outgoingFlights.push(flights[i].outgoingFlights[j]);
+                for (j = 0; j < flights[i].outgoingFlights.length; j++) {
+                  if (flights[i].outgoingFlights[j].length != 0) {
+                    res.outgoingFlights.push(flights[i].outgoingFlights[j]);
+                  }
                 }
               }
+
+
             }
-
-
           }
+          return res;
         }
-        return res;
+
       }
 
       if (isRoundTrip === 1) {
 
         if (flights!== undefined) {
         for (i = 0; i < flights.length; i++) {
-
-            if (flights[i].hasOwnProperty('outgoingFlights')) {
-              for (j = 0; j < flights[i].outgoingFlights.length; j++) {
-                if (flights[i].outgoingFlights[j].length != 0) {
-                  resRT.outgoingFlights.push(flights[i].outgoingFlights[j]);
-                  console.log(i);
-                }
+        if(flights[i]!==undefined) {
+          if (flights[i].hasOwnProperty('outgoingFlights')) {
+            for (j = 0; j < flights[i].outgoingFlights.length; j++) {
+              if (flights[i].outgoingFlights[j].length != 0) {
+                resRT.outgoingFlights.push(flights[i].outgoingFlights[j]);
+                console.log(i);
               }
             }
-            if (flights[i].hasOwnProperty('returnFlights')) {
-              for (j = 0; j < flights[i].returnFlights.length; j++) {
-                if (flights[i].returnFlights[j].length != 0) {
+          }
 
-                  resRT.returnFlights.push(flights[i].returnFlights[j]);
-                }
+          if (flights[i].hasOwnProperty('returnFlights')) {
+            for (j = 0; j < flights[i].returnFlights.length; j++) {
+              if (flights[i].returnFlights[j].length != 0) {
+
+                resRT.returnFlights.push(flights[i].returnFlights[j]);
               }
-
-
             }
+
+
+          }
+        }
           }
 
           return resRT;
