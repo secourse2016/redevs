@@ -7,6 +7,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
   $scope.month=0;
   $scope.year=0;
 
+
   var flights = FlightsSrv.getFlights();
   var adults = FlightsSrv.getAdultsInfo();
   var children = FlightsSrv.getChildrenInfo();
@@ -66,6 +67,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
+            $scope.error = true;
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -100,6 +102,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           },function(status,response){
             if(response.error){
               console.log(response.error);
+              $scope.error = true;
             }else{
               var data={
                 passengerDetails : passengerDetails,
@@ -133,6 +136,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
+            $scope.error = true;
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -164,6 +168,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
+            $scope.error = true;
             console.log(response.error);
             console.log($scope.year);
           }else{
@@ -189,6 +194,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                   exp_year:$scope.year
                 },function(status,response){
                   if(response.error){
+                    $scope.error = true;
                     console.log(response.error);
                   }else{
                     var data={
@@ -232,6 +238,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
             exp_year:$scope.year
           },function(status,response){
             if(response.error){
+              $scope.error = true;
               console.log(response.error);
             }else{
               var data={
@@ -254,6 +261,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                   exp_year:$scope.year
                 },function(status,response){
                   if(response.error){
+                    $scope.error = true;
                     console.log(response.error);
                     console.log($scope.year);
                   }else{
@@ -296,6 +304,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
           exp_year:$scope.year
         },function(status,response){
           if(response.error){
+            $scope.error = true;
             console.log(response.error);
           }else{
             var data={
@@ -330,6 +339,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
             exp_year:$scope.year
           },function(status,response){
             if(response.error){
+              $scope.error = true;
               console.log(response.error);
             }else{
               var data={
@@ -355,6 +365,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
                     exp_year:$scope.year
                   },function(status,response){
                     if(response.error){
+                      $scope.error = true;
                       console.log(response.error);
                     }else{
                       var data={

@@ -6,6 +6,16 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
     $scope.month=0;
     $scope.year=0;
 
+    $scope.show = function() {
+    $ionicLoading.show({
+      template: '<p>Loading...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.hide = function(){
+        $ionicLoading.hide();
+  };
+
     var flights = FlightsSrv.getFlights();
     var adults = FlightsSrv.getAdultsInfo();
     var children = FlightsSrv.getChildrenInfo();
@@ -55,6 +65,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
     $scope.submit = function(){
 
+
       if(($scope.name===undefined) ||($scope.creditNumber===undefined)||($scope.CVC===undefined)|| ($scope.date===undefined)||
         ($scope.creditNumber.length!==16)||($scope.cvc!==3)){
         $ionicPopup.alert({
@@ -68,6 +79,9 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
       }
       else{
 
+
+
+      $scope.show($ionicLoading);
 
       console.log(FlightsSrv.getTripType());
       if(FlightsSrv.getTripType()==="OneWayTrip"){
@@ -96,6 +110,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
               };
 
               FlightsSrv.postReservation(data).success(function(response,status){
+                $scope.hide($ionicLoading);
                 FlightsSrv.setReservationNumber(response.time);
                 $location.url('/thankYou');
               });
@@ -133,6 +148,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
                   stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                   FlightsSrv.setReservationNumber(response.refNum);
                   console.log(response);
+                  $scope.hide($ionicLoading);
                   $location.url('/thankYou');
                 });
               }
@@ -169,6 +185,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
               FlightsSrv.postReservation(data).success(function (response, status) {
                 FlightsSrv.setReservationNumber(response.time);
+                $scope.hide($ionicLoading);
                 $location.url('/thankYou');
               });
 
@@ -230,6 +247,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
                         stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                         FlightsSrv.setReservationNumber("Flight 1 ref = " + f1 + " Flight 2 ref = " + response.refNum);
                         console.log(response);
+                        $scope.hide($ionicLoading);
                         $location.url('/thankYou');
                       });
                     }
@@ -294,8 +312,9 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
                       };
 
-                      FlightsSrv.postReservation(data).success(function (response, status) {
-                        FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber() + "Flight 2 ref= " + response.time);
+            FlightsSrv.postReservation(data).success(function(response,status){
+                        FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"Flight 2 ref= "+response.time);
+                        $scope.hide($ionicLoading);
                         $location.url('/thankYou');
 
                       });
