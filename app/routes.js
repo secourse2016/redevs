@@ -114,160 +114,263 @@ module.exports = function(app,mongo) {
   ///API BY-ACCESS EL SERVERS EL TANYA W BY-ACCESSNA
   //SINGLE WAY TRIP
 
-  app.get('/api/flights/searchAirlines/:origin/:destination/:date/:class/:seats',function(req,res2) {
+  app.get('/api/flights/searchAirlines/:origin/:destination/:date/:class/:seats',function(req,res) {
 
     var origin=req.param('origin');
     var destination=req.param('destination');
     var date=req.param('date');
-    var classs=req.param('class');
+    var flightClass=req.param('class');
     var seats=req.param('seats');
-    console.log(origin);
-    console.log(destination);
-    console.log(date);
-    console.log(classs);
-    function httpGet(url, cb) {
-      var options = {
-        url: url,
-        json: true,
-        timeout:3000
-      };
-      var r= request(options,
-        function (err, res, body) {
+    var token ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk';
+    const airlines = [
+      "swiss-air.me",
+      "52.27.150.19",
+      "ec2-52-38-101-89.us-west-2.compute.amazonaws.com",
+      "ec2-54-152-123-100.compute-1.amazonaws.com",
+      "54.187.208.145",
+      "52.58.46.74",
+      "52.32.109.147",
+      "52.36.169.206",
+      "ec2-52-91-94-227.compute-1.amazonaws.com",
+      "52.207.211.179",
+      "54.93.116.90",
+      "54.93.74.125",
+      "52.36.250.55",
+      "52.26.173.245",
+      "54.93.36.94",
+      "54.187.103.196",
+      "52.28.246.230",
+      "52.58.24.76",
+      "ec2-52-90-41-197.compute-1.amazonaws.com",
+      "54.191.202.17",
+      "ec2-52-26-166-80.us-west-2.compute.amazonaws.com",
+      "52.25.15.124",
+      "52.90.46.68",
+      "52.38.234.54",
+        "54.213.157.185"
+    ];
 
-          if(err){
+    var getOtherAirlines = function(cb, origin, destination, date, flightClass,seats, i) {
 
-            console.log(err);
-            cb(err,[]);
+      if(i < airlines.length){
 
 
-          }else{
-            cb(err,body);
-
-          }
-
+        // Specify the options of the GET request
+        var options = {
+          host: airlines[i],
+          path: '/api/flights/search/'+origin+'/'+destination+'/'+date+'/'+flightClass+'/'+seats+'/?wt='+token
         }
-      );
+
+
+        // Send the GET request to the current airline [i]
+        http.get(options, function(res) {
+
+          var flightsData = "";
+          res.on('data',function(data){
+                // Retreive the data from the response
+                flightsData += data;
+              })
+              .on('end',function(){
+
+                // Make sure that the returned data are in JSON format
+                var validJSON = true;
+                try{
+                  flightsData = JSON.parse(flightsData);
+                }
+                catch(e)
+                {
+                  validJSON = false;
+                }
+
+                // Get the flights of the next airlines, starting from i+1
+                getOtherAirlines(function(newFlights){
+
+                  // Only concat JSON data that are in valid format
+                  if(validJSON && flightsData.outgoingFlights)
+                    newFlights.outgoingFlights = newFlights.outgoingFlights.concat(flightsData.outgoingFlights);
+
+                  // Backtrack and return the current list of flights to the previous call
+                  cb(newFlights);
+
+                }, origin, destination, date, flightClass,seats, i+1)
+
+
+
+              });
+        }).on('error',function(e){
+
+          console.log('ERROR: '+e);
+
+          /**
+           * An error happened in the request to the current airline. So we will ignore the
+           current flightsData and proceed with our recursion to the next airline
+           */
+          getOtherAirlines(function(newFlights){
+
+            // Backtrack and return the current list of flights to the previous call
+            cb(newFlights);
+
+          }, origin, destination, date, flightClass,seats, i+1)
+
+        }).setTimeout(2000,function(){
+          /**
+           Adding this function to make sure that no airline takes forever to return data.
+           the abort() function below terminates the http request and executes  the
+           above .on('error') function
+           Now the maximum allowed time for each individual airline to return data is 3 seconds
+           You can modify this number according to your airline needs, but make sure it's not too large
+           or too small.
+           */
+          this.abort();
+        });
+      }
+      else {
+        // We reached the base case ==> (i = airlines.length) ==> No more airlines, return empty array
+
+        cb({outgoingFlights:[]});
+      }
     }
 
 
-    const urls = [
-      //air madgascar
-
-      "http://52.27.150.19/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-38-101-89.us-west-2.compute.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-54-152-123-100.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.187.208.145/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.58.46.74/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.32.109.147/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.36.169.206/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-91-94-227.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.207.211.179/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.93.116.90/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.93.74.125/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.36.250.55/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.26.173.245/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.93.36.94/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.187.103.196/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://swiss-air.me/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.28.246.230/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.58.24.76/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-26-166-80.us-west-2.compute.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.25.15.124/api/flights/search/"+origin+'/'+destination+'/'+date+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk'
+    getOtherAirlines(function(res2){
+      res.send(res2);
+    }, origin, destination, date, flightClass,seats,0);
 
 
 
-    ];
-    async.map(urls, httpGet, function (err, res) {
-      var x=flights.formatReturnOutgoing(res,0);
-      console.log(x);
-      res2.send(x);
-    });
+
   });
 
   ///API BY-ACCESS EL SERVERS EL TANYA W BY-ACCESSNA
   //ROUND WAY TRIP
 
-  app.get('/api/flights/searchAirlines/:origin/:destination/:departureDate/:returnDate/:class/:seats',function(req,res2) {
+  app.get('/api/flights/searchAirlines/:origin/:destination/:departureDate/:returnDate/:class/:seats',function(req,res) {
 
     var origin=req.param('origin');
     var destination=req.param('destination');
     var departureDate=req.param('departureDate');
     var returnDate=req.param('returnDate');
-    var classs=req.param('class');
+    var flightClass=req.param('class');
     var seats=req.param('seats');
-    console.log(origin);
-    console.log(destination);
-    console.log(classs);
-    function httpGet(url, cb) {
-      var options = {
-        url: url,
-        json: true,
-        timeout: 3000
-      };
-      var r= request(options,
-        function (err, res, body) {
-
-          if(err){
-            cb(err,[]);
-
-
-          }else{
-            cb(err,body);
-          }
-
-        }
-      );
-
-    }
-
-    const urls = [
-
-      
-      "http://ec2-52-26-166-80.us-west-2.compute.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-
-
-      "http://ec2-52-38-101-89.us-west-2.compute.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-
-      //hawaian
-
-
-      //graphics iberia
-
-      "http://ec2-54-152-123-100.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.187.208.145/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.58.46.74/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.32.109.147/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.36.169.206/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-
-      "http://52.207.211.179/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.27.150.19/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.93.116.90/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-
-      "http://54.93.74.125/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.36.250.55/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.26.173.245/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.93.36.94/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.187.103.196/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://swiss-air.me/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.28.246.230/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.58.24.76/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-91-94-227.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://54.191.202.17/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://ec2-52-90-41-197.compute-1.amazonaws.com/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-      "http://52.25.15.124/api/flights/search/"+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+classs+'/'+seats+'/?wt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk',
-
-
+    var token ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJyZWRldnMubWUiLCJpYXQiOjE0NjEwMjI3ODQsImV4cCI6MTQ5MjU1ODc5NSwiYXVkIjoicmVkZXZzLm1lIiwic3ViIjoicmVkZXZzLm1lIn0.1g63kQXEOKBTQ7gEQ4nxbPI0pXJiM7-g7UH24Y-hKlk';
+    const airlines = [
+      "swiss-air.me",
+      "52.27.150.19",
+      "ec2-52-38-101-89.us-west-2.compute.amazonaws.com",
+      "ec2-54-152-123-100.compute-1.amazonaws.com",
+      "54.187.208.145",
+      "52.58.46.74",
+      "52.32.109.147",
+      "52.36.169.206",
+      "ec2-52-91-94-227.compute-1.amazonaws.com",
+      "52.207.211.179",
+      "54.93.116.90",
+      "54.93.74.125",
+      "52.36.250.55",
+      "52.26.173.245",
+      "54.93.36.94",
+      "54.187.103.196",
+      "52.28.246.230",
+      "52.58.24.76",
+      "ec2-52-90-41-197.compute-1.amazonaws.com",
+      "54.191.202.17",
+      "ec2-52-26-166-80.us-west-2.compute.amazonaws.com",
+      "52.25.15.124",
+      "52.90.46.68",
+      "52.38.234.54",
+        "54.213.157.185"
     ];
-    async.map(urls, httpGet, function (err, res) {
+    var getOtherAirlines = function(cb, origin, destination, departureDate,returnDate, flightClass,seats, i) {
+
+      if(i < airlines.length){
 
 
-      var x = flights.formatReturnOutgoing(res, 1);
+        // Specify the options of the GET request
+        var options = {
+          host: airlines[i],
+          path: '/api/flights/search/'+origin+'/'+destination+'/'+departureDate+'/'+returnDate+'/'+flightClass+'/'+seats+'/'+'?wt='+token,
+        }
 
-      res2.send(x);
 
-    });
+        // Send the GET request to the current airline [i]
+        http.get(options, function(res) {
+
+          var flightsData = "";
+          res.on('data',function(data){
+                // Retreive the data from the response
+                flightsData += data;
+              })
+              .on('end',function(){
+
+                // Make sure that the returned data are in JSON format
+                var validJSON = true;
+                try{
+                  flightsData = JSON.parse(flightsData);
+                }
+                catch(e)
+                {
+                  validJSON = false;
+                }
+
+                // Get the flights of the next airlines, starting from i+1
+                getOtherAirlines(function(newFlights){
+
+                  // Only concat JSON data that are in valid format
+                  if(validJSON && flightsData.outgoingFlights)
+                    newFlights.outgoingFlights = newFlights.outgoingFlights.concat(flightsData.outgoingFlights);
+                  if(validJSON && flightsData.returnFlights)
+                    newFlights.returnFlights = newFlights.returnFlights.concat(flightsData.returnFlights);
+
+                  // Backtrack and return the current list of flights to the previous call
+                  cb(newFlights);
+
+                },  origin, destination, departureDate,returnDate, flightClass,seats, i+1)
+
+
+
+              });
+        }).on('error',function(e){
+
+          console.log('ERROR: '+e);
+
+          /**
+           * An error happened in the request to the current airline. So we will ignore the
+           current flightsData and proceed with our recursion to the next airline
+           */
+          getOtherAirlines(function(newFlights){
+
+            // Backtrack and return the current list of flights to the previous call
+            cb(newFlights);
+
+          }, origin, destination, departureDate,returnDate, flightClass,seats, i+1)
+
+        }).setTimeout(2000,function(){
+          /**
+           Adding this function to make sure that no airline takes forever to return data.
+           the abort() function below terminates the http request and executes  the
+           above .on('error') function
+           Now the maximum allowed time for each individual airline to return data is 3 seconds
+           You can modify this number according to your airline needs, but make sure it's not too large
+           or too small.
+           */
+          this.abort();
+        });
+      }
+      else {
+        // We reached the base case ==> (i = airlines.length) ==> No more airlines, return empty array
+        cb({outgoingFlights:[],
+            returnFlights:[]
+        });
+      }
+    };
+
+
+    getOtherAirlines(function(res2){
+      res.send(res2);
+    }, origin, destination, departureDate,returnDate, flightClass,seats,0);
+
+
+
   });
 
 
