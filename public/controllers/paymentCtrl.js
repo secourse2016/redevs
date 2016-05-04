@@ -47,9 +47,24 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
       case "Swiss Air": return "http://swiss-air.me" ; break ;
       case "Air Berlin": return "http://ec2-52-38-101-89.us-west-2.compute.amazonaws.com" ;  break;
       case "Hawaiian": return "http://54.93.36.94"; break ;
-      case "Air Madagascar": console.log("z");return "http://54.191.202.17"; ;break;
+      case "Air Madagascar": return "http://54.191.202.17"; ;break;
       case "AirNewZealand": return "http://52.28.246.230"; break;
-      case "IBERIA": return "52.58.24.76" ; break;
+      case "IBERIA": return "http://52.58.24.76" ; break;
+      case "Lufthansa" : return "ec2-54-152-123-100.compute-1.amazonaws.com";break;
+      case "Emirates Airlines" : return "http://52.90.46.68";break;
+      case "Japan Airlines" : return "http://54.187.208.145" ;break;
+      case "Singapore air" : return "http://52.38.234.54" ; break;
+      case "Dragonair" : return "http://52.58.46.74";break;
+      case "South African Airways" : return "http://54.213.157.185";break;
+      case "Malaysia Airlines" : return "http://52.32.109.147";break;
+      case "Northwest Airlines": return "http://52.36.169.206";break;
+      case "Cathay Pacific Airlines":return "ec2-52-91-94-227.compute-1.amazonaws.com";break;
+      case "Alaska" : return "http://52.207.211.179";break;
+      case "Virgin australia" : return "http://54.93.116.90" ;break ;
+      case "United" : return "http://54.187.103.196" ; break;
+      case "Alitalia":return "http://54.93.74.125" ; break;
+      case "Air Canada": return "http://52.36.250.55" ; break ;
+
 
     }
   };
