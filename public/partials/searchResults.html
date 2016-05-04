@@ -4,7 +4,12 @@
   <div class="row">
     <div class="jumbotron">
 
-<div ng-hide="outgoingFlights.length"><h1 style="color:#FFFFFF" align="center">Loading...</h1></div>
+      <div ng-hide="outgoingFlights.length" align="center">
+      <h2 style="color:#FFFFFF" align="center">Loading...</h2>
+      <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom" style="color:#FFFFFF"></i>
+      <span class="sr-only">Loading...</span>
+
+      </div>
 
       <div class="row">
 
