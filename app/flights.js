@@ -674,27 +674,34 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
       };
       if (isRoundTrip === 0) {
 
-        for (i = 0; i < flights.length; i++) {
+        if (flights!== undefined) {
+
+          for (i = 0; i < flights.length; i++) {
+
+            if (flights[i] !== undefined) {
+              if (flights[i].hasOwnProperty('outgoingFlights')) {
 
 
-          if (flights[i].hasOwnProperty('outgoingFlights')) {
-
-
-            for (j = 0; j < flights[i].outgoingFlights.length; j++) {
-              if (flights[i].outgoingFlights[j].length != 0) {
-                res.outgoingFlights.push(flights[i].outgoingFlights[j]);
+                for (j = 0; j < flights[i].outgoingFlights.length; j++) {
+                  if (flights[i].outgoingFlights[j].length != 0) {
+                    res.outgoingFlights.push(flights[i].outgoingFlights[j]);
+                  }
+                }
               }
+
+
             }
           }
-
-
+          return res;
         }
-        return res;
+
       }
 
       if (isRoundTrip === 1) {
 
+        if (flights!== undefined) {
         for (i = 0; i < flights.length; i++) {
+        if(flights[i]!==undefined) {
           if (flights[i].hasOwnProperty('outgoingFlights')) {
             for (j = 0; j < flights[i].outgoingFlights.length; j++) {
               if (flights[i].outgoingFlights[j].length != 0) {
@@ -703,6 +710,7 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
               }
             }
           }
+
           if (flights[i].hasOwnProperty('returnFlights')) {
             for (j = 0; j < flights[i].returnFlights.length; j++) {
               if (flights[i].returnFlights[j].length != 0) {
@@ -714,8 +722,11 @@ function updateFlights(db, flightNumber, departureDateTime, economyClassSeatMap,
 
           }
         }
-        return resRT;
+          }
 
+          return resRT;
+
+        }
 
       }
     }

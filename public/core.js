@@ -65,6 +65,10 @@ App.config(function($routeProvider) {
         .when('/thankYou',{
             templateUrl: '/partials/thankYou.html',
             controller : 'thankYouCtrl'
+        })
+
+        .when('/aboutUs',{
+          templateUrl: '/partials/aboutUs.html'
         });
 
 
