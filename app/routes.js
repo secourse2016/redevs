@@ -233,9 +233,11 @@ module.exports = function(app,mongo) {
 
 
 
+
     getOtherAirlines(function(res2){
       res.send(res2);
     }, origin, destination, date, flightClass,seats,0);
+
 
 
 
@@ -296,12 +298,14 @@ module.exports = function(app,mongo) {
         // Send the GET request to the current airline [i]
         http.get(options, function(res) {
 
+
           var flightsData = "";
           res.on('data',function(data){
                 // Retreive the data from the response
                 flightsData += data;
               })
               .on('end',function(){
+
 
                 // Make sure that the returned data are in JSON format
                 var validJSON = true;
@@ -329,8 +333,10 @@ module.exports = function(app,mongo) {
 
 
 
+
               });
         }).on('error',function(e){
+
 
           console.log('ERROR: '+e);
 
