@@ -1,4 +1,4 @@
-App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,$state,$ionicPopup) {
+App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,$state,$ionicPopup,$ionicLoading) {
 
     $scope.name = "";
     $scope.creditNumber = 0;
@@ -66,8 +66,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
     $scope.submit = function(){
 
 
-      if(($scope.name===undefined) ||($scope.creditNumber===undefined)||($scope.CVC===undefined)|| ($scope.date===undefined)||
-        ($scope.creditNumber.length!==16)||($scope.cvc!==3)){
+      if(($scope.name===undefined) ||($scope.creditNumber===undefined)||($scope.CVC===undefined)|| ($scope.date===undefined)){
         $ionicPopup.alert({
           title: 'Credit Card Information is Wrong ',
           template: 'Please revise all credit card info inorder to continue the transaction properly!!'
