@@ -95,7 +95,7 @@ input.childrenNum {
 
 section#about {
 	background: #333;
-	border-color: rgba(255,255,255,.3); 
+	border-color: rgba(255,255,255,.3);
 }
 section {
     border-color: rgba(34,34,34,.05);
@@ -128,7 +128,7 @@ div#carousel{
 
 @media(min-width:768px) {
     .navbar-default {
-        border-color: rgba(255,255,255,.3); 
+        border-color: rgba(255,255,255,.3);
 		background: transparent;
     }
 
@@ -178,7 +178,16 @@ div#carousel{
     section#about {
     margin-top: 20px;
 	background: rgba(47,47,47,0.5);
-	border-color: rgba(255,255,255,.3); 
+	border-color: rgba(255,255,255,.3);
 	}
 }
 
+.user {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}

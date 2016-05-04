@@ -8,6 +8,10 @@ strong{
   color: lightgreen;
 }
 
+.checkInError {
+  color: green;
+}
+
 .info{
 	color: lightgray;
 }
