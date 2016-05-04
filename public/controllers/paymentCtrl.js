@@ -49,7 +49,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe)
       case "Hawaiian": return "http://54.93.36.94"; break ;
       case "Air Madagascar": return "http://54.191.202.17"; ;break;
       case "AirNewZealand": return "http://52.28.246.230"; break;
-      case "Iberia": return "http://52.58.24.76" ; break;
+      case "IBERIA": return "http://52.58.24.76" ; break;
       case "Lufthansa" : return "ec2-54-152-123-100.compute-1.amazonaws.com";break;
       case "Emirates Airlines" : return "http://52.90.46.68";break;
       case "Japan Airlines" : return "http://54.187.208.145" ;break;
