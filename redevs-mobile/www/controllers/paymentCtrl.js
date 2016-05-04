@@ -1,4 +1,4 @@
-App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,$state) {
+App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,$state,$ionicPopup) {
 
     $scope.name = "";
     $scope.creditNumber = 0;
@@ -55,7 +55,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
         case "Swiss Air": return "http://swiss-air.me" ; break ;
         case "Air Berlin": return "http://ec2-52-38-101-89.us-west-2.compute.amazonaws.com" ;  break;
         case "Hawaiian": return "http://54.93.36.94"; break ;
-        case "Air Madagascar": console.log("z");return "http://54.191.202.17"; ;break;
+        case "Air Madagascar": console.log("z");return "http://54.191.202.17"; break;
         case "AirNewZealand": return "http://52.28.246.230"; break;
         case "IBERIA": return "52.58.24.76" ; break;
 
@@ -64,7 +64,25 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
 
     $scope.submit = function(){
+
+
+      if(($scope.name===undefined) ||($scope.creditNumber===undefined)||($scope.CVC===undefined)|| ($scope.date===undefined)||
+        ($scope.creditNumber.length!==16)||($scope.cvc!==3)){
+        $ionicPopup.alert({
+          title: 'Credit Card Information is Wrong ',
+          template: 'Please revise all credit card info inorder to continue the transaction properly!!'
+        });
+
+
+
+
+      }
+      else{
+
+
+
       $scope.show($ionicLoading);
+
       console.log(FlightsSrv.getTripType());
       if(FlightsSrv.getTripType()==="OneWayTrip"){
         if(flights[0].Airline==="Delta Airlines"){
@@ -76,8 +94,10 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
             exp_year:$scope.date.getFullYear()
           },function(status,response){
             if(response.error){
-              console.log(response.error);
-              console.log($scope.year);
+              $ionicPopup.alert({
+                title: 'Credit Card Information is Wrong ',
+                template: response.error
+              });
             }else{
               var data = {
                 tripType:FlightsSrv.getTripType(),
@@ -110,7 +130,10 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
               exp_year:$scope.date.getFullYear()
             },function(status,response){
               if(response.error){
-                console.log(response.error);
+                $ionicPopup.alert({
+                  title: 'Credit Card Information is Wrong ',
+                  template: response.error
+                });
               }else{
                 var data={
                   passengerDetails : passengerDetails,
@@ -136,29 +159,31 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
 
 
-      }else{
-        if(flights[0].Airline==="Delta Airlines" && flights[1].Airline==="Delta Airlines" ){
+      }else {
+        if (flights[0].Airline === "Delta Airlines" && flights[1].Airline === "Delta Airlines") {
           stripe.card.createToken({
             number: $scope.creditNumber,
-            cvc : $scope.CVC,
-            exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-            exp_year:$scope.date.getFullYear()
-          },function(status,response){
-            if(response.error){
-              console.log(response.error);
-              console.log($scope.year);
-            }else{
+            cvc: $scope.CVC,
+            exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+            exp_year: $scope.date.getFullYear()
+          }, function (status, response) {
+            if (response.error) {
+              $ionicPopup.alert({
+                title: 'Credit Card Information is Wrong ',
+                template: response.error
+              });
+            } else {
               var data = {
-                tripType:FlightsSrv.getTripType(),
-                flights:FlightsSrv.getFlights(),
-                adults:FlightsSrv.getAdultsInfo(),
-                children:FlightsSrv.getChildrenInfo(),
-                classs:FlightsSrv.getClass(),
-                token:response.id
+                tripType: FlightsSrv.getTripType(),
+                flights: FlightsSrv.getFlights(),
+                adults: FlightsSrv.getAdultsInfo(),
+                children: FlightsSrv.getChildrenInfo(),
+                classs: FlightsSrv.getClass(),
+                token: response.id
 
               };
 
-              FlightsSrv.postReservation(data).success(function(response,status){
+              FlightsSrv.postReservation(data).success(function (response, status) {
                 FlightsSrv.setReservationNumber(response.time);
                 $scope.hide($ionicLoading);
                 $location.url('/thankYou');
@@ -166,56 +191,61 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
 
             }
           });
-        }else if(flights[0].Airline==="Delta Airlines" && flights[1].Airline!="Delta Airlines" ){
+        } else if (flights[0].Airline === "Delta Airlines" && flights[1].Airline != "Delta Airlines") {
           var f1;
           var f2;
           //Reserve the first ticket
           stripe.card.createToken({
             number: $scope.creditNumber,
-            cvc : $scope.CVC,
-            exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-            exp_year:$scope.date.getFullYear()
-          },function(status,response){
-            if(response.error){
-              console.log(response.error);
-              console.log($scope.year);
-            }else{
+            cvc: $scope.CVC,
+            exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+            exp_year: $scope.date.getFullYear()
+          }, function (status, response) {
+            if (response.error) {
+              $ionicPopup.alert({
+                title: 'Credit Card Information is Wrong ',
+                template: response.error
+              });
+            } else {
               var data = {
-                tripType:"OneWayTrip",
-                flights:[FlightsSrv.getFlights()[0]],
-                adults:FlightsSrv.getAdultsInfo(),
-                children:FlightsSrv.getChildrenInfo(),
-                classs:FlightsSrv.getClass(),
-                token:response.id
+                tripType: "OneWayTrip",
+                flights: [FlightsSrv.getFlights()[0]],
+                adults: FlightsSrv.getAdultsInfo(),
+                children: FlightsSrv.getChildrenInfo(),
+                classs: FlightsSrv.getClass(),
+                token: response.id
 
               };
 
-              FlightsSrv.postReservation(data).success(function(response,status){
+              FlightsSrv.postReservation(data).success(function (response, status) {
                 f1 = response.time;
                 var url = getURL(flights[1].Airline);
-                FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+                FlightsSrv.otherAirlinePubKey(url).success(function (response, status) {
                   stripe.setPublishableKey(response);
                   stripe.card.createToken({
                     number: $scope.creditNumber,
-                    cvc : $scope.CVC,
-                    exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-                    exp_year:$scope.date.getFullYear()
-                  },function(status,response){
-                    if(response.error){
-                      console.log(response.error);
-                    }else{
-                      var data={
-                        passengerDetails : passengerDetails,
-                        outgoingFlightId:flights[1].flightId,
-                        cost:parseInt(flights[1].cost),
-                        paymentToken:response.id,
-                        class:FlightsSrv.getClass()
+                    cvc: $scope.CVC,
+                    exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+                    exp_year: $scope.date.getFullYear()
+                  }, function (status, response) {
+                    if (response.error) {
+                      $ionicPopup.alert({
+                        title: 'Credit Card Information is Wrong ',
+                        template: response.error
+                      });
+                    } else {
+                      var data = {
+                        passengerDetails: passengerDetails,
+                        outgoingFlightId: flights[1].flightId,
+                        cost: parseInt(flights[1].cost),
+                        paymentToken: response.id,
+                        class: FlightsSrv.getClass()
                       };
                       console.log(data);
 
-                      FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                      FlightsSrv.otherAirlineBooking(url, data).success(function (response, status) {
                         stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                        FlightsSrv.setReservationNumber("Flight 1 ref = "+ f1 +" Flight 2 ref = "+response.refNum);
+                        FlightsSrv.setReservationNumber("Flight 1 ref = " + f1 + " Flight 2 ref = " + response.refNum);
                         console.log(response);
                         $scope.hide($ionicLoading);
                         $location.url('/thankYou');
@@ -231,59 +261,60 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
           // reserve the second ticket
 
 
-
-
-
-
-        }else if(flights[0].Airline!="Delta Airlines" && flights[1].Airline=="Delta Airlines" ){
+        } else if (flights[0].Airline != "Delta Airlines" && flights[1].Airline == "Delta Airlines") {
           var url = getURL(flights[0].Airline);
-          FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+          FlightsSrv.otherAirlinePubKey(url).success(function (response, status) {
             stripe.setPublishableKey(response);
             stripe.card.createToken({
               number: $scope.creditNumber,
-              cvc : $scope.CVC,
-              exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-              exp_year:$scope.date.getFullYear()
-            },function(status,response){
-              if(response.error){
-                console.log(response.error);
-              }else{
-                var data={
-                  passengerDetails : passengerDetails,
-                  outgoingFlightId:flights[0].flightId,
-                  cost:parseInt(flights[0].cost),
-                  paymentToken:response.id,
-                  class:FlightsSrv.getClass()
+              cvc: $scope.CVC,
+              exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+              exp_year: $scope.date.getFullYear()
+            }, function (status, response) {
+              if (response.error) {
+                $ionicPopup.alert({
+                  title: 'Credit Card Information is Wrong ',
+                  template: response.error
+                });
+              } else {
+                var data = {
+                  passengerDetails: passengerDetails,
+                  outgoingFlightId: flights[0].flightId,
+                  cost: parseInt(flights[0].cost),
+                  paymentToken: response.id,
+                  class: FlightsSrv.getClass()
                 };
                 console.log(data);
 
-                FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                FlightsSrv.otherAirlineBooking(url, data).success(function (response, status) {
                   stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                  FlightsSrv.setReservationNumber("Flight 1 ref = "+response.refNum);
+                  FlightsSrv.setReservationNumber("Flight 1 ref = " + response.refNum);
                   console.log(response);
                   stripe.card.createToken({
                     number: $scope.creditNumber,
-                    cvc : $scope.CVC,
-                    exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-                    exp_year:$scope.date.getFullYear()
-                  },function(status,response){
-                    if(response.error){
-                      console.log(response.error);
-                      console.log($scope.year);
-                    }else{
+                    cvc: $scope.CVC,
+                    exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+                    exp_year: $scope.date.getFullYear()
+                  }, function (status, response) {
+                    if (response.error) {
+                      $ionicPopup.alert({
+                        title: 'Credit Card Information is Wrong ',
+                        template: response.error
+                      });
+                    } else {
                       var data = {
-                        tripType:"OneWayTrip",
-                        flights:[FlightsSrv.getFlights()[1]],
-                        adults:FlightsSrv.getAdultsInfo(),
-                        children:FlightsSrv.getChildrenInfo(),
-                        classs:FlightsSrv.getClass(),
-                        token:response.id
+                        tripType: "OneWayTrip",
+                        flights: [FlightsSrv.getFlights()[1]],
+                        adults: FlightsSrv.getAdultsInfo(),
+                        children: FlightsSrv.getChildrenInfo(),
+                        classs: FlightsSrv.getClass(),
+                        token: response.id
 
                       };
 
-                      FlightsSrv.postReservation(data).success(function(response,status){
+            FlightsSrv.postReservation(data).success(function(response,status){
                         FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"Flight 2 ref= "+response.time);
-                        $scope.hide($ionicLoading); 
+                        $scope.hide($ionicLoading);
                         $location.url('/thankYou');
 
                       });
@@ -296,94 +327,99 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
           });
 
 
-
-
-
-
-        }else if(flights[0].Airline!="Delta Airlines" && flights[1].Airline!="Delta Airlines" &&  flights[0].Airline === flights[1].Airline  ){
+        } else if (flights[0].Airline != "Delta Airlines" && flights[1].Airline != "Delta Airlines" && flights[0].Airline === flights[1].Airline) {
           var url = getURL(flights[0].Airline);
-          FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
-          stripe.setPublishableKey(response);
-          stripe.card.createToken({
-            number: $scope.creditNumber,
-            cvc : $scope.CVC,
-            exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-            exp_year:$scope.date.getFullYear()
-          },function(status,response){
-            if(response.error){
-              console.log(response.error);
-            }else{
-              var data={
-                passengerDetails : passengerDetails,
-                outgoingFlightId:flights[0].flightId,
-                returnFlightId:flights[1].flightId,
-                cost:parseInt(FlightsSrv.getTotalCost),
-                paymentToken:response.id,
-                class:FlightsSrv.getClass()
-              };
-              console.log(data);
-
-              FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
-                stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                FlightsSrv.setReservationNumber(response.refNum);
-                console.log(response);
-                $location.url('/thankYou');
-              });
-            }
-          });
-        });
-
-
-        }else{
-          var url = getURL(flights[0].Airline);
-          FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+          FlightsSrv.otherAirlinePubKey(url).success(function (response, status) {
             stripe.setPublishableKey(response);
             stripe.card.createToken({
               number: $scope.creditNumber,
-              cvc : $scope.CVC,
-              exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-              exp_year:$scope.date.getFullYear()
-            },function(status,response){
-              if(response.error){
-                console.log(response.error);
-              }else{
-                var data={
-                  passengerDetails : passengerDetails,
-                  outgoingFlightId:flights[0].flightId,
-                  cost:parseInt(flights[0].cost),
-                  paymentToken:response.id,
-                  class:FlightsSrv.getClass()
+              cvc: $scope.CVC,
+              exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+              exp_year: $scope.date.getFullYear()
+            }, function (status, response) {
+              if (response.error) {
+                $ionicPopup.alert({
+                  title: 'Credit Card Information is Wrong ',
+                  template: response.error
+                });
+              } else {
+                var data = {
+                  passengerDetails: passengerDetails,
+                  outgoingFlightId: flights[0].flightId,
+                  returnFlightId: flights[1].flightId,
+                  cost: parseInt(FlightsSrv.getTotalCost),
+                  paymentToken: response.id,
+                  class: FlightsSrv.getClass()
                 };
                 console.log(data);
 
-                FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                FlightsSrv.otherAirlineBooking(url, data).success(function (response, status) {
                   stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                  FlightsSrv.setReservationNumber("Flight 1 ref = "+response.refNum);
+                  FlightsSrv.setReservationNumber(response.refNum);
+                  console.log(response);
+                  $location.url('/thankYou');
+                });
+              }
+            });
+          });
+
+
+        } else {
+          var url = getURL(flights[0].Airline);
+          FlightsSrv.otherAirlinePubKey(url).success(function (response, status) {
+            stripe.setPublishableKey(response);
+            stripe.card.createToken({
+              number: $scope.creditNumber,
+              cvc: $scope.CVC,
+              exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+              exp_year: $scope.date.getFullYear()
+            }, function (status, response) {
+              if (response.error) {
+                $ionicPopup.alert({
+                  title: 'Credit Card Information is Wrong ',
+                  template: response.error
+                });
+              } else {
+                var data = {
+                  passengerDetails: passengerDetails,
+                  outgoingFlightId: flights[0].flightId,
+                  cost: parseInt(flights[0].cost),
+                  paymentToken: response.id,
+                  class: FlightsSrv.getClass()
+                };
+                console.log(data);
+
+                FlightsSrv.otherAirlineBooking(url, data).success(function (response, status) {
+                  stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
+                  FlightsSrv.setReservationNumber("Flight 1 ref = " + response.refNum);
                   console.log(response);
                   var url = getURL(flights[1].Airline);
-                  FlightsSrv.otherAirlinePubKey(url).success(function(response,status){
+                  FlightsSrv.otherAirlinePubKey(url).success(function (response, status) {
                     stripe.setPublishableKey(response);
                     stripe.card.createToken({
                       number: $scope.creditNumber,
-                      cvc : $scope.CVC,
-                      exp_month:("0" + ($scope.date.getMonth() + 1)).slice(-2),
-                      exp_year:$scope.date.getFullYear()
-                    },function(status,response){
-                      if(response.error){
-                        console.log(response.error);
-                      }else{
-                        var data={
-                          passengerDetails : passengerDetails,
-                          outgoingFlightId:flights[1].flightId,
-                          cost:parseInt(flights[1].cost),
-                          paymentToken:response.id,
-                          class:FlightsSrv.getClass()
+                      cvc: $scope.CVC,
+                      exp_month: ("0" + ($scope.date.getMonth() + 1)).slice(-2),
+                      exp_year: $scope.date.getFullYear()
+                    }, function (status, response) {
+                      if (response.error) {
+                        $ionicPopup.alert({
+                          title: 'Credit Card Information is Wrong ',
+                          template: response.error
+                        });
+                      } else {
+                        var data = {
+                          passengerDetails: passengerDetails,
+                          outgoingFlightId: flights[1].flightId,
+                          cost: parseInt(flights[1].cost),
+                          paymentToken: response.id,
+                          class: FlightsSrv.getClass()
                         };
                         console.log(data);
 
-                        FlightsSrv.otherAirlineBooking(url,data).success(function(response,status){
+                        FlightsSrv.otherAirlineBooking(url, data).success(function (response, status) {
                           stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
-                          FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber()+"Flight 2 ref = "+response.refNum);
+                          FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber() + "Flight 2 ref = " + response.refNum);
                           console.log(response);
                           $location.url('/thankYou');
                         });
@@ -396,6 +432,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
           });
 
         }
+      }
       }
 
     }
