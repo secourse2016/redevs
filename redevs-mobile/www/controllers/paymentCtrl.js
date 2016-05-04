@@ -123,8 +123,9 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
               };
 
               FlightsSrv.postReservation(data).success(function(response,status){
-                $scope.hide($ionicLoading);
+
                 FlightsSrv.setReservationNumber(response.time);
+                $scope.hide($ionicLoading);
                 $location.url('/thankYou');
               });
 
@@ -360,7 +361,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
                   passengerDetails: passengerDetails,
                   outgoingFlightId: flights[0].flightId,
                   returnFlightId: flights[1].flightId,
-                  cost: parseInt(FlightsSrv.getTotalCost),
+                  cost: parseInt(FlightsSrv.getTotalCost()),
                   paymentToken: response.id,
                   class: FlightsSrv.getClass()
                 };
@@ -370,6 +371,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
                   stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                   FlightsSrv.setReservationNumber(response.refNum);
                   console.log(response);
+                  $scope.hide($ionicLoading);
                   $location.url('/thankYou');
                 });
               }
@@ -434,6 +436,7 @@ App.controller('paymentCtrl',function($scope,$http, FlightsSrv,$location,stripe,
                           stripe.setPublishableKey('pk_test_lnXZPy220d1EMqYfHlOj1XOt');
                           FlightsSrv.setReservationNumber(FlightsSrv.getReservationNumber() + "Flight 2 ref = " + response.refNum);
                           console.log(response);
+                          $scope.hide($ionicLoading);
                           $location.url('/thankYou');
                         });
                       }
